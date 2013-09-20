@@ -16,7 +16,7 @@ public class GuiUtil {
         System.err.print(e);
         JOptionPane.showMessageDialog(parent,
                 makeGoodString(e),
-                "You Suck",
+                "OH NOES",
                 JOptionPane.ERROR_MESSAGE);
 
     }

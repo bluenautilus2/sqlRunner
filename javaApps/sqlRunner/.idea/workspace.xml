@@ -1,340 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="sqlRunner:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="81460ffb-ddc8-4b59-b645-b44e74acd1ab" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_configuration_1_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_lang_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_logging_1_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc4_4_0_2206_100.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/NOTICE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/RELEASE-NOTES.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/allclasses-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/allclasses-noframe.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/constant-values.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/deprecated-list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/help-doc.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/index-all.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/options" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/ArrayUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/BitField.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/BooleanUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/CharEncoding.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/CharRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/CharSet.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/CharSetUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/CharUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/ClassUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/IllegalClassException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/IncompleteArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/LocaleUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/NotImplementedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/NullArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/ObjectUtils.Null.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/ObjectUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/RandomStringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/SerializationException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/SerializationUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/StringEscapeUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/StringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/SystemUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/UnhandledException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/Validate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/WordUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/CompareToBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/EqualsBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/HashCodeBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/ReflectionToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/StandardToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/ToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/ToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/CompareToBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/EqualsBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/HashCodeBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/ReflectionToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/StandardToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/ToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/class-use/ToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/builder/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/ArrayUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/BitField.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/BooleanUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/CharEncoding.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/CharRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/CharSet.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/CharSetUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/CharUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/ClassUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/IllegalClassException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/IncompleteArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/LocaleUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/NotImplementedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/NullArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/ObjectUtils.Null.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/ObjectUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/RandomStringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/SerializationException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/SerializationUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/StringEscapeUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/StringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/SystemUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/UnhandledException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/Validate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/class-use/WordUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/class-use/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/class-use/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/class-use/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enum/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/class-use/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/class-use/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/class-use/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/enums/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/CloneFailedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/ExceptionUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/Nestable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/NestableDelegate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/NestableError.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/NestableException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/NestableRuntimeException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/CloneFailedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/ExceptionUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/Nestable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/NestableDelegate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/NestableError.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/NestableException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/class-use/NestableRuntimeException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/exception/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/DoubleRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/FloatRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/Fraction.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/IEEE754rUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/IntRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/JVMRandom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/LongRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/RandomUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/Range.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/DoubleRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/FloatRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/Fraction.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/IEEE754rUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/IntRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/JVMRandom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/LongRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/RandomUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/class-use/Range.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/math/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/Mutable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableBoolean.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableByte.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableDouble.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableFloat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableInt.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableLong.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableObject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/MutableShort.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/Mutable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableBoolean.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableByte.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableDouble.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableFloat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableInt.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableLong.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableObject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/class-use/MutableShort.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/mutable/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/ConstructorUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/FieldUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/MethodUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/class-use/ConstructorUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/class-use/FieldUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/class-use/MethodUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/reflect/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/CompositeFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/ExtendedMessageFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/FormatFactory.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/StrBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/StrLookup.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/StrMatcher.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/StrSubstitutor.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/StrTokenizer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/CompositeFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/ExtendedMessageFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/FormatFactory.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/StrBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/StrLookup.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/StrMatcher.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/StrSubstitutor.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/class-use/StrTokenizer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/text/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/DateFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/DateUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/DurationFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/FastDateFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/StopWatch.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/class-use/DateFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/class-use/DateUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/class-use/DurationFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/class-use/FastDateFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/class-use/StopWatch.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/org/apache/commons/lang/time/package-use.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/overview-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/overview-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/overview-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/package-list" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/packages" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/resources/inherit.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/serialized-form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/ArrayUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/BitField.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/BooleanUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/CharEncoding.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/CharRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/CharSet.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/CharSetUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/CharUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/ClassUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/IllegalClassException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/IncompleteArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/LocaleUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/NotImplementedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/NullArgumentException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/ObjectUtils.Null.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/ObjectUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/RandomStringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/SerializationException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/SerializationUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/StringEscapeUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/StringUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/SystemUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/UnhandledException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/Validate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/WordUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/CompareToBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/EqualsBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/HashCodeBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/ReflectionToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/StandardToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/ToStringBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/builder/ToStringStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enum/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enum/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enum/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enums/Enum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enums/EnumUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/enums/ValuedEnum.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/CloneFailedException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/ExceptionUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/Nestable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/NestableDelegate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/NestableError.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/NestableException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/exception/NestableRuntimeException.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/DoubleRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/FloatRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/Fraction.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/IEEE754rUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/IntRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/JVMRandom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/LongRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/NumberRange.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/NumberUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/RandomUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/math/Range.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/Mutable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableBoolean.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableByte.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableDouble.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableFloat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableInt.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableLong.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableObject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/mutable/MutableShort.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/reflect/ConstructorUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/reflect/FieldUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/reflect/MethodUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/CompositeFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/ExtendedMessageFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/FormatFactory.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/StrBuilder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/StrLookup.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/StrMatcher.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/StrSubstitutor.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/text/StrTokenizer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/time/DateFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/time/DateUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/time/DurationFormatUtils.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/time/FastDateFormat.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/src-html/org/apache/commons/lang/time/StopWatch.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/apidocs/stylesheet.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/commons-lang-2.6-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/commons-lang-2.6-sources.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/commons-lang-2.6/commons-lang-2.6.jar" afterPath="$PROJECT_DIR$/lib/commons-lang-2.6.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mygui.iml" afterPath="$PROJECT_DIR$/sqlRunner.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bluenautilus/db/DatabaseRefreshIOListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.properties.old" afterPath="$PROJECT_DIR$/db.properties.old" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sqlRunner.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379635662363" ignored="false" />
+    <file path="/Dummy.txt" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379685801683" ignored="false" />
+    <file path="/a.dummy" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379635974936" ignored="false" />
+    <file path="/ScriptViewPanel.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379635991468" ignored="false" />
+    <file path="/DatabaseRefreshListener.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379636587519" ignored="false" />
+    <file path="/RefreshAction.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379689108353" ignored="false" />
+    <file path="/PanelMgr.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379692374197" ignored="false" />
+    <file path="/MainExecutable.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379700447235" ignored="false" />
+    <file path="/OutputPanel.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379690609555" ignored="false" />
+    <file path="/GuiUtil.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379691321337" ignored="false" />
+    <file path="/SqlButtonPanel.java" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379692290142" ignored="false" />
+    <file path="/MANIFEST.MF" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379694401603" ignored="false" />
+    <file path="/Beth's DB" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379701043464" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,6 +46,11 @@
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
+  </component>
+  <component name="DatabaseView">
+    <flatten value="false" />
+    <groupTables value="false" />
+    <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
@@ -395,10 +99,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FieldItems.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/FieldItems.java">
+      <file leaf-file-name="SqlButtonPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="47" selection-start="1299" selection-end="1299" vertical-scroll-proportion="0.43307087">
+            <state line="15" column="19" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainExecutable.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="33" selection-start="2009" selection-end="2009" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PanelMgr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="70" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBRowRetriever.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRowRetriever.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="66" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="0" selection-start="153" selection-end="153" vertical-scroll-proportion="0.056925997">
               <folding />
             </state>
           </provider>
@@ -419,9 +159,25 @@
       <MyDateState />
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/db/DatabaseRefreshListener.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
+        <option value="db-console:/be391e77/00c0767d-4464-4a11-b8ae-7a2898c92033/" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="268" />
-    <option name="y" value="180" />
+    <option name="x" value="621" />
+    <option name="y" value="111" />
     <option name="width" value="1432" />
     <option name="height" value="920" />
   </component>
@@ -456,7 +212,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -507,28 +262,48 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/commons-lang-2.6.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/db.properties" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.MainExecutable">
     <configuration default="false" name="MainExecutable" type="Application" factoryName="Application" temporary="true">
@@ -543,7 +318,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="sqlRunner" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -602,6 +383,12 @@
       <patterns />
       <method />
     </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.MainExecutable" />
     </list>
@@ -625,32 +412,37 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="268" y="180" width="1432" height="920" extended-state="0" />
-    <editor active="false" />
+    <frame x="621" y="111" width="1432" height="920" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15331492" sideWeight="0.5897704" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15295815" sideWeight="0.690387" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17196132" sideWeight="0.66492695" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41022965" sideWeight="0.4996986" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33333334" sideWeight="0.5007215" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33458176" sideWeight="0.4992785" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.309613" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35572374" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35081148" sideWeight="0.4997242" order="10" side_tool="false" content_ui="tabs" x="169" y="518" width="1594" height="565" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29475588" sideWeight="0.66492695" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39457202" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18614718" sideWeight="0.6666667" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33333334" sideWeight="0.4992785" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21861471" sideWeight="0.690387" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.4992785" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17102396" sideWeight="0.68117315" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Struts Assistant" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984003" sideWeight="0.76109535" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.113950275" sideWeight="0.62734866" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3112583" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3108614" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27453026" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27340823" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17153889" sideWeight="0.28666037" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969284" sideWeight="0.6315789" order="4" side_tool="false" content_ui="tabs" />
@@ -722,9 +514,119 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/FieldItems.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="47" selection-start="1299" selection-end="1299" vertical-scroll-proportion="0.43307087">
+        <state line="16" column="13" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptCompletionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="17" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptKickoffListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="17" selection-start="3594" selection-end="3965" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="37" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="30" selection-start="3063" selection-end="3063" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#2941#3097#0" expanded="true" />
+            <element signature="e#3092#3093#0" expanded="true" />
+            <element signature="e#3164#3329#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="5" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="70" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRowRetriever.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="66" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="19" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="33" selection-start="2009" selection-end="2009" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://db-console:/be391e77/00c0767d-4464-4a11-b8ae-7a2898c92033/">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="67" selection-start="0" selection-end="69" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="153" selection-end="153" vertical-scroll-proportion="0.056925997">
           <folding />
         </state>
       </provider>
@@ -788,7 +690,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

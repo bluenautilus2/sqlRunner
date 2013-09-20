@@ -37,7 +37,9 @@ public class ScriptViewPanel extends ParentTextPanel {
                 textArea.append(line + "\n");
                 count++;
             }
-            textArea.append("\n*Script Truncated at 100 lines for GUI performance* --Beth\n");
+            if(count==100){
+                textArea.append("\n*Script Truncated at 100 lines for GUI performance* --Beth\n");
+            }
         } finally {
             if (null != reader) {
                 reader.close();

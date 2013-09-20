@@ -17,11 +17,14 @@ public class OutputPanel extends ParentTextPanel {
 
     public void setText(String theString) throws IOException {
         textArea.setText("");
-
         textArea.append(theString);
-
         textArea.setCaretPosition(0);
 
+    }
+
+    public void appendText(String s){
+        textArea.append(s);
+        textArea.setCaretPosition(0);
     }
 
 

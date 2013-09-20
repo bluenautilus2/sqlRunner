@@ -24,6 +24,8 @@ public class SqlButtonPanel extends JPanel {
     private JButton refreshButton = new JButton("REFRESH");
     private JButton oneScriptButton = new JButton("Run Selected");
     private JButton allButton = new JButton("Run All");
+    private Color defaultForeground;
+    private Color defaultBackground;
 
     public SqlButtonPanel(FieldItems initialFields) {
         super(new GridBagLayout());
@@ -129,6 +131,7 @@ public class SqlButtonPanel extends JPanel {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setRefreshButtonRed();
                 listener.refreshAction();
             }
         };
@@ -155,6 +158,22 @@ public class SqlButtonPanel extends JPanel {
         };
         this.allButton.addActionListener(actionListener);
 
+    }
+
+    private void setRefreshButtonRed(){
+        this.defaultBackground = this.refreshButton.getBackground();
+        this.defaultForeground= this.refreshButton.getForeground();
+
+        this.refreshButton.setText("Refreshing");
+        this.refreshButton.setForeground(Color.WHITE);
+        this.refreshButton.setBackground(new Color(150,60,60));
+
+    }
+
+    public void setRefreshButtonNormal(){
+         this.refreshButton.setText("Refresh");
+        this.refreshButton.setForeground(this.defaultForeground);
+        this.refreshButton.setBackground(this.defaultBackground);
     }
 
 }

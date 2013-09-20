@@ -22,7 +22,7 @@ import java.awt.*;
 public class MainExecutable {
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("SQL Script Runner 2000");
+        JFrame frame = new JFrame("SQL Script Runner 3000");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //  JPanel outermostPanel = new JPanel(new GridBagLayout());
@@ -59,9 +59,7 @@ public class MainExecutable {
 
         PanelMgr panelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel);
 
-        RefreshAction refresh = new RefreshAction(fields, outermostPanel, panelMgr);
-        refresh.refresh();
-
+        panelMgr.refreshAction();
 
     }
 

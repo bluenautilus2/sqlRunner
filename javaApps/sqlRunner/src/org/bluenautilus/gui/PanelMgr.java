@@ -1,6 +1,7 @@
 package org.bluenautilus.gui;
 
 import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.db.RefreshAction;
 import org.bluenautilus.util.ConfigUtil;
 import org.bluenautilus.util.GuiUtil;
@@ -23,13 +24,14 @@ import java.util.Collections;
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener {
+public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener {
 
     public OutputPanel outputPanel;
     public ScriptViewPanel scriptViewPanel;
     public SqlScriptTablePanel sqlTablePanel;
     public SqlButtonPanel buttonPanel;
     public SqlScriptFile lastSetFileObj;
+    public volatile boolean refreshingFlag=false;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
@@ -48,7 +50,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     }
 
-    public void refresh(ArrayList<SqlScriptFile> files) {
+    private void refresh(ArrayList<SqlScriptFile> files) {
         this.sqlTablePanel.setValues(files);
         this.outputPanel.clearText();
         this.scriptViewPanel.clearText();
@@ -85,10 +87,15 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     @Override
     public void refreshAction() {
+
         FieldItems items = this.buttonPanel.pullFieldsFromGui();
         ConfigUtil.saveOffCurrent(items, this.buttonPanel);
         RefreshAction action = new RefreshAction(items, this.buttonPanel, this);
-        action.refresh();
+
+        action.addListener(this);
+        //runs in its own thread
+        Thread newThread = new Thread(action);
+        newThread.start();
     }
 
     @Override
@@ -152,4 +159,23 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         runOneScript();
 
     }
+
+    /**
+     * takes place in the swing thread
+     */
+	@Override
+	public void databaseRefreshStarted() {
+        //nothing right now. later on might want to launch
+        //modal dialog or something
+
+	}
+
+
+    @Override
+    public void databaseRefreshCompleted(ArrayList<SqlScriptFile> results) {
+        this.buttonPanel.setRefreshButtonNormal();
+        this.refresh(results);
+    }
+
+   
 }
