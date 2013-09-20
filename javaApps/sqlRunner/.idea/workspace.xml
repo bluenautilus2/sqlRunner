@@ -6,20 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81460ffb-ddc8-4b59-b645-b44e74acd1ab" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bluenautilus/db/DatabaseRefreshIOListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/util/GuiUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/OutputPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.properties.old" afterPath="$PROJECT_DIR$/db.properties.old" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="81460ffb-ddc8-4b59-b645-b44e74acd1ab" name="Default" comment="" />
     <ignored path="sqlRunner.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="81460ffb-ddc8-4b59-b645-b44e74acd1ab" time="1379685801683" ignored="false" />
@@ -130,7 +117,10 @@
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRowRetriever.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="30" column="66" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#562#576#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,8 +166,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="621" />
-    <option name="y" value="111" />
+    <option name="x" value="421" />
+    <option name="y" value="118" />
     <option name="width" value="1432" />
     <option name="height" value="920" />
   </component>
@@ -418,7 +408,7 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="621" y="111" width="1432" height="920" extended-state="0" />
+    <frame x="421" y="118" width="1432" height="920" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -567,10 +557,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="126" column="30" selection-start="3063" selection-end="3063" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#2941#3097#0" expanded="true" />
-            <element signature="e#3092#3093#0" expanded="true" />
-            <element signature="e#3164#3329#0" expanded="true" />
-            <element signature="e#3324#3325#0" expanded="true" />
+            <element signature="e#2941#3097#0" expanded="false" />
+            <element signature="e#3092#3093#0" expanded="false" />
+            <element signature="e#3164#3329#0" expanded="false" />
+            <element signature="e#3324#3325#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -599,7 +589,10 @@
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRowRetriever.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="66" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#562#576#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
