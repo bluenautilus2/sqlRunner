@@ -75,7 +75,7 @@ public class RunScriptAction implements Runnable {
         ProcessBuilder builder = new ProcessBuilder(this.CMD,
                 "-U", items.getLoginField(),
                 "-P", items.getPasswordField(),
-                "-S", items.getIpAddressField(),
+                "-S", items.getIpAddressField() + "," + items.getPort(),
                 "-d", items.getDbNameField(),
                 "-i", newFile.getAbsolutePath());
 

@@ -21,6 +21,7 @@ public class SqlButtonPanel extends JPanel {
     private JTextField passwordField = new JTextField(15);
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField ipAddressField = new JTextField(15);
+    private JTextField portField = new JTextField(10);
     private JButton refreshButton = new JButton("REFRESH");
     private JButton oneScriptButton = new JButton("Run Selected");
     private JButton allButton = new JButton("Run All");
@@ -42,6 +43,7 @@ public class SqlButtonPanel extends JPanel {
         JLabel userName = new JLabel("Login");
         JLabel password = new JLabel("Password");
         JLabel folderName = new JLabel("SQL Script Folder");
+        JLabel portLabel = new JLabel("Port");
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
         this.oneScriptButton.setToolTipText("Run only the script(s) that are selected");
@@ -73,6 +75,10 @@ public class SqlButtonPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        this.add(portLabel, new GridBagConstraints(5,0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
         //TEXT FIELDS
         this.add(this.dbNameField, new GridBagConstraints(2, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
@@ -87,6 +93,10 @@ public class SqlButtonPanel extends JPanel {
                 new Insets(2, 2, 2, 2), 2, 2));
 
         this.add(this.passwordField, new GridBagConstraints(4, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        this.add(this.portField, new GridBagConstraints(6,0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -116,7 +126,8 @@ public class SqlButtonPanel extends JPanel {
                 this.loginField.getText(),
                 this.passwordField.getText(),
                 this.scriptFolderField.getText(),
-                this.ipAddressField.getText());
+                this.ipAddressField.getText(),
+                this.portField.getText());
     }
 
     public void setFields(FieldItems fields) {
@@ -125,6 +136,7 @@ public class SqlButtonPanel extends JPanel {
         this.passwordField.setText(fields.getPasswordField());
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.ipAddressField.setText(fields.getIpAddressField());
+        this.portField.setText(fields.getPort());
     }
 
     public void addRefreshListener(final RefreshListener listener) {

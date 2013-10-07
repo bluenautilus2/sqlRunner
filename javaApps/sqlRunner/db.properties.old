@@ -1,5 +1,6 @@
 script_folder = /home/bstevens/repo/tools/SQL_Update_Scripts
-ip = 10.10.10.53
+ip = 10.10.10.52
 db = panswersBeth
 password = xxxPA50
 user = common
+port = 1433
