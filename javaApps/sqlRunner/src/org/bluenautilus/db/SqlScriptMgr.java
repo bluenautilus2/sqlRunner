@@ -1,7 +1,7 @@
 package org.bluenautilus.db;
 
-import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.script.ScriptStatus;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,13 +1,13 @@
 package org.bluenautilus.db;
 
+import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlScriptRow;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import org.bluenautilus.data.FieldItems;
-import org.bluenautilus.data.SqlScriptRow;
 
 
 public class DBRowRetriever {

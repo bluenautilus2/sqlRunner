@@ -1,7 +1,7 @@
 package org.bluenautilus.gui;
 
-import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.script.ScriptStatus;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

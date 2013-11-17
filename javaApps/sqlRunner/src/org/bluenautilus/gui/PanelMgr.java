@@ -1,15 +1,15 @@
 package org.bluenautilus.gui;
 
 import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.db.RefreshAction;
-import org.bluenautilus.util.ConfigUtil;
-import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptCompletionListener;
 import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptResultsEvent;
-import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.util.ConfigUtil;
+import org.bluenautilus.util.GuiUtil;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

@@ -1,7 +1,6 @@
 package org.bluenautilus;
 
 import org.bluenautilus.data.FieldItems;
-import org.bluenautilus.db.RefreshAction;
 import org.bluenautilus.gui.OutputPanel;
 import org.bluenautilus.gui.PanelMgr;
 import org.bluenautilus.gui.ScriptViewPanel;

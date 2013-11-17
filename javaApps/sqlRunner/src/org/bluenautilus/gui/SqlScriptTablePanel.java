@@ -1,10 +1,10 @@
 package org.bluenautilus.gui;
 
+import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.script.ScriptCompletionListener;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.script.ScriptStatusChangeListener;
-import org.bluenautilus.data.SqlScriptFile;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;

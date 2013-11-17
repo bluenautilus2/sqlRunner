@@ -1,8 +1,5 @@
 package org.bluenautilus.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bstevens

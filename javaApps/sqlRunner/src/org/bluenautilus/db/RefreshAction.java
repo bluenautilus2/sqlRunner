@@ -1,17 +1,16 @@
 package org.bluenautilus.db;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import javax.swing.*;
-
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.gui.PanelMgr;
 import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.util.GuiUtil;
+
+import javax.swing.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**

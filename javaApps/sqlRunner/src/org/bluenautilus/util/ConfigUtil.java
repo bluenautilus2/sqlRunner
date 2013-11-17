@@ -1,11 +1,14 @@
 package org.bluenautilus.util;
 
-import org.bluenautilus.data.FieldItems;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.bluenautilus.data.FieldItems;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**

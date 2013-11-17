@@ -15,6 +15,7 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
     private String compareString;
     private int row = -1;
     private String resultsString;
+    private long crcValue = 0;
 
     public SqlScriptFile(File theFile) {
         this.theFile = theFile;
@@ -94,5 +95,13 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
     @Override
     public String toString() {
         return this.theFile.getName();
+    }
+
+    public long getCrcValue() {
+        return crcValue;
+    }
+
+    public void setCrcValue(long crcValue) {
+        this.crcValue = crcValue;
     }
 }
