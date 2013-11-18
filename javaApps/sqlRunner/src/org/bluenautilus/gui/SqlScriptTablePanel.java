@@ -24,16 +24,18 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
 
 
     public SqlScriptTablePanel() {
-        super();
+        super(new BorderLayout());
         //fill with empty array
         ArrayList<SqlScriptFile> fileList = new ArrayList<SqlScriptFile>();
         tableModel = new SqlTableModel(fileList);
         theTable = new ScriptTable(tableModel);
 
         JScrollPane scroll = new JScrollPane(theTable);
-        scroll.setPreferredSize(new Dimension(300, 500));
 
-        this.add(scroll);
+        scroll.setPreferredSize(new Dimension(300, 500));
+        scroll.setMaximumSize(new Dimension(300, 1000));
+        scroll.setMinimumSize(new Dimension(300, 500));
+        this.add(scroll, BorderLayout.CENTER);
 
         this.setVisible(true);
     }

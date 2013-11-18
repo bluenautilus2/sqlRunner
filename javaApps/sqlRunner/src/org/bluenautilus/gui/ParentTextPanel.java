@@ -14,22 +14,18 @@ public class ParentTextPanel extends JPanel {
     protected JTextArea textArea;
 
     public ParentTextPanel() {
-        super();
-        textArea = new JTextArea(35, 35);
+        super(new BorderLayout());
+
+        //textArea = new JTextArea(35, 35);
+        textArea = new JTextArea();
+
         textArea.setEditable(false);
 
         textArea.setLineWrap(false);
 
         JScrollPane scroll = new JScrollPane(textArea);
 
-        //int gridx, int gridy,int gridwidth, int gridheight,
-        //double weightx, double weighty,
-        // int anchor, int fill,
-        //Insets insets, int ipadx, int ipady
-
-        this.add(scroll, new GridBagConstraints(0, 0, 1, 2, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(2, 2, 2, 2), 2, 2));
+        this.add(scroll,BorderLayout.CENTER);
 
     }
 

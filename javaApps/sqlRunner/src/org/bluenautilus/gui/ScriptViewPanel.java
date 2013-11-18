@@ -18,7 +18,7 @@ public class ScriptViewPanel extends ParentTextPanel {
 
     public ScriptViewPanel() {
         super();
-        textArea.setText("Click a DB row to see the script");
+        clearText();
     }
 
     public void setText(SqlScriptFile theFile) throws IOException {
@@ -49,6 +49,10 @@ public class ScriptViewPanel extends ParentTextPanel {
         }
         textArea.setCaretPosition(0);
 
+    }
+
+    public void clearText() {
+        textArea.setText("Click a DB row to see the script               ");
     }
 
 

@@ -78,7 +78,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         try {
             this.scriptViewPanel.setText(theFile);
             this.outputPanel.setText(theFile.getResultsString());
-          //  System.out.println("setTextforfile: " + theFile.getRow());
+
         } catch (Exception ex) {
             GuiUtil.showErrorModalDialog(ex, this.scriptViewPanel);
         }

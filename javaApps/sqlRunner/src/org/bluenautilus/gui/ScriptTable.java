@@ -2,6 +2,7 @@ package org.bluenautilus.gui;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,9 +21,11 @@ public class ScriptTable extends JTable {
         this.mymodel = mymodel;
         this.render = new ScriptRenderer();
         this.setDefaultRenderer(String.class, this.render);
+
     }
 
     public TableCellRenderer getCellRenderer(int row, int column) {
         return this.render;
     }
+
 }
