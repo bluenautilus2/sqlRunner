@@ -13,9 +13,10 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
     private File theFile;
     private ScriptStatus status = ScriptStatus.DEFAULT;
     private String compareString;
-    private int row = -1;
+    private int tableRowIndex = -1;
     private String resultsString;
     private long crcValue = 0;
+    private SqlRowHolder rowHolder = new SqlRowHolder();
 
     public SqlScriptFile(File theFile) {
         this.theFile = theFile;
@@ -39,16 +40,21 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
         this.resultsString = resultsString;
     }
 
-    public int getRow() {
-        return row;
+    public int getTableRowIndex() {
+        return tableRowIndex;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void setTableRowIndex(int tableRowIndex) {
+        this.tableRowIndex = tableRowIndex;
     }
 
     public String getCompareString() {
         return compareString;
+    }
+
+    public void addRowObjectToCollection(SqlScriptRow rowObj){
+        //System.out.println("Adding: "+ rowObj.getDbUpdateDate());
+        this.rowHolder.addScript(rowObj);
     }
 
     @Override
@@ -74,6 +80,10 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
         }
 
         return compareString.compareTo(row.getCompareString());
+    }
+
+    public SqlScriptRow getLastRunRow(){
+        return this.rowHolder.getLastCreatedRow();
     }
 
     public ScriptStatus getStatus() {

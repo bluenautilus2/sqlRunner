@@ -2,11 +2,14 @@ package org.bluenautilus.db;
 
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptRow;
+import org.joda.time.DateTime;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
@@ -25,7 +28,7 @@ public class DBRowRetriever {
 
 
 	public ArrayList<SqlScriptRow> readDataBase() throws Exception {
-		ArrayList<SqlScriptRow> strings = new ArrayList<SqlScriptRow>();
+		ArrayList<SqlScriptRow> scriptRows = new ArrayList<SqlScriptRow>();
 
 		try {
 			// This will load the MySQL driver, each DB has its own driver
@@ -46,9 +49,9 @@ public class DBRowRetriever {
 				// which starts at 1
 				// e.g. resultSet.getSTring(2);
 				String s = resultSet.getString("DB_Update_Date");
-				SqlScriptRow row = new SqlScriptRow(s);
-				strings.add(row);
-
+                Timestamp time = resultSet.getTimestamp("Created_Date");
+				SqlScriptRow row = new SqlScriptRow(s, new DateTime(time));
+				scriptRows.add(row);
 			}
 
 		} catch (Exception e) {
@@ -56,7 +59,7 @@ public class DBRowRetriever {
 		} finally {
 			close();
 		}
-		return strings;
+		return scriptRows;
 	}
 
 

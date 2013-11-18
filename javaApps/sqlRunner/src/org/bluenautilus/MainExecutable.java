@@ -21,7 +21,7 @@ import java.awt.*;
 public class MainExecutable {
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("SQL Script Runner 3000");
+        JFrame frame = new JFrame("SQL Script Runner Enterprise Edition");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //  JPanel outermostPanel = new JPanel(new GridBagLayout());

@@ -90,12 +90,12 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
     @Override
     public void updateTableRowStatus(SqlScriptFile file, ScriptStatus newStatus) {
         this.theTable.clearSelection();
-        this.tableModel.getSqlScriptFile(file.getRow()).setStatus(newStatus);
+        this.tableModel.getSqlScriptFile(file.getTableRowIndex()).setStatus(newStatus);
         this.updateTable();
     }
 
     @Override
     public void scriptComplete(ScriptResultsEvent e) {
-        this.tableModel.getSqlScriptFile(e.getScriptFile().getRow()).setResultsString(e.getOutput());
+        this.tableModel.getSqlScriptFile(e.getScriptFile().getTableRowIndex()).setResultsString(e.getOutput());
     }
 }

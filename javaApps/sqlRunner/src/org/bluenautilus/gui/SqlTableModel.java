@@ -19,7 +19,7 @@ public class SqlTableModel extends AbstractTableModel {
 
         this.fileList = fileList;
         for (int i = 0; i < fileList.size(); i++) {
-            this.fileList.get(i).setRow(i);
+            this.fileList.get(i).setTableRowIndex(i);
         }
     }
 

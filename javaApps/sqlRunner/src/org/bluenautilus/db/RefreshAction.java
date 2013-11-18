@@ -100,13 +100,23 @@ public class RefreshAction implements Runnable {
 
 		for (int k = i; k < files.size(); k++) {
 			SqlScriptFile currentFile = files.get(k);
-			currentFile.setStatus(ScriptStatus.NEED_TO_RUN);
+
 
 			for (SqlScriptRow row : rows) {
 				if (currentFile.compareTo(row) == 0) {
-					currentFile.setStatus(ScriptStatus.ALREADY_RUN);
+					currentFile.addRowObjectToCollection(row);
 				}
 			}
+
+            SqlScriptRow lastRow = currentFile.getLastRunRow();
+            if(lastRow == null){
+                currentFile.setStatus(ScriptStatus.NEED_TO_RUN);
+            }else if(lastRow.isRollback()){
+                currentFile.setStatus(ScriptStatus.ROLLED_BACK);
+            }else{
+                currentFile.setStatus(ScriptStatus.ALREADY_RUN);
+            }
+
 		}
 		Collections.reverse(files);
 		return files;

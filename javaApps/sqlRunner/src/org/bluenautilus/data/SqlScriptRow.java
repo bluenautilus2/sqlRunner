@@ -1,5 +1,7 @@
 package org.bluenautilus.data;
 
+import org.joda.time.DateTime;
+
 /**
  * User: bluenautilus2
  * Date: 7/28/13
@@ -11,11 +13,19 @@ package org.bluenautilus.data;
 
 public class SqlScriptRow implements Comparable<SqlScriptRow> {
 
+    //Column length chops the string down.
+    private static final String ROLLBACK_TAG = "_rollba";
     private String compareString;
+    private DateTime rowCreated;
 
 
-    public SqlScriptRow(String s) {
-        compareString = s;
+
+    private String dbUpdateDate;
+
+    public SqlScriptRow(String s, DateTime created) {
+        dbUpdateDate = s;
+        rowCreated = created;
+        compareString = this.removeRollback(s);
     }
 
     public int compareTo(SqlScriptFile file) {
@@ -28,10 +38,6 @@ public class SqlScriptRow implements Comparable<SqlScriptRow> {
         }
 
         return compareString.compareTo(file.getCompareString());
-    }
-
-    public boolean equals(SqlScriptFile scriptFile) {
-        return false;
     }
 
     @Override
@@ -47,7 +53,36 @@ public class SqlScriptRow implements Comparable<SqlScriptRow> {
         return compareString.compareTo(o.compareString);
     }
 
+
+
+    public boolean isRollback() {
+        if (this.dbUpdateDate != null) {
+            return (dbUpdateDate.indexOf(ROLLBACK_TAG) != -1);
+        }
+        return false;
+    }
+
+    private static String removeRollback(String compareString) {
+        String lowerCase = compareString.toLowerCase();
+        int index = lowerCase.indexOf(ROLLBACK_TAG);
+
+        //if it's not at the end there is a problem
+        if (index > 4) {
+            return lowerCase.substring(0, index);
+        }
+        return compareString;
+    }
+
+    public DateTime getRowCreated() {
+        return rowCreated;
+    }
+
     public String getCompareString() {
         return compareString;
     }
+
+    public String getDbUpdateDate() {
+        return dbUpdateDate;
+    }
+
 }
