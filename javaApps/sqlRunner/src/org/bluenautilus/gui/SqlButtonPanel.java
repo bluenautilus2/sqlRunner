@@ -2,8 +2,10 @@ package org.bluenautilus.gui;
 
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.script.ScriptKickoffListener;
+import org.bluenautilus.script.ScriptType;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,16 +19,18 @@ public class SqlButtonPanel extends JPanel {
 
     FieldItems fields = null;
     private JTextField dbNameField = new JTextField(15);
-    private JTextField loginField = new JTextField(15);
-    private JTextField passwordField = new JTextField(15);
+    private JTextField loginField = new JTextField(8);
+    private JTextField passwordField = new JTextField(8);
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField ipAddressField = new JTextField(15);
-    private JTextField portField = new JTextField(10);
+    private JTextField portField = new JTextField(8);
     private JButton refreshButton = new JButton("REFRESH");
-    private JButton oneScriptButton = new JButton("Run Selected");
-    private JButton allButton = new JButton("Run All");
+    private JButton selectedScriptButton = new JButton("Run Selected");
+    private JButton runAllButton = new JButton("Run All");
+    private JButton rollbackButton = new JButton("Rollback Selected");
     private Color defaultForeground;
     private Color defaultBackground;
+    private Color borderColor =  new Color(180,180,180);
 
     public SqlButtonPanel(FieldItems initialFields) {
         super(new GridBagLayout());
@@ -46,77 +50,102 @@ public class SqlButtonPanel extends JPanel {
         JLabel portLabel = new JLabel("Port");
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
-        this.oneScriptButton.setToolTipText("Run only the script(s) that are selected");
-        this.allButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
+        this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
+        this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
+        this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
         // int anchor, int fill,
         //Insets insets, int ipadx, int ipady
 
+
+        //Corner Buttons
+        JPanel leftCornerPanel = new JPanel(new GridBagLayout());
+
+        leftCornerPanel.add(this.runAllButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(10, 4, 4, 4), 2, 2));
+
+        leftCornerPanel.add(this.selectedScriptButton, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(4, 4, 4, 4), 2, 2));
+
+        leftCornerPanel.add(this.rollbackButton, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(4, 4, 10, 4), 2, 2));
+
+        leftCornerPanel.setBorder(new LineBorder(this.borderColor));
+
+
+        //Center panel buttons
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+
+        //Refresh Button
+        centerPanel.add(this.refreshButton, new GridBagConstraints(0, 3, 4, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(5, 5, 2, 2), 20, 2));
+
         //LABELS
-        this.add(dbNameLabel, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
+        centerPanel.add(dbNameLabel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(ipAddress, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(ipAddress, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(userName, new GridBagConstraints(3, 0, 1, 1, 1.0, 1.0,
+        centerPanel.add(userName, new GridBagConstraints(4, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(password, new GridBagConstraints(3, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(password, new GridBagConstraints(4, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(folderName, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+        centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(portLabel, new GridBagConstraints(5,0, 1, 1, 1.0, 1.0,
+        centerPanel.add(portLabel, new GridBagConstraints(4,0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
         //TEXT FIELDS
-        this.add(this.dbNameField, new GridBagConstraints(2, 0, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.dbNameField, new GridBagConstraints(1,1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(this.ipAddressField, new GridBagConstraints(2, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.ipAddressField, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(this.loginField, new GridBagConstraints(4, 0, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.loginField, new GridBagConstraints(5,1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(this.passwordField, new GridBagConstraints(4, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.passwordField, new GridBagConstraints(5, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        this.add(this.portField, new GridBagConstraints(6,0, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.portField, new GridBagConstraints(5,0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //this fills up two spots
-        this.add(this.scriptFolderField, new GridBagConstraints(2, 2, 3, 1, 1.0, 1.0,
+        //this fills up three spots
+        centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //Buttons
-        this.add(this.refreshButton, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 2, 2), 2, 2));
+        centerPanel.setBorder(new LineBorder(this.borderColor));
 
-        this.add(this.allButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 2, 2), 2, 2));
+        this.add(leftCornerPanel, new GridBagConstraints(0, 0, 1, 3, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.oneScriptButton, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 2, 2), 2, 2));
+        this.add(centerPanel, new GridBagConstraints(1, 0, 1, 3, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(4, 4, 4, 4), 2, 2));
 
     }
 
@@ -151,14 +180,22 @@ public class SqlButtonPanel extends JPanel {
     }
 
     public void addScriptKickoffListener(final ScriptKickoffListener listener) {
-        ActionListener actionListener = new ActionListener() {
+        ActionListener regularActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                listener.kickoffSelectedScripts();
+                listener.kickoffSelectedScripts(ScriptType.REGULAR);
             }
         };
-        this.oneScriptButton.addActionListener(actionListener);
 
+        ActionListener rollbackActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listener.kickoffSelectedScripts(ScriptType.ROLLBACK);
+            }
+        };
+
+        this.selectedScriptButton.addActionListener(regularActionListener);
+        this.rollbackButton.addActionListener(rollbackActionListener);
     }
 
     public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {
@@ -168,7 +205,7 @@ public class SqlButtonPanel extends JPanel {
                 listener.kickoffAllToRunScripts();
             }
         };
-        this.allButton.addActionListener(actionListener);
+        this.runAllButton.addActionListener(actionListener);
 
     }
 
@@ -183,7 +220,7 @@ public class SqlButtonPanel extends JPanel {
     }
 
     public void setRefreshButtonNormal(){
-         this.refreshButton.setText("Refresh");
+        this.refreshButton.setText("Refresh");
         this.refreshButton.setForeground(this.defaultForeground);
         this.refreshButton.setBackground(this.defaultBackground);
     }

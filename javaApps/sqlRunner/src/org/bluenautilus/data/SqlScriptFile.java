@@ -10,6 +10,8 @@ import java.io.File;
  * Time: 11:58 AM
  */
 public class SqlScriptFile implements Comparable<SqlScriptFile> {
+    private static final String ROLLBACK_FOLDER = "rollback";
+    private static final String ROLLBACK_POSTFIX = "_rollback";
     private File theFile;
     private ScriptStatus status = ScriptStatus.DEFAULT;
     private String compareString;
@@ -81,6 +83,19 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
 
         return compareString.compareTo(row.getCompareString());
     }
+
+
+	public File getRollbackFile() {
+
+		File parentDir = this.theFile.getParentFile();
+		String parentStr = parentDir.getAbsolutePath();
+
+		String rollbackStr = parentStr +File.separator+ ROLLBACK_FOLDER + File.separator + this.compareString + ROLLBACK_POSTFIX + ".sql";
+		File rollFile = new File(rollbackStr);
+        return rollFile;
+
+	}
+
 
     public SqlScriptRow getLastRunRow(){
         return this.rowHolder.getLastCreatedRow();

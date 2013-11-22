@@ -1,136 +1,15 @@
--- 2013-11-21_23.sql
--- by AZ
--- Pre-deployment
+BEGIN TRANSACTION TEMP;
+
+--
+-- PA-18225: remove old (pre-Birst) company dashboard
+--
+-- by Mark Ellis
+--
 -- DML
--- PA-17864: Change custom thank you page that redirects candidates back to SuccessFactors 
+--
 
--- This is the procedure for the Custom_Html_Fragment_Languages table for:
--- Avalon Bay Communities
--- Stericycle
--- Petco
--- EZCorp
--- Cheesecake Factory
--- Belk
--- Banner
--- BJs Wholesale
--- Baptist
--- Stream
 
-CREATE PROCEDURE createCustomHtmlFragmentLanguages30 @fragment_html NVARCHAR(16)
-AS
-    INSERT INTO Custom_Html_Fragment_Languages(
-		[Custom_Html_Fragment_Language_Id]
-        ,[Custom_Html_Fragment_Id]
-        ,[Language_Id]
-        ,[Fragment_Html]
-        ,[Created_By]
-        ,[Created_Date]
-        ,[Last_Updated_By]
-        ,[Last_Updated_Date])
-    SELECT MAX(Custom_Html_Fragment_Language_Id) + 1
-    	,(SELECT MAX(Custom_Html_Fragment_Id) + 1)
-    	,1
-    	,@fragment_html
-    	,21545036
-        ,SYSDATETIME()
-        ,21545036
-        ,SYSDATETIME()
-    FROM Custom_Html_Fragment_Languages
+EXEC addDBUpdate N'2013-11-21_99_rollback'
 GO
+COMMIT TRANSACTION TEMP;
 
--- insert data
-SET XACT_ABORT ON;
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
-GO
-
-BEGIN TRANSACTION
-
-	-- idempotence for Avalon Bay Communities
-	DECLARE @oldFragmentIdAvalon INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Avalon Bay Communities.')
-	IF (@oldFragmentIdAvalon IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdAvalon
-	END
-	
-	-- idempotence for Stericycle
-	DECLARE @oldFragmentIdStericycle INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Stericycle.')
-	IF (@oldFragmentIdStericycle IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdStericycle
-	END
-	
-	-- idempotence for Petco
-	DECLARE @oldFragmentIdPetco INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Petco.')
-	IF (@oldFragmentIdPetco IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdPetco
-	END
-	
-	-- idempotence for EZCorp
-	DECLARE @oldFragmentIdEZCorp INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for EZCorp.')
-	IF (@oldFragmentIdEZCorp IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdEZCorp
-	END
-	
-	-- idempotence for Cheesecake Factory
-	DECLARE @oldFragmentIdCheescakeFactory INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Cheesecake Factory.')
-	IF (@oldFragmentIdCheescakeFactory IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdCheescakeFactory
-	END
-	
-	-- idempotence for Belk
-	DECLARE @oldFragmentIdBelk INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Belk.')
-	IF (@oldFragmentIdBelk IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdBelk
-	END
-	
-	-- idempotence for Banner
-	DECLARE @oldFragmentIdBanner INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Banner.')
-	IF (@oldFragmentIdBanner IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdBanner
-	END
-	
-	-- idempotence for BJs Wholesale
-	DECLARE @oldFragmentIdShoeBJsWholesale INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for BJs Wholesale.')
-	IF (@oldFragmentIdShoeBJsWholesale IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdShoeBJsWholesale
-	END
-	
-	-- idempotence for Baptist Health South Florida
-	DECLARE @oldFragmentIdBaptist INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Baptist Health South Florida.')
-	IF (@oldFragmentIdBaptist IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdBaptist
-	END
-	
-	-- idempotence for Stream
-	DECLARE @oldFragmentIdStream INT = (SELECT TOP 1 Custom_Html_Fragment_Id FROM Custom_Html_Fragments WHERE Description = N'Desktop Testing Congratulations Thank You Message, Assessed, Tax Credit URL Not Present, Show Button for Completion, Applicant, Transfer URL Not Present, To Complete Questionnaire for Stream.')
-	IF (@oldFragmentIdStream IS NOT NULL)
-	BEGIN
-		DELETE FROM Custom_Html_Fragment_Languages WHERE Custom_Html_Fragment_Id = @oldFragmentIdStream
-	END
-
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	EXEC createCustomHtmlFragmentLanguages30 N'<!-- -->'
-	
-COMMIT TRANSACTION
-
-DROP PROCEDURE createCustomHtmlFragmentLanguages30
-GO
-
--- db update
-EXEC addDBUpdate N'2013-11-21_23'
-GO

@@ -1,5 +1,7 @@
 package org.bluenautilus;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.gui.OutputPanel;
 import org.bluenautilus.gui.PanelMgr;
@@ -20,9 +22,14 @@ import java.awt.*;
  */
 public class MainExecutable {
 
+    private static Log log = LogFactory.getLog(MainExecutable.class);
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("SQL Script Runner Enterprise Edition");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        log.info("sqlRunner starting");
 
         //  JPanel outermostPanel = new JPanel(new GridBagLayout());
         JPanel outermostPanel = new JPanel(new BorderLayout());

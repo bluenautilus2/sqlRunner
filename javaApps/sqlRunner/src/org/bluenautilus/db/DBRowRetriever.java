@@ -23,7 +23,6 @@ public class DBRowRetriever {
 
 	public DBRowRetriever(FieldItems fields) {
 		this.fields = fields;
-
 	}
 
 

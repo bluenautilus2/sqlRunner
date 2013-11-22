@@ -8,6 +8,7 @@ import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptCompletionListener;
 import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptResultsEvent;
+import org.bluenautilus.script.ScriptType;
 import org.bluenautilus.util.ConfigUtil;
 import org.bluenautilus.util.GuiUtil;
 
@@ -31,7 +32,6 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     public SqlScriptTablePanel sqlTablePanel;
     public SqlButtonPanel buttonPanel;
     public SqlScriptFile lastSetFileObj;
-    public volatile boolean refreshingFlag=false;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
@@ -99,27 +99,27 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     }
 
     @Override
-    public void kickoffSelectedScripts() {
+    public void kickoffSelectedScripts(ScriptType type) {
         ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllSelected();
-        this.runScriptList(fileList);
+        this.runScriptList(fileList, type);
     }
 
     @Override
     public void kickoffAllToRunScripts(){
         ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllToRun();
-        this.runScriptList(fileList);
+        this.runScriptList(fileList, ScriptType.REGULAR);
     }
 
-    private void runScriptList(ArrayList<SqlScriptFile> fileList){
+    private void runScriptList(ArrayList<SqlScriptFile> fileList, ScriptType type){
         //run oldest first
         Collections.sort(fileList);
         this.filesBeingRun = fileList;
 
         //run the first one. when it completes it will trigger the running of the next one.
-        runOneScript();
+        runOneScript(type);
     }
 
-    private void runOneScript(){
+    private void runOneScript(ScriptType type){
         if(this.filesBeingRun.isEmpty()){
             return;
         }
@@ -127,7 +127,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         SqlScriptFile scriptFile = this.filesBeingRun.get(0);
         this.filesBeingRun.remove(0);
 
-        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, this.buttonPanel);
+        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, this.buttonPanel, type);
         action.addCompletionListener(this);
         action.addCompletionListener(this.sqlTablePanel);
         action.addStatusListener(this.sqlTablePanel);
@@ -138,7 +138,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         newThread.start();
     }
 
-    public void singleScriptStarting(SqlScriptFile file) {
+    public void singleScriptStarting(SqlScriptFile file, ScriptType type) {
         this.outputPanel.clearText();
         try {
             this.scriptViewPanel.setText(file);
@@ -155,8 +155,10 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
             GuiUtil.showErrorModalDialog(ex, this.outputPanel);
         }
 
+        ScriptType type = event.getType();
+
         //see if there are any more scripts to run and if so, run them.
-        runOneScript();
+        runOneScript(type);
 
     }
 

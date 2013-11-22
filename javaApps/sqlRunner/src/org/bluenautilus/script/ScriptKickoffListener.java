@@ -11,9 +11,9 @@ import org.bluenautilus.data.SqlScriptFile;
  */
 public interface ScriptKickoffListener {
 
-    public void kickoffSelectedScripts();
+    public void kickoffSelectedScripts(ScriptType type);
 
-    public void singleScriptStarting(SqlScriptFile file);
+    public void singleScriptStarting(SqlScriptFile file, ScriptType type);
 
     public void kickoffAllToRunScripts();
 }
