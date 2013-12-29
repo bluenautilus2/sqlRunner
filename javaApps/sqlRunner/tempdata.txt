@@ -1,15 +1,131 @@
 BEGIN TRANSACTION TEMP;
 
 --
--- PA-18225: remove old (pre-Birst) company dashboard
---
--- by Mark Ellis
+-- 2014-01-02_05.sql
+-- by Swathi Chandrasekar
 --
 -- DML
+-- pre-deployment
+--
+-- PA-10528: Create custom notification emails for screening errors
 --
 
+------------------------------------
+-- insert the plaintext templates --
+------------------------------------
+-- screening version item error
+INSERT INTO Templates (
+	[Template_Id]
+	,[Language_Id]
+	,[Template_Format]
+	,[Template_Tag]
+	,[Template_Text]
+	,[Created_By]
+	,[Created_Date]
+	,[Last_Updated_By]
+	,[Last_Updated_Date]
+) VALUES (
+	(SELECT MAX(Template_Id) FROM Templates) + 1
+	,1 -- English
+	,1 -- plain text
+	,N'email.screeningVersionItemOption.error.subject'
+	,N'Screening Version Item Error Detected - ${SCREENING_NAME}'
+	,26786510 -- Swathi Chandrasekar
+	,SYSDATETIME()
+	,26786510 -- Swathi Chandrasekar
+	,SYSDATETIME()
+)
+GO
 
-EXEC addDBUpdate N'2013-11-21_99_rollback'
+INSERT INTO Templates (
+	[Template_Id]
+	,[Language_Id]
+	,[Template_Format]
+	,[Template_Tag]
+	,[Template_Text]
+	,[Created_By]
+	,[Created_Date]
+	,[Last_Updated_By]
+	,[Last_Updated_Date]
+) VALUES (
+	(SELECT MAX(Template_Id) FROM Templates) + 1
+	,1 -- English
+	,1 -- plain text
+	,N'email.screeningVersionItemOption.error.body'
+	,N'A screening question appears to have a configuration error.
+
+Screening Name: ${SCREENING_NAME}
+Screening Version Name:${SCREENING_VERSION_NAME}
+Question: ${QUESTION_TEXT}
+Candidate Answer: ${CANDIDATE_ANSWER}
+
+
+Please examine this screening and ensure that it has been set up correctly. Possible problems include:
+
+1. Incorrect question type.
+
+2. Mismatched option.'
+	,26786510 -- Swathi Chandrasekar	
+	,SYSDATETIME()
+	,26786510 -- Swathi Chandrasekar
+	,SYSDATETIME()
+)
+GO
+
+
+
+
+
+-------------------------------
+-- insert the HTML templates --
+-------------------------------
+-- screening version item error
+INSERT INTO Templates (
+	[Template_Id]
+	,[Language_Id]
+	,[Template_Format]
+	,[Template_Tag]
+	,[Template_Text]
+	,[Created_By]
+	,[Created_Date]
+	,[Last_Updated_By]
+	,[Last_Updated_Date]
+) VALUES (
+	(SELECT MAX(Template_Id) FROM Templates) + 1
+	,1 -- English
+	,2 -- html
+	,N'email.screeningVersionItemOption.error.body'
+	,N'<#-- email template for screening version item configuration error -->
+<div style="font-family:  Arial, Helvetica, Geneva, Swiss, SunSans-Regular; font-size: 12px; font-style: normal; font-weight: normal;">
+
+	<p>A screening question appears to have a configuration error.</p>
+	<ul>
+		<li>Screening Name: ${SCREENING_NAME}</li>
+		<li>Screening Version Name:${SCREENING_VERSION_NAME}</li>
+		<li>Question: ${QUESTION_TEXT}</li>
+		<li>Candidate Answer: ${CANDIDATE_ANSWER}</li>
+	</ul>
+	
+	<p>Please examine this screening and ensure that it has been set up correctly. Possible problems include:</p>
+	<ol>
+		<li> Incorrect question type.</li>
+		<li> Mismatched option.</li>
+	</ol>
+</div>'
+	,26786510 -- Swathi Chandrasekar
+	,SYSDATETIME()
+	,26786510 -- Swathi Chandrasekar
+	,SYSDATETIME()
+)
+GO
+------------------
+-- housekeeping --
+------------------
+
+EXEC updateTableSequences 'Templates'
+GO
+
+EXEC addDbUpdate N'2014-01-02_05'
 GO
 COMMIT TRANSACTION TEMP;
 

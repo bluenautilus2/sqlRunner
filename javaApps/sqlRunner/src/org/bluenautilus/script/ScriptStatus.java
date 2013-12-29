@@ -19,7 +19,9 @@ public enum ScriptStatus {
     ROLLED_BACK("Rolled Back", new Color(102,0,204), new Color(220,220,255)),
     RECENTLY_ROLLED("Recently Rolled",new Color(102,0,204), new Color(220,220,255)),
     NO_ROLLBACK("No Rollback Script", new Color(176, 23, 31), Color.white),
-    EXAMINE_OUTPUT("Examine Output", new Color(204,0,204), new Color(255,204,204));
+    EXAMINE_OUTPUT("Examine Output", new Color(204,0,204), new Color(255,204,204)),
+	NORUN("Run in MS SQL Studio", new Color(0,0,0), new Color(150,150,150));
+
     public static final ScriptStatus DEFAULT = TOO_OLD;
     private String displayName;
     private Color textColor;

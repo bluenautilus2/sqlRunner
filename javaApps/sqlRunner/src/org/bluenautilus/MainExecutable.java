@@ -39,26 +39,20 @@ public class MainExecutable {
         OutputPanel outputPanel = new OutputPanel();
         SqlButtonPanel buttonPanel = new SqlButtonPanel(new FieldItems());
 
-        JPanel centerPanel = new JPanel(new GridBagLayout());
+		JSplitPane innerSplitPane = new JSplitPane();
+		innerSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		innerSplitPane.setLeftComponent(scriptViewPanel);
+        innerSplitPane.setRightComponent(outputPanel);
+        innerSplitPane.setDividerLocation(0.5);
 
-        //int gridx, int gridy,int gridwidth, int gridheight,
-        //double weightx, double weighty,
-        // int anchor, int fill,
-        //Insets insets, int ipadx, int ipady
-
-        centerPanel.add(tableHolderPanel, new GridBagConstraints(0, 0, 1, 2, 0.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-                new Insets(2, 2, 2, 2), 2, 2));
-        centerPanel.add(scriptViewPanel, new GridBagConstraints(1, 0, 1, 2, 0.5, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.BOTH,
-                new Insets(2, 2, 2, 2), 2, 2));
-        centerPanel.add(outputPanel, new GridBagConstraints(2, 0, 1, 2, 0.3, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.BOTH,
-                new Insets(2, 2, 2, 2), 2, 2));
-
+		JSplitPane outerSplitPane = new JSplitPane();
+		outerSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		outerSplitPane.setLeftComponent(tableHolderPanel);
+		outerSplitPane.setRightComponent(innerSplitPane);
+		outerSplitPane.setDividerLocation(0.3);
 
         outermostPanel.add(buttonPanel, BorderLayout.NORTH);
-        outermostPanel.add(centerPanel, BorderLayout.CENTER);
+        outermostPanel.add(outerSplitPane, BorderLayout.CENTER);
 
         frame.getContentPane().add(outermostPanel, BorderLayout.CENTER);
 

@@ -20,11 +20,13 @@ import java.util.ArrayList;
  */
 public class RunScriptAction implements Runnable {
 
-    //  "C:\\PathToExe\\MyExe.exe","param1","param2").start();
-    // private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
 
-    private static final String CMD = "osql";
+     private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
+
+    //private static final String CMD = "osql";
     private static final String DB_ERROR_FLAG = "Level 16, State";
+
+
     private FieldItems items;
     private SqlScriptFile file;
     private JPanel parentPanel;
@@ -68,9 +70,15 @@ public class RunScriptAction implements Runnable {
             ScriptStatus finishStatus = event.isDbProblem()?ScriptStatus.EXAMINE_OUTPUT:justRunStatus;
 
 			this.fireStatusChanges(file, finishStatus);
+
 		} catch (Exception e) {
 			event = new ScriptResultsEvent(e.getMessage(), file, this.type, false, e);
 			this.fireScriptCompletion(event);
+
+			if(e instanceof NoRunException){
+				this.fireStatusChanges(file,ScriptStatus.NORUN);
+				return;
+			}
 
             if (ScriptType.ROLLBACK == type) {
                 if(!file.getRollbackFile().exists()){
@@ -83,7 +91,7 @@ public class RunScriptAction implements Runnable {
 
 	}
 
-    private ScriptResultsEvent runScript(SqlScriptFile scriptFile, ScriptType type) throws IOException {
+    private ScriptResultsEvent runScript(SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
         File oldfile = null;  //if this stays null something crazy is going on.
 
         if(ScriptType.REGULAR == type){
@@ -95,8 +103,8 @@ public class RunScriptAction implements Runnable {
 
         ScriptModifier modifier = new ScriptModifier(oldfile);
         this.addCompletionListener(modifier);
-        File newFile = modifier.createModifiedCopy();
 
+		File newFile = modifier.createModifiedCopy();
 
         ProcessBuilder builder = new ProcessBuilder(this.CMD,
                 "-U", items.getLoginField(),
@@ -176,4 +184,6 @@ public class RunScriptAction implements Runnable {
     public void run() {
         this.fireScriptAction(this.type);
     }
+
+
 }

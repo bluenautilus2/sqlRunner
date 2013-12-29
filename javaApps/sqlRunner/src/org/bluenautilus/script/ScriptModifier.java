@@ -42,7 +42,6 @@ public class ScriptModifier implements ScriptCompletionListener {
 
 	}
 
-
 	@Override
 	public void scriptComplete(ScriptResultsEvent e) {
 		if (this.outputFile.exists()) {
@@ -51,8 +50,7 @@ public class ScriptModifier implements ScriptCompletionListener {
 		}
 	}
 
-
-	public File createModifiedCopy() throws FileNotFoundException, IOException {
+	public File createModifiedCopy() throws IOException, NoRunException {
 		FileInputStream fis;
 		OutputStream outputStream;
 		BufferedReader reader = null;
@@ -71,12 +69,13 @@ public class ScriptModifier implements ScriptCompletionListener {
 
 			fis = new FileInputStream(this.inputFile);
 
-            boolean isStoredProc = this.parseFileForStoreProcedures(fis);
+			ParseResults results = this.parseFile(fis);
+			boolean isStoredProc = results.isStoredProcedureFound();
 
-            //have to reset the input stream back to beginning
-            fis.getChannel().position(0);
+			//have to reset the input stream back to beginning
+			fis.getChannel().position(0);
 
-            reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+			reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 
 			if (!isStoredProc) {
 				writer.write(PREFIX);
@@ -135,7 +134,6 @@ public class ScriptModifier implements ScriptCompletionListener {
 		return outputFile;
 	}
 
-
 	private boolean clearofMarkers(String input) {
 		if (input.indexOf(PREFIX) == -1 && input.indexOf(POSTFIX) == -1) {
 			return true;
@@ -143,34 +141,106 @@ public class ScriptModifier implements ScriptCompletionListener {
 		return false;
 	}
 
-
 	/**
 	 * Returns true if a stored procedure command is found
-	 * within the first 200 lines of the script.
+	 * within the first 250 lines of the script.
+	 *
 	 * @param fis
 	 * @return
 	 */
-	private boolean parseFileForStoreProcedures(FileInputStream fis) throws IOException {
+	private ParseResults parseFile(FileInputStream fis) throws IOException, NoRunException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 		String line;
 		int count = 0;
+		ParseResults answer = new ParseResults();
 
-		while (((line = reader.readLine()) != null) && (count < 200)) {
+		while (((line = reader.readLine()) != null) && (count < 250)) {
 
 			if (line != null) {
 				count++;
 				line = line.toLowerCase();
-				String flag = SP_FLAG.toLowerCase();
-                System.out.println("Looking for: " + flag + " in " + line+"\n");
-				if (line.indexOf(flag) != -1) {
-                    System.out.println("\nfound it\n\n");
-						return true;
 
+				boolean isStoreProc = this.parseForStoredProcedures(line);
+				if (isStoreProc) {
+					answer.setStoredProcedureFound(true);
 				}
+				CommandFlag f = this.parseLineForCommand(line);
+				if (f.equals(CommandFlag.NORUN)) {
+					throw new NoRunException();
+				}
+				//later on if we add more commands, set it here
+				//in the answer. for now, no need to set it.
+			}
+		}
+
+		return answer;
+	}
+
+	/**
+	 * Returns true if a stored procedure command is found
+	 * in the line passed in
+	 *
+	 * @param input
+	 * @return
+	 */
+	private boolean parseForStoredProcedures(String input) throws IOException {
+		if (input != null && (!input.equals(""))) {
+			String flag = SP_FLAG.toLowerCase();
+			System.out.println("Looking for: " + flag + " in " + input + "\n");
+			if (input.indexOf(flag) != -1) {
+				System.out.println("\nfound it\n\n");
+				return true;
+
 			}
 		}
 
 		return false;
+	}
+
+	private CommandFlag parseLineForCommand(String input) {
+		if (input != null || (!input.equals(""))) {
+
+			if (input.indexOf(CommandFlag.SQLRUNNER_CMD) != -1) {
+				//then search for a command
+				CommandFlag[] flags = CommandFlag.values();
+				for (CommandFlag flag : flags) {
+					if (input.indexOf(flag.getFlag()) != -1) {
+						return flag;
+					}
+				}
+			}
+		}
+		return CommandFlag.NOCMD;
+
+	}
+
+	public class ParseResults {
+
+		boolean storedProcedureFound = false;
+		CommandFlag commandFlag = CommandFlag.NOCMD;
+
+
+		public ParseResults() {
+			//nothin'
+		}
+
+		public boolean isStoredProcedureFound() {
+			return storedProcedureFound;
+		}
+
+		public void setStoredProcedureFound(boolean storedProcedureFound) {
+			this.storedProcedureFound = storedProcedureFound;
+		}
+
+		public CommandFlag getCommandFlag() {
+			return commandFlag;
+		}
+
+		public void setCommandFlag(CommandFlag commandFlag) {
+			this.commandFlag = commandFlag;
+		}
+
+
 	}
 
 }
