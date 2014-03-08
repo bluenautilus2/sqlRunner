@@ -78,7 +78,7 @@ public class MainExecutable {
 
         buttonPanel.setFields(fields);
 
-        PanelMgr panelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel);
+        PanelMgr panelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
 
         panelMgr.refreshAction();
 

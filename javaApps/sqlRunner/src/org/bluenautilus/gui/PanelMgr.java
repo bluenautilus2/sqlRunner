@@ -4,16 +4,20 @@ import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.db.RefreshAction;
+import org.bluenautilus.script.PopOutScriptEvent;
 import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptCompletionListener;
 import org.bluenautilus.script.ScriptKickoffListener;
+import org.bluenautilus.script.ScriptPopOutEventListener;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptType;
 import org.bluenautilus.util.ConfigUtil;
 import org.bluenautilus.util.GuiUtil;
 
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,28 +29,31 @@ import java.util.Collections;
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener {
+public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener {
 
     public OutputPanel outputPanel;
     public ScriptViewPanel scriptViewPanel;
     public SqlScriptTablePanel sqlTablePanel;
     public SqlButtonPanel buttonPanel;
     public SqlScriptFile lastSetFileObj;
+	public JFrame parentFrame;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
 
     public PanelMgr(OutputPanel outputPanel,
                     ScriptViewPanel scriptViewPanel,
-                    SqlScriptTablePanel sqlTablePanel, SqlButtonPanel buttonPanel) {
+                    SqlScriptTablePanel sqlTablePanel, SqlButtonPanel buttonPanel, JFrame parentFrame) {
         this.outputPanel = outputPanel;
         this.scriptViewPanel = scriptViewPanel;
         this.sqlTablePanel = sqlTablePanel;
+		this.parentFrame = parentFrame;
         this.sqlTablePanel.addTableListener(this);
         this.buttonPanel = buttonPanel;
         this.buttonPanel.addRefreshListener(this);
         this.buttonPanel.addScriptKickoffListener(this);
         this.buttonPanel.addScriptRunAllToRunListener(this);
+		this.scriptViewPanel.addPopOutListener(this);
 
     }
 
@@ -113,6 +120,11 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     private void runScriptList(ArrayList<SqlScriptFile> fileList, ScriptType type){
         //run oldest first
         Collections.sort(fileList);
+
+		if(ScriptType.ROLLBACK.equals(type)){
+			Collections.reverse(fileList);
+		}
+
         this.filesBeingRun = fileList;
 
         //run the first one. when it completes it will trigger the running of the next one.
@@ -185,5 +197,36 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         this.refresh(results);
     }
 
-   
+	/**
+	 * Launches a non-modal dialog box that we don't listen to. (yet)
+	 * @param event
+	 */
+	@Override
+	public void popOutAScript(PopOutScriptEvent event) {
+
+		//no files are selected, do nothing
+		if(this.lastSetFileObj==null){
+			return;
+		}
+
+		//create a script display dialog
+		File file = null;
+
+		if(ScriptType.REGULAR.equals(event.getType())){
+			file = this.lastSetFileObj.getTheFile();
+		}else{
+			file = this.lastSetFileObj.getRollbackFile();
+		}
+
+		if (file != null) {
+			try {
+				DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentFrame);
+				dialog.pack();
+				dialog.setVisible(true);
+			} catch (Exception e) {
+				GuiUtil.showErrorModalDialog(e, this.scriptViewPanel);
+			}
+		}
+
+	}
 }
