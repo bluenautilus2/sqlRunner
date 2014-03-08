@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RunScriptAction implements Runnable {
 
 
-     private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
+    //private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
 
-    //private static final String CMD = "osql";
+    private static final String CMD = "osql";
     private static final String DB_ERROR_FLAG = "Level 16, State";
 
 

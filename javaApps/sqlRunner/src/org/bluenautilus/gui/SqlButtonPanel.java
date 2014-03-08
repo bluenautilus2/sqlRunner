@@ -20,7 +20,7 @@ public class SqlButtonPanel extends JPanel {
     FieldItems fields = null;
     private JTextField dbNameField = new JTextField(15);
     private JTextField loginField = new JTextField(8);
-    private JTextField passwordField = new JTextField(8);
+    private JTextField passwordField = new JPasswordField(8);
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField ipAddressField = new JTextField(15);
     private JTextField portField = new JTextField(8);

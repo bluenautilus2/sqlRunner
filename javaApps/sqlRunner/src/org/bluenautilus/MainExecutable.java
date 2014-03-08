@@ -25,13 +25,12 @@ public class MainExecutable {
     private static Log log = LogFactory.getLog(MainExecutable.class);
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("SQL Script Runner Enterprise Edition");
+        JFrame frame = new JFrame("SQL Script Runner Platinum Edition");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         log.info("sqlRunner starting");
 
-        //  JPanel outermostPanel = new JPanel(new GridBagLayout());
         JPanel outermostPanel = new JPanel(new BorderLayout());
 
         SqlScriptTablePanel tableHolderPanel = new SqlScriptTablePanel();
@@ -49,7 +48,7 @@ public class MainExecutable {
 		outerSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
 		outerSplitPane.setLeftComponent(tableHolderPanel);
 		outerSplitPane.setRightComponent(innerSplitPane);
-		outerSplitPane.setDividerLocation(0.3);
+		outerSplitPane.setDividerLocation(0.5);
 
         outermostPanel.add(buttonPanel, BorderLayout.NORTH);
         outermostPanel.add(outerSplitPane, BorderLayout.CENTER);
@@ -57,6 +56,15 @@ public class MainExecutable {
         frame.getContentPane().add(outermostPanel, BorderLayout.CENTER);
 
         frame.pack();
+
+		//make it a little bigger
+		Dimension framesize = frame.getSize();
+
+		int fwidth = Math.round(framesize.width * 1.3f);
+		int fheight = Math.round(framesize.height * 1.2f);
+
+		Dimension newframesize = new Dimension(fwidth,fheight);
+		frame.setSize(newframesize);
         frame.setVisible(true);
 
         ConfigUtil c;

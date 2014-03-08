@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 /**
  * User: bluenautilus2
@@ -52,7 +53,10 @@ public class ScriptViewPanel extends ParentTextPanel {
     }
 
     public void clearText() {
-        textArea.setText("Click a DB row to see the script               ");
+		char[] ch = new char[48];
+		Arrays.fill(ch, ' ');
+		String fill = new String(ch);
+        textArea.setText("Click a DB row to see the script" + fill);
     }
 
 

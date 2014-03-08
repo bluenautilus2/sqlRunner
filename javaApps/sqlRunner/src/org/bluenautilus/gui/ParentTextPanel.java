@@ -16,7 +16,6 @@ public class ParentTextPanel extends JPanel {
     public ParentTextPanel() {
         super(new BorderLayout());
 
-        //textArea = new JTextArea(35, 35);
         textArea = new JTextArea();
 
         textArea.setEditable(false);
