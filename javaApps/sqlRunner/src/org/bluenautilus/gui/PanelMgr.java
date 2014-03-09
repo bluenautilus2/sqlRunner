@@ -17,6 +17,7 @@ import org.bluenautilus.util.GuiUtil;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     public SqlButtonPanel buttonPanel;
     public SqlScriptFile lastSetFileObj;
 	public JFrame parentFrame;
+	public DisplayScriptDialog lastOpenedDialog;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
@@ -222,6 +224,14 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 			try {
 				DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentFrame);
 				dialog.pack();
+				if(this.lastOpenedDialog!=null){
+				   Point point =lastOpenedDialog.getLocation();
+				   int x = point.x + 20;
+				   int y = point.y + 10;
+				   dialog.setLocation(x,y);
+				}
+				this.lastOpenedDialog = dialog;
+
 				dialog.setVisible(true);
 			} catch (Exception e) {
 				GuiUtil.showErrorModalDialog(e, this.scriptViewPanel);

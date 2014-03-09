@@ -1,6 +1,5 @@
 package org.bluenautilus.gui;
 
-import org.bluenautilus.data.SqlScriptFile;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -14,14 +13,14 @@ import java.nio.charset.Charset;
 /**
  * Created by bstevens on 3/8/14.
  */
-public class DisplayScriptDialog extends JDialog {
+public class DisplayScriptDialog extends JFrame {
 
 	File fileToDisplay;
 	JTextArea textArea;
 
 
 	public DisplayScriptDialog(String title, File file, JFrame myFrame) throws IOException{
-	    super(myFrame, title, false);
+	    super(title);
 		this.fileToDisplay = file;
 
 		textArea = new JTextArea(40, 60);
