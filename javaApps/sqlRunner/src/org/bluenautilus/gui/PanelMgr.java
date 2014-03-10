@@ -172,7 +172,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         ScriptType type = event.getType();
 
         //see if there are any more scripts to run and if so, run them.
-        if(event.getTheException()==null){
+        if(event.getTheException()==null && !event.isDbProblem()){
 		   runOneScript(type);
 		}else{
 		   //but, if there is an exception, clear out the queue

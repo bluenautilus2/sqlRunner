@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81460ffb-ddc8-4b59-b645-b44e74acd1ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/DisplayScriptDialog.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/DisplayScriptDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -120,7 +119,7 @@
       <file leaf-file-name="ScriptResultsEvent.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptResultsEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="5" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0" vertical-offset="771" max-vertical-offset="1410">
+            <state line="31" column="18" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1410">
               <folding />
             </state>
           </provider>
@@ -156,7 +155,7 @@
       <file leaf-file-name="PanelMgr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="95" selection-start="6597" selection-end="6597" vertical-scroll-proportion="0.40774193" vertical-offset="2909" max-vertical-offset="3720">
+            <state line="174" column="53" selection-start="5749" selection-end="5749" vertical-scroll-proportion="0.36135694" vertical-offset="2365" max-vertical-offset="3720">
               <folding />
             </state>
           </provider>
@@ -201,7 +200,7 @@
       <file leaf-file-name="RunScriptAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="4" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="2925">
+            <state line="137" column="52" selection-start="4644" selection-end="4644" vertical-scroll-proportion="-6.196429" vertical-offset="1708" max-vertical-offset="2925">
               <folding />
             </state>
           </provider>
@@ -250,16 +249,16 @@
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/DisplayScriptDialog.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="490" />
-    <option name="y" value="82" />
-    <option name="width" value="1544" />
-    <option name="height" value="954" />
+    <option name="x" value="132" />
+    <option name="y" value="177" />
+    <option name="width" value="1350" />
+    <option name="height" value="879" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -292,7 +291,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -438,6 +436,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -578,8 +577,8 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="490" y="82" width="1544" height="954" extended-state="0" />
-    <editor active="false" />
+    <frame x="132" y="177" width="1350" height="879" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -590,11 +589,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30997625" sideWeight="0.5003092" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35572374" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35005975" sideWeight="0.4992785" order="10" side_tool="false" content_ui="tabs" x="169" y="518" width="1594" height="565" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29475588" sideWeight="0.66492695" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39457202" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20905459" sideWeight="0.46136618" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2087156" sideWeight="0.46136618" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09785203" sideWeight="0.49907234" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17102396" sideWeight="0.68117315" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Struts Assistant" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984003" sideWeight="0.76109535" order="3" side_tool="false" content_ui="tabs" />
@@ -603,7 +603,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3548387" sideWeight="0.49969077" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35005975" sideWeight="0.4992785" order="10" side_tool="false" content_ui="tabs" x="169" y="518" width="1594" height="565" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17153889" sideWeight="0.28666037" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969284" sideWeight="0.6315789" order="4" side_tool="false" content_ui="tabs" />
@@ -924,13 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptResultsEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="5" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0" vertical-offset="771" max-vertical-offset="1410">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/local/jdk1.7.0_21/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1999" column="17" selection-start="69163" selection-end="69163" vertical-scroll-proportion="0.0" vertical-offset="29465" max-vertical-offset="151260">
@@ -952,16 +944,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="95" selection-start="6597" selection-end="6597" vertical-scroll-proportion="0.40774193" vertical-offset="2909" max-vertical-offset="3720">
+        <state line="137" column="52" selection-start="4644" selection-end="4644" vertical-scroll-proportion="-6.196429" vertical-offset="1708" max-vertical-offset="2925">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptResultsEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="4" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="2925">
+        <state line="31" column="18" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="53" selection-start="5749" selection-end="5749" vertical-scroll-proportion="0.36135694" vertical-offset="2365" max-vertical-offset="3720">
           <folding />
         </state>
       </provider>
