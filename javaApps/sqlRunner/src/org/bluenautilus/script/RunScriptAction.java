@@ -22,8 +22,9 @@ public class RunScriptAction implements Runnable {
 
 
     //private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
+	//sqlcmd -S 10.10.10.51 -U common -d panswersBrian -i 2014-03-06_01.sql
 
-    private static final String CMD = "osql";
+    private static final String CMD = "sqlcmd";
     private static final String DB_ERROR_FLAG = "Level 16, State";
 
 
@@ -106,15 +107,14 @@ public class RunScriptAction implements Runnable {
 
 		File newFile = modifier.createModifiedCopy();
 
-        ProcessBuilder builder = new ProcessBuilder(this.CMD,
-                "-U", items.getLoginField(),
-                "-P", items.getPasswordField(),
-                "-S", items.getIpAddressField() + "," + items.getPort(),
-                "-d", items.getDbNameField(),
-                "-i", newFile.getAbsolutePath());
+		ProcessBuilder builder = new ProcessBuilder(this.CMD,
+               "-S", items.getIpAddressField() + "," + items.getPort(),
+               "-U", items.getLoginField(),
+               "-d", items.getDbNameField(),
+	           "-i", newFile.getAbsolutePath(),
+	           "-P", items.getPasswordField());
 
-
-        Process process = builder.start();
+		Process process = builder.start();
         InputStream is = process.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
