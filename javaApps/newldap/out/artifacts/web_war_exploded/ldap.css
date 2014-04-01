@@ -1,0 +1,15 @@
+
+p.redtext{
+    color:red;
+    font-family: bold;
+}
+
+p.greentext{
+    color:darkgreen;
+    font-family: bold;
+}
+
+p.standout{
+    color:darkblue;
+    font-family: bold;
+}
