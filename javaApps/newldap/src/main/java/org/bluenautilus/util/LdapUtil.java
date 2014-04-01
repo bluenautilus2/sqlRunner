@@ -3,7 +3,10 @@ package org.bluenautilus.util;
 import com.unboundid.ldap.sdk.Filter;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.LDAPResult;
 import com.unboundid.ldap.sdk.LDAPSearchException;
+import com.unboundid.ldap.sdk.Modification;
+import com.unboundid.ldap.sdk.ModificationType;
 import com.unboundid.ldap.sdk.ResultCode;
 import com.unboundid.ldap.sdk.SearchRequest;
 import com.unboundid.ldap.sdk.SearchResult;
@@ -13,6 +16,8 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 import javax.servlet.ServletContext;
+
+//https://www.unboundid.com/products/ldapsdk/docs/javadoc/com/unboundid/ldap/sdk/package-summary.html
 
 public class LdapUtil {
 
@@ -98,5 +103,14 @@ public class LdapUtil {
 		} else {
 			throw new LDAPException(ResultCode.LOCAL_ERROR, "Ldap didn't throw an exception, but the connection isn't connected");
 		}
+	}
+
+	public static ResultCode changeUserPw(LDAPConnection conn, String dn, String newpass) throws LDAPException, LDAPSearchException {
+
+		Modification mod = new Modification(ModificationType.REPLACE,"userpassword",newpass);
+		LDAPResult res = conn.modify(dn,mod);
+
+		return res.getResultCode();
+
 	}
 }

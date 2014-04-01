@@ -29,7 +29,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.Consumes;
-import java.util.List;
 
 //http://localhost:8080/ldap/jersey/ldapajax/
 
@@ -56,34 +55,53 @@ public class ldapAjax {
 		String oldpass = (json.get("oldpass")).toString();
 		String newpass = (json.get("newpass")).toString();
 
-		String dn = "";
+		if(newpass==null || newpass.equals("") || newpass.equals("1")){
+			return Response.status(200).entity("Your new password is blank. Try again").build();
+		}
+		if(newpass.equals("-1")){
+			return Response.status(200).entity("Your new passwords don't match. Try again").build();
+		}
 
+		LDAPConnection conn1 = null;
+		LDAPConnection conn2 = null;
 		try {
-			LDAPConnection conn1 = LdapUtil.getLDAPConnectionAdmin(this.context);
-			dn = LdapUtil.getDnOfUser(username, conn1);
+			conn1 = LdapUtil.getLDAPConnectionAdmin(this.context);
+			String dn = LdapUtil.getDnOfUser(username, conn1);
 			conn1.close();
 
 			if (dn != "") {
 				outputString.append("Found user in ldap: " + dn + "<br/>" + "Attempting to login as user...<br/>");
 			}
 
-			LDAPConnection conn2 = LdapUtil.getLDAPConnectionUser(dn, oldpass,this.context);
+			conn2 = LdapUtil.getLDAPConnectionUser(dn, oldpass,this.context);
 			if(conn2.isConnected()){
 				outputString.append("Successfully logged in<br/>");
 			}
 
+			outputString.append("Attempting to update password..<br/>");
+			ResultCode code = LdapUtil.changeUserPw(conn2,dn,newpass);
+
+			outputString.append("Result code from LDAP: " + code.getName()+"<br/>");
+			conn2.close();
+
+			if(code.getName().equals("success")){
+				outputString.append("<br/>Go to Gerrit and make sure your new Password works<br/>");
+			}
 
 		} catch (Exception e) {
 			return Response.status(200).entity(outputString.toString() + "<br/> + " + e.toString()).build();
+		}finally{
+			if(conn1!=null){
+				conn1.close();
+			}
+			if(conn2!=null){
+				conn2.close();
+			}
 		}
 
 		return Response.status(200).entity(outputString.toString()).build();
 
 	}
-
-
-
-
 
 	@Context
 	public void setServletContext(ServletContext context) {
@@ -91,8 +109,6 @@ public class ldapAjax {
 		this.context = context;
 
 	}
-
-
 
 	@GET
 	public Response getLdap(@QueryParam(value = "id") final String id) {
