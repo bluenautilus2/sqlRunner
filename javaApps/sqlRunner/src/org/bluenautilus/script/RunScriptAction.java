@@ -2,6 +2,7 @@ package org.bluenautilus.script;
 
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.db.DBConnectionType;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -9,6 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -20,26 +25,19 @@ import java.util.ArrayList;
  */
 public class RunScriptAction implements Runnable {
 
-
-    //private static final String CMD = "/home/bstevens/perlscripts/output_maker.pl";
-
-    private static final String CMD = "osql";
-    private static final String DB_ERROR_FLAG = "Level 16, State";
-
-
     private FieldItems items;
     private SqlScriptFile file;
-    private JPanel parentPanel;
     private ArrayList<ScriptCompletionListener> completionListeners = new ArrayList<ScriptCompletionListener>();
     private ArrayList<ScriptStatusChangeListener> statusListeners = new ArrayList<ScriptStatusChangeListener>();
     private ArrayList<ScriptKickoffListener> kickoffListeners = new ArrayList<ScriptKickoffListener>();
     private ScriptType type = null;
+	private DBConnectionType dbConnectionType;
 
-    public RunScriptAction(FieldItems items, SqlScriptFile sqlScriptFile, JPanel parentPanel, ScriptType type) {
+    public RunScriptAction(FieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, DBConnectionType dbConnectionType) {
         this.items = items;
         this.file = sqlScriptFile;
-        this.parentPanel = parentPanel;
         this.type = type;
+		this.dbConnectionType = dbConnectionType;
     }
 
     public void addCompletionListener(ScriptCompletionListener listener) {
@@ -64,18 +62,24 @@ public class RunScriptAction implements Runnable {
 		this.fireSingleScriptStarting(file, type);
 		ScriptResultsEvent event;
 		try {
-			event = this.runScript(file, type);
-			this.fireScriptCompletion(event);
+			switch (dbConnectionType) {
+				case JDBC    : // Fall through
+				case OSQL    : // Fall through
+				case SQL_CMD : event = dbConnectionType.getScriptRunner().runSqlCmdScript(completionListeners, items, file, type); break;
+				default : return;
+			}
+			if (event != null) {
+				this.fireScriptCompletion(event);
 
-            ScriptStatus finishStatus = event.isDbProblem()?ScriptStatus.EXAMINE_OUTPUT:justRunStatus;
+				ScriptStatus finishStatus = event.isDbProblem() ? ScriptStatus.EXAMINE_OUTPUT : justRunStatus;
 
-			this.fireStatusChanges(file, finishStatus);
-
+				this.fireStatusChanges(file, finishStatus);
+			}
 		} catch (Exception e) {
 			event = new ScriptResultsEvent(e.getMessage(), file, this.type, false, e);
 			this.fireScriptCompletion(event);
 
-			if(e instanceof NoRunException){
+			if (e instanceof NoRunException){
 				this.fireStatusChanges(file,ScriptStatus.NORUN);
 				return;
 			}
@@ -90,54 +94,6 @@ public class RunScriptAction implements Runnable {
 		}
 
 	}
-
-    private ScriptResultsEvent runScript(SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
-        File oldfile = null;  //if this stays null something crazy is going on.
-
-        if(ScriptType.REGULAR == type){
-              oldfile = scriptFile.getTheFile();
-        }else if(ScriptType.ROLLBACK == type){
-              //returns a file obj even if the file may not exist
-              oldfile = scriptFile.getRollbackFile();
-        }
-
-        ScriptModifier modifier = new ScriptModifier(oldfile);
-        this.addCompletionListener(modifier);
-
-		File newFile = modifier.createModifiedCopy();
-
-        ProcessBuilder builder = new ProcessBuilder(this.CMD,
-                "-U", items.getLoginField(),
-                "-P", items.getPasswordField(),
-                "-S", items.getIpAddressField() + "," + items.getPort(),
-                "-d", items.getDbNameField(),
-                "-i", newFile.getAbsolutePath());
-
-
-        Process process = builder.start();
-        InputStream is = process.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        String line;
-
-        StringBuilder strbuilder = new StringBuilder();
-
-        boolean dbProblem = false;
-
-        while ((line = br.readLine()) != null) {
-            if(null != line){
-               int i = line.indexOf(DB_ERROR_FLAG);
-               if(i!=-1){
-                   dbProblem = true;
-               }
-            }
-            strbuilder.append(line);
-            strbuilder.append("\n");
-        }
-
-        ScriptResultsEvent event = new ScriptResultsEvent(strbuilder.toString(), scriptFile, type, dbProblem);
-        return event;
-    }
 
     private void fireStatusChanges(final SqlScriptFile file, final ScriptStatus newStatus) {
 

@@ -25,8 +25,9 @@ public class MainExecutable {
     private static Log log = LogFactory.getLog(MainExecutable.class);
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("SQL Script Runner Platinum Edition");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JFrame frame = new JFrame("SQL Script Runner Platinum Edition");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
         log.info("sqlRunner starting");
