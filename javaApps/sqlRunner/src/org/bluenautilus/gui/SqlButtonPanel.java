@@ -55,7 +55,7 @@ public class SqlButtonPanel extends JPanel {
 		osqlEnabled = true;
 
 		// TODO: find some way of deciding if sqlCmd is present on the machine.
-		sqlCmdEnabled = false;
+		sqlCmdEnabled = true;
 
         this.fields = initialFields;
         this.init();
