@@ -18,7 +18,7 @@ public class JdbcScriptRunner implements ScriptRunner {
 	private static final String DB_STRING = "jdbc:sqlserver://%s:%s;DatabaseName=%s";
 	// (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(--.*[\n\r])|(^commit ?.*$)
 	private static final String REGEX_PARSING = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(--.*[\\n\\r])";
-	private static final String REGEX_COMMIT_REMOVALS = "^commit ?.*$";
+	private static final String REGEX_COMMIT_REMOVALS = "^commit( .*)?$";
 	private static final String QUERY_SANDWICH = "begin transaction sqlRunnerTemp\n%s\ncommit transaction sqlRunnerTemp\n";
 
 
