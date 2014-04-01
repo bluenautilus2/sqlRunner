@@ -1,5 +1,7 @@
 package org.bluenautilus.gui;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
@@ -31,6 +33,8 @@ import java.util.Collections;
  * To change this template use File | Settings | File Templates.
  */
 public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener {
+
+	private static Log LOG = LogFactory.getLog(PanelMgr.class);
 
     public OutputPanel outputPanel;
     public ScriptViewPanel scriptViewPanel;
@@ -141,7 +145,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         SqlScriptFile scriptFile = this.filesBeingRun.get(0);
         this.filesBeingRun.remove(0);
 
-        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, this.buttonPanel, type);
+        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, type, this.buttonPanel.getSelectedDBConnectionType());
         action.addCompletionListener(this);
         action.addCompletionListener(this.sqlTablePanel);
         action.addStatusListener(this.sqlTablePanel);

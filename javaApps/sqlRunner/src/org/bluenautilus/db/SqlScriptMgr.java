@@ -13,15 +13,12 @@ import java.util.ArrayList;
  */
 public class SqlScriptMgr {
 
-    //File is directory that contains the sql scripts
-    private File folder = null;
-    private ArrayList<File> sqlFiles = null;
+	private ArrayList<File> sqlFiles = null;
 
 
     public SqlScriptMgr(File parentFolder) throws Exception {
-        this.folder = parentFolder;
-        checkFile(folder);
-        this.sqlFiles = getListofFiles(folder);
+        checkFile(parentFolder);
+        this.sqlFiles = getListofFiles(parentFolder);
     }
 
     private static void checkFile(final File folder) throws Exception {
@@ -33,7 +30,7 @@ public class SqlScriptMgr {
         }
 
         File[] listOfFiles = folder.listFiles();
-        if (listOfFiles.length <= 0) {
+        if (listOfFiles != null && listOfFiles.length <= 0) {
             throw new Exception("This folder is empty: " + folder.getAbsolutePath());
         }
     }
@@ -41,21 +38,23 @@ public class SqlScriptMgr {
     private static ArrayList<File> getListofFiles(final File folder) {
         File[] listOfFiles = folder.listFiles();
 
-        ArrayList<File> sqlFiles = new ArrayList<File>();
+        ArrayList<File> sqlFiles = new ArrayList<>();
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                String files = listOfFiles[i].getName();
-                if (files.endsWith(".sql")) {
-                    sqlFiles.add(listOfFiles[i]);
-                }
-            }
-        }
+		if (listOfFiles != null) {
+			for (File listOfFile : listOfFiles) {
+				if (listOfFile.isFile()) {
+					String files = listOfFile.getName();
+					if (files.endsWith(".sql")) {
+						sqlFiles.add(listOfFile);
+					}
+				}
+			}
+		}
         return sqlFiles;
     }
 
     public ArrayList<SqlScriptFile> getSqlList() {
-        ArrayList<SqlScriptFile> answer = new ArrayList<SqlScriptFile>();
+        ArrayList<SqlScriptFile> answer = new ArrayList<>();
 
         for (File file : this.sqlFiles) {
             SqlScriptFile newFile = new SqlScriptFile(file);

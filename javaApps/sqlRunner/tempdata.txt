@@ -1,0 +1,41 @@
+BEGIN TRANSACTION TEMP;
+
+-- 
+-- PA-18081: Fix problem: CC's being deleted without CCP's being deleted. 
+-- It turned out that the issue was not happening on a large scale. There were only 3 CCP entries identified; 
+-- so as resolution, Mark recommended that we just do cleanup related to those entries. 
+-- 
+-- DML 
+-- 
+-- Execution plan: PRE-DEPLOYMENT 
+-- 
+-- Abdunnassar Usman 
+--  
+ 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+-- Part 1 of 3: Dependencies level 2. 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+DELETE FROM Company_Candidate_Position_Position_Type_Campaigns WHERE Company_Candidate_Position_Position_Type_Id IN (42903436, 51243233, 53748792) 
+GO 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+-- Part 2 of 3: Dependencies level 1. 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+DELETE FROM Company_Candidate_Position_Position_Types WHERE Company_Candidate_Position_Id IN (42979324, 51327489, 53833170) 
+GO 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+-- Part 3 of 3: Delete the 3 CCP rows identified. 
+------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+DELETE FROM Company_Candidate_Positions WHERE Company_Candidate_Position_Id IN (42979324, 51327489, 53833170) 
+GO 
+ 
+EXEC addDbUpdate N'2014-04-03_08' 
+GO 
+ 
+ 
+COMMIT TRANSACTION TEMP;
+
