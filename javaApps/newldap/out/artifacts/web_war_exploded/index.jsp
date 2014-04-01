@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="ldap.css"/>
 </head>
 <body>
-<H1> LDAP Password changer thingy</H1>
+<H1> LDAP Password changer</H1>
 
 <p><i>If it breaks, go get Beth</i></p>
 

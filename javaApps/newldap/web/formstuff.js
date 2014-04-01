@@ -8,7 +8,7 @@ function oldPassSubmit(form) {
 }
 
 // If the two passwords don't match, returns -1.
-// If they don't match but there is no mismatch, return 1
+// If they don't match but one or more is empty, return 1
 // If they do match and are non-zero, returns the password.
 function getNewPassword() {
 
@@ -49,7 +49,7 @@ function keyTyped() {
 
 function sendToServer(username, oldpass, newpass) {
 
-    var url = "http://localhost:8080/ldap/jersey/ldapajax/";
+    var url = "http://localhost:8081/ldap/jersey/ldapajax/";
 
     var params = {
         username : username,

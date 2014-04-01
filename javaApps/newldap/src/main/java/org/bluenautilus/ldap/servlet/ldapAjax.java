@@ -1,20 +1,8 @@
 package org.bluenautilus.ldap.servlet;
 
-import com.unboundid.ldap.sdk.Control;
-import com.unboundid.ldap.sdk.DereferencePolicy;
-import com.unboundid.ldap.sdk.Filter;
+
 import com.unboundid.ldap.sdk.LDAPConnection;
-import com.unboundid.ldap.sdk.LDAPException;
-import com.unboundid.ldap.sdk.LDAPSearchException;
-import com.unboundid.ldap.sdk.ReadOnlySearchRequest;
 import com.unboundid.ldap.sdk.ResultCode;
-import com.unboundid.ldap.sdk.SearchRequest;
-import com.unboundid.ldap.sdk.SearchResult;
-import com.unboundid.ldap.sdk.SearchResultEntry;
-import com.unboundid.ldap.sdk.SearchScope;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.bluenautilus.util.ConfigUtil;
 import org.bluenautilus.util.LdapUtil;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -55,10 +43,10 @@ public class ldapAjax {
 		String oldpass = (json.get("oldpass")).toString();
 		String newpass = (json.get("newpass")).toString();
 
-		if(newpass==null || newpass.equals("") || newpass.equals("1")){
+		if (newpass == null || newpass.equals("") || newpass.equals("1")) {
 			return Response.status(200).entity("Your new password is blank. Try again").build();
 		}
-		if(newpass.equals("-1")){
+		if (newpass.equals("-1")) {
 			return Response.status(200).entity("Your new passwords don't match. Try again").build();
 		}
 
@@ -73,28 +61,28 @@ public class ldapAjax {
 				outputString.append("Found user in ldap: " + dn + "<br/>" + "Attempting to login as user...<br/>");
 			}
 
-			conn2 = LdapUtil.getLDAPConnectionUser(dn, oldpass,this.context);
-			if(conn2.isConnected()){
+			conn2 = LdapUtil.getLDAPConnectionUser(dn, oldpass, this.context);
+			if (conn2.isConnected()) {
 				outputString.append("Successfully logged in<br/>");
 			}
 
 			outputString.append("Attempting to update password..<br/>");
-			ResultCode code = LdapUtil.changeUserPw(conn2,dn,newpass);
+			ResultCode code = LdapUtil.changeUserPw(conn2, dn, newpass);
 
-			outputString.append("Result code from LDAP: " + code.getName()+"<br/>");
+			outputString.append("Result code from LDAP: " + code.getName() + "<br/>");
 			conn2.close();
 
-			if(code.getName().equals("success")){
+			if (code.getName().equals("success")) {
 				outputString.append("<br/>Go to Gerrit and make sure your new Password works<br/>");
 			}
 
 		} catch (Exception e) {
 			return Response.status(200).entity(outputString.toString() + "<br/> + " + e.toString()).build();
-		}finally{
-			if(conn1!=null){
+		} finally {
+			if (conn1 != null) {
 				conn1.close();
 			}
-			if(conn2!=null){
+			if (conn2 != null) {
 				conn2.close();
 			}
 		}
