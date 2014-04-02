@@ -7,7 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81460ffb-ddc8-4b59-b645-b44e74acd1ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_configuration_1_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_lang_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_logging_1_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc4_4_0_2206_100.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sqlRunner.iml" afterPath="$PROJECT_DIR$/sqlRunner.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/sqlRunner_jar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../newldap/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../newldap/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sqlRunner.iws" />
@@ -63,7 +70,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" line="183" class="org.bluenautilus.gui.SqlButtonPanel$2" package="org.bluenautilus.gui">
+      <breakpoint url="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" line="252" class="org.bluenautilus.gui.SqlButtonPanel$2" package="org.bluenautilus.gui">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -89,10 +96,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RunScriptAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RunScriptAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="28" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.28765264" vertical-offset="1378" max-vertical-offset="2925">
+            <state line="118" column="107" selection-start="4084" selection-end="4084" vertical-scroll-proportion="0.0" vertical-offset="1168" max-vertical-offset="2265">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptRunner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/ScriptRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="33" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FieldItems.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/FieldItems.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="39" selection-start="71" selection-end="71" vertical-scroll-proportion="0.034324944" vertical-offset="0" max-vertical-offset="1425">
               <folding />
             </state>
           </provider>
@@ -147,10 +172,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="204" />
-    <option name="y" value="157" />
-    <option name="width" value="1350" />
-    <option name="height" value="879" />
+    <option name="x" value="167" />
+    <option name="y" value="84" />
+    <option name="width" value="1657" />
+    <option name="height" value="1115" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -167,7 +192,9 @@
   </component>
   <component name="ProjectStructureProblems">
     <ignored-problems>
+      <problem id="invalid-module-dependency(module:sqlRunner,sqlRunner libs)" />
       <problem id="unused-library(library:project:commons-lang-2.6)" />
+      <problem id="unused-library(library:project:lib)" />
     </ignored-problems>
   </component>
   <component name="ProjectView">
@@ -183,6 +210,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,19 +356,18 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -469,8 +496,8 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="204" y="157" width="1350" height="879" extended-state="0" />
-    <editor active="true" />
+    <frame x="167" y="84" width="1657" height="1115" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -481,12 +508,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30997625" sideWeight="0.5003092" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35572374" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2264529" sideWeight="0.4992785" order="10" side_tool="false" content_ui="tabs" x="169" y="518" width="1594" height="565" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29475588" sideWeight="0.66492695" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39457202" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2087156" sideWeight="0.46136618" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09785203" sideWeight="0.49907234" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1863777" sideWeight="0.46136618" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09719439" sideWeight="0.49907234" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17102396" sideWeight="0.68117315" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Struts Assistant" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984003" sideWeight="0.76109535" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13382158" sideWeight="0.5071721" order="2" side_tool="false" content_ui="combo" />
@@ -494,7 +522,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3548387" sideWeight="0.49969077" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35005975" sideWeight="0.4992785" order="10" side_tool="false" content_ui="tabs" x="169" y="518" width="1594" height="565" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17153889" sideWeight="0.28666037" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969284" sideWeight="0.6315789" order="4" side_tool="false" content_ui="tabs" />
@@ -522,20 +549,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="4" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="21" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1290">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRowRetriever.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="29" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1545">
@@ -817,16 +830,12 @@
     </entry>
     <entry file="jar:///usr/local/jdk1.7.0_21/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1999" column="17" selection-start="69163" selection-end="69163" vertical-scroll-proportion="0.0" vertical-offset="29465" max-vertical-offset="151260">
-          <folding />
-        </state>
+        <state line="1999" column="17" selection-start="69163" selection-end="69163" vertical-scroll-proportion="0.0" vertical-offset="29465" max-vertical-offset="151260" />
       </provider>
     </entry>
     <entry file="jar:///usr/local/jdk1.7.0_21/src.zip!/java/awt/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="16" selection-start="4874" selection-end="4874" vertical-scroll-proportion="0.0" vertical-offset="2210" max-vertical-offset="3255">
-          <folding />
-        </state>
+        <state line="182" column="16" selection-start="4874" selection-end="4874" vertical-scroll-proportion="0.0" vertical-offset="2210" max-vertical-offset="3255" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/DisplayScriptDialog.java">
@@ -852,7 +861,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="28" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.28765264" vertical-offset="1378" max-vertical-offset="2925">
+        <state line="118" column="107" selection-start="4084" selection-end="4084" vertical-scroll-proportion="0.0" vertical-offset="1168" max-vertical-offset="2265">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/ScriptRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="33" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/FieldItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="39" selection-start="71" selection-end="71" vertical-scroll-proportion="0.034324944" vertical-offset="0" max-vertical-offset="1425">
           <folding />
         </state>
       </provider>
@@ -935,7 +958,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>commons-lang-2.6</last-edited>
+          <last-edited>lib</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
