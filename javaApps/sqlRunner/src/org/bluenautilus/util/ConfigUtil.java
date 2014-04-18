@@ -24,6 +24,8 @@ public class ConfigUtil {
     public static final String DB_PASS = "password";
     public static final String SCRIPT_FOLDER = "script_folder";
     public static final String PORT = "port";
+    public static final String DB_CONNECT_TYPE = "db.connection.type";
+
     private static final String CONFIG_FILENAME = "db.properties";
     private static final String BAK_FILENAME = "db.properties.old";
     private static PropertiesConfiguration dbConfig = null;
@@ -63,6 +65,7 @@ public class ConfigUtil {
             newProp.addProperty(DB_PASS, items.getPasswordField());
             newProp.addProperty(DB_USER, items.getLoginField());
             newProp.addProperty(PORT, items.getPort());
+            newProp.addProperty(DB_CONNECT_TYPE, items.getDbConnectionType());
 
             newProp.save(newFile);
 

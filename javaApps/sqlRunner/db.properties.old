@@ -1,6 +1,7 @@
-script_folder = /export/work/git/App/tools/SQL_Update_Scripts
-ip = 10.10.10.52
-db = panswersJimParker
+script_folder = /home/bstevens/repo/tools/SQL_Update_Scripts/
+ip = 10.48.24.77
+db = panswersBeth
 password = xxxPA50
 user = common
 port = 1433
+db.connection.type = sqlCmd

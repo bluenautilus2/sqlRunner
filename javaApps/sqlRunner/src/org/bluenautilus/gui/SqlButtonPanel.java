@@ -1,5 +1,6 @@
 package org.bluenautilus.gui;
 
+import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
@@ -21,6 +22,7 @@ import java.awt.event.ActionListener;
 public class SqlButtonPanel extends JPanel {
 
 	private static Log LOG = LogFactory.getLog(SqlButtonPanel.class);
+    private static DBConnectionType DEFAULT_CONNECTION_TYPE = DBConnectionType.JDBC;
 
     FieldItems fields = null;
     private JTextField dbNameField = new JTextField(15);
@@ -51,8 +53,7 @@ public class SqlButtonPanel extends JPanel {
 			LOG.info("Cannot load JDBC driver... oops.");
 		}
 
-		// TODO: find some way of deciding if osql is set up on the machine.
-		osqlEnabled = true;
+		osqlEnabled = isOsqlEnabled();
 
 		// TODO: find some way of deciding if sqlCmd is present on the machine.
 		sqlCmdEnabled = true;
@@ -101,7 +102,6 @@ public class SqlButtonPanel extends JPanel {
                 new Insets(4, 4, 10, 4), 2, 2));
 
         leftCornerPanel.setBorder(new LineBorder(this.borderColor));
-
 
         //Center panel buttons
         JPanel centerPanel = new JPanel(new GridBagLayout());
@@ -205,7 +205,7 @@ public class SqlButtonPanel extends JPanel {
 				break;
 			case OSQL:
 				if (!osqlEnabled) {
-					JOptionPane.showMessageDialog(null, "OSQL is disabled.");
+					JOptionPane.showMessageDialog(null, "OSQL is disabled for Linux.");
 					dbConnectionTypeField.setSelectedItem(DBConnectionType.NONE);
 				}
 				break;
@@ -225,7 +225,8 @@ public class SqlButtonPanel extends JPanel {
                 this.passwordField.getText(),
                 this.scriptFolderField.getText(),
                 this.ipAddressField.getText(),
-                this.portField.getText());
+                this.portField.getText(),
+                this.dbConnectionTypeField.getSelectedItem().toString());
     }
 
     public void setFields(FieldItems fields) {
@@ -235,6 +236,13 @@ public class SqlButtonPanel extends JPanel {
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.ipAddressField.setText(fields.getIpAddressField());
         this.portField.setText(fields.getPort());
+
+        DBConnectionType typeEnum =  DBConnectionType.getEnum(fields.getDbConnectionType());
+        if(typeEnum==null){
+            typeEnum = DEFAULT_CONNECTION_TYPE;
+        }
+        this.dbConnectionTypeField.setSelectedItem(typeEnum);
+
     }
 
     public void addRefreshListener(final RefreshListener listener) {
@@ -296,6 +304,10 @@ public class SqlButtonPanel extends JPanel {
         this.refreshButton.setText("Refresh");
         this.refreshButton.setForeground(this.defaultForeground);
         this.refreshButton.setBackground(this.defaultBackground);
+    }
+
+    private boolean isOsqlEnabled(){
+        return (SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_WINDOWS_7);
     }
 
 }

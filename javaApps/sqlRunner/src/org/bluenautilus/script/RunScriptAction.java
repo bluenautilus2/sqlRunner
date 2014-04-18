@@ -3,6 +3,7 @@ package org.bluenautilus.script;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBConnectionType;
+import org.bluenautilus.db.ScriptRunner;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -65,7 +66,10 @@ public class RunScriptAction implements Runnable {
 			switch (dbConnectionType) {
 				case JDBC    : // Fall through
 				case OSQL    : // Fall through
-				case SQL_CMD : event = dbConnectionType.getScriptRunner().runSqlCmdScript(completionListeners, items, file, type); break;
+				case SQL_CMD :
+                    ScriptRunner runner = dbConnectionType.getScriptRunner();
+                    event = runner.runSqlCmdScript(completionListeners, items, file, type);
+                    break;
 				default : return;
 			}
 			if (event != null) {
