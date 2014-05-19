@@ -21,6 +21,7 @@ public class SqlTableModel extends AbstractTableModel {
         for (int i = 0; i < fileList.size(); i++) {
             this.fileList.get(i).setTableRowIndex(i);
         }
+
     }
 
     @Override

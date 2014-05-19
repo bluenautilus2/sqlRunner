@@ -19,7 +19,7 @@ public class FieldItems {
     private String scriptFolderField = "~/repo/tools/SQL_Update_Scripts";
     private String ipAddressField = "10.10.10.53";
     private String port = "1433";
-    private String dbConnectionType = DBConnectionType.JDBC.toString();
+    private String dbConnectionType = DBConnectionType.getDefaultForThisOS().toString();
 
     public FieldItems(String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType) {
         if (dbNameField != null) {

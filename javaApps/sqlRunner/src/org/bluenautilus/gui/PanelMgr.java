@@ -32,7 +32,7 @@ import java.util.Collections;
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener {
+public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener {
 
 	private static Log LOG = LogFactory.getLog(PanelMgr.class);
 
@@ -59,6 +59,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         this.buttonPanel.addRefreshListener(this);
         this.buttonPanel.addScriptKickoffListener(this);
         this.buttonPanel.addScriptRunAllToRunListener(this);
+        this.buttonPanel.addUpdatePreferencesListener(this);
 		this.scriptViewPanel.addPopOutListener(this);
 
     }
@@ -243,4 +244,10 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 		}
 
 	}
+
+    @Override
+    public void preferencesUpdated() {
+        FieldItems items = this.buttonPanel.pullFieldsFromGui();
+        ConfigUtil.saveOffCurrent(items, this.buttonPanel);
+    }
 }

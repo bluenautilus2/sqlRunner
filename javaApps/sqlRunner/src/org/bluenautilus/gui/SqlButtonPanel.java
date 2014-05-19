@@ -1,18 +1,23 @@
 package org.bluenautilus.gui;
 
-import org.apache.commons.lang.SystemUtils;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptType;
+import org.bluenautilus.util.MiscUtil;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * User: bluenautilus2
@@ -21,8 +26,7 @@ import java.awt.event.ActionListener;
  */
 public class SqlButtonPanel extends JPanel {
 
-	private static Log LOG = LogFactory.getLog(SqlButtonPanel.class);
-    private static DBConnectionType DEFAULT_CONNECTION_TYPE = DBConnectionType.JDBC;
+    private static Log LOG = LogFactory.getLog(SqlButtonPanel.class);
 
     FieldItems fields = null;
     private JTextField dbNameField = new JTextField(15);
@@ -31,32 +35,19 @@ public class SqlButtonPanel extends JPanel {
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField ipAddressField = new JTextField(15);
     private JTextField portField = new JTextField(8);
-	private JComboBox<DBConnectionType> dbConnectionTypeField = new JComboBox<>(DBConnectionType.values());
+    private JComboBox dbConnectionTypeField;
     private JButton refreshButton = new JButton("REFRESH");
     private JButton selectedScriptButton = new JButton("Run Selected");
     private JButton runAllButton = new JButton("Run All");
     private JButton rollbackButton = new JButton("Rollback Selected");
     private Color defaultForeground;
     private Color defaultBackground;
-    private Color borderColor =  new Color(180,180,180);
-	private boolean jdbcEnabled = false;
-	private boolean osqlEnabled = false;
-	private boolean sqlCmdEnabled = false;
+    private Color borderColor = new Color(180, 180, 180);
+
+    ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
     public SqlButtonPanel(FieldItems initialFields) {
         super(new GridBagLayout());
-
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			jdbcEnabled = true;
-		} catch (ClassNotFoundException e) {
-			LOG.info("Cannot load JDBC driver... oops.");
-		}
-
-		osqlEnabled = isOsqlEnabled();
-
-		// TODO: find some way of deciding if sqlCmd is present on the machine.
-		sqlCmdEnabled = true;
 
         this.fields = initialFields;
         this.init();
@@ -73,12 +64,13 @@ public class SqlButtonPanel extends JPanel {
         JLabel password = new JLabel("Password");
         JLabel folderName = new JLabel("SQL Script Folder");
         JLabel portLabel = new JLabel("Port");
-		JLabel dbConnectionTypeLabel = new JLabel("DB Connection Method");
+        JLabel dbConnectionTypeLabel = new JLabel("DB Connection Method");
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
         this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
         this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
+        this.initDBConnectionDropDown();
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -132,13 +124,13 @@ public class SqlButtonPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(portLabel, new GridBagConstraints(4,0, 1, 1, 1.0, 1.0,
+        centerPanel.add(portLabel, new GridBagConstraints(4, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-		centerPanel.add(dbConnectionTypeLabel, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
-				GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(2, 2, 2, 2), 2, 2));
+        centerPanel.add(dbConnectionTypeLabel, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
         //TEXT FIELDS
         centerPanel.add(this.dbNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
@@ -161,9 +153,9 @@ public class SqlButtonPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-		centerPanel.add(this.dbConnectionTypeField, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
-				GridBagConstraints.WEST, GridBagConstraints.NONE,
-				new Insets(2, 2, 2, 2), 2, 2));
+        centerPanel.add(this.dbConnectionTypeField, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
         //this fills up three spots
         centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
@@ -180,43 +172,11 @@ public class SqlButtonPanel extends JPanel {
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(4, 4, 4, 4), 2, 2));
 
-
-		dbConnectionTypeField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validateSelection();
-			}
-		});
-		validateSelection();
     }
 
-	private void validateSelection() {
-		boolean enableButtons = getSelectedDBConnectionType() != DBConnectionType.NONE;
-		selectedScriptButton.setEnabled(enableButtons);
-		runAllButton.setEnabled(enableButtons);
-		rollbackButton.setEnabled(enableButtons);
-
-		switch (getSelectedDBConnectionType()) {
-			case JDBC:
-				if (!jdbcEnabled) {
-					JOptionPane.showMessageDialog(null, "No JDBC driver was found, this is disabled.");
-					dbConnectionTypeField.setSelectedItem(DBConnectionType.NONE);
-				}
-				break;
-			case OSQL:
-				if (!osqlEnabled) {
-					JOptionPane.showMessageDialog(null, "OSQL is disabled for Linux.");
-					dbConnectionTypeField.setSelectedItem(DBConnectionType.NONE);
-				}
-				break;
-			case SQL_CMD:
-				if (!sqlCmdEnabled) {
-					JOptionPane.showMessageDialog(null, "SQL CMD is disabled.");
-					dbConnectionTypeField.setSelectedItem(DBConnectionType.NONE);
-				}
-				break;
-		}
-	}
+    public void addUpdatePreferencesListener(UpdatePreferencesListener listener) {
+        this.updateListeners.add(listener);
+    }
 
     public FieldItems pullFieldsFromGui() {
         return new FieldItems(
@@ -226,7 +186,7 @@ public class SqlButtonPanel extends JPanel {
                 this.scriptFolderField.getText(),
                 this.ipAddressField.getText(),
                 this.portField.getText(),
-                this.dbConnectionTypeField.getSelectedItem().toString());
+                this.dbConnectionTypeField.getModel().getSelectedItem().toString());
     }
 
     public void setFields(FieldItems fields) {
@@ -236,12 +196,17 @@ public class SqlButtonPanel extends JPanel {
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.ipAddressField.setText(fields.getIpAddressField());
         this.portField.setText(fields.getPort());
+        
+        String connectionString = fields.getDbConnectionType();
+        DBConnectionType userSaved = DBConnectionType.getEnum(connectionString);
 
-        DBConnectionType typeEnum =  DBConnectionType.getEnum(fields.getDbConnectionType());
-        if(typeEnum==null){
-            typeEnum = DEFAULT_CONNECTION_TYPE;
+        if(this.dbConnectionTypeField!=null){
+            this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
+        }else{
+            String[] options = this.buildDBConnectionTypes();
+             this.dbConnectionTypeField = new JComboBox(options);
+            this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
         }
-        this.dbConnectionTypeField.setSelectedItem(typeEnum);
 
     }
 
@@ -275,9 +240,10 @@ public class SqlButtonPanel extends JPanel {
         this.rollbackButton.addActionListener(rollbackActionListener);
     }
 
-	public DBConnectionType getSelectedDBConnectionType() {
-		return (DBConnectionType)dbConnectionTypeField.getSelectedItem();
-	}
+    public DBConnectionType getSelectedDBConnectionType() {
+        String type = (String)dbConnectionTypeField.getModel().getSelectedItem();
+        return DBConnectionType.getEnum(type);
+    }
 
     public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {
         ActionListener actionListener = new ActionListener() {
@@ -290,24 +256,86 @@ public class SqlButtonPanel extends JPanel {
 
     }
 
-    private void setRefreshButtonRed(){
+    private void setRefreshButtonRed() {
         this.defaultBackground = this.refreshButton.getBackground();
-        this.defaultForeground= this.refreshButton.getForeground();
+        this.defaultForeground = this.refreshButton.getForeground();
 
         this.refreshButton.setText("Refreshing");
         this.refreshButton.setForeground(Color.WHITE);
-        this.refreshButton.setBackground(new Color(150,60,60));
+        this.refreshButton.setBackground(new Color(150, 60, 60));
 
     }
 
-    public void setRefreshButtonNormal(){
+    public void setRefreshButtonNormal() {
         this.refreshButton.setText("Refresh");
         this.refreshButton.setForeground(this.defaultForeground);
         this.refreshButton.setBackground(this.defaultBackground);
     }
 
-    private boolean isOsqlEnabled(){
-        return (SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_WINDOWS_7);
+    private String[] buildDBConnectionTypes() {
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (DBConnectionType type : DBConnectionType.values()) {
+            //Check if jdbc can work on this machine
+            if (DBConnectionType.JDBC == type) {
+                if (isJDBCEnabled()) {
+                    list.add(type.toString());
+                }
+            } else {
+                if (canAddConnectionType(type)) {
+                    list.add(type.toString());
+                }
+            }
+        }//end of for loop
+
+        return list.toArray(new String[list.size()]);
     }
+
+    private boolean canAddConnectionType(DBConnectionType type) {
+        if (MiscUtil.isThisWindows() && type.supportsWindows()) {
+            return true;
+        }
+        if (MiscUtil.isThisLinux() && type.supportsLinux()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isJDBCEnabled() {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            return true;
+        } catch (ClassNotFoundException e) {
+            LOG.info("Cannot load JDBC driver... oops. Install a JDBC driver to use JDBC Runtime method");
+        }
+        return false;
+    }
+
+    private void initDBConnectionDropDown() {
+
+        this.dbConnectionTypeField.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(final ItemEvent e) {
+
+                // I shouldn't have had to write this code (disgusted)
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            Object item = e.getItem();
+                            dbConnectionTypeField.getModel().setSelectedItem(item.toString());
+                            for (UpdatePreferencesListener listener : updateListeners) {
+                                listener.preferencesUpdated();
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+
+
+    }
+
 
 }

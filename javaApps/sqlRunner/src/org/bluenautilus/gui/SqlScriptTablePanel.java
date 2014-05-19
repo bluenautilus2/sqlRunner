@@ -29,11 +29,10 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         ArrayList<SqlScriptFile> fileList = new ArrayList<SqlScriptFile>();
         tableModel = new SqlTableModel(fileList);
         theTable = new ScriptTable(tableModel);
-
         JScrollPane scroll = new JScrollPane(theTable);
 
-        scroll.setPreferredSize(new Dimension(300, 500));
-        scroll.setMaximumSize(new Dimension(300, 1000));
+        scroll.setPreferredSize(new Dimension(350, 500));
+        scroll.setMaximumSize(new Dimension(350, 1000));
         scroll.setMinimumSize(new Dimension(200, 500));
         this.add(scroll, BorderLayout.CENTER);
 
@@ -44,6 +43,7 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         tableModel = new SqlTableModel(fileList);
         theTable.setModel(tableModel);
         this.updateTable();
+        theTable.fixColumns();
     }
 
     public void updateTable() {

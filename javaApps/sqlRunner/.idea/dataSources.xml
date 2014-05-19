@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3239777101">
+    <data-source source="LOCAL" name="panswersBeth" uuid="4b72506c-a543-4a60-ba89-0bbc6ad9a74c">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://10.48.24.77:1433/panswersBeth</jdbc-url>
+      <user-name>common</user-name>
+      <user-password>dfd2dfd2dfd2dffadfebdf9fdf9a</user-password>
+      <schema-pattern>panswersBeth.dbo</schema-pattern>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

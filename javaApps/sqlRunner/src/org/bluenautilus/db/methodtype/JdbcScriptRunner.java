@@ -103,7 +103,7 @@ public class JdbcScriptRunner implements ScriptRunner {
 			}
 		}
 
-		return new ScriptResultsEvent("", scriptFile, type, dbProblem);
+		return new ScriptResultsEvent("JDBC mode doesn't support output", scriptFile, type, dbProblem);
 	}
 
 	/**

@@ -1,27 +1,47 @@
 BEGIN TRANSACTION TEMP;
 
 --
--- 2014-04-24_02.sql
+-- 2014-06-05_01.sql
+-- by Josh Allen
 --
--- BJs Restaurant - Custom Portal (PA-20906)
+-- DDL
+-- pre-deployment
 --
--- DML
---
--- Execution plan: PRE-DEPLOYMENT
---
--- Chris Keller
+-- PA-15849: drop backup tables from the Offer Letter Approval project
 --
 
-SET XACT_ABORT ON;
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+-------------------------
+-- drop old ZZZ tables --
+-------------------------
+print 'this script is running';
+
+IF EXISTS (
+	SELECT TOP 1 1
+	FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'ZZZ_Rights_Display_Tree_Pre_Offer_Letter_Approval'
+)
+BEGIN
+	DROP TABLE ZZZ_Rights_Display_Tree_Pre_Offer_Letter_Approval
+END
 GO
 
-BEGIN TRANSACTION;
-
-select * from partners;
-
-COMMIT TRANSACTION;
+IF EXISTS (
+	SELECT TOP 1 1
+	FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'ZZZ_PA15849_CCPPT_Has_Offer_Letter_Bak'
+)
+BEGIN
+	DROP TABLE ZZZ_PA15849_CCPPT_Has_Offer_Letter_Bak
+END
 GO
 
+print 'this script is ending';
+------------------
+-- housekeeping --
+------------------
+
+EXEC addDBUpdate N'2014-06-05_01'
+GO
 COMMIT TRANSACTION TEMP;
 

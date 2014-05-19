@@ -65,10 +65,13 @@ public class RunScriptAction implements Runnable {
 		try {
 			switch (dbConnectionType) {
 				case JDBC    : // Fall through
-				case OSQL    : // Fall through
 				case SQL_CMD :
-                    ScriptRunner runner = dbConnectionType.getScriptRunner();
-                    event = runner.runSqlCmdScript(completionListeners, items, file, type);
+                    ScriptRunner scrunner = dbConnectionType.getScriptRunner();
+                    event = scrunner.runSqlCmdScript(completionListeners, items, file, type);
+                    break;
+                case TSQL :
+                    ScriptRunner tsqlrunner = dbConnectionType.getScriptRunner();
+                    event = tsqlrunner.runSqlCmdScript(completionListeners, items, file, type);
                     break;
 				default : return;
 			}
