@@ -50,15 +50,56 @@ public class tSqlScriptRunner implements ScriptRunner {
                 "-U", items.getLoginField(),
                 "-P", items.getPasswordField(),
                 "-D", items.getDbNameField(),
-                "f", newFile.getAbsolutePath());
+                "-f", newFile.getAbsolutePath());
 
         Process process = builder.start();
 
+
         StringBuilder strbuilder = new StringBuilder();
+
+// Might need this code someday for debugging.
+//        strbuilder.append("\n OUTPUT FROM STDIN: \n");
+//        InputStream is = process.getInputStream();
+//        InputStreamReader isr = new InputStreamReader(is);
+//        BufferedReader br = new BufferedReader(isr);
+//        String line;
+//
+//        boolean dbProblem = false;
+//
+//        while ((line = br.readLine()) != null) {
+//            if (null != line) {
+//                int i = line.indexOf(DB_ERROR_FLAG);
+//                if (i != -1) {
+//                    dbProblem = true;
+//                }
+//            }
+//            strbuilder.append(line);
+//            strbuilder.append("\n");
+//        }
+
+        //There are a few lines from StdErr that tsql prints out, including them just in case.
+        InputStream iserr = process.getErrorStream();
+        InputStreamReader isrerr = new InputStreamReader(iserr);
+        BufferedReader brerr = new BufferedReader(isrerr);
         String line;
+        boolean dbProblem = false;
+
+        boolean dbProblemerr = false;
+
+        strbuilder.append("Output from stderr (tsql command): \n");
+        while ((line = brerr.readLine()) != null) {
+            if (null != line) {
+                int i = line.indexOf(DB_ERROR_FLAG);
+                if (i != -1) {
+                    dbProblem = true;
+                }
+            }
+            strbuilder.append(line + "\n");
+        }
+
+        strbuilder.append("\nOutput from cmd line (tsql command):  \n");
         FileInputStream fis;
         BufferedReader reader = null;
-        boolean dbProblem = false;
         File newOutputFile = new File(TSQL_OUTPUT_FILE);
 
         try {
