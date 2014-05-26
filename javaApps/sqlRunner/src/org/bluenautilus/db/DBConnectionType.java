@@ -12,7 +12,7 @@ import org.bluenautilus.util.MiscUtil;
 public enum DBConnectionType {
 	JDBC("JDBC", new JdbcScriptRunner(), true, true),
 	SQL_CMD("sqlCmd", new SqlCmdScriptRunner(), true, false),
-	TSQL("tSQL", new tSqlScriptRunner(), false, true);
+	TSQL("tSQL", new tSqlScriptRunner(), false, false);
 
 	private final String displayString;
 	private final ScriptRunner runner;
@@ -20,7 +20,7 @@ public enum DBConnectionType {
     private final boolean supportsLinux;
 
     public static final DBConnectionType WINDOWS_DEFAULT = DBConnectionType.SQL_CMD;
-    public static final DBConnectionType LINUX_DEFAULT = DBConnectionType.TSQL;
+    public static final DBConnectionType LINUX_DEFAULT = DBConnectionType.JDBC;
 
 	DBConnectionType(String displayString, ScriptRunner runner, boolean windows, boolean linux) {
 		this.displayString = displayString;
