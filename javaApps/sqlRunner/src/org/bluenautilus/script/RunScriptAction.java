@@ -1,5 +1,6 @@
 package org.bluenautilus.script;
 
+import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBConnectionType;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class RunScriptAction implements Runnable {
 
     private FieldItems items;
+    private CassFieldItems cassItems;
     private SqlScriptFile file;
     private ArrayList<ScriptCompletionListener> completionListeners = new ArrayList<ScriptCompletionListener>();
     private ArrayList<ScriptStatusChangeListener> statusListeners = new ArrayList<ScriptStatusChangeListener>();
@@ -39,6 +41,13 @@ public class RunScriptAction implements Runnable {
         this.file = sqlScriptFile;
         this.type = type;
 		this.dbConnectionType = dbConnectionType;
+    }
+
+    public RunScriptAction(CassFieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, DBConnectionType dbConnectionType) {
+        this.cassItems = items;
+        this.file = sqlScriptFile;
+        this.type = type;
+        this.dbConnectionType = dbConnectionType;
     }
 
     public void addCompletionListener(ScriptCompletionListener listener) {
@@ -73,6 +82,10 @@ public class RunScriptAction implements Runnable {
                     ScriptRunner tsqlrunner = dbConnectionType.getScriptRunner();
                     event = tsqlrunner.runSqlCmdScript(completionListeners, items, file, type);
                     break;
+                case CASSANDRA:
+                    ScriptRunner cassRunner = dbConnectionType.getScriptRunner();
+                    //@todo fix this
+                    event = cassRunner.runSqlCmdScript(completionListeners,null,file,type);
 				default : return;
 			}
 			if (event != null) {

@@ -64,7 +64,11 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     }
 
-    private void refresh(ArrayList<SqlScriptFile> files) {
+    public PanelMgr(){
+        //does nothing, for inheritance
+    }
+
+    protected void refresh(ArrayList<SqlScriptFile> files) {
         this.sqlTablePanel.setValues(files);
         this.outputPanel.clearText();
         this.scriptViewPanel.clearText();

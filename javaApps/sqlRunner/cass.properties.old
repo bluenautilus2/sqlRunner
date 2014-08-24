@@ -1,0 +1,2 @@
+cassandra_host = nucleus
+cassandra_script_folder = /home/bstevens/repos/tools/App/CQL_Update_Scripts

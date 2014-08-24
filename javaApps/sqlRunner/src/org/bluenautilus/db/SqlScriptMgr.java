@@ -44,7 +44,7 @@ public class SqlScriptMgr {
 			for (File listOfFile : listOfFiles) {
 				if (listOfFile.isFile()) {
 					String files = listOfFile.getName();
-					if (files.endsWith(".sql")) {
+					if (files.endsWith(".sql")||(files.endsWith("cql"))) {
 						sqlFiles.add(listOfFile);
 					}
 				}

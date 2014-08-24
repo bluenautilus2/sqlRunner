@@ -1,5 +1,6 @@
 package org.bluenautilus.db;
 
+import org.bluenautilus.db.methodtype.CassandraScriptRunner;
 import org.bluenautilus.db.methodtype.JdbcScriptRunner;
 import org.bluenautilus.db.methodtype.SqlCmdScriptRunner;
 import org.bluenautilus.db.methodtype.tSqlScriptRunner;
@@ -12,7 +13,9 @@ import org.bluenautilus.util.MiscUtil;
 public enum DBConnectionType {
 	JDBC("JDBC", new JdbcScriptRunner(), true, true),
 	SQL_CMD("sqlCmd", new SqlCmdScriptRunner(), true, false),
-	TSQL("tSQL", new tSqlScriptRunner(), false, false);
+	TSQL("tSQL", new tSqlScriptRunner(), false, false),
+    CASSANDRA("Cassandra", new CassandraScriptRunner(),true,true);
+
 
 	private final String displayString;
 	private final ScriptRunner runner;
