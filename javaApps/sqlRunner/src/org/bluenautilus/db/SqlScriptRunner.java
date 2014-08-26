@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by jim on 3/28/14.
  */
-public interface ScriptRunner {
+public interface SqlScriptRunner {
 	/**
 	 * Do the call to the DB in whatever fashion is in style at the current moment.
 	 * @param completionListeners

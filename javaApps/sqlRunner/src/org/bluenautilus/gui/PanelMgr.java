@@ -4,8 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.db.DBRefreshAction;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
-import org.bluenautilus.db.RefreshAction;
 import org.bluenautilus.script.PopOutScriptEvent;
 import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptCompletionListener;
@@ -108,7 +108,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
         FieldItems items = this.buttonPanel.pullFieldsFromGui();
         ConfigUtil.saveOffCurrent(items, this.buttonPanel);
-        RefreshAction action = new RefreshAction(items, this.buttonPanel, this);
+        DBRefreshAction action = new DBRefreshAction(items, this.buttonPanel, this);
 
         action.addListener(this);
         //runs in its own thread

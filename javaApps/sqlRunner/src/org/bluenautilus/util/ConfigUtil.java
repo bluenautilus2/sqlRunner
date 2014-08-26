@@ -28,6 +28,9 @@ public class ConfigUtil {
     public static final String DB_CONNECT_TYPE = "db.connection.type";
     public static final String CASS_HOST_NAME = "cassandra_host";
     public static final String CASS_SCRIPT_FOLDER= "cassandra_script_folder";
+    public static final String USE_CERT = "cass.usecert";  //true or false
+    public static final String CERT_FILE = "cass.cert.filename";
+
 
     private static final String CONFIG_FILENAME = "db.properties";
     private static final String BAK_FILENAME = "db.properties.old";
@@ -37,9 +40,11 @@ public class ConfigUtil {
 
 
     private static PropertiesConfiguration dbConfig = null;
+    private static PropertiesConfiguration cassConfig = null;
 
     public ConfigUtil() throws ConfigurationException, IOException {
         this.getDBConfig();
+        this.getCassConfig();
     }
 
 
@@ -113,6 +118,8 @@ public class ConfigUtil {
 
             newProp.addProperty(CASS_HOST_NAME, cassItems.getHostField());
             newProp.addProperty(CASS_SCRIPT_FOLDER, cassItems.getScriptFolderField());
+            newProp.addProperty(USE_CERT, cassItems.getUseCertificate());
+            newProp.addProperty(CERT_FILE, cassItems.getCertificateFileField());
             newProp.save(newFile);
 
         } catch (Exception ex) {
@@ -142,6 +149,23 @@ public class ConfigUtil {
         return dbConfig;
     }
 
+    public PropertiesConfiguration getCassConfig() throws ConfigurationException, IOException {
+        if (ConfigUtil.cassConfig == null) {
+            InputStream stream = null;
+            try {
+                File file = new File(CASSANDRA_CONFIG_FILENAME);
+                stream = new FileInputStream(file);
+
+                cassConfig = new PropertiesConfiguration();
+                cassConfig.load(stream);
+            } finally {
+                if (stream != null) {
+                    stream.close();
+                }
+            }
+        }
+        return cassConfig;
+    }
 
 }
 

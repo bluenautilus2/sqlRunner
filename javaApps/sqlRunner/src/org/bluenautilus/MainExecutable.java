@@ -96,20 +96,24 @@ public class MainExecutable {
 
         ConfigUtil c;
         FieldItems fields = new FieldItems();
+        CassFieldItems cassFields = new CassFieldItems();
+
         try {
             c = new ConfigUtil();
             fields = FieldItems.createFromConfig(c);
+            cassFields = CassFieldItems.createFromConfig(c);
         } catch (Exception e) {
             GuiUtil.showErrorModalDialog(e, outermostSqlPanel);
         }
 
         buttonPanel.setFields(fields);
+        buttonPanelCass.setFields(cassFields);
 
         PanelMgr sqlPanelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
         sqlPanelMgr.refreshAction();
 
         CassPanelMgr cassPanelMgr = new CassPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);
-        sqlPanelMgr.refreshAction();
+       // cassPanelMgr.refreshAction();
 
     }
 

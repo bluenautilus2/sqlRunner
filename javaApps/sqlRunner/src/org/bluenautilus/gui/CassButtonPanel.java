@@ -2,6 +2,7 @@ package org.bluenautilus.gui;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.db.DBConnectionType;
@@ -32,6 +33,8 @@ public class CassButtonPanel extends JPanel {
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
+    private JCheckBox useCert = new JCheckBox();
+    private JTextField certFileField = new JTextField(35);
 
     private JButton refreshButton = new JButton("REFRESH");
     private JButton selectedScriptButton = new JButton("Run Selected");
@@ -57,14 +60,26 @@ public class CassButtonPanel extends JPanel {
 
 
         JLabel hostName = new JLabel("Cassandra Host Name");
-
         JLabel folderName = new JLabel("CQL Script Folder");
+        JLabel checkBoxName = new JLabel("Use Cert?");
+        final JLabel certName = new JLabel("Certificate file");
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
         this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
         this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
+        this.useCert.setToolTipText("Check if you are running the scripts on an AltoStratum");
 
+        ActionListener ghostCertListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               certFileField.setEnabled(useCert.isSelected());
+               certName.setEnabled(useCert.isSelected());
+            }
+        };
+        useCert.addActionListener(ghostCertListener);
+        certFileField.setEnabled(useCert.isSelected());
+        certName.setEnabled(useCert.isSelected());
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -98,24 +113,42 @@ public class CassButtonPanel extends JPanel {
                 new Insets(5, 5, 2, 2), 20, 2));
 
         //LABELS
-         centerPanel.add(hostName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+         centerPanel.add(hostName, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
+
 
 
         centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(checkBoxName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+
+        centerPanel.add(certName, new GridBagConstraints(0,3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        //FIELDS
+        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        //this fills up three spots
+        centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
 
+        centerPanel.add(this.useCert, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
         //this fills up three spots
-        centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
+        centerPanel.add(this.certFileField, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -138,7 +171,17 @@ public class CassButtonPanel extends JPanel {
     public CassFieldItems pullFieldsFromGui() {
         return new CassFieldItems(
                 this.scriptFolderField.getText(),
-                this.hostNameField.getText());
+                this.hostNameField.getText(),
+                getStringForConfigCheckbox(this.useCert),
+                this.certFileField.getText());
+
+    }
+
+    private String getStringForConfigCheckbox(JCheckBox box){
+        if(box.isSelected()){
+            return "true";
+        }
+        return "false";
     }
 
 
@@ -179,8 +222,8 @@ public class CassButtonPanel extends JPanel {
         this.rollbackButton.addActionListener(rollbackActionListener);
     }
 
-    public DBConnectionType getSelectedDBConnectionType() {
-       return DBConnectionType.CASSANDRA;
+    public CassandraConnectionType getCassConnectionType() {
+       return CassandraConnectionType.SSH;
     }
 
     public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {

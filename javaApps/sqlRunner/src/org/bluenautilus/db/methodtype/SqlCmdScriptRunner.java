@@ -2,7 +2,7 @@ package org.bluenautilus.db.methodtype;
 
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
-import org.bluenautilus.db.ScriptRunner;
+import org.bluenautilus.db.SqlScriptRunner;
 import org.bluenautilus.script.*;
 
 import java.io.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by jim on 3/28/14.
  * SQL CMD script runner.
  */
-public class SqlCmdScriptRunner implements ScriptRunner {
+public class SqlCmdScriptRunner implements SqlScriptRunner {
 	private static final String CMD = "sqlcmd";
 	private static final String DB_ERROR_FLAG = "Level 16, State";
 

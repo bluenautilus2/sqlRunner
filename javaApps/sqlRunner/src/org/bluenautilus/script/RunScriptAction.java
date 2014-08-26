@@ -1,21 +1,16 @@
 package org.bluenautilus.script;
 
+import org.bluenautilus.cass.CassandraConnectionType;
+import org.bluenautilus.cass.methodtype.SshScriptRunner;
 import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBConnectionType;
-import org.bluenautilus.db.ScriptRunner;
+import org.bluenautilus.db.SqlScriptRunner;
+import org.bluenautilus.db.methodtype.SqlCmdScriptRunner;
+import org.bluenautilus.db.methodtype.tSqlScriptRunner;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -28,26 +23,34 @@ import java.util.ArrayList;
 public class RunScriptAction implements Runnable {
 
     private FieldItems items;
+    private DBConnectionType dbConnectionType;
+
+    private boolean isCassandra = false;
     private CassFieldItems cassItems;
+    private CassandraConnectionType cassConnectionType;
+
+
     private SqlScriptFile file;
     private ArrayList<ScriptCompletionListener> completionListeners = new ArrayList<ScriptCompletionListener>();
     private ArrayList<ScriptStatusChangeListener> statusListeners = new ArrayList<ScriptStatusChangeListener>();
     private ArrayList<ScriptKickoffListener> kickoffListeners = new ArrayList<ScriptKickoffListener>();
     private ScriptType type = null;
-	private DBConnectionType dbConnectionType;
 
-    public RunScriptAction(FieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, DBConnectionType dbConnectionType) {
+
+    public RunScriptAction(FieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, final DBConnectionType dbConnectionType) {
         this.items = items;
         this.file = sqlScriptFile;
         this.type = type;
 		this.dbConnectionType = dbConnectionType;
+        this.isCassandra = false;
     }
 
-    public RunScriptAction(CassFieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, DBConnectionType dbConnectionType) {
+    public RunScriptAction(CassFieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, CassandraConnectionType cassConnectionType) {
         this.cassItems = items;
         this.file = sqlScriptFile;
         this.type = type;
-        this.dbConnectionType = dbConnectionType;
+        this.cassConnectionType = cassConnectionType;
+        this.isCassandra = true;
     }
 
     public void addCompletionListener(ScriptCompletionListener listener) {
@@ -70,24 +73,37 @@ public class RunScriptAction implements Runnable {
 
 		this.fireStatusChanges(file, runningStatus);
 		this.fireSingleScriptStarting(file, type);
-		ScriptResultsEvent event;
+		ScriptResultsEvent event = null;
 		try {
-			switch (dbConnectionType) {
-				case JDBC    : // Fall through
-				case SQL_CMD :
-                    ScriptRunner scrunner = dbConnectionType.getScriptRunner();
-                    event = scrunner.runSqlCmdScript(completionListeners, items, file, type);
-                    break;
-                case TSQL :
-                    ScriptRunner tsqlrunner = dbConnectionType.getScriptRunner();
-                    event = tsqlrunner.runSqlCmdScript(completionListeners, items, file, type);
-                    break;
-                case CASSANDRA:
-                    ScriptRunner cassRunner = dbConnectionType.getScriptRunner();
-                    //@todo fix this
-                    event = cassRunner.runSqlCmdScript(completionListeners,null,file,type);
-				default : return;
-			}
+			if(!this.isCassandra && dbConnectionType!=null) {
+                switch (dbConnectionType) {
+                    case JDBC: // Fall through
+                    case SQL_CMD:
+                        SqlScriptRunner scrunner = new SqlCmdScriptRunner();
+                        event = scrunner.runSqlCmdScript(completionListeners, items, file, type);
+                        break;
+                    case TSQL:
+                        SqlScriptRunner tsqlrunner = new tSqlScriptRunner();
+                        event = tsqlrunner.runSqlCmdScript(completionListeners, items, file, type);
+                        break;
+                    default:
+                        return;
+                }
+            }
+            if(this.isCassandra && cassConnectionType!=null){
+                switch (cassConnectionType) {
+                    case SSH:
+                        SshScriptRunner sshrunner = new SshScriptRunner();
+                        event = sshrunner.runCassandraScript(completionListeners,cassItems,file,type);
+                        break;
+                    case SECURE_SSH:
+                        //TBD
+                    case WINDOWS:
+                       //TBD
+                    default:
+                        return;
+                }
+            }
 			if (event != null) {
 				this.fireScriptCompletion(event);
 

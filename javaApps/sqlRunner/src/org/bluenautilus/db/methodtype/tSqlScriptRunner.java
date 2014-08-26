@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
-import org.bluenautilus.db.ScriptRunner;
+import org.bluenautilus.db.SqlScriptRunner;
 import org.bluenautilus.script.*;
 
 import java.io.*;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by beth may 18
  * tsql script runner.
  */
-public class tSqlScriptRunner implements ScriptRunner {
+public class tSqlScriptRunner implements SqlScriptRunner {
 
     private static final String CMD = "./tsql.sh";
     private static final String DB_ERROR_FLAG = "severity 16";

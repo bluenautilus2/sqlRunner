@@ -10,11 +10,9 @@ import com.datastax.driver.core.Session;
  */
 public class SimpleClient {
 
-private Cluster cluster;
+    private Cluster cluster;
 
-private Session session;
-
-
+    private Session session;
 
 
     public void connect(String node) {
@@ -23,7 +21,7 @@ private Session session;
         Metadata metadata = cluster.getMetadata();
         System.out.printf("Connected to cluster: %s\n",
                 metadata.getClusterName());
-        for ( Host host : metadata.getAllHosts() ) {
+        for (Host host : metadata.getAllHosts()) {
             System.out.printf("Datacenter: %s; Host: %s; Rack: %s\n",
                     host.getDatacenter(), host.getAddress(), host.getRack());
         }
@@ -32,12 +30,14 @@ private Session session;
 
     }
 
-    public Session getSession(){
+    public Session getSession() {
         return this.session;
     }
 
     public void close() {
-        cluster.shutdown();
+        if (cluster != null) {
+            cluster.shutdown();
+        }
     }
 
 }

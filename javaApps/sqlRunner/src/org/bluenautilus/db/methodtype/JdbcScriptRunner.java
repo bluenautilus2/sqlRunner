@@ -2,7 +2,7 @@ package org.bluenautilus.db.methodtype;
 
 import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
-import org.bluenautilus.db.ScriptRunner;
+import org.bluenautilus.db.SqlScriptRunner;
 import org.bluenautilus.script.*;
 
 import java.io.*;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by jim on 3/28/14.
  * Script runner for JDBC connection types.
  */
-public class JdbcScriptRunner implements ScriptRunner {
+public class JdbcScriptRunner implements SqlScriptRunner {
     private static final String DB_STRING = "jdbc:sqlserver://%s:%s;DatabaseName=%s";
 	private static final String REGEX_PARSING = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(--.*[\\n\\r])";
     private static final String REGEX_PARSING_LONG_RUNTIME = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|((?<=([^']*'[^'\\r\\n]*'[^-\\r\\n']*)|([^-']+))--.*)|(\\n\\r?--.*)|(^--.*)";

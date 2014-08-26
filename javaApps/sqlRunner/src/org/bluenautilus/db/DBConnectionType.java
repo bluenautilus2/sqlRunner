@@ -1,9 +1,5 @@
 package org.bluenautilus.db;
 
-import org.bluenautilus.db.methodtype.CassandraScriptRunner;
-import org.bluenautilus.db.methodtype.JdbcScriptRunner;
-import org.bluenautilus.db.methodtype.SqlCmdScriptRunner;
-import org.bluenautilus.db.methodtype.tSqlScriptRunner;
 import org.bluenautilus.util.MiscUtil;
 
 /**
@@ -11,30 +7,24 @@ import org.bluenautilus.util.MiscUtil;
  * Enumeration of methods to connect to the database.
  */
 public enum DBConnectionType {
-	JDBC("JDBC", new JdbcScriptRunner(), true, true),
-	SQL_CMD("sqlCmd", new SqlCmdScriptRunner(), true, false),
-	TSQL("tSQL", new tSqlScriptRunner(), false, false),
-    CASSANDRA("Cassandra", new CassandraScriptRunner(),true,true);
+	JDBC("JDBC", true, true),
+	SQL_CMD("sqlCmd", true, false),
+	TSQL("tSQL", false, false);
 
 
 	private final String displayString;
-	private final ScriptRunner runner;
     private final boolean supportsWindows;
     private final boolean supportsLinux;
 
     public static final DBConnectionType WINDOWS_DEFAULT = DBConnectionType.SQL_CMD;
     public static final DBConnectionType LINUX_DEFAULT = DBConnectionType.JDBC;
 
-	DBConnectionType(String displayString, ScriptRunner runner, boolean windows, boolean linux) {
+	DBConnectionType(String displayString, boolean windows, boolean linux) {
 		this.displayString = displayString;
-		this.runner = runner;
         this.supportsLinux = linux;
         this.supportsWindows = windows;
 	}
 
-	public ScriptRunner getScriptRunner() {
-		return runner;
-	}
 
 	public String toString() {
 		return this.displayString;

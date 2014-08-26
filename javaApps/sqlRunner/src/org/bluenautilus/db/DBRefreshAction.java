@@ -1,17 +1,17 @@
-package org.bluenautilus.cass;
+package org.bluenautilus.db;
 
-import org.bluenautilus.data.CassFieldItems;
+import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
-import org.bluenautilus.db.DatabaseRefreshIOListener;
-import org.bluenautilus.db.SqlScriptMgr;
-import org.bluenautilus.gui.CassPanelMgr;
+import org.bluenautilus.gui.PanelMgr;
+import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.util.MiscUtil;
 
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -21,21 +21,17 @@ import java.util.ArrayList;
  * Time: 9:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CassandraRefreshAction extends org.bluenautilus.RefreshAction implements Runnable {
+public class DBRefreshAction extends org.bluenautilus.RefreshAction implements Runnable {
 
-	private CassFieldItems fields;
-	private CassPanelMgr panelMgr;
+    private FieldItems fields;
+	private PanelMgr panelMgr;
 
-    public CassandraRefreshAction(){
-        //nothin'
-    }
 
-	public CassandraRefreshAction(CassFieldItems fields, JPanel parent, CassPanelMgr panelMgr) {
-		this.parent = parent;
-		this.fields = fields;
+    public DBRefreshAction(FieldItems fields, JPanel parent, PanelMgr panelMgr) {
+        super(parent);
+        this.fields = fields;
 		this.panelMgr = panelMgr;
-		listeners = new ArrayList<DatabaseRefreshIOListener>();
-	}
+    }
 
 
 	public void refresh() {
@@ -45,11 +41,11 @@ public class CassandraRefreshAction extends org.bluenautilus.RefreshAction imple
 		results = new ArrayList<SqlScriptFile>();
 
 		SqlScriptMgr sqlmgr;
-		CassandraRowRetriever retriever;
+		DBRowRetriever retriever;
 
 		try {
 			sqlmgr = new SqlScriptMgr(new File(fields.getScriptFolderField()));
-			retriever = new CassandraRowRetriever(fields);
+			retriever = new DBRowRetriever(fields);
 
 			ArrayList<SqlScriptRow> rows = retriever.readDataBase();
 			ArrayList<SqlScriptFile> files = sqlmgr.getSqlList();
