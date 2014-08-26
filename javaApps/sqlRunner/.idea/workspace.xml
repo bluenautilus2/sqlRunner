@@ -7,12 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf412f74-854c-4ce3-99ae-d755f7b0d679" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptMgr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cass.properties.old" afterPath="$PROJECT_DIR$/cass.properties.old" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cass.properties" afterPath="$PROJECT_DIR$/cass.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempdata.txt" afterPath="$PROJECT_DIR$/tempdata.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sqlRunner.iws" />
@@ -77,31 +82,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainExecutable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
+      <file leaf-file-name="PanelMgr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1845">
-              <caret line="21" column="69" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1732" max-vertical-offset="3600">
+              <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FieldItems.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/FieldItems.java">
+      <file leaf-file-name="SshScriptRunner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="1320">
-              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="632" max-vertical-offset="1740">
+              <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cass.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cass.properties">
+      <file leaf-file-name="cass_ssh.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cass_ssh.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+            <state vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="420">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SqlScriptFile.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5239923" vertical-offset="927" max-vertical-offset="1725">
+              <caret line="92" column="129" selection-start-line="92" selection-start-column="129" selection-end-line="92" selection-end-column="129" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CassPanelMgr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
+              <caret line="83" column="157" selection-start-line="83" selection-start-column="157" selection-end-line="83" selection-end-column="157" />
               <folding />
             </state>
           </provider>
@@ -110,78 +135,19 @@
       <file leaf-file-name="CassButtonPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="3645">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <element signature="e#2793#2957#0" expanded="true" />
-                <element signature="e#2946#2947#0" expanded="true" />
-                <element signature="e#8002#8208#0" expanded="true" />
-                <element signature="e#8197#8198#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="2989" max-vertical-offset="3555">
+              <caret line="269" column="0" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SqlButtonPanel.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SqlButtonPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9337748" vertical-offset="2142" max-vertical-offset="4695">
-              <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3170" max-vertical-offset="4695">
+              <caret line="249" column="5" selection-start-line="246" selection-start-column="2" selection-end-line="249" selection-end-column="5" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FolderOpenButton.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/FolderOpenButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBRefreshAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBRefreshAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="885">
-              <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CassFieldItems.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/CassFieldItems.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="765">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SqlScriptMgr.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptMgr.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="1185">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileOpenButton.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="600">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#378#884#0" expanded="true" />
-                <element signature="e#873#874#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -206,15 +172,12 @@
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/TestCassandra.java" />
         <option value="$PROJECT_DIR$/test/org/bluenautilus/TestCassandra.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRowRetriever.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/ScriptRunner.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptRunner.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/DBConnectionType.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraScriptRunner.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/CassandraScriptRunner.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/SshScriptRunner.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraConnectionType.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/RefreshAction.java" />
@@ -222,24 +185,29 @@
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRefreshAction.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/RefreshAction.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/SimpleClient.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/util/ConfigUtil.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/data/CassFieldItems.java" />
         <option value="$PROJECT_DIR$/cass.properties" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptMgr.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/FolderOpenButton.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java" />
+        <option value="$PROJECT_DIR$/cass_ssh.sh" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="217" />
-    <option name="y" value="39" />
-    <option name="width" value="1240" />
-    <option name="height" value="947" />
+    <option name="x" value="154" />
+    <option name="y" value="54" />
+    <option name="width" value="1509" />
+    <option name="height" value="958" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -384,7 +352,59 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="methodtype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bluenautilus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="cass" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bluenautilus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cass" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="methodtype" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -433,6 +453,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.bluenautilus.gui" />
       <recent name="org.bluenautilus.cass" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.bluenautilus" />
@@ -646,16 +669,16 @@
     <option name="totallyTimeSpent" value="12308000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="217" y="39" width="1240" height="947" extended-state="0" />
+    <frame x="154" y="54" width="1509" height="958" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793018" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32718328" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3592437" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3974359" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39729398" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -664,14 +687,14 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2621035" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33042395" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21404226" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24948876" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32595325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958263" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -718,34 +741,22 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java</url>
+          <line>133</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2370">
-          <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/script/ScriptModifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="3780">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5205">
-          <caret line="326" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DBConnectionType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1140">
@@ -840,13 +851,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/tSqlScriptRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="2025">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/SqlCmdScriptRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26778242" vertical-offset="198" max-vertical-offset="1005">
@@ -887,22 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3945">
-          <caret line="152" column="48" selection-start-line="152" selection-start-column="48" selection-end-line="152" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="699" max-vertical-offset="1170">
-          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/JdbcScriptRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="2460">
@@ -935,26 +923,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/SqlRowHolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1073,14 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1845">
-          <caret line="21" column="69" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/SqlScriptMgr.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="1185">
@@ -1089,14 +1053,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/MainExecutable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="600">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1317" max-vertical-offset="2100">
+          <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#378#884#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#4479#4907#0" expanded="true" />
+            <element signature="e#4896#4897#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1109,23 +1072,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/FileOpenButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="3645">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="615">
+          <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
           <folding>
-            <element signature="e#2793#2957#0" expanded="true" />
-            <element signature="e#2946#2947#0" expanded="true" />
-            <element signature="e#8002#8208#0" expanded="true" />
-            <element signature="e#8197#8198#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#378#932#0" expanded="true" />
+            <element signature="e#921#922#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsqlout.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="453">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsql.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="488">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/methodtype/tSqlScriptRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1355" max-vertical-offset="1890">
+          <caret line="126" column="0" selection-start-line="19" selection-start-column="1" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/PanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1732" max-vertical-offset="3600">
+          <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlButtonPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9337748" vertical-offset="2142" max-vertical-offset="4695">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3170" max-vertical-offset="4695">
+          <caret line="249" column="5" selection-start-line="246" selection-start-column="2" selection-end-line="249" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2989" max-vertical-offset="3555">
+          <caret line="269" column="0" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassPanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
+          <caret line="83" column="157" selection-start-line="83" selection-start-column="157" selection-end-line="83" selection-end-column="157" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/cass/methodtype/SshScriptRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="632" max-vertical-offset="1740">
+          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cass_ssh.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="420">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/data/SqlScriptFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5239923" vertical-offset="927" max-vertical-offset="1725">
+          <caret line="92" column="129" selection-start-line="92" selection-start-column="129" selection-end-line="92" selection-end-column="129" />
           <folding />
         </state>
       </provider>

@@ -9,6 +9,8 @@ import org.bluenautilus.util.ConfigUtil;
 import org.bluenautilus.util.GuiUtil;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 
@@ -20,6 +22,7 @@ import java.awt.*;
 public class MainExecutable {
 
     private static Log log = LogFactory.getLog(MainExecutable.class);
+    private static boolean cassandraUnopened = true;
 
     public static void main(String[] args) {
 
@@ -80,8 +83,9 @@ public class MainExecutable {
         tabbedPane.addTab("SQL DB", outermostSqlPanel);
         tabbedPane.addTab("Cassandra", outermostCassPanel);
 
-        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
+
+        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
         frame.pack();
 
 		//make it a little bigger
@@ -109,11 +113,26 @@ public class MainExecutable {
         buttonPanel.setFields(fields);
         buttonPanelCass.setFields(cassFields);
 
-        PanelMgr sqlPanelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
+        final CassPanelMgr cassPanelMgr = new CassPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);
+        //don't refresh here.. refreshes when the Cassandra panel is selected for the first time.
+        //see the tabbed panel's change listener above.
+
+        ChangeListener changeListener = new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+                int index = sourceTabbedPane.getSelectedIndex();
+                if(index==1 && cassandraUnopened){
+
+                    cassandraUnopened = false;
+                    cassPanelMgr.refreshAction();
+                }
+            }
+        };
+        tabbedPane.addChangeListener(changeListener);
+
+        final PanelMgr sqlPanelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
         sqlPanelMgr.refreshAction();
 
-        CassPanelMgr cassPanelMgr = new CassPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);
-       // cassPanelMgr.refreshAction();
 
     }
 

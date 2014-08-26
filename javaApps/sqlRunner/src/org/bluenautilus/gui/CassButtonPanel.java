@@ -266,4 +266,6 @@ public class CassButtonPanel extends JPanel {
         certFileField.setEnabled(useCert.isSelected());
         certName.setEnabled(useCert.isSelected());
     }
+
+
 }

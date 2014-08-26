@@ -19,6 +19,7 @@ public class FileOpenButton extends JButton {
             public void actionPerformed(ActionEvent e) {
                 final JFileChooser fc = new JFileChooser();
                 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                fc.setFileHidingEnabled(false);
                 int returnVal = fc.showOpenDialog(parent);
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {

@@ -1,121 +1,30 @@
 BEGIN TRANSACTION TEMP;
 
 --
--- 2014-05-29_1400524856.sql
--- PA-21622 Add some missing Science Content
--- By Jeffrey Haskovec
--- DML
--- Pre-Deployment
+-- 2014-09-11_1409932095_rollback.sql
+--
+-- PA-23304 - Add Candidate Video to Database for Francesca's and First Communities Management
+-- Remove ZZZ TABLES For UNIVERSAL Business Unit Videos Fix Script
+--
+-- DDL
+-- 
+-- Execution plan: PRE-DEPLOYMENT
+--
+-- Author: Jonathan Ackerson
 --
 
+------------------------
+-- No Rollback Needed --
+------------------------
 
-SET XACT_ABORT ON
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-GO
-
--------------------------------------------------
--- Clean up Data if this is run more than once --
--------------------------------------------------
-BEGIN TRANSACTION
-
---D38
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  198 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  199 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  200 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  201 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  202 AND Dimension_Id = 121;
-
---D39
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  203 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  204 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  205 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  206 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  207 AND Dimension_Id = 121;
-
---D40
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  208 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  209 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  210 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  211 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  212 AND Dimension_Id = 121;
-
---D41
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  213 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  214 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  215 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  216 AND Dimension_Id = 121;
-DELETE FROM Content_Type_Dimension_Text WHERE Content_Type_Column_Id =  217 AND Dimension_Id = 121;
-
-COMMIT TRANSACTION
-GO
+--ZZZ_PA23304_Backup_Business_Unit_Videos_New
+--ZZZ_PA23304_Backup_Business_Unit_Videos_Removed
+--ZZZ_PA23304_Backup_Custom_Html_Fragment_Languages_Removed
+--ZZZ_PA23304_Backup_Custom_Html_Fragments_Removed
+--ZZZ_PA23304_Backup_Position_Position_Type_Custom_Html_Fragments_Removed
 
 
-----------------------------------------
--- Insert Content Type Dimension Text --
-----------------------------------------
-
-BEGIN TRANSACTION
-
-DECLARE @jeff INT = 17960288
-
---D38
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 198, 121, N'prioritize your work', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 199, 121, N'think of strategies that will help you stay organized', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 200, 121, N'develop a plan before taking action', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 201, 121, N'take the time to plan your approach', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 202, 121, N'determine how much planning is necessary', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-
---D39
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 203, 121, N'coming up with strategies for organizing your work', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 204, 121, N'using strategies for organizing your work', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 205, 121, N'reminding yourself to stay organized', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 206, 121, N'reminding yourself to not waste time organizing', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 207, 121, N'focusing on not spending too much time organizing', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-
---D40
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 208, 121, N'use organizational aides', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 209, 121, N'prioritize your work', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 210, 121, N'maintain the necessary level of organization', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 211, 121, N'not be overly focused on a need for order', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 212, 121, N'determine the ideal level of organization', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-
---D41
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 213, 121, N'using tools to help you stay organized', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 214, 121, N'developing a method for organizing your workload', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 215, 121, N'asking for advice on how to stay organized', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 216, 121, N'trying to become more comfortable in unorganized situations', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-INSERT INTO Content_Type_Dimension_Text(Content_Type_Dimension_Text_Id, Content_Type_Column_Id, Dimension_Id, Text, Created_By, Created_Date, Last_Updated_By, Last_Updated_Date)
-VALUES((SELECT MAX(Content_Type_Dimension_Text_Id) FROM Content_Type_Dimension_Text) + 1, 217, 121, N'understanding that a highly organized plan is not always necessary', @jeff, SYSDATETIME(), @jeff, SYSDATETIME());
-
-
-COMMIT TRANSACTION
-GO
-
-EXEC updateTableSequences N'Content_Type_Dimension_Text';
-
----------------
--- db update --
----------------
-EXEC addDBUpdate N'2014-05-29_1400524856'
+EXEC addDBUpdate N'2014-09-11_1409932095_rollback'
 GO
 COMMIT TRANSACTION TEMP;
 

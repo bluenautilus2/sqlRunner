@@ -89,8 +89,8 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
 
 		File parentDir = this.theFile.getParentFile();
 		String parentStr = parentDir.getAbsolutePath();
-
-		String rollbackStr = parentStr +File.separator+ ROLLBACK_FOLDER + File.separator + this.compareString + ROLLBACK_POSTFIX + ".sql";
+        String extension = this.getFileExtension(this.theFile.getName());
+		String rollbackStr = parentStr +File.separator+ ROLLBACK_FOLDER + File.separator + this.compareString + ROLLBACK_POSTFIX + extension;
 		File rollFile = new File(rollbackStr);
         return rollFile;
 
@@ -128,5 +128,10 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
 
     public void setCrcValue(long crcValue) {
         this.crcValue = crcValue;
+    }
+
+    private String getFileExtension(String input){
+        int index = input.indexOf('.');
+        return input.substring(index);
     }
 }

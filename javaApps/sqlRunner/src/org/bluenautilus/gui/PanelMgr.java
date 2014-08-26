@@ -142,7 +142,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         runOneScript(type);
     }
 
-    private void runOneScript(ScriptType type){
+    protected void runOneScript(ScriptType type){
         if(this.filesBeingRun.isEmpty()){
             return;
         }

@@ -3,6 +3,8 @@ package org.bluenautilus.gui;
 import org.bluenautilus.cass.CassandraRefreshAction;
 import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.script.RunScriptAction;
+import org.bluenautilus.script.ScriptType;
 import org.bluenautilus.util.ConfigUtil;
 
 import javax.swing.*;
@@ -68,5 +70,25 @@ public class CassPanelMgr extends PanelMgr{
     public void databaseRefreshCompleted(ArrayList<SqlScriptFile> results) {
         this.cassButtonPanel.setRefreshButtonNormal();
         this.refresh(results);
+    }
+
+    @Override
+    protected void runOneScript(ScriptType type){
+        if(this.filesBeingRun.isEmpty()){
+            return;
+        }
+
+        SqlScriptFile scriptFile = this.filesBeingRun.get(0);
+        this.filesBeingRun.remove(0);
+
+        RunScriptAction action = new RunScriptAction(this.cassButtonPanel.pullFieldsFromGui(), scriptFile, type, this.cassButtonPanel.getCassConnectionType());
+        action.addCompletionListener(this);
+        action.addCompletionListener(this.sqlTablePanel);
+        action.addStatusListener(this.sqlTablePanel);
+        action.addKickoffListener(this);
+
+        //runs in its own thread
+        Thread newThread = new Thread(action);
+        newThread.start();
     }
 }
