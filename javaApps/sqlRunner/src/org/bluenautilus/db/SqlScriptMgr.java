@@ -1,5 +1,7 @@
 package org.bluenautilus.db;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.script.ScriptStatus;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 public class SqlScriptMgr {
 
 	private ArrayList<File> sqlFiles = null;
-
+    private static Log log = LogFactory.getLog(SqlScriptMgr.class);
 
     public SqlScriptMgr(File parentFolder) throws Exception {
         checkFile(parentFolder);
@@ -22,6 +24,7 @@ public class SqlScriptMgr {
     }
 
     private static void checkFile(final File folder) throws Exception {
+
         if (!folder.exists()) {
             throw new Exception("File not found: " + folder.getAbsolutePath());
         }

@@ -43,6 +43,7 @@ public class CassButtonPanel extends JPanel {
     private Color defaultForeground;
     private Color defaultBackground;
     private Color borderColor = new Color(180, 180, 180);
+    private final JLabel certName = new JLabel("Certificate file");
 
     ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
@@ -62,7 +63,8 @@ public class CassButtonPanel extends JPanel {
         JLabel hostName = new JLabel("Cassandra Host Name");
         JLabel folderName = new JLabel("CQL Script Folder");
         JLabel checkBoxName = new JLabel("Use Cert?");
-        final JLabel certName = new JLabel("Certificate file");
+        FolderOpenButton openScriptFolderButton = new FolderOpenButton(this,this.scriptFolderField);
+        FileOpenButton openCertFileButton = new FileOpenButton(this,this.certFileField);
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
@@ -73,13 +75,11 @@ public class CassButtonPanel extends JPanel {
         ActionListener ghostCertListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               certFileField.setEnabled(useCert.isSelected());
-               certName.setEnabled(useCert.isSelected());
+              syncCheckBoxDisabling();
             }
         };
         useCert.addActionListener(ghostCertListener);
-        certFileField.setEnabled(useCert.isSelected());
-        certName.setEnabled(useCert.isSelected());
+       this.syncCheckBoxDisabling();
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -141,6 +141,9 @@ public class CassButtonPanel extends JPanel {
         centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
+        centerPanel.add(openScriptFolderButton, new GridBagConstraints(4, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
 
         centerPanel.add(this.useCert, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
@@ -151,7 +154,9 @@ public class CassButtonPanel extends JPanel {
         centerPanel.add(this.certFileField, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
-
+        centerPanel.add(openCertFileButton, new GridBagConstraints(4, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
         centerPanel.setBorder(new LineBorder(this.borderColor));
 
         this.add(leftCornerPanel, new GridBagConstraints(0, 0, 1, 3, 1.0, 1.0,
@@ -189,7 +194,9 @@ public class CassButtonPanel extends JPanel {
 
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.hostNameField.setText(fields.getHostField());
-
+        this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
+        this.certFileField.setText(fields.getCertificateFileField());
+        syncCheckBoxDisabling();
     }
 
     public void addRefreshListener(final RefreshListener listener) {
@@ -255,4 +262,8 @@ public class CassButtonPanel extends JPanel {
 
 
 
+    private void syncCheckBoxDisabling(){
+        certFileField.setEnabled(useCert.isSelected());
+        certName.setEnabled(useCert.isSelected());
+    }
 }
