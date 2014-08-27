@@ -17,7 +17,7 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
     private String compareString;
     private int tableRowIndex = -1;
     private String resultsString;
-    private long crcValue = 0;
+
     private SqlRowHolder rowHolder = new SqlRowHolder();
 
     public SqlScriptFile(File theFile) {
@@ -30,7 +30,6 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
         int lastdot = filename.lastIndexOf(".");
         filename = filename.substring(0, lastdot);
 
-        //do more stuff to filename?
         return filename;
     }
 
@@ -113,22 +112,13 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
         return theFile;
     }
 
-    public void setTheFile(File theFile) {
-        this.theFile = theFile;
-    }
+
 
     @Override
     public String toString() {
         return this.theFile.getName();
     }
 
-    public long getCrcValue() {
-        return crcValue;
-    }
-
-    public void setCrcValue(long crcValue) {
-        this.crcValue = crcValue;
-    }
 
     private String getFileExtension(String input){
         int index = input.indexOf('.');

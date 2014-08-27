@@ -138,10 +138,10 @@ public class CassButtonPanel extends JPanel {
                 new Insets(2, 2, 2, 2), 2, 2));
 
         //this fills up three spots
-        centerPanel.add(this.scriptFolderField, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-        centerPanel.add(openScriptFolderButton, new GridBagConstraints(4, 0, 1, 1, 1.0, 1.0,
+        JPanel scriptHolder = new JPanel(new BorderLayout());
+        scriptHolder.add(this.scriptFolderField,BorderLayout.WEST);
+        scriptHolder.add(openScriptFolderButton,BorderLayout.EAST);
+        centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -151,12 +151,13 @@ public class CassButtonPanel extends JPanel {
                 new Insets(2, 2, 2, 2), 2, 2));
 
         //this fills up three spots
-        centerPanel.add(this.certFileField, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
+        JPanel certFileHolder = new JPanel(new BorderLayout());
+        certFileHolder.add(this.certFileField,BorderLayout.WEST);
+        certFileHolder.add(openCertFileButton,BorderLayout.EAST);
+        centerPanel.add(certFileHolder, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
-        centerPanel.add(openCertFileButton, new GridBagConstraints(4, 3, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
+
         centerPanel.setBorder(new LineBorder(this.borderColor));
 
         this.add(leftCornerPanel, new GridBagConstraints(0, 0, 1, 3, 1.0, 1.0,

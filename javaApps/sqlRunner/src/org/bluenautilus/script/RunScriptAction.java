@@ -7,6 +7,7 @@ import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.db.SqlScriptRunner;
+import org.bluenautilus.db.methodtype.JdbcScriptRunner;
 import org.bluenautilus.db.methodtype.SqlCmdScriptRunner;
 import org.bluenautilus.db.methodtype.tSqlScriptRunner;
 
@@ -77,7 +78,10 @@ public class RunScriptAction implements Runnable {
 		try {
 			if(!this.isCassandra && dbConnectionType!=null) {
                 switch (dbConnectionType) {
-                    case JDBC: // Fall through
+                    case JDBC:
+                        JdbcScriptRunner jdbcScriptRunner  = new JdbcScriptRunner();
+                        event = jdbcScriptRunner.runSqlCmdScript(completionListeners, items, file, type);
+                        break;
                     case SQL_CMD:
                         SqlScriptRunner scrunner = new SqlCmdScriptRunner();
                         event = scrunner.runSqlCmdScript(completionListeners, items, file, type);
@@ -96,8 +100,6 @@ public class RunScriptAction implements Runnable {
                         SshScriptRunner sshrunner = new SshScriptRunner();
                         event = sshrunner.runCassandraScript(completionListeners,cassItems,file,type);
                         break;
-                    case SECURE_SSH:
-                        //TBD
                     case WINDOWS:
                        //TBD
                     default:
