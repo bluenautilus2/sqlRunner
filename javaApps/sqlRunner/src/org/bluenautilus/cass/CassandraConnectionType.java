@@ -5,15 +5,14 @@ import org.bluenautilus.util.MiscUtil;
 
 public enum CassandraConnectionType {
 	SSH("SSH", true, true),
-	SECURE_SSH("Secure SSH", true, false),
-	WINDOWS("Placeholder - TBD", false, false);
+	CQLSSH("CQLSSH", false, false);
 
 
 	private final String displayString;
     private final boolean supportsWindows;
     private final boolean supportsLinux;
 
-    public static final CassandraConnectionType WINDOWS_DEFAULT = CassandraConnectionType.WINDOWS;
+    public static final CassandraConnectionType WINDOWS_DEFAULT = CassandraConnectionType.CQLSSH;
     public static final CassandraConnectionType LINUX_DEFAULT = CassandraConnectionType.SSH;
 
 	CassandraConnectionType(String displayString, boolean windows, boolean linux) {

@@ -100,7 +100,7 @@ public class RunScriptAction implements Runnable {
                         SshScriptRunner sshrunner = new SshScriptRunner();
                         event = sshrunner.runCassandraScript(completionListeners,cassItems,file,type);
                         break;
-                    case WINDOWS:
+                    case CQLSSH:
                        //TBD
                     default:
                         return;
