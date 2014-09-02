@@ -64,15 +64,12 @@ public class CassButtonPanel extends JPanel {
         JLabel folderName = new JLabel("CQL Script Folder");
         JLabel checkBoxName = new JLabel("Use Cert?");
 
-        //NOT WORKING YET
-        checkBoxName.setEnabled(false);
 
 
         FolderOpenButton openScriptFolderButton = new FolderOpenButton(this,this.scriptFolderField);
         FileOpenButton openCertFileButton = new FileOpenButton(this,this.certFileField);
 
-        //NOT WORKING YET
-        openCertFileButton.setEnabled(false);
+
 
         this.refreshButton.setToolTipText("Rescans File Directory and Database");
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
@@ -204,9 +201,7 @@ public class CassButtonPanel extends JPanel {
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.hostNameField.setText(fields.getHostField());
 
-        //NOT WORKING YET
-        //this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
-        this.useCert.setEnabled(false);
+        this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
 
         this.certFileField.setText(fields.getCertificateFileField());
         syncCheckBoxDisabling();

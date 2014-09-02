@@ -12,6 +12,7 @@ import org.bluenautilus.script.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by bstevens on 8/24/14.
@@ -47,17 +48,29 @@ public class SshScriptRunner implements CassandraScriptRunner {
             oldOutputFile.delete();
         }
 
-        ProcessBuilder builder = new ProcessBuilder(this.CMD,
-                "-S", items.getHostField(),
+
+
+        String[] array = {this.CMD, "-S", items.getHostField(),
                 "-U", "root",
                 "-P", "catfox",
-                "-f", filetorun.getAbsolutePath());
+                "-f", filetorun.getAbsolutePath()};
+        ArrayList<String> params = new ArrayList<String>();
+        Collections.addAll(params, array);
 
-        Process process = builder.start();
+        if (items.useCertificate()) {
+            if (items.certFileExists()) {
+                params.add("-c");
+                params.add(items.getCertificateFileField());
+            }
+        }
+
+        ProcessBuilder processBuilder = new ProcessBuilder(params);
+
+        Process process = processBuilder.start();
 
         StringBuilder strbuilder = new StringBuilder();
 
-//Might need this code someday for debugging.
+        //Might need this code someday for debugging.
         //strbuilder.append("\n OUTPUT FROM STDIN: \n");
         InputStream is = process.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);

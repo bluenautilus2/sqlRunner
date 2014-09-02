@@ -1,4 +1,4 @@
-cassandra_host = dalcenstg11.infor.com
-cassandra_script_folder = /home/bstevens/repos/App/tools/CQL_Update_Scripts
-cass.usecert = false
+cassandra_host = 54.201.133.175
+cassandra_script_folder = /home/bstevens
+cass.usecert = true
 cass.cert.filename = /home/bstevens/.ssh/stratum-west.pem

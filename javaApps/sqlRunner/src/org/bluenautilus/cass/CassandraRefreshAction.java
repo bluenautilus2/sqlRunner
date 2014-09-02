@@ -49,7 +49,7 @@ public class CassandraRefreshAction extends org.bluenautilus.RefreshAction imple
 
 		try {
 			sqlmgr = new SqlScriptMgr(new File(fields.getScriptFolderField()));
-			retriever = new CassandraRowRetriever(fields);
+			retriever = new CassandraRowRetriever(fields,this.parent);
 
 			ArrayList<SqlScriptRow> rows = retriever.readDataBase();
 			ArrayList<SqlScriptFile> files = sqlmgr.getSqlList();

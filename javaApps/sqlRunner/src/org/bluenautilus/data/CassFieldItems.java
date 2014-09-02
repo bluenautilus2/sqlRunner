@@ -3,6 +3,8 @@ package org.bluenautilus.data;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.bluenautilus.util.ConfigUtil;
 
+import java.io.File;
+
 /**
  * Created by bstevens on 8/24/14.
  */
@@ -50,5 +52,14 @@ public class CassFieldItems {
 
     public String getCertificateFileField() {
         return certificateFileField;
+    }
+
+    public boolean useCertificate(){
+        return new Boolean(this.getUseCertificate());
+    }
+
+    public boolean certFileExists(){
+        File file = new File(this.certificateFileField);
+        return file.exists();
     }
 }
