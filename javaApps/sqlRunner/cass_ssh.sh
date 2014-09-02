@@ -15,7 +15,7 @@ do
 done
 
 if [[ -n "$CERT" ]]; then
-   echo "((ssh -t -t -i $CERT $LOGIN@$IP /home/cassandra/bin/cqlsh-localhost) < $FILE ) > cassout.txt"
+   echo "((ssh -i $CERT $LOGIN@$IP /home/cassandra/bin/cqlsh-localhost) < $FILE ) > cassout.txt"
    ((ssh -i $CERT $LOGIN@$IP /home/cassandra/bin/cqlsh-localhost) < $FILE ) > cassout.txt
 else
   echo "((sshpass -p $PASSWORD ssh $LOGIN@$IP /home/cassandra/bin/cql) < $FILE ) > cassout.txt"
