@@ -45,7 +45,6 @@ public class CassandraRowRetriever {
             filetorun.delete();
         }
 
-
         OutputStream outputStream;
         BufferedWriter writer = null;
 
@@ -67,9 +66,10 @@ public class CassandraRowRetriever {
             oldOutputFile.delete();
         }
 
-        ArrayList<String> params = new ArrayList<String>();
+        ProcessBuilder processBuilder;
 
         if (MiscUtil.isThisLinux()) {
+            ArrayList<String> params = new ArrayList<String>();
             String[] array = {"./cass_ssh.sh", "-S", fields.getHostField(),
                     "-U", "root",
                     "-P", "catfox",
@@ -82,14 +82,17 @@ public class CassandraRowRetriever {
                     params.add(fields.getCertificateFileField());
                 }
             }
+            processBuilder = new ProcessBuilder(params);
         } else {
-            String[] array = { "C:\\putty\\plink.exe ", fields.getHostField(),
-                    "/home/cassandra/bin/cqlsh-localhost",
+            String[] array = { "runplink.bat",
+                    fields.getHostField(),
                     filetorun.getAbsolutePath()};
+
+            ArrayList<String> params = new ArrayList<String>();
             Collections.addAll(params, array);
+            processBuilder = new ProcessBuilder(params);
         }
 
-        ProcessBuilder processBuilder = new ProcessBuilder(params);
         Process process = processBuilder.start();
 
         InputStream iserr = process.getErrorStream();
@@ -170,7 +173,13 @@ public class CassandraRowRetriever {
         try {
             d = format.parse(date);
         } catch (ParseException pe) {
-            throw new Exception("Error parsing rows from DB: " + pe.getMessage(), pe);
+            try{
+                SimpleDateFormat format2 =
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss-SSSS");
+                d = format.parse(date);
+            }catch (ParseException pe2){
+                throw new Exception("Error parsing rows from DB: " + pe.getMessage(), pe);
+            }
         }
         return new SqlScriptRow(tag, new DateTime(d));
 

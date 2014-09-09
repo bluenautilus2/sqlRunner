@@ -26,7 +26,7 @@ public class MainExecutable {
 
     public static void main(String[] args) {
 
-		JFrame frame = new JFrame("SQL Script Runner \"Cassandra Edition\"");
+		JFrame frame = new JFrame("SQL Script Runner Ultimate Edition");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 

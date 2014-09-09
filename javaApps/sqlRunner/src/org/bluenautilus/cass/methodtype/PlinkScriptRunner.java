@@ -20,8 +20,6 @@ import java.util.Collections;
  */
 public class PlinkScriptRunner implements CassandraScriptRunner {
 
-
-    private static final String CMD = "C:\\putty\\plink.exe ";
     private static final String DB_ERROR_FLAG = "Bad Request";
     private static Log log = LogFactory.getLog(PlinkScriptRunner.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
@@ -44,8 +42,8 @@ public class PlinkScriptRunner implements CassandraScriptRunner {
         }
 
 
-        String[] array = {this.CMD, items.getHostField(),
-                "/home/cassandra/bin/cqlsh-localhost",
+        String[] array = { "runplink.bat",
+                items.getHostField(),
                 filetorun.getAbsolutePath()};
 
         ArrayList<String> params = new ArrayList<String>();
