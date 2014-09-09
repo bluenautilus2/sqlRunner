@@ -60,11 +60,15 @@ public class CassButtonPanel extends JPanel {
         this.setFields(this.fields);
 
 
-        JLabel hostName = new JLabel("Cassandra Host Name");
+        JLabel hostName;
+        if(MiscUtil.isThisLinux()){
+            hostName = new JLabel("Cassandra Host Name");
+        }else{
+            hostName = new JLabel("Putty Saved Session Name");
+        }
+
         JLabel folderName = new JLabel("CQL Script Folder");
         JLabel checkBoxName = new JLabel("Use Cert?");
-
-
 
         FolderOpenButton openScriptFolderButton = new FolderOpenButton(this,this.scriptFolderField);
         FileOpenButton openCertFileButton = new FileOpenButton(this,this.certFileField);
@@ -122,18 +126,7 @@ public class CassButtonPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-
-
         centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(checkBoxName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-
-        centerPanel.add(certName, new GridBagConstraints(0,3, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -151,17 +144,32 @@ public class CassButtonPanel extends JPanel {
                 new Insets(2, 2, 2, 2), 2, 2));
 
 
-        centerPanel.add(this.useCert, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
 
-        //this fills up three spots
-        JPanel certFileHolder = new JPanel(new BorderLayout());
-        certFileHolder.add(this.certFileField,BorderLayout.WEST);
-        certFileHolder.add(openCertFileButton,BorderLayout.EAST);
-        centerPanel.add(certFileHolder, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
+
+
+        if(MiscUtil.isThisLinux()){
+
+            centerPanel.add(certName, new GridBagConstraints(0,3, 1, 1, 1.0, 1.0,
+                    GridBagConstraints.EAST, GridBagConstraints.NONE,
+                    new Insets(2, 2, 2, 2), 2, 2));
+
+            centerPanel.add(checkBoxName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+                    GridBagConstraints.EAST, GridBagConstraints.NONE,
+                    new Insets(2, 2, 2, 2), 2, 2));
+
+            centerPanel.add(this.useCert, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+                    GridBagConstraints.WEST, GridBagConstraints.NONE,
+                    new Insets(2, 2, 2, 2), 2, 2));
+
+            //this fills up three spots
+            JPanel certFileHolder = new JPanel(new BorderLayout());
+            certFileHolder.add(this.certFileField,BorderLayout.WEST);
+            certFileHolder.add(openCertFileButton,BorderLayout.EAST);
+            centerPanel.add(certFileHolder, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
+                    GridBagConstraints.WEST, GridBagConstraints.NONE,
+                    new Insets(2, 2, 2, 2), 2, 2));
+        }
+
 
         centerPanel.setBorder(new LineBorder(this.borderColor));
 
@@ -238,7 +246,7 @@ public class CassButtonPanel extends JPanel {
     }
 
     public CassandraConnectionType getCassConnectionType() {
-       return CassandraConnectionType.SSH;
+       return CassandraConnectionType.getDefaultForThisOS();
     }
 
     public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {

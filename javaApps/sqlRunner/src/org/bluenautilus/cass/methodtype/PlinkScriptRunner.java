@@ -4,10 +4,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.cass.CassandraScriptRunner;
 import org.bluenautilus.data.CassFieldItems;
-import org.bluenautilus.data.FieldItems;
 import org.bluenautilus.data.SqlScriptFile;
-import org.bluenautilus.db.SqlScriptRunner;
-import org.bluenautilus.script.*;
+import org.bluenautilus.script.NoRunException;
+import org.bluenautilus.script.ScriptCompletionListener;
+import org.bluenautilus.script.ScriptResultsEvent;
+import org.bluenautilus.script.ScriptType;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -17,12 +18,12 @@ import java.util.Collections;
 /**
  * Created by bstevens on 8/24/14.
  */
-public class SshScriptRunner implements CassandraScriptRunner {
+public class PlinkScriptRunner implements CassandraScriptRunner {
 
 
-    private static final String CMD = "./cass_sthey sh.sh";
+    private static final String CMD = "C:\\putty\\plink.exe ";
     private static final String DB_ERROR_FLAG = "Bad Request";
-    private static Log log = LogFactory.getLog(SshScriptRunner.class);
+    private static Log log = LogFactory.getLog(PlinkScriptRunner.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
 
     @Override
@@ -42,19 +43,13 @@ public class SshScriptRunner implements CassandraScriptRunner {
             oldOutputFile.delete();
         }
 
-        String[] array = {this.CMD, "-S", items.getHostField(),
-                "-U", "root",
-                "-P", "catfox",
-                "-f", filetorun.getAbsolutePath()};
+
+        String[] array = {this.CMD, items.getHostField(),
+                "/home/cassandra/bin/cqlsh-localhost",
+                filetorun.getAbsolutePath()};
+
         ArrayList<String> params = new ArrayList<String>();
         Collections.addAll(params, array);
-
-        if (items.useCertificate()) {
-            if (items.certFileExists()) {
-                params.add("-c");
-                params.add(items.getCertificateFileField());
-            }
-        }
 
         ProcessBuilder processBuilder = new ProcessBuilder(params);
 

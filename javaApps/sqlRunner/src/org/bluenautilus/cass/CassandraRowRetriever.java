@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.util.GuiUtil;
+import org.bluenautilus.util.MiscUtil;
 import org.joda.time.DateTime;
 
 import javax.swing.*;
@@ -21,7 +22,6 @@ public class CassandraRowRetriever {
 
     private CassFieldItems fields = null;
 
-    private static final String CMD = "./cass_ssh.sh";
     private static Log log = LogFactory.getLog(CassandraRowRetriever.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
     private static final String QUERY_FILE = "getRows.cql";
@@ -67,19 +67,26 @@ public class CassandraRowRetriever {
             oldOutputFile.delete();
         }
 
-
-        String[] array = {this.CMD, "-S", fields.getHostField(),
-                "-U", "root",
-                "-P", "catfox",
-                "-f", filetorun.getAbsolutePath()};
         ArrayList<String> params = new ArrayList<String>();
-        Collections.addAll(params, array);
 
-        if (fields.useCertificate()) {
-            if (fields.certFileExists()) {
-                params.add("-c");
-                params.add(fields.getCertificateFileField());
+        if (MiscUtil.isThisLinux()) {
+            String[] array = {"./cass_ssh.sh", "-S", fields.getHostField(),
+                    "-U", "root",
+                    "-P", "catfox",
+                    "-f", filetorun.getAbsolutePath()};
+
+            Collections.addAll(params, array);
+            if (fields.useCertificate()) {
+                if (fields.certFileExists()) {
+                    params.add("-c");
+                    params.add(fields.getCertificateFileField());
+                }
             }
+        } else {
+            String[] array = { "C:\\putty\\plink.exe ", fields.getHostField(),
+                    "/home/cassandra/bin/cqlsh-localhost",
+                    filetorun.getAbsolutePath()};
+            Collections.addAll(params, array);
         }
 
         ProcessBuilder processBuilder = new ProcessBuilder(params);

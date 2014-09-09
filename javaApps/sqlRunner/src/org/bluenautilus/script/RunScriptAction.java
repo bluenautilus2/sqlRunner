@@ -1,6 +1,7 @@
 package org.bluenautilus.script;
 
 import org.bluenautilus.cass.CassandraConnectionType;
+import org.bluenautilus.cass.methodtype.PlinkScriptRunner;
 import org.bluenautilus.cass.methodtype.SshScriptRunner;
 import org.bluenautilus.data.CassFieldItems;
 import org.bluenautilus.data.FieldItems;
@@ -100,8 +101,10 @@ public class RunScriptAction implements Runnable {
                         SshScriptRunner sshrunner = new SshScriptRunner();
                         event = sshrunner.runCassandraScript(completionListeners,cassItems,file,type);
                         break;
-                    case CQLSSH:
-                       //TBD
+                    case PLINK:
+                        PlinkScriptRunner prunner = new PlinkScriptRunner();
+                        event = prunner.runCassandraScript(completionListeners,cassItems,file,type);
+                        break;
                     default:
                         return;
                 }
