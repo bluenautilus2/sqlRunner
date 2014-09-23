@@ -176,9 +176,9 @@ public class CassandraRowRetriever {
             try{
                 SimpleDateFormat format2 =
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss-SSSS");
-                d = format.parse(date);
+                d = format2.parse(date);
             }catch (ParseException pe2){
-                throw new Exception("Error parsing rows from DB: " + pe.getMessage(), pe);
+                throw new Exception("Error parsing rows from DB...: " + pe.getMessage(), pe);
             }
         }
         return new SqlScriptRow(tag, new DateTime(d));
