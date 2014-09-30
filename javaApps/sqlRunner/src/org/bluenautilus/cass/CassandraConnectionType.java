@@ -5,6 +5,7 @@ import org.bluenautilus.util.MiscUtil;
 
 public enum CassandraConnectionType {
 	SSH("SSH", true, true),
+        CERT("Certificate",true,true),
 	PLINK("PLINK", false, false);
 
 
