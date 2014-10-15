@@ -16,11 +16,9 @@ import java.util.ArrayList;
  */
 public class JdbcScriptRunner implements SqlScriptRunner {
     private static final String DB_STRING = "jdbc:sqlserver://%s:%s;DatabaseName=%s";
-	private static final String REGEX_PARSING = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(--.*[\\n\\r])";
-    private static final String REGEX_PARSING_LONG_RUNTIME = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|((?<=([^']*'[^'\\r\\n]*'[^-\\r\\n']*)|([^-']+))--.*)|(\\n\\r?--.*)|(^--.*)";
-    private static final String REGEX_COMMIT_REMOVALS = "^commit( .*)?$";
-	private static final String QUERY_SANDWICH = "begin transaction sqlRunnerTemp\n%s\ncommit transaction sqlRunnerTemp\n";
-    private static final String REGEX_PARSING_TEST_FOR_LONG_REQUIREMENT = "'[^-\\r\\n']*-(-+[^-\\r\\n']*)*'";
+	private static final String REGEX_PARSING = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)";
+//    private static final String REGEX_COMMIT_REMOVALS = "^commit( .*)?$";
+//	private static final String QUERY_SANDWICH = "begin transaction sqlRunnerTemp\n%s\ncommit transaction sqlRunnerTemp\n";
 
 
     @Override
@@ -44,24 +42,24 @@ public class JdbcScriptRunner implements SqlScriptRunner {
 
 		try {
 			conn = DriverManager.getConnection(String.format(DB_STRING, items.getIpAddressField(), items.getPort(), items.getDbNameField()), items.getLoginField(), items.getPasswordField());
-			conn.setAutoCommit(false);
+//			conn.setAutoCommit(false);
 			final String[] queries = query.split("GO\n");
 
 			// Go is a transaction barrier, so split there and run each "batch" separately.
 			for (final String q : queries) {
 				// We also need to remove queries that the whole of their content is commit, we do that already.
-				if (q.trim().toLowerCase().matches(REGEX_COMMIT_REMOVALS)) {
-					continue;
-				}
+//				if (q.trim().toLowerCase().matches(REGEX_COMMIT_REMOVALS)) {
+//					continue;
+//				}
 				// DDL goes in a query all of its own and all others are sandwiched in a transaction.
-				if (q.trim().toLowerCase().startsWith("create ") || q.trim().toLowerCase().startsWith("alter procedure")) {
+//				if (q.trim().toLowerCase().startsWith("create ") || q.trim().toLowerCase().startsWith("alter procedure")) {
 					cs = conn.prepareCall(q);
-				} else {
-					cs = conn.prepareCall(String.format(QUERY_SANDWICH, q));
-
-				}
+//				} else {
+//					cs = conn.prepareCall(String.format(QUERY_SANDWICH, q));
+//
+//				}
 				cs.execute();
-                conn.commit();
+//                conn.commit();
                 // This is a dumb warning in this case.
                 @SuppressWarnings("ThrowableResultOfMethodCallIgnored")
                 SQLWarning warning = cs.getWarnings();
@@ -78,13 +76,13 @@ public class JdbcScriptRunner implements SqlScriptRunner {
 			e.printStackTrace();
             output.append(e.getMessage());
 			// First roll back the transaction
-			try {
-				if (conn != null) {
-					conn.rollback();
-				}
-			} catch (final SQLException e1) {
-				e1.printStackTrace();
-			}
+//			try {
+//				if (conn != null) {
+//					conn.rollback();
+//				}
+//			} catch (final SQLException e1) {
+//				e1.printStackTrace();
+//			}
 
 			// Close the callable statement
 			if (cs != null) {
@@ -157,10 +155,6 @@ public class JdbcScriptRunner implements SqlScriptRunner {
 	 * @return parsed script
 	 */
 	private String additionalParsing(final StringBuilder sb) {
-        if (sb.toString().matches(REGEX_PARSING_TEST_FOR_LONG_REQUIREMENT)) {
-            return sb.toString().replaceAll(REGEX_PARSING_LONG_RUNTIME, " ");
-        } else {
-            return sb.toString().replaceAll(REGEX_PARSING, " ");
-        }
+        return sb.toString().replaceAll(REGEX_PARSING, " ");
 	}
 }
