@@ -4,20 +4,23 @@ import org.bluenautilus.util.MiscUtil;
 
 
 public enum CassandraConnectionType {
-	SSH("SSH", true, true),
-	PLINK("PLINK", false, false);
+	SSH("SSH", true, true,true),
+	PLINK("PLINK", true, false,false);
 
 	private final String displayString;
     private final boolean supportsWindows;
     private final boolean supportsLinux;
+    private final boolean supportsOSX;
 
     public static final CassandraConnectionType WINDOWS_DEFAULT = CassandraConnectionType.PLINK;
     public static final CassandraConnectionType LINUX_DEFAULT = CassandraConnectionType.SSH;
+    public static final CassandraConnectionType OSX_DEFAULT = CassandraConnectionType.SSH;
 
-	CassandraConnectionType(String displayString, boolean windows, boolean linux) {
+	CassandraConnectionType(String displayString, boolean windows, boolean linux, boolean osx) {
 		this.displayString = displayString;
         this.supportsLinux = linux;
         this.supportsWindows = windows;
+        this.supportsOSX = osx;
 	}
 
 
@@ -46,6 +49,10 @@ public enum CassandraConnectionType {
 
     public boolean supportsLinux() {
         return supportsLinux;
+    }
+
+    public boolean supportsOSX() {
+        return supportsOSX;
     }
 
     public static CassandraConnectionType getDefaultForThisOS(){
