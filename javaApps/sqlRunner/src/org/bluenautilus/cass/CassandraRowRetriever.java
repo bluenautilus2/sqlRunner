@@ -52,7 +52,9 @@ public class CassandraRowRetriever {
             outputStream = new FileOutputStream(filetorun);
             writer = new BufferedWriter(new OutputStreamWriter(outputStream, Charset.forName("UTF-8")));
             writer.write("use pa;\n");
-            writer.write("SELECT * FROM cql_script_executions WHERE year = " + year + " ORDER BY tag;\n");
+
+            //the current year and the year before this year.
+            writer.write("SELECT * FROM cql_script_executions WHERE year IN (" + (year - 1) + ", " + year + ") ORDER BY tag;\n");
         } finally {
             if (null != writer) {
                 writer.close();
@@ -84,7 +86,7 @@ public class CassandraRowRetriever {
             }
             processBuilder = new ProcessBuilder(params);
         } else {
-            String[] array = { "runplink.bat",
+            String[] array = {"runplink.bat",
                     fields.getHostField(),
                     filetorun.getAbsolutePath()};
 
@@ -132,7 +134,7 @@ public class CassandraRowRetriever {
             reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
             while ((line = reader.readLine()) != null) {
                 if (null != line) {
-                    int i = line.indexOf(year.toString());
+                    int i = line.indexOf("20");
                     if (i != -1) {
                         SqlScriptRow rowObj = this.getScriptRow(line);
                         if (rowObj != null) {
@@ -173,11 +175,11 @@ public class CassandraRowRetriever {
         try {
             d = format.parse(date);
         } catch (ParseException pe) {
-            try{
+            try {
                 SimpleDateFormat format2 =
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss-SSSS");
                 d = format2.parse(date);
-            }catch (ParseException pe2){
+            } catch (ParseException pe2) {
                 throw new Exception("Error parsing rows from DB...: " + pe.getMessage(), pe);
             }
         }

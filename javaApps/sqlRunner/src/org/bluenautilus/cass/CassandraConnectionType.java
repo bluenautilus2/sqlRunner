@@ -4,9 +4,8 @@ import org.bluenautilus.util.MiscUtil;
 
 
 public enum CassandraConnectionType {
-	SSH("SSH", true, true),
-	PLINK("PLINK", false, false),
-        SPLUNK("Splunk",true,true);
+	SSH("SSH", true, true,true),
+	PLINK("PLINK", true, false,false);
 
 	private final String displayString;
     private final boolean supportsWindows;
