@@ -1,11 +1,19 @@
 package org.bluenautilus.db.methodtype;
 
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.SqlScriptRunner;
-import org.bluenautilus.script.*;
+import org.bluenautilus.script.NoRunException;
+import org.bluenautilus.script.ScriptCompletionListener;
+import org.bluenautilus.script.ScriptModifier;
+import org.bluenautilus.script.ScriptResultsEvent;
+import org.bluenautilus.script.ScriptType;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +25,7 @@ public class SqlCmdScriptRunner implements SqlScriptRunner {
 	private static final String DB_ERROR_FLAG = "Level 16, State";
 
 	@Override
-	public ScriptResultsEvent runSqlCmdScript(ArrayList<ScriptCompletionListener> completionListeners, FieldItems items, SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
+	public ScriptResultsEvent runSqlCmdScript(ArrayList<ScriptCompletionListener> completionListeners, SqlConfigItems items, SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
 		File oldfile = null;  //if this stays null something crazy is going on.
 
 		if (ScriptType.REGULAR == type) {

@@ -1,11 +1,10 @@
 package org.bluenautilus.gui;
 
 import org.bluenautilus.cass.CassandraRefreshAction;
-import org.bluenautilus.data.CassFieldItems;
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptType;
-import org.bluenautilus.util.ConfigUtil;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -49,8 +48,8 @@ public class CassPanelMgr extends PanelMgr{
     @Override
     public void refreshAction() {
 
-        CassFieldItems items = this.cassButtonPanel.pullFieldsFromGui();
-        ConfigUtil.saveOffCurrent(items, this.cassButtonPanel);
+        CassConfigItems items = this.cassButtonPanel.pullFieldsFromGui();
+      //  ConfigUtil.saveOffCurrent(items, this.cassButtonPanel);
         CassandraRefreshAction action = new CassandraRefreshAction(items, this.cassButtonPanel, this);
 
         action.addListener(this);
@@ -62,8 +61,8 @@ public class CassPanelMgr extends PanelMgr{
 
     @Override
     public void preferencesUpdated() {
-        CassFieldItems items = this.cassButtonPanel.pullFieldsFromGui();
-        ConfigUtil.saveOffCurrent(items, this.cassButtonPanel);
+        CassConfigItems items = this.cassButtonPanel.pullFieldsFromGui();
+       // ConfigUtil.saveOffCurrent(items, this.cassButtonPanel);
     }
 
     @Override

@@ -1,13 +1,24 @@
 package org.bluenautilus.db.methodtype;
 
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.SqlScriptRunner;
-import org.bluenautilus.script.*;
+import org.bluenautilus.script.NoRunException;
+import org.bluenautilus.script.ScriptCompletionListener;
+import org.bluenautilus.script.ScriptResultsEvent;
+import org.bluenautilus.script.ScriptType;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.SQLWarning;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +33,7 @@ public class JdbcScriptRunner implements SqlScriptRunner {
 
 
     @Override
-	public ScriptResultsEvent runSqlCmdScript(final ArrayList<ScriptCompletionListener> completionListeners, final FieldItems items, final SqlScriptFile scriptFile, final ScriptType type) throws IOException, NoRunException {
+	public ScriptResultsEvent runSqlCmdScript(final ArrayList<ScriptCompletionListener> completionListeners, final SqlConfigItems items, final SqlScriptFile scriptFile, final ScriptType type) throws IOException, NoRunException {
 		return getScriptResultsEvent(items, scriptFile, type, readInFile(scriptFile, type));
 	}
 
@@ -34,7 +45,7 @@ public class JdbcScriptRunner implements SqlScriptRunner {
 	 * @param query String query
 	 * @return script results
 	 */
-	private ScriptResultsEvent getScriptResultsEvent(final FieldItems items, final SqlScriptFile scriptFile, final ScriptType type, final String query) {
+	private ScriptResultsEvent getScriptResultsEvent(final SqlConfigItems items, final SqlScriptFile scriptFile, final ScriptType type, final String query) {
 		boolean dbProblem = true;
 		Connection conn = null;
 		CallableStatement cs = null;

@@ -2,7 +2,7 @@ package org.bluenautilus.gui;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBRefreshAction;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
@@ -13,7 +13,7 @@ import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptPopOutEventListener;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptType;
-import org.bluenautilus.util.ConfigUtil;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.GuiUtil;
 
 import javax.swing.*;
@@ -106,8 +106,8 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     @Override
     public void refreshAction() {
 
-        FieldItems items = this.buttonPanel.pullFieldsFromGui();
-        ConfigUtil.saveOffCurrent(items, this.buttonPanel);
+        SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
+        DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
         DBRefreshAction action = new DBRefreshAction(items, this.buttonPanel, this);
 
         action.addListener(this);
@@ -251,7 +251,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     @Override
     public void preferencesUpdated() {
-        FieldItems items = this.buttonPanel.pullFieldsFromGui();
-        ConfigUtil.saveOffCurrent(items, this.buttonPanel);
+        SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
+        DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
     }
 }

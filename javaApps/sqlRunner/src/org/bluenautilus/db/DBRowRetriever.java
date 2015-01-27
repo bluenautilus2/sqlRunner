@@ -1,11 +1,10 @@
 package org.bluenautilus.db;
 
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptRow;
 import org.joda.time.DateTime;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -18,10 +17,10 @@ public class DBRowRetriever {
 	private Connection connect = null;
 	private Statement statement = null;
 	private ResultSet resultSet = null;
-	private FieldItems fields = null;
+	private SqlConfigItems fields = null;
 
 
-	public DBRowRetriever(FieldItems fields) {
+	public DBRowRetriever(SqlConfigItems fields) {
 		this.fields = fields;
 	}
 

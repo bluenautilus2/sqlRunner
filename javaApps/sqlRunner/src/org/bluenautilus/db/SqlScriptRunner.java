@@ -1,6 +1,6 @@
 package org.bluenautilus.db;
 
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.script.NoRunException;
 import org.bluenautilus.script.ScriptCompletionListener;
@@ -25,7 +25,7 @@ public interface SqlScriptRunner {
 	 * @throws NoRunException
 	 */
 	ScriptResultsEvent runSqlCmdScript(ArrayList<ScriptCompletionListener> completionListeners,
-									   FieldItems items,
+									   SqlConfigItems items,
 									   SqlScriptFile scriptFile,
 									   ScriptType type) throws IOException, NoRunException;
 

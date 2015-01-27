@@ -3,14 +3,19 @@ package org.bluenautilus.cass.methodtype;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.cass.CassandraScriptRunner;
-import org.bluenautilus.data.CassFieldItems;
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.script.NoRunException;
 import org.bluenautilus.script.ScriptCompletionListener;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptType;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +30,7 @@ public class PlinkScriptRunner implements CassandraScriptRunner {
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
 
     @Override
-    public ScriptResultsEvent runCassandraScript(ArrayList<ScriptCompletionListener> completionListeners, CassFieldItems items, SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
+    public ScriptResultsEvent runCassandraScript(ArrayList<ScriptCompletionListener> completionListeners, CassConfigItems items, SqlScriptFile scriptFile, ScriptType type) throws IOException, NoRunException {
         File filetorun = null;  //if this stays null something crazy is going on.
 
         if (ScriptType.REGULAR == type) {

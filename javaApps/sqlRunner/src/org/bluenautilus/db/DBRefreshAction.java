@@ -1,17 +1,15 @@
 package org.bluenautilus.db;
 
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.gui.PanelMgr;
-import org.bluenautilus.script.ScriptStatus;
 import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.util.MiscUtil;
 
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 /**
@@ -23,11 +21,11 @@ import java.util.Collections;
  */
 public class DBRefreshAction extends org.bluenautilus.RefreshAction implements Runnable {
 
-    private FieldItems fields;
+    private SqlConfigItems fields;
 	private PanelMgr panelMgr;
 
 
-    public DBRefreshAction(FieldItems fields, JPanel parent, PanelMgr panelMgr) {
+    public DBRefreshAction(SqlConfigItems fields, JPanel parent, PanelMgr panelMgr) {
         super(parent);
         this.fields = fields;
 		this.panelMgr = panelMgr;

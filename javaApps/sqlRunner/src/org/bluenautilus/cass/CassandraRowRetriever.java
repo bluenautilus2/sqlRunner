@@ -2,14 +2,22 @@ package org.bluenautilus.cass;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.data.CassFieldItems;
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.util.MiscUtil;
 import org.joda.time.DateTime;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +28,7 @@ import java.util.Date;
 
 public class CassandraRowRetriever {
 
-    private CassFieldItems fields = null;
+    private CassConfigItems fields = null;
 
     private static Log log = LogFactory.getLog(CassandraRowRetriever.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
@@ -28,7 +36,7 @@ public class CassandraRowRetriever {
     private JPanel parentPanel = null;
 
 
-    public CassandraRowRetriever(CassFieldItems fields, JPanel parentPanel) {
+    public CassandraRowRetriever(CassConfigItems fields, JPanel parentPanel) {
         this.fields = fields;
         this.parentPanel = parentPanel;
     }

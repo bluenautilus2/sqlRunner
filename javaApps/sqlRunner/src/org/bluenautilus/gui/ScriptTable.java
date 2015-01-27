@@ -2,7 +2,6 @@ package org.bluenautilus.gui;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.

@@ -3,9 +3,7 @@ package org.bluenautilus.gui;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.cass.CassandraConnectionType;
-import org.bluenautilus.data.CassFieldItems;
-import org.bluenautilus.data.FieldItems;
-import org.bluenautilus.db.DBConnectionType;
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptType;
 import org.bluenautilus.util.MiscUtil;
@@ -15,8 +13,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 
@@ -29,7 +25,7 @@ public class CassButtonPanel extends JPanel {
 
     private static Log LOG = LogFactory.getLog(CassButtonPanel.class);
 
-    CassFieldItems fields = null;
+    CassConfigItems fields = null;
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
@@ -47,7 +43,7 @@ public class CassButtonPanel extends JPanel {
 
     ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
-    public CassButtonPanel(CassFieldItems initialFields) {
+    public CassButtonPanel(CassConfigItems initialFields) {
         super(new GridBagLayout());
 
         this.fields = initialFields;
@@ -187,8 +183,8 @@ public class CassButtonPanel extends JPanel {
         this.updateListeners.add(listener);
     }
 
-    public CassFieldItems pullFieldsFromGui() {
-        return new CassFieldItems(
+    public CassConfigItems pullFieldsFromGui() {
+        return new CassConfigItems(
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
                 getStringForConfigCheckbox(this.useCert),
@@ -204,7 +200,7 @@ public class CassButtonPanel extends JPanel {
     }
 
 
-    public void setFields(CassFieldItems fields) {
+    public void setFields(CassConfigItems fields) {
 
         this.scriptFolderField.setText(fields.getScriptFolderField());
         this.hostNameField.setText(fields.getHostField());

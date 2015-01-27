@@ -1,22 +1,21 @@
 package org.bluenautilus.gui;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.data.SqlConfigItems;
+import org.bluenautilus.db.DBConnectionType;
+import org.bluenautilus.script.ScriptKickoffListener;
+import org.bluenautilus.script.ScriptType;
+import org.bluenautilus.util.MiscUtil;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.data.FieldItems;
-import org.bluenautilus.db.DBConnectionType;
-import org.bluenautilus.script.ScriptKickoffListener;
-import org.bluenautilus.script.ScriptType;
-import org.bluenautilus.util.MiscUtil;
 
 
 /**
@@ -28,7 +27,7 @@ public class SqlButtonPanel extends JPanel {
 
     private static Log LOG = LogFactory.getLog(SqlButtonPanel.class);
 
-    FieldItems fields = null;
+    SqlConfigItems fields = null;
     private JTextField dbNameField = new JTextField(15);
     private JTextField loginField = new JTextField(8);
     private JTextField passwordField = new JPasswordField(8);
@@ -46,7 +45,7 @@ public class SqlButtonPanel extends JPanel {
 
     ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
-    public SqlButtonPanel(FieldItems initialFields) {
+    public SqlButtonPanel(SqlConfigItems initialFields) {
         super(new GridBagLayout());
 
         this.fields = initialFields;
@@ -183,8 +182,8 @@ public class SqlButtonPanel extends JPanel {
         this.updateListeners.add(listener);
     }
 
-    public FieldItems pullFieldsFromGui() {
-        return new FieldItems(
+    public SqlConfigItems pullFieldsFromGui() {
+        return new SqlConfigItems(
                 this.dbNameField.getText(),
                 this.loginField.getText(),
                 this.passwordField.getText(),
@@ -194,7 +193,7 @@ public class SqlButtonPanel extends JPanel {
                 this.dbConnectionTypeField.getModel().getSelectedItem().toString());
     }
 
-    public void setFields(FieldItems fields) {
+    public void setFields(SqlConfigItems fields) {
         this.dbNameField.setText(fields.getDbNameField());
         this.loginField.setText(fields.getLoginField());
         this.passwordField.setText(fields.getPasswordField());

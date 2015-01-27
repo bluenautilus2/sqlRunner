@@ -5,7 +5,6 @@ import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.script.ScriptStatus;
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Collections;

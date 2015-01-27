@@ -3,8 +3,8 @@ package org.bluenautilus.script;
 import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.cass.methodtype.PlinkScriptRunner;
 import org.bluenautilus.cass.methodtype.SshScriptRunner;
-import org.bluenautilus.data.CassFieldItems;
-import org.bluenautilus.data.FieldItems;
+import org.bluenautilus.data.CassConfigItems;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.db.SqlScriptRunner;
@@ -24,11 +24,11 @@ import java.util.ArrayList;
  */
 public class RunScriptAction implements Runnable {
 
-    private FieldItems items;
+    private SqlConfigItems items;
     private DBConnectionType dbConnectionType;
 
     private boolean isCassandra = false;
-    private CassFieldItems cassItems;
+    private CassConfigItems cassItems;
     private CassandraConnectionType cassConnectionType;
 
 
@@ -39,7 +39,7 @@ public class RunScriptAction implements Runnable {
     private ScriptType type = null;
 
 
-    public RunScriptAction(FieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, final DBConnectionType dbConnectionType) {
+    public RunScriptAction(SqlConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type, final DBConnectionType dbConnectionType) {
         this.items = items;
         this.file = sqlScriptFile;
         this.type = type;
@@ -47,7 +47,7 @@ public class RunScriptAction implements Runnable {
         this.isCassandra = false;
     }
 
-    public RunScriptAction(CassFieldItems items, SqlScriptFile sqlScriptFile, ScriptType type, CassandraConnectionType cassConnectionType) {
+    public RunScriptAction(CassConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type, CassandraConnectionType cassConnectionType) {
         this.cassItems = items;
         this.file = sqlScriptFile;
         this.type = type;
