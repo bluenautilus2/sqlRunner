@@ -2,7 +2,7 @@ package org.bluenautilus.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.data.DataStoreGroupList;
+import org.bluenautilus.data.CassConfigItemsList;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -16,17 +16,17 @@ import java.io.IOException;
  * Date: 5/3/13
  * Time: 11:20 PM
  */
-public class DataStoreGroupConfigUtil {
+public class CassConfigUtil {
 
-    private static Log log = LogFactory.getLog(DataStoreGroupConfigUtil.class);
+    private static Log log = LogFactory.getLog(CassConfigUtil.class);
 
-    private static final String CONFIG_FILENAME = "datastores.json";
-    private static final String BAK_FILENAME = "datastores.json.old";
+    private static final String CONFIG_FILENAME = "cassconfig.json";
+    private static final String BAK_FILENAME = "cassconfig.json.old";
 
-    private static DataStoreGroupList dataStoreGroupList = new DataStoreGroupList();
+    private static CassConfigItemsList cassConfigItemsList = new CassConfigItemsList();
 
-    public static void saveOffCurrent(DataStoreGroupList newList) {
-        dataStoreGroupList = newList;
+    public static synchronized void saveOffCurrent(CassConfigItemsList newList) {
+        cassConfigItemsList = newList;
 
         try {
             File backup = new File(BAK_FILENAME);
@@ -55,10 +55,10 @@ public class DataStoreGroupConfigUtil {
             try {
 
                 // convert user object to json string, and save to a file
-                mapper.writeValue(newFile, dataStoreGroupList);
+                mapper.writeValue(newFile, cassConfigItemsList);
 
                 // display to console
-                System.out.println(mapper.writeValueAsString(dataStoreGroupList));
+                System.out.println(mapper.writeValueAsString(cassConfigItemsList));
 
             } catch (JsonGenerationException e) {
 
@@ -82,17 +82,17 @@ public class DataStoreGroupConfigUtil {
 
     }
 
-    public static DataStoreGroupList readInConfiguration(){
+    public static synchronized CassConfigItemsList readInConfiguration(){
 
         ObjectMapper mapper = new ObjectMapper();
           File file = new File(CONFIG_FILENAME);
         try {
 
             // read from file, convert it to user class
-            dataStoreGroupList = mapper.readValue(file,DataStoreGroupList.class);
+            cassConfigItemsList = mapper.readValue(file,CassConfigItemsList.class);
 
             // display to console
-            System.out.println(dataStoreGroupList);
+            System.out.println(cassConfigItemsList);
 
         } catch (JsonGenerationException e) {
 
@@ -107,15 +107,15 @@ public class DataStoreGroupConfigUtil {
             log.error(e);
 
         }
-        return dataStoreGroupList;
+        return cassConfigItemsList;
     }
 
-    public static DataStoreGroupList getDataStoreGroupList() {
-        return dataStoreGroupList;
+    public static CassConfigItemsList getCassConfigItemsList() {
+        return cassConfigItemsList;
     }
 
-    public static void setDataStoreGroupList(DataStoreGroupList dataStoreGroupList) {
-        DataStoreGroupConfigUtil.dataStoreGroupList = dataStoreGroupList;
+    public static void setCassConfigItemsList(CassConfigItemsList cassConfigItemsList) {
+        CassConfigUtil.cassConfigItemsList = cassConfigItemsList;
     }
 }
 

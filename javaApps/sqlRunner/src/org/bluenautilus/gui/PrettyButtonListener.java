@@ -6,7 +6,7 @@ package org.bluenautilus.gui;
 public interface PrettyButtonListener
 {
 
-    public void buttonClicked(ButtonType type);
+    public void prettyButtonClicked(ButtonType type);
 
     public enum ButtonType{
         PLUS,

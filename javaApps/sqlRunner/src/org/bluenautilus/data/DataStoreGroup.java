@@ -88,8 +88,16 @@ public class DataStoreGroup {
     }
 
     public DataStoreGroup() {
-        uniqueId = UUID.randomUUID();
+
     }
 
+    @Override
+    public String toString(){
+        return this.nickname;
+    }
+
+    public void generateUniqueId(){
+        uniqueId = UUID.randomUUID();
+    }
 
 }

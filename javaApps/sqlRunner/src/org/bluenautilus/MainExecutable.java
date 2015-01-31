@@ -2,8 +2,11 @@ package org.bluenautilus;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStorePanelManager;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreGroupPanel;
+import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStorePanelManager;
+import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,10 +26,14 @@ public class MainExecutable {
 
         log.info("sqlRunner starting: Ludicrous Edition");
 
+        CassConfigUtil.readInConfiguration();
+        SqlConfigUtil.readInConfiguration();
+        DataStoreGroupConfigUtil.readInConfiguration();
 
 
 
         final DataStoreGroupPanel dataStoreGroupPanel = new DataStoreGroupPanel();
+        dataStoreGroupPanel.init();
 
         DataStorePanelManager mgr = new DataStorePanelManager(dataStoreGroupPanel);
 

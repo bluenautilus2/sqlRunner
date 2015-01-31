@@ -1,5 +1,7 @@
 package org.bluenautilus.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class DataStoreGroupList {
 
     private List<DataStoreGroup> dataStoreGroupList = new ArrayList<>();
 
-    public DataStoreGroupList(){
+    public DataStoreGroupList() {
         //nothin'
     }
 
@@ -20,6 +22,20 @@ public class DataStoreGroupList {
 
     public void setDataStoreGroupList(List<DataStoreGroup> dataStoreGroupList) {
         this.dataStoreGroupList = dataStoreGroupList;
+    }
+
+    @JsonIgnore
+    public void addGroup(DataStoreGroup group) {
+        this.dataStoreGroupList.add(group);
+    }
+
+    @JsonIgnore
+    public String[] getComboBoxList() {
+        String[] stringArray = new String[dataStoreGroupList.size()];
+        for (int i = 0; i < dataStoreGroupList.size(); i++) {
+            stringArray[i] = dataStoreGroupList.get(i).getNickname();
+        }
+        return stringArray;
     }
 
     @Override

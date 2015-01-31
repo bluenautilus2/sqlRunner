@@ -13,7 +13,6 @@ import org.bluenautilus.script.ScriptKickoffListener;
 import org.bluenautilus.script.ScriptPopOutEventListener;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptType;
-import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.GuiUtil;
 
 import javax.swing.*;
@@ -107,7 +106,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     public void refreshAction() {
 
         SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
-        DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
+       // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
         DBRefreshAction action = new DBRefreshAction(items, this.buttonPanel, this);
 
         action.addListener(this);
@@ -252,6 +251,6 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     @Override
     public void preferencesUpdated() {
         SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
-        DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
+       // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
     }
 }

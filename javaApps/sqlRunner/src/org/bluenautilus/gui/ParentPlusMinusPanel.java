@@ -27,17 +27,18 @@ public class ParentPlusMinusPanel extends JPanel {
 
     private final List<PrettyButtonListener> listeners = new ArrayList<>();
 
-    JButton minusButton;
-    JButton plusButton;
-    JButton gearButton;
+    private JButton minusButton;
+    private JButton plusButton;
+    private JButton gearButton;
 
+    protected JPanel buttonPanel = new JPanel( new BorderLayout());
 
     public ParentPlusMinusPanel() {
-        super(new BorderLayout());
-        loadImages();
+        super();
     }
 
-    public void loadImages() {
+
+    protected void loadImages() {
         Image image1 = null;
         Image image2 = null;
         Image image3 = null;
@@ -70,9 +71,9 @@ public class ParentPlusMinusPanel extends JPanel {
         gearButton = new JButton(gearIcon);
         gearButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.GEAR));
 
-        this.add(minusButton, BorderLayout.CENTER);
-        this.add(plusButton, BorderLayout.WEST);
-        this.add(gearButton, BorderLayout.EAST);
+        buttonPanel.add(minusButton, BorderLayout.CENTER);
+        buttonPanel.add(plusButton, BorderLayout.WEST);
+        buttonPanel.add(gearButton, BorderLayout.EAST);
     }
 
 
@@ -91,7 +92,7 @@ public class ParentPlusMinusPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (PrettyButtonListener p : listeners) {
-                p.buttonClicked(type);
+                p.prettyButtonClicked(type);
             }
         }
     }
