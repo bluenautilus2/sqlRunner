@@ -49,7 +49,7 @@ this.setLayout(new GridBagLayout());
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
 
-        this.add(this.buttonPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+        this.add(this.buttonPanel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
 

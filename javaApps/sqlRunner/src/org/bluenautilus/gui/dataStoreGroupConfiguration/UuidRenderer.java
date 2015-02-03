@@ -36,10 +36,10 @@ public class UuidRenderer extends DefaultTableCellRenderer {
         if(item instanceof CassConfigItems){
             if (isSelected) {
                 c.setForeground(Color.BLACK);
-                c.setBackground(new Color(250,100,80));
+                c.setBackground(new Color(180,200,255));
             } else {
                 c.setForeground(Color.BLACK);
-                c.setBackground(new Color(230,70,50));
+                c.setBackground(new Color(200,220,255));
 
             }
         }
@@ -48,10 +48,10 @@ public class UuidRenderer extends DefaultTableCellRenderer {
             if (isSelected) {
 
                 c.setForeground(Color.BLACK);
-                c.setBackground(new Color(250,250,100));
+                c.setBackground(new Color(245,200,245));
             } else {
                 c.setForeground(Color.BLACK);
-                c.setBackground(new Color(200,200,50));
+                c.setBackground(new Color(255,220,255));
 
             }
         }
