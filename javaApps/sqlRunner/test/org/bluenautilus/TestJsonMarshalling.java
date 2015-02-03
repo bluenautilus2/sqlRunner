@@ -26,7 +26,7 @@ public class TestJsonMarshalling {
             DataStoreGroup group = new DataStoreGroup();
             group.setIgnoreErrors(true);
             group.setIgnoreNoRun(false);
-            group.setNickname("My computer");
+            group.setNickname("configuration "+ i);
             group.generateUniqueId();
             for (int j = 0; j < 12; j++) {
                 group.addDataStoreUUID(UUID.randomUUID());

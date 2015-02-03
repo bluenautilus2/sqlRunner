@@ -2,6 +2,7 @@ package org.bluenautilus.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.CassConfigItemsList;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -9,6 +10,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -116,6 +120,16 @@ public class CassConfigUtil {
 
     public static void setCassConfigItemsList(CassConfigItemsList cassConfigItemsList) {
         CassConfigUtil.cassConfigItemsList = cassConfigItemsList;
+    }
+
+    public static List<CassConfigItems> getUuidList(List<UUID> itemsToGet){
+        List<CassConfigItems> matches = new ArrayList<>();
+        for(CassConfigItems item:cassConfigItemsList.getCassConfigItems()){
+            if(itemsToGet.contains(item.getUniqueId())){
+                matches.add(item);
+            }
+        }
+        return matches;
     }
 }
 

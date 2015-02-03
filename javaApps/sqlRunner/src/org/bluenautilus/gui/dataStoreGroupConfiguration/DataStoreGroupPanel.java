@@ -6,6 +6,7 @@ import org.bluenautilus.gui.ParentPlusMinusPanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -29,15 +30,28 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
 
     }
 
-    public DataStoreGroupPanel() {
-        super();
+    public DataStoreGroup getCurrentJComboBox() {
+        return (DataStoreGroup) nicknameDropdown.getSelectedItem();
     }
 
     public void init() {
+this.setLayout(new GridBagLayout());
         loadImages();
         initComboBox();
-        this.add(nicknameDropdown);
-        this.add(buttonPanel);
+
+
+        //int gridx, int gridy,int gridwidth, int gridheight,
+        //double weightx, double weighty,
+        // int anchor, int fill,
+        //Insets insets, int ipadx, int ipady
+
+        this.add(this.nicknameDropdown, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(10, 4, 4, 4), 2, 2));
+
+        this.add(this.buttonPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(10, 4, 4, 4), 2, 2));
 
 
     }
@@ -56,7 +70,15 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
                     @Override
                     public void run() {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
-                            DataStoreGroup newGroup = (DataStoreGroup) nicknameDropdown.getSelectedItem();
+
+                            Object o = nicknameDropdown.getModel().getSelectedItem();
+                            DataStoreGroup newGroup = null;
+                            if (o != null) {
+                                newGroup = (DataStoreGroup) o;
+                            } else {
+                                newGroup = nicknameDropdown.getModel().getElementAt(0);
+                            }
+
                             nicknameDropdown.getModel().setSelectedItem(newGroup);
                             for (NewDataStoreGroupChosenListener listener : newGroupChosenListeners) {
                                 listener.dataGroupChosen(newGroup);
@@ -65,6 +87,20 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
                     }
                 });
 
+            }
+        });
+    }
+
+    public void updateComboBoxList() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+
+                nicknameDropdown.removeAllItems();
+
+                for (DataStoreGroup group : DataStoreGroupConfigUtil.getDataStoreGroupList().getDataStoreGroupList()) {
+                    nicknameDropdown.addItem(group);
+                }
             }
         });
     }

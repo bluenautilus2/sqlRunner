@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 
 /**
@@ -25,8 +26,16 @@ public class DataStoreGroupConfigUtil {
 
     private static DataStoreGroupList dataStoreGroupList = new DataStoreGroupList();
 
+    public static void removeDataStoreGroup(UUID goneGroup){
+        dataStoreGroupList.removeDataStoreGroup(goneGroup);
+    }
+
     public static void saveOffCurrent(DataStoreGroupList newList) {
         dataStoreGroupList = newList;
+        saveOffCurrent();
+    }
+
+    public static void saveOffCurrent() {
 
         try {
             File backup = new File(BAK_FILENAME);

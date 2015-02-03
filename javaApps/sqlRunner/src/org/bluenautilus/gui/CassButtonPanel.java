@@ -188,7 +188,7 @@ public class CassButtonPanel extends JPanel {
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
                 getStringForConfigCheckbox(this.useCert),
-                this.certFileField.getText());
+                this.certFileField.getText(),"pa");
 
     }
 

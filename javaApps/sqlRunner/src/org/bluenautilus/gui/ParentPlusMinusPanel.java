@@ -92,6 +92,7 @@ public class ParentPlusMinusPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (PrettyButtonListener p : listeners) {
+
                 p.prettyButtonClicked(type);
             }
         }

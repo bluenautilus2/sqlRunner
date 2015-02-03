@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by bstevens on 1/26/15.
@@ -14,6 +15,17 @@ public class DataStoreGroupList {
 
     public DataStoreGroupList() {
         //nothin'
+    }
+
+    public void removeDataStoreGroup(UUID goneGroup){
+        DataStoreGroup fromList = null;
+        for(DataStoreGroup group: dataStoreGroupList){
+            if(group.getUniqueId().equals(goneGroup)){
+                fromList = group;
+            }
+        }
+        //if not found, will return null pointer
+        dataStoreGroupList.remove(fromList);
     }
 
     public List<DataStoreGroup> getDataStoreGroupList() {

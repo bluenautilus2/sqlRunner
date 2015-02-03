@@ -1,25 +1,28 @@
 package org.bluenautilus.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.io.File;
 
 /**
  * Created by bstevens on 8/24/14.
  */
-public class CassConfigItems extends ConfigItems {
+public class CassConfigItems extends UuidItem {
 
 
     private String scriptFolderField = "/home/bstevens/repos/App/tools/CQL_Update_Scripts";
     private String hostField = "nucleus";
     private String useCertificate = "false";
+    private String namespace = "pa";
     private String certificateFileField= "/home/bstevens/.ssh/stratum-west.pem";
 
-    public CassConfigItems(String scriptFolderField, String hostField, String useCertificate, String certificateFileField) {
+    public CassConfigItems(String scriptFolderField, String hostField, String useCertificate, String namespace, String certificateFileField) {
         this.scriptFolderField = scriptFolderField;
         this.hostField = hostField;
         this.useCertificate = useCertificate;
+        this.namespace = namespace;
         this.certificateFileField = certificateFileField;
     }
-
 
     public CassConfigItems(){
         //does nothing
@@ -57,6 +60,14 @@ public class CassConfigItems extends ConfigItems {
         this.certificateFileField = certificateFileField;
     }
 
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
     public boolean useCertificate(){
         return new Boolean(this.getUseCertificate());
     }
@@ -76,6 +87,7 @@ public class CassConfigItems extends ConfigItems {
         if (certificateFileField != null ? !certificateFileField.equals(that.certificateFileField) : that.certificateFileField != null)
             return false;
         if (hostField != null ? !hostField.equals(that.hostField) : that.hostField != null) return false;
+        if (namespace != null ? !namespace.equals(that.namespace) : that.namespace != null) return false;
         if (scriptFolderField != null ? !scriptFolderField.equals(that.scriptFolderField) : that.scriptFolderField != null)
             return false;
         if (useCertificate != null ? !useCertificate.equals(that.useCertificate) : that.useCertificate != null)
@@ -89,17 +101,15 @@ public class CassConfigItems extends ConfigItems {
         int result = scriptFolderField != null ? scriptFolderField.hashCode() : 0;
         result = 31 * result + (hostField != null ? hostField.hashCode() : 0);
         result = 31 * result + (useCertificate != null ? useCertificate.hashCode() : 0);
+        result = 31 * result + (namespace != null ? namespace.hashCode() : 0);
         result = 31 * result + (certificateFileField != null ? certificateFileField.hashCode() : 0);
         return result;
     }
 
+
     @Override
-    public String toString() {
-        return "CassConfigItems{" +
-                "scriptFolderField='" + scriptFolderField + '\'' +
-                ", hostField='" + hostField + '\'' +
-                ", useCertificate='" + useCertificate + '\'' +
-                ", certificateFileField='" + certificateFileField + '\'' +
-                '}';
+    @JsonIgnore
+    public String getTableDisplayString() {
+        return namespace+"@"+hostField;
     }
 }

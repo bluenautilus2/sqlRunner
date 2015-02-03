@@ -5,14 +5,11 @@ import java.util.UUID;
 /**
  * Created by bstevens on 1/25/15.
  */
-public class ConfigItems {
+public abstract class UuidItem {
 
     UUID uniqueId = null;
+    Integer tableRowIndex = 0;
 
-
-    ConfigItems() {
-
-    }
 
     public UUID getUniqueId() {
         return uniqueId;
@@ -25,5 +22,15 @@ public class ConfigItems {
 
     public void generateUniqueId() {
         uniqueId = UUID.randomUUID();
+    }
+
+    public abstract String getTableDisplayString();
+
+    public Integer getTableRowIndex() {
+        return tableRowIndex;
+    }
+
+    public void setTableRowIndex(Integer tableRowIndex) {
+        this.tableRowIndex = tableRowIndex;
     }
 }

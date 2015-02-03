@@ -1,14 +1,16 @@
 package org.bluenautilus.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
 /**
  * Created by bstevens on 1/25/15.
  */
-public class DataStoreGroup {
+public class DataStoreGroup extends UuidItem {
 
-    private UUID uniqueId;
+
 
     private ArrayList<UUID> dataStores = new ArrayList<>();
 
@@ -53,14 +55,6 @@ public class DataStoreGroup {
         this.ignoreNoRun = ignoreNoRun;
     }
 
-    public UUID getUniqueId() {
-        return uniqueId;
-    }
-
-    public void setUniqueId(UUID uniqueId) {
-        this.uniqueId = uniqueId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,8 +90,9 @@ public class DataStoreGroup {
         return this.nickname;
     }
 
-    public void generateUniqueId(){
-        uniqueId = UUID.randomUUID();
+    @Override
+    @JsonIgnore
+    public String getTableDisplayString() {
+        return nickname;
     }
-
 }

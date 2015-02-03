@@ -1,6 +1,7 @@
 package org.bluenautilus.data;
 
 import org.bluenautilus.db.DBConnectionType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 /**
@@ -8,7 +9,7 @@ import org.bluenautilus.db.DBConnectionType;
  * Date: 7/30/13
  * Time: 8:31 PM
  */
-public class SqlConfigItems extends ConfigItems {
+public class SqlConfigItems extends UuidItem {
 
     //These are just defaults if the config file isn't found.
     private String dbNameField = "panswersClean";
@@ -140,15 +141,8 @@ public class SqlConfigItems extends ConfigItems {
     }
 
     @Override
-    public String toString() {
-        return "SqlConfigItems{" +
-                "dbNameField='" + dbNameField + '\'' +
-                ", loginField='" + loginField + '\'' +
-                ", passwordField='" + passwordField + '\'' +
-                ", scriptFolderField='" + scriptFolderField + '\'' +
-                ", ipAddressField='" + ipAddressField + '\'' +
-                ", port='" + port + '\'' +
-                ", dbConnectionType='" + dbConnectionType + '\'' +
-                '}';
+    @JsonIgnore
+    public String getTableDisplayString() {
+        return dbNameField+"@"+ipAddressField+","+port;
     }
 }
