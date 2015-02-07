@@ -3,6 +3,8 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -34,24 +36,33 @@ public class UuidRenderer extends DefaultTableCellRenderer {
         c.setFont(new Font("Sans Serif", Font.PLAIN, 12));
 
         if(item instanceof CassConfigItems){
-            if (isSelected) {
-                c.setForeground(Color.BLACK);
-                c.setBackground(new Color(180,200,255));
-            } else {
-                c.setForeground(Color.BLACK);
-                c.setBackground(new Color(200,220,255));
+            if(column==0){
+                return new JLabel(CassConfigUtil.cassandraSmall);
+            }else {
+                if (isSelected) {
+                    c.setForeground(new Color(20, 20, 100));
+                    c.setBackground(new Color(230,230,230));
+                } else {
+                    c.setForeground(new Color(20, 20, 100));
+                    c.setBackground(Color.white);
 
+                }
             }
         }
 
         if(item instanceof SqlConfigItems){
-            if (isSelected) {
+            if(column==0){
+                JLabel label = new JLabel(SqlConfigUtil.sqlserverSmall);
+                label.setPreferredSize(new Dimension(30,30));
+                return label;
+            }
 
-                c.setForeground(Color.BLACK);
-                c.setBackground(new Color(245,200,245));
+            if (isSelected) {
+                c.setForeground(new Color(100,20,20));
+                c.setBackground(new Color(230,230,230));
             } else {
-                c.setForeground(Color.BLACK);
-                c.setBackground(new Color(255,220,255));
+                c.setForeground(new Color(100,20,20));
+                c.setBackground(Color.WHITE);
 
             }
         }

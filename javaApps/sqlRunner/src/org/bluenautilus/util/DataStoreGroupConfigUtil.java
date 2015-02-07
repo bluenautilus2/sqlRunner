@@ -2,6 +2,7 @@ package org.bluenautilus.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.DataStoreGroupList;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -26,9 +27,6 @@ public class DataStoreGroupConfigUtil {
 
     private static DataStoreGroupList dataStoreGroupList = new DataStoreGroupList();
 
-    public static void removeDataStoreGroup(UUID goneGroup){
-        dataStoreGroupList.removeDataStoreGroup(goneGroup);
-    }
 
     public static void saveOffCurrent(DataStoreGroupList newList) {
         dataStoreGroupList = newList;
@@ -70,19 +68,12 @@ public class DataStoreGroupConfigUtil {
                 System.out.println(mapper.writeValueAsString(dataStoreGroupList));
 
             } catch (JsonGenerationException e) {
-
                 log.error(e);
-
             } catch (JsonMappingException e) {
-
                 log.error(e);
-
             } catch (IOException e) {
-
                 log.error(e);
-
             }
-
 
         } catch (Exception ex) {
             log.error(ex);
@@ -91,30 +82,24 @@ public class DataStoreGroupConfigUtil {
 
     }
 
-    public static DataStoreGroupList readInConfiguration(){
+    public static DataStoreGroupList readInConfiguration() {
 
         ObjectMapper mapper = new ObjectMapper();
-          File file = new File(CONFIG_FILENAME);
+        File file = new File(CONFIG_FILENAME);
         try {
 
             // read from file, convert it to user class
-            dataStoreGroupList = mapper.readValue(file,DataStoreGroupList.class);
+            dataStoreGroupList = mapper.readValue(file, DataStoreGroupList.class);
 
             // display to console
             System.out.println(dataStoreGroupList);
 
         } catch (JsonGenerationException e) {
-
             log.error(e);
-
         } catch (JsonMappingException e) {
-
             log.error(e);
-
         } catch (IOException e) {
-
             log.error(e);
-
         }
         return dataStoreGroupList;
     }
@@ -126,6 +111,22 @@ public class DataStoreGroupConfigUtil {
     public static void setDataStoreGroupList(DataStoreGroupList dataStoreGroupList) {
         DataStoreGroupConfigUtil.dataStoreGroupList = dataStoreGroupList;
     }
+
+    public static void addAndSave(DataStoreGroup newGroup) {
+        DataStoreGroupConfigUtil.getDataStoreGroupList().addGroup(newGroup);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
+    public static void removeAndSave(UUID goneGroup) {
+        dataStoreGroupList.removeDataStoreGroup(goneGroup);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
+    public static void replaceWithUpdatesAndSave(DataStoreGroup updatedGroup){
+       DataStoreGroupConfigUtil.dataStoreGroupList.replace(updatedGroup);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
 }
 
 

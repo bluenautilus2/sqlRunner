@@ -1,14 +1,12 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
-import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
-import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.util.CassConfigUtil;
-import org.bluenautilus.util.SqlConfigUtil;
+import org.bluenautilus.data.UuidItem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -23,62 +21,62 @@ public class EditDataStoreGroupDialog extends JPanel {
     JButton toLeftButton = new JButton("<");
     JButton toRightButton = new JButton(">");
 
-    DataStoreTableModel tableModelFull = null;
-    DataStoreTableModel tableModelSublist = null;
-    DataStoreTable tableSublist = null;
-    DataStoreTable tableFull = null;
-
-    JPanel DatabaseLeftPanel = null;
-    JPanel GroupingRightPanel = null;
-
     /**
      * If group is null, we are making a new group.
      *
      * @param group
      */
-    public EditDataStoreGroupDialog(DataStoreGroup group) {
+    public EditDataStoreGroupDialog(DataStoreGroup group,final DataStoreTable tableFull, final DataStoreTable tableSublist) {
 
         this.setLayout(new GridBagLayout());
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
 
-        tableModelFull = new DataStoreTableModel(CassConfigUtil.getCassConfigItemsList(), SqlConfigUtil.getSqlConfigItemsList());
-        tableFull = new DataStoreTable(tableModelFull);
-
-        if (group != null) {
-            nickNameField.setText(group.getNickname());
-            List<CassConfigItems> cassItems = CassConfigUtil.getUuidList(group.getDataStores());
-            List<SqlConfigItems> sqlItems = SqlConfigUtil.getUuidList(group.getDataStores());
-            DataStoreTableModel tableModelSublist = new DataStoreTableModel(cassItems, sqlItems);
-            tableSublist = new DataStoreTable(tableModelSublist);
-        } else {
-            DataStoreTableModel tableModelSublist = new DataStoreTableModel();
-            tableSublist = new DataStoreTable(tableModelSublist);
-        }
+        nickNameField.setText(group.getNickname());
 
         JPanel groupingRightPanel = new JPanel(new BorderLayout());
         JPanel nickNamePanel = new JPanel(new BorderLayout());
         nickNamePanel.add(nicknameLabel, BorderLayout.WEST);
         nickNamePanel.add(nickNameField, BorderLayout.EAST);
         groupingRightPanel.add(nickNamePanel, BorderLayout.NORTH);
-        groupingRightPanel.add(tableSublist, BorderLayout.CENTER);
+        JScrollPane subScroll = new JScrollPane(tableSublist);
+        groupingRightPanel.add(subScroll, BorderLayout.CENTER);
 
         JPanel overAndBackPanel = new JPanel(new GridBagLayout());
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
         // int anchor, int fill,
-        //Insets insets, int ipadx, int ipady
+        //Insets insets(top,left,bottom,right), int ipadx, int ipady
+
+        toRightButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = tableFull.getSelectedRow();
+                UuidItem selectedObject = tableFull.getDataStoreTableModel().getRowObject(selected);
+                tableSublist.getDataStoreTableModel().addUuidItem(selectedObject);
+            }
+        });
+
+        toLeftButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = tableSublist.getSelectedRow();
+                UuidItem selectedObject = tableSublist.getDataStoreTableModel().getRowObject(selected);
+                tableSublist.getDataStoreTableModel().removeUuidItem(selectedObject);
+            }
+        });
 
         overAndBackPanel.add(toRightButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(2, 2, 100, 100), 2, 2));
+                new Insets(50,2,50,2), 2, 2));
         overAndBackPanel.add(toLeftButton, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(2, 2, 100, 100), 2, 2));
+                new Insets(50,2,50,2), 2, 2));
 
         JPanel databaseLeftPanel = new JPanel(new BorderLayout());
         databaseLeftPanel.add(dbLabel, BorderLayout.NORTH);
-        databaseLeftPanel.add(tableFull, BorderLayout.CENTER);
+        JScrollPane fullScroll = new JScrollPane(tableFull);
+        databaseLeftPanel.add(fullScroll, BorderLayout.CENTER);
 
         this.add(databaseLeftPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
@@ -91,5 +89,9 @@ public class EditDataStoreGroupDialog extends JPanel {
         this.add(groupingRightPanel, new GridBagConstraints(2, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
+    }
+
+    public JTextField getNickNameField() {
+        return nickNameField;
     }
 }

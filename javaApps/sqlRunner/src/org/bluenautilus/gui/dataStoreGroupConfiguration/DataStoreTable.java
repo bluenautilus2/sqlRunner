@@ -21,6 +21,7 @@ public class DataStoreTable extends JTable {
         this.render = new UuidRenderer();
         this.setDefaultRenderer(String.class, this.render);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
     }
 
     public TableCellRenderer getCellRenderer(int row, int column) {
@@ -28,6 +29,14 @@ public class DataStoreTable extends JTable {
     }
 
     public void fixColumns() {
-        this.getColumnModel().getColumn(0).setPreferredWidth(200);
+        this.getColumnModel().getColumn(0).setPreferredWidth(15);
     }
+
+    public DataStoreTableModel getDataStoreTableModel(){
+        return mymodel;
+    }
+
 }
+
+
+

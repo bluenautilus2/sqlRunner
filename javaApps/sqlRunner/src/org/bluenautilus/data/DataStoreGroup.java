@@ -3,29 +3,37 @@ package org.bluenautilus.data;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by bstevens on 1/25/15.
  */
 public class DataStoreGroup extends UuidItem {
-
-
-
-    private ArrayList<UUID> dataStores = new ArrayList<>();
+    private List<UUID> dataStores = new ArrayList<>();
 
     private String nickname = null;
 
     private boolean ignoreErrors = false;
     private boolean ignoreNoRun = false;
 
-    public ArrayList<UUID> getDataStores() {
+    public List<UUID> getDataStores() {
         return dataStores;
     }
 
-    public void setDataStores(ArrayList<UUID> dataStores) {
+    public void setDataStores(List<UUID> dataStores) {
         this.dataStores = dataStores;
     }
+
+    public void setDataStoreItems(List<UuidItem> dataStores) {
+        List<UUID> plainIds = new ArrayList<>();
+        for(UuidItem item:dataStores){
+            plainIds.add(item.getUniqueId());
+        }
+        this.setDataStores(plainIds);
+
+    }
+
 
     public void addDataStoreUUID(UUID dataStore){
         this.dataStores.add(dataStore);

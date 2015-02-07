@@ -2,12 +2,13 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.CassConfigItemsList;
-import org.bluenautilus.data.DataStoreGroup;
-import org.bluenautilus.data.DataStoreGroupList;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlConfigItemsList;
 import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,31 +19,25 @@ import java.util.List;
  * Time: 11:53 AM
  */
 public class DataStoreTableModel extends AbstractTableModel {
-    private final String columnNames[] = {"Data Stores"};
+    private final String columnNames[] = {"Type", "Data Stores"};
     private List<UuidItem> dataStoreList = new ArrayList<UuidItem>();
 
-    public DataStoreTableModel(DataStoreGroupList newList) {
-        int i=0;
-        for(DataStoreGroup group: newList.getDataStoreGroupList()){
-            group.setTableRowIndex(i);
-            dataStoreList.add(group);
-            i++;
-        }
+    public static final int IMAGE_HEIGHT_IN_PIXELS = 20;
+
+
+    public DataStoreTableModel(CassConfigItemsList cassList, SqlConfigItemsList sqlList) {
+        this(cassList.getCassConfigItems(), sqlList.getSqlConfigItems());
     }
 
-    public DataStoreTableModel(CassConfigItemsList cassList,SqlConfigItemsList sqlList) {
-      this(cassList.getCassConfigItems(),sqlList.getSqlConfigItems());
-    }
-
-    public DataStoreTableModel(List<CassConfigItems> cassList,List<SqlConfigItems> sqlList) {
-        int i=0;
-        for(CassConfigItems items: cassList){
+    public DataStoreTableModel(List<CassConfigItems> cassList, List<SqlConfigItems> sqlList) {
+        int i = 0;
+        for (CassConfigItems items : cassList) {
             items.setTableRowIndex(i);
             dataStoreList.add(items);
             i++;
         }
         //notice i is not reset
-        for(SqlConfigItems items: sqlList){
+        for (SqlConfigItems items : sqlList) {
             items.setTableRowIndex(i);
             dataStoreList.add(items);
             i++;
@@ -55,7 +50,7 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
-        return this.columnNames[0];
+        return this.columnNames[col];
     }
 
     @Override
@@ -68,7 +63,7 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 1;
+        return 2;
     }
 
     public boolean isEmpty() {
@@ -85,7 +80,19 @@ public class DataStoreTableModel extends AbstractTableModel {
             return null;
         }
 
-       return this.dataStoreList.get(rowIndex);
+        UuidItem item = dataStoreList.get(rowIndex);
+        if (columnIndex == 1) {
+            return item;
+        }
+        if (columnIndex == 0) {
+            if (item instanceof SqlConfigItems) {
+                return SqlConfigUtil.sqlserverSmall;
+            }
+            if (item instanceof CassConfigItems) {
+                return CassConfigUtil.cassandraSmall;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -95,18 +102,39 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     @Override
     public Class getColumnClass(int c) {
-       return UuidItem.class;
+        if (c == 1) {
+            return UuidItem.class;
+        }
+        if (c == 0) {
+            return ImageIcon.class;
+        }
+        return null;
     }
+
 
     public UuidItem getRowObject(int index) {
         if (index < 0 || index >= this.dataStoreList.size()) {
             return null;
         }
-        return this.dataStoreList.get(index);
+        return dataStoreList.get(index);
     }
 
-    public List<UuidItem> getAllRows(){
+    public List<UuidItem> getAllRows() {
         return this.dataStoreList;
+    }
+
+    public void addUuidItem(UuidItem newItem) {
+        if (!this.dataStoreList.contains(newItem)) {
+            this.dataStoreList.add(newItem);
+            this.fireTableRowsInserted(dataStoreList.size() - 1, dataStoreList.size() - 1);
+        }
+
+    }
+
+    public void removeUuidItem(UuidItem oldItem) {
+        int i = this.dataStoreList.indexOf(oldItem);
+        this.dataStoreList.remove(oldItem);
+        this.fireTableRowsDeleted(i, i);
     }
 
 }

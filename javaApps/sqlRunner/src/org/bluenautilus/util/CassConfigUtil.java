@@ -4,10 +4,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.CassConfigItemsList;
+import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreTableModel;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +30,10 @@ public class CassConfigUtil {
 
     private static final String CONFIG_FILENAME = "cassconfig.json";
     private static final String BAK_FILENAME = "cassconfig.json.old";
+    private static final String BIG_ICON = "cassandra_big.jpg";
+    private static final String ICON = "cassandra.png";
+    public static ImageIcon cassandraBig = null;
+    public static ImageIcon cassandraSmall = null;
 
     private static CassConfigItemsList cassConfigItemsList = new CassConfigItemsList();
 
@@ -77,8 +85,6 @@ public class CassConfigUtil {
                 log.error(e);
 
             }
-
-
         } catch (Exception ex) {
             log.error(ex);
         }
@@ -86,14 +92,29 @@ public class CassConfigUtil {
 
     }
 
-    public static synchronized CassConfigItemsList readInConfiguration(){
+    public static synchronized CassConfigItemsList readInConfiguration() {
+
+        Image small = null;
+        Image big = null;
+        try {
+            small = ImageIO.read(new File(ICON));
+            big = ImageIO.read(new File(BIG_ICON));
+        } catch (IOException ioe) {
+            log.error(ioe);
+        }
+
+        small = small.getScaledInstance(DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, 0);
+        big = big.getScaledInstance(50, 50, 0);
+        cassandraBig = new ImageIcon(big);
+        cassandraSmall = new ImageIcon(small);
+
 
         ObjectMapper mapper = new ObjectMapper();
-          File file = new File(CONFIG_FILENAME);
+        File file = new File(CONFIG_FILENAME);
         try {
 
             // read from file, convert it to user class
-            cassConfigItemsList = mapper.readValue(file,CassConfigItemsList.class);
+            cassConfigItemsList = mapper.readValue(file, CassConfigItemsList.class);
 
             // display to console
             System.out.println(cassConfigItemsList);
@@ -122,10 +143,10 @@ public class CassConfigUtil {
         CassConfigUtil.cassConfigItemsList = cassConfigItemsList;
     }
 
-    public static List<CassConfigItems> getUuidList(List<UUID> itemsToGet){
+    public static List<CassConfigItems> getUuidList(List<UUID> itemsToGet) {
         List<CassConfigItems> matches = new ArrayList<>();
-        for(CassConfigItems item:cassConfigItemsList.getCassConfigItems()){
-            if(itemsToGet.contains(item.getUniqueId())){
+        for (CassConfigItems item : cassConfigItemsList.getCassConfigItems()) {
+            if (itemsToGet.contains(item.getUniqueId())) {
                 matches.add(item);
             }
         }

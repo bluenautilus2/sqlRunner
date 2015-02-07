@@ -74,4 +74,15 @@ public class DataStoreGroupList {
                 "dataStoreGroupList=" + dataStoreGroupList +
                 '}';
     }
+
+    public void replace(DataStoreGroup updated){
+        DataStoreGroup groupToRemove = null;
+        for(DataStoreGroup group:dataStoreGroupList){
+            if(updated.getUniqueId().equals(group.getUniqueId())){
+                groupToRemove = group;
+            }
+        }
+        dataStoreGroupList.remove(groupToRemove);
+        this.dataStoreGroupList.add(updated);
+    }
 }
