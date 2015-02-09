@@ -25,9 +25,10 @@ public class DataStoreGroup extends UuidItem {
         this.dataStores = dataStores;
     }
 
+    @JsonIgnore
     public void setDataStoreItems(List<UuidItem> dataStores) {
         List<UUID> plainIds = new ArrayList<>();
-        for(UuidItem item:dataStores){
+        for (UuidItem item : dataStores) {
             plainIds.add(item.getUniqueId());
         }
         this.setDataStores(plainIds);
@@ -35,7 +36,7 @@ public class DataStoreGroup extends UuidItem {
     }
 
 
-    public void addDataStoreUUID(UUID dataStore){
+    public void addDataStoreUUID(UUID dataStore) {
         this.dataStores.add(dataStore);
     }
 
@@ -90,11 +91,11 @@ public class DataStoreGroup extends UuidItem {
     }
 
     public DataStoreGroup() {
-
+       //remember this is json pojo
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.nickname;
     }
 
@@ -102,5 +103,19 @@ public class DataStoreGroup extends UuidItem {
     @JsonIgnore
     public String getTableDisplayString() {
         return nickname;
+    }
+
+    @Override
+    @JsonIgnore
+    public DataStoreGroup clone() {
+        DataStoreGroup cloned = new DataStoreGroup();
+        cloned.setNickname(this.getNickname());
+        cloned.generateUniqueId();
+        List<UUID> newList = new ArrayList<>();
+        for (UUID id : this.getDataStores()) {
+            newList.add(id);
+        }
+        cloned.setDataStores(newList);
+        return cloned;
     }
 }

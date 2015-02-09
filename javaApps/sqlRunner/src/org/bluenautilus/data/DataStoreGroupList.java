@@ -82,6 +82,9 @@ public class DataStoreGroupList {
                 groupToRemove = group;
             }
         }
+        if(groupToRemove==null){
+            groupToRemove = updated;
+        }
         dataStoreGroupList.remove(groupToRemove);
         this.dataStoreGroupList.add(updated);
     }

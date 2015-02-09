@@ -67,6 +67,7 @@ public class OldExecutable {
         SqlScriptTablePanel tableHolderPanelCass = new SqlScriptTablePanel();
         ScriptViewPanel scriptViewPanelCass = new ScriptViewPanel();
         OutputPanel outputPanelCass = new OutputPanel();
+
         CassButtonPanel buttonPanelCass = new CassButtonPanel(new CassConfigItems());
 
         JSplitPane innerSplitPaneCass = new JSplitPane();

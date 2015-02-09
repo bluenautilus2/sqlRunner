@@ -23,6 +23,7 @@ public class ParentPlusMinusPanel extends JPanel {
     public static final String PLUS_IMAGE = "green_plus_box.png";
     public static final String MINUS_IMAGE = "red-minus-box.png";
     public static final String GEAR_IMAGE = "grey-gear.png";
+    public static final String COPY_IMAGE = "copy.png";
     public static final Integer IMAGE_SIZE_IN_PIXELS = 20;
 
     private final List<PrettyButtonListener> listeners = new ArrayList<>();
@@ -30,8 +31,9 @@ public class ParentPlusMinusPanel extends JPanel {
     private JButton minusButton;
     private JButton plusButton;
     private JButton gearButton;
+    private JButton copyButton;
 
-    protected JPanel buttonPanel = new JPanel( new BorderLayout());
+    protected JPanel buttonPanel = new JPanel(new GridLayout(0,4));
 
     public ParentPlusMinusPanel() {
         super();
@@ -42,11 +44,13 @@ public class ParentPlusMinusPanel extends JPanel {
         Image image1 = null;
         Image image2 = null;
         Image image3 = null;
+        Image image4 = null;
 
         try {
             image1 = ImageIO.read(new File(MINUS_IMAGE));
             image2 = ImageIO.read(new File(PLUS_IMAGE));
             image3 = ImageIO.read(new File(GEAR_IMAGE));
+            image4 = ImageIO.read(new File(COPY_IMAGE));
         } catch (IOException ioe) {
             log.error(ioe);
         }
@@ -63,6 +67,8 @@ public class ParentPlusMinusPanel extends JPanel {
         image3 = image3.getScaledInstance(IMAGE_SIZE_IN_PIXELS, IMAGE_SIZE_IN_PIXELS, 0);
         ImageIcon gearIcon = new ImageIcon(image3);
 
+        image4 = image4.getScaledInstance(IMAGE_SIZE_IN_PIXELS, IMAGE_SIZE_IN_PIXELS, 0);
+        ImageIcon copyIcon = new ImageIcon(image4);
 
         minusButton = new JButton(minusIcon);
         minusButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.MINUS));
@@ -70,10 +76,13 @@ public class ParentPlusMinusPanel extends JPanel {
         plusButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.PLUS));
         gearButton = new JButton(gearIcon);
         gearButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.GEAR));
+        copyButton = new JButton(copyIcon);
+        copyButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.COPY));
 
-        buttonPanel.add(minusButton, BorderLayout.CENTER);
-        buttonPanel.add(plusButton, BorderLayout.WEST);
-        buttonPanel.add(gearButton, BorderLayout.EAST);
+        buttonPanel.add(plusButton);
+        buttonPanel.add(gearButton);
+        buttonPanel.add(copyButton);
+        buttonPanel.add(minusButton);
     }
 
 

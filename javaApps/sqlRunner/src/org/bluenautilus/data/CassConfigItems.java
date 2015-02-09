@@ -3,12 +3,12 @@ package org.bluenautilus.data;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.io.File;
+import java.util.UUID;
 
 /**
  * Created by bstevens on 8/24/14.
  */
 public class CassConfigItems extends UuidItem {
-
 
     private String scriptFolderField = "/home/bstevens/repos/App/tools/CQL_Update_Scripts";
     private String hostField = "nucleus";
@@ -16,16 +16,17 @@ public class CassConfigItems extends UuidItem {
     private String namespace = "pa";
     private String certificateFileField= "/home/bstevens/.ssh/stratum-west.pem";
 
-    public CassConfigItems(String scriptFolderField, String hostField, String useCertificate, String namespace, String certificateFileField) {
+    public CassConfigItems(UUID uuid,String scriptFolderField, String hostField, String useCertificate, String namespace, String certificateFileField) {
         this.scriptFolderField = scriptFolderField;
         this.hostField = hostField;
         this.useCertificate = useCertificate;
         this.namespace = namespace;
         this.certificateFileField = certificateFileField;
+        this.uniqueId = uuid;
     }
 
     public CassConfigItems(){
-        //does nothing
+        //this is json pojo
     }
 
     public String getScriptFolderField() {
@@ -72,6 +73,7 @@ public class CassConfigItems extends UuidItem {
         return new Boolean(this.getUseCertificate());
     }
 
+    @JsonIgnore
     public boolean certFileExists(){
         File file = new File(this.certificateFileField);
         return file.exists();

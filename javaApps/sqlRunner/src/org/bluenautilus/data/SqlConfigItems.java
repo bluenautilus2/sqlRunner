@@ -3,6 +3,8 @@ package org.bluenautilus.data;
 import org.bluenautilus.db.DBConnectionType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import java.util.UUID;
+
 
 /**
  * User: bluenautilus2
@@ -20,33 +22,19 @@ public class SqlConfigItems extends UuidItem {
     private String port = "1433";
     private String dbConnectionType = DBConnectionType.getDefaultForThisOS().toString();
 
-    public SqlConfigItems(String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType) {
-        if (dbNameField != null) {
-            this.dbNameField = dbNameField;
-        }
-        if (loginField != null) {
-            this.loginField = loginField;
-        }
-        if (passwordField != null) {
-            this.passwordField = passwordField;
-        }
-        if (scriptFolderField != null) {
-            this.scriptFolderField = scriptFolderField;
-        }
-        if (ipAddressField != null) {
-            this.ipAddressField = ipAddressField;
-        }
-        if (port != null) {
-            this.port = port;
-        }
-        if (dbConnectionType != null) {
-            this.dbConnectionType = dbConnectionType;
-        }
+    public SqlConfigItems(UUID uuid, String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType) {
+        this.dbNameField = dbNameField;
+        this.loginField = loginField;
+        this.passwordField = passwordField;
+        this.scriptFolderField = scriptFolderField;
+        this.ipAddressField = ipAddressField;
+        this.port = port;
+        this.dbConnectionType = dbConnectionType;
+        this.uniqueId = uuid;
     }
 
-
     public SqlConfigItems() {
-        //does nothing
+        //do nothing.. remember this is json pojo
     }
 
 

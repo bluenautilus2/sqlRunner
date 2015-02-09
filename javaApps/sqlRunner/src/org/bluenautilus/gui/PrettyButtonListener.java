@@ -11,7 +11,8 @@ public interface PrettyButtonListener
     public enum ButtonType{
         PLUS,
         MINUS,
-        GEAR;
+        GEAR,
+        COPY;
     }
 
 }

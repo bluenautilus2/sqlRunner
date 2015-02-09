@@ -185,6 +185,7 @@ public class CassButtonPanel extends JPanel {
 
     public CassConfigItems pullFieldsFromGui() {
         return new CassConfigItems(
+                null,
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
                 getStringForConfigCheckbox(this.useCert),

@@ -26,12 +26,13 @@ public class EditDataStoreGroupDialog extends JPanel {
      *
      * @param group
      */
-    public EditDataStoreGroupDialog(DataStoreGroup group,final DataStoreTable tableFull, final DataStoreTable tableSublist) {
+    public EditDataStoreGroupDialog(String nickname,final DataStoreTable tableFull, final DataStoreTable tableSublist) {
 
         this.setLayout(new GridBagLayout());
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
 
-        nickNameField.setText(group.getNickname());
+
+        nickNameField.setText(nickname);
 
         JPanel groupingRightPanel = new JPanel(new BorderLayout());
         JPanel nickNamePanel = new JPanel(new BorderLayout());

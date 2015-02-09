@@ -1,7 +1,9 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
-import org.bluenautilus.data.DataStoreGroupList;
+import org.bluenautilus.data.SqlConfigItems;
+import org.bluenautilus.data.UuidItem;
 import org.bluenautilus.gui.ParentPlusMinusPanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
@@ -23,11 +25,6 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
 
     public void addNewGroupChosenListener(NewDataStoreGroupChosenListener listener) {
         this.newGroupChosenListeners.add(listener);
-    }
-
-    @Override
-    public void dataStoreConfigChanged(List<DataStoreGroupList> newOrChangedItems) {
-
     }
 
     public DataStoreGroup getCurrentJComboBox() {
@@ -105,5 +102,28 @@ this.setLayout(new GridBagLayout());
         });
     }
 
+    @Override
+    public void newSqlConfig(SqlConfigItems newSql) {
 
+    }
+
+    @Override
+    public void newCassConfig(CassConfigItems newCass) {
+
+    }
+
+    @Override
+    public void updatedSqlConfig(SqlConfigItems updatedSql) {
+
+    }
+
+    @Override
+    public void updatedCassConfig(CassConfigItems updatedCass) {
+
+    }
+
+    @Override
+    public void deletedDataStore(UuidItem deletedItem) {
+
+    }
 }

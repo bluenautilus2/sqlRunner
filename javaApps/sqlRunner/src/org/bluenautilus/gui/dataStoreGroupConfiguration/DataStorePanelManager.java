@@ -5,9 +5,10 @@ import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.OldExecutable;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
-import org.bluenautilus.data.DataStoreGroupList;
 import org.bluenautilus.data.SqlConfigItems;
+import org.bluenautilus.data.UuidItem;
 import org.bluenautilus.gui.PrettyButtonListener;
+import org.bluenautilus.gui.SqlOrCassEditorManager;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.SqlConfigUtil;
@@ -28,15 +29,13 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
     DataStoreTable tableSublist = null;
     DataStoreTable tableFull = null;
 
+    SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(this);
+
     public DataStorePanelManager(DataStoreGroupPanel dsgPanel) {
         myDsgPanel = dsgPanel;
         dsgPanel.addListener(this);
     }
 
-    @Override
-    public void dataStoreConfigChanged(List<DataStoreGroupList> newOrChangedItems) {
-
-    }
 
     @Override
     public void prettyButtonClicked(ButtonType type) {
@@ -53,7 +52,9 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
             case PLUS:
                 launchDialog(null, type);
                 break;
-
+            case COPY:
+                DataStoreGroup clonedGroup = group.clone();
+                launchDialog(clonedGroup, type);
         }
 
     }
@@ -72,8 +73,8 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
             tableModelSublist = new DataStoreTableModel();
             tableSublist = new DataStoreTable(tableModelSublist);
         }
-
-        final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(editedGroup, tableFull, tableSublist);
+        String nickname = editedGroup != null ? editedGroup.getNickname() : "";
+        final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(nickname, tableFull, tableSublist);
 
         final int i = JOptionPane.showOptionDialog(myDsgPanel,
                 dialog,
@@ -91,8 +92,9 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
                     editedGroup.setDataStoreItems(tableSublist.getDataStoreTableModel().getAllRows());
                     DataStoreGroupConfigUtil.replaceWithUpdatesAndSave(editedGroup);
                 }
-            } else {  //it's new
+            } else {  //it's new (plus or cloned)
                 DataStoreGroup newGroup = new DataStoreGroup();
+                newGroup.generateUniqueId();
                 newGroup.setNickname(dialog.getNickNameField().getText());
                 newGroup.setDataStoreItems(tableSublist.getDataStoreTableModel().getAllRows());
                 DataStoreGroupConfigUtil.addAndSave(newGroup);
@@ -103,5 +105,28 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
 
     }
 
+    @Override
+    public void newSqlConfig(SqlConfigItems newSql) {
 
+    }
+
+    @Override
+    public void newCassConfig(CassConfigItems newCass) {
+
+    }
+
+    @Override
+    public void updatedSqlConfig(SqlConfigItems updatedSql) {
+
+    }
+
+    @Override
+    public void updatedCassConfig(CassConfigItems updatedCass) {
+
+    }
+
+    @Override
+    public void deletedDataStore(UuidItem deletedItem) {
+
+    }
 }

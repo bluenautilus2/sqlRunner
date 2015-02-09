@@ -10,7 +10,6 @@ public abstract class UuidItem {
     UUID uniqueId = null;
     Integer tableRowIndex = 0;
 
-
     public UUID getUniqueId() {
         return uniqueId;
     }
@@ -18,7 +17,6 @@ public abstract class UuidItem {
     public void setUniqueId(UUID uniqueId) {
         this.uniqueId = uniqueId;
     }
-
 
     public void generateUniqueId() {
         uniqueId = UUID.randomUUID();
@@ -32,5 +30,22 @@ public abstract class UuidItem {
 
     public void setTableRowIndex(Integer tableRowIndex) {
         this.tableRowIndex = tableRowIndex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UuidItem)) return false;
+
+        UuidItem uuidItem = (UuidItem) o;
+
+        if (uniqueId != null ? !uniqueId.equals(uuidItem.uniqueId) : uuidItem.uniqueId != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return uniqueId != null ? uniqueId.hashCode() : 0;
     }
 }
