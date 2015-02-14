@@ -45,7 +45,7 @@ public class SqlConfigPanel extends JPanel {
     }
 
     private void init() {
-
+        this.setLayout(new BorderLayout());
         this.setFields(this.fields);
 
         JLabel dbNameLabel = new JLabel("Database Name");
@@ -55,7 +55,7 @@ public class SqlConfigPanel extends JPanel {
         JLabel folderName = new JLabel("SQL Script Folder");
         JLabel portLabel = new JLabel("Port");
         JLabel dbConnectionTypeLabel = new JLabel("DB Connection Method");
-        FolderOpenButton openScriptFolderButton = new FolderOpenButton(this,this.scriptFolderField);
+        FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
 
         this.initDBConnectionDropDown();
 
@@ -124,14 +124,15 @@ public class SqlConfigPanel extends JPanel {
 
         //this fills up three spots
         JPanel scriptHolder = new JPanel(new BorderLayout());
-        scriptHolder.add(this.scriptFolderField,BorderLayout.WEST);
-        scriptHolder.add(openScriptFolderButton,BorderLayout.EAST);
+        scriptHolder.add(this.scriptFolderField, BorderLayout.WEST);
+        scriptHolder.add(openScriptFolderButton, BorderLayout.EAST);
         centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
 
         centerPanel.setBorder(new LineBorder(this.borderColor));
+        this.add(centerPanel, BorderLayout.CENTER);
 
     }
 
@@ -163,9 +164,9 @@ public class SqlConfigPanel extends JPanel {
         String connectionString = fields.getDbConnectionType();
         DBConnectionType userSaved = DBConnectionType.getEnum(connectionString);
 
-        if(this.dbConnectionTypeField!=null){
+        if (this.dbConnectionTypeField != null) {
             this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
-        }else{
+        } else {
             String[] options = this.buildDBConnectionTypes();
             this.dbConnectionTypeField = new JComboBox(options);
             this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
@@ -175,7 +176,7 @@ public class SqlConfigPanel extends JPanel {
 
 
     public DBConnectionType getSelectedDBConnectionType() {
-        String type = (String)dbConnectionTypeField.getModel().getSelectedItem();
+        String type = (String) dbConnectionTypeField.getModel().getSelectedItem();
         return DBConnectionType.getEnum(type);
     }
 
