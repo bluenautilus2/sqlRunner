@@ -137,4 +137,18 @@ public class DataStoreTableModel extends AbstractTableModel {
         this.fireTableRowsDeleted(i, i);
     }
 
+    public void replaceUuidItem(UuidItem updated) {
+        UuidItem foundObj = null;
+        for (UuidItem item : this.dataStoreList) {
+            if (item.getUniqueId().equals(updated.getUniqueId())) {
+                foundObj = item;
+            }
+        }
+        if (foundObj != null) {
+            int i = this.dataStoreList.indexOf(foundObj);
+            this.dataStoreList.set(i, updated);
+            this.fireTableRowsUpdated(i, i);
+        }
+    }
+
 }

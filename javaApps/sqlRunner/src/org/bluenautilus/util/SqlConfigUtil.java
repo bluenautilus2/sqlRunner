@@ -2,6 +2,7 @@ package org.bluenautilus.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlConfigItemsList;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreTableModel;
@@ -37,6 +38,10 @@ public class SqlConfigUtil {
 
     private static SqlConfigItemsList sqlConfigItemsList = new SqlConfigItemsList();
 
+
+    public static void saveOffCurrent() {
+        saveOffCurrent(sqlConfigItemsList);
+    }
 
     public static void saveOffCurrent(SqlConfigItemsList newList) {
        sqlConfigItemsList = newList;
@@ -156,6 +161,24 @@ public class SqlConfigUtil {
         }
         return matches;
     }
+
+
+
+    public static void addAndSave(SqlConfigItems items) {
+        SqlConfigUtil.getSqlConfigItemsList().addSqlConfigItem(items);
+        SqlConfigUtil.saveOffCurrent();
+    }
+
+    public static void removeAndSave(SqlConfigItems gone) {
+        SqlConfigUtil.getSqlConfigItemsList().removeSqlConfigItem(gone.getUniqueId());
+        SqlConfigUtil.saveOffCurrent();
+    }
+
+    public static void replaceWithUpdatesAndSave(SqlConfigItems updated){
+        SqlConfigUtil.getSqlConfigItemsList().replace(updated);
+        SqlConfigUtil.saveOffCurrent();
+    }
+
 }
 
 

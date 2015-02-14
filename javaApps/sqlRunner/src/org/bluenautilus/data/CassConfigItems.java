@@ -61,6 +61,8 @@ public class CassConfigItems extends UuidItem {
         this.certificateFileField = certificateFileField;
     }
 
+
+
     public String getNamespace() {
         return namespace;
     }
@@ -114,4 +116,18 @@ public class CassConfigItems extends UuidItem {
     public String getTableDisplayString() {
         return namespace+"@"+hostField;
     }
+
+    public UuidItem clone(){
+        CassConfigItems cloned = new CassConfigItems();
+        cloned.generateUniqueId();
+        cloned.setHostField(this.getHostField());
+        cloned.setUseCertificate(this.getUseCertificate());
+        cloned.setCertificateFileField(this.getCertificateFileField());
+        cloned.setScriptFolderField(this.getScriptFolderField());
+        cloned.setNamespace(this.getNamespace());
+
+        return cloned;
+    }
+
+
 }

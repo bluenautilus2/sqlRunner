@@ -32,7 +32,7 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
     }
 
     public void init() {
-this.setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
         loadImages();
         initComboBox();
 

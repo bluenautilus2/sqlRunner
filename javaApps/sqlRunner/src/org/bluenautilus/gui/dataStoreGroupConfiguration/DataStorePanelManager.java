@@ -6,7 +6,6 @@ import org.bluenautilus.OldExecutable;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.data.UuidItem;
 import org.bluenautilus.gui.PrettyButtonListener;
 import org.bluenautilus.gui.SqlOrCassEditorManager;
 import org.bluenautilus.util.CassConfigUtil;
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * Created by bstevens on 1/27/15.
  */
-public class DataStorePanelManager implements PrettyButtonListener, DataStoreConfigChangedListener {
+public class DataStorePanelManager implements PrettyButtonListener {
 
     private static Log log = LogFactory.getLog(OldExecutable.class);
     DataStoreGroupPanel myDsgPanel = null;
@@ -29,11 +28,9 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
     DataStoreTable tableSublist = null;
     DataStoreTable tableFull = null;
 
-    SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(this);
-
     public DataStorePanelManager(DataStoreGroupPanel dsgPanel) {
         myDsgPanel = dsgPanel;
-        dsgPanel.addListener(this);
+        myDsgPanel.addListener(this);
     }
 
 
@@ -75,6 +72,8 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
         }
         String nickname = editedGroup != null ? editedGroup.getNickname() : "";
         final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(nickname, tableFull, tableSublist);
+        SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog,tableFull);
+        dialog.addListener(myEditorManager);
 
         final int i = JOptionPane.showOptionDialog(myDsgPanel,
                 dialog,
@@ -100,33 +99,9 @@ public class DataStorePanelManager implements PrettyButtonListener, DataStoreCon
                 DataStoreGroupConfigUtil.addAndSave(newGroup);
             }
             myDsgPanel.updateComboBoxList();
-
         }
 
     }
 
-    @Override
-    public void newSqlConfig(SqlConfigItems newSql) {
 
-    }
-
-    @Override
-    public void newCassConfig(CassConfigItems newCass) {
-
-    }
-
-    @Override
-    public void updatedSqlConfig(SqlConfigItems updatedSql) {
-
-    }
-
-    @Override
-    public void updatedCassConfig(CassConfigItems updatedCass) {
-
-    }
-
-    @Override
-    public void deletedDataStore(UuidItem deletedItem) {
-
-    }
 }

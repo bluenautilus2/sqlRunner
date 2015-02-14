@@ -1,7 +1,7 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
-import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.gui.ParentPlusMinusPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by bstevens on 1/31/15.
  */
-public class EditDataStoreGroupDialog extends JPanel {
+public class EditDataStoreGroupDialog extends ParentPlusMinusPanel {
 
     JLabel nicknameLabel = new JLabel("Nickname");
     JLabel dbLabel = new JLabel("Available Databases");
@@ -23,15 +23,11 @@ public class EditDataStoreGroupDialog extends JPanel {
 
     /**
      * If group is null, we are making a new group.
-     *
-     * @param group
      */
-    public EditDataStoreGroupDialog(String nickname,final DataStoreTable tableFull, final DataStoreTable tableSublist) {
-
+    public EditDataStoreGroupDialog(String nickname, final DataStoreTable tableFull, final DataStoreTable tableSublist) {
+        this.loadImages();
         this.setLayout(new GridBagLayout());
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
-
-
         nickNameField.setText(nickname);
 
         JPanel groupingRightPanel = new JPanel(new BorderLayout());
@@ -69,13 +65,16 @@ public class EditDataStoreGroupDialog extends JPanel {
 
         overAndBackPanel.add(toRightButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(50,2,50,2), 2, 2));
+                new Insets(50, 2, 50, 2), 2, 2));
         overAndBackPanel.add(toLeftButton, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(50,2,50,2), 2, 2));
+                new Insets(50, 2, 50, 2), 2, 2));
 
         JPanel databaseLeftPanel = new JPanel(new BorderLayout());
-        databaseLeftPanel.add(dbLabel, BorderLayout.NORTH);
+        JPanel labelAndPretties = new JPanel(new BorderLayout());
+        labelAndPretties.add(dbLabel, BorderLayout.WEST);
+        labelAndPretties.add(this.buttonPanel, BorderLayout.EAST);
+        databaseLeftPanel.add(labelAndPretties, BorderLayout.NORTH);
         JScrollPane fullScroll = new JScrollPane(tableFull);
         databaseLeftPanel.add(fullScroll, BorderLayout.CENTER);
 
@@ -95,4 +94,5 @@ public class EditDataStoreGroupDialog extends JPanel {
     public JTextField getNickNameField() {
         return nickNameField;
     }
+
 }

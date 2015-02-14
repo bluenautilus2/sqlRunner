@@ -72,7 +72,7 @@ public class TestJsonMarshalling {
             cassItems.setHostField("nucleus" + i);
             cassItems.setUseCertificate("true");
             cassItems.generateUniqueId();
-            cassList.addCassConfigItems(cassItems);
+            cassList.addCassConfigItem(cassItems);
         }
 
         CassConfigUtil.saveOffCurrent(cassList);

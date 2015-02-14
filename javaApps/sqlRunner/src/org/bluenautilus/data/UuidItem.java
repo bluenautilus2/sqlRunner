@@ -32,6 +32,8 @@ public abstract class UuidItem {
         this.tableRowIndex = tableRowIndex;
     }
 
+    public abstract UuidItem clone();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,5 +49,10 @@ public abstract class UuidItem {
     @Override
     public int hashCode() {
         return uniqueId != null ? uniqueId.hashCode() : 0;
+    }
+
+    @Override
+    public String toString(){
+        return getTableDisplayString();
     }
 }

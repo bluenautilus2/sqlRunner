@@ -131,6 +131,21 @@ public class SqlConfigItems extends UuidItem {
     @Override
     @JsonIgnore
     public String getTableDisplayString() {
-        return dbNameField+"@"+ipAddressField+","+port;
+        return dbNameField + "@" + ipAddressField + "," + port;
+    }
+
+    @Override
+    @JsonIgnore
+    public UuidItem clone() {
+        SqlConfigItems cloned = new SqlConfigItems();
+        cloned.generateUniqueId();
+        cloned.setPasswordField(this.getPasswordField());
+        cloned.setScriptFolderField(this.getScriptFolderField());
+        cloned.setPort(this.getPort());
+        cloned.setLoginField(this.getLoginField());
+        cloned.setIpAddressField(this.getIpAddressField());
+        cloned.setDbNameField(this.getDbNameField());
+        return cloned;
+
     }
 }

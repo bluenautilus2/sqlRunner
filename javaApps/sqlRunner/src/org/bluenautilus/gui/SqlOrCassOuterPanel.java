@@ -31,10 +31,15 @@ public class SqlOrCassOuterPanel extends JPanel {
 
     boolean isSql = true;
 
-    public SqlOrCassOuterPanel(UuidItem toUpdate){
+    /**
+     * toUpdate can be null
+     *
+     * @param toUpdate
+     */
+    public SqlOrCassOuterPanel(UuidItem toUpdate) {
         this.setLayout(new BorderLayout());
 
-        if(toUpdate==null) {  //make both types available
+        if (toUpdate == null) {  //make both types available
             SqlConfigItems newSqlItems = new SqlConfigItems();
             newSqlItems.generateUniqueId();
             sqlPanel = new SqlConfigPanel(newSqlItems);
@@ -67,17 +72,19 @@ public class SqlOrCassOuterPanel extends JPanel {
 
             this.add(buttonPanel, BorderLayout.NORTH);
             this.isSql = true;
-            this.add(sqlPanel,BorderLayout.CENTER);
+            this.add(sqlPanel, BorderLayout.CENTER);
 
-        }else {  //this is updating existing objects
-           if(toUpdate instanceof SqlConfigItems){
-               sqlPanel = new SqlConfigPanel((SqlConfigItems)toUpdate);
-               this.add(sqlPanel,BorderLayout.CENTER);
-           }
-           if(toUpdate instanceof CassConfigItems){
-               cassPanel = new CassConfigPanel((CassConfigItems)toUpdate);
-               this.add(cassPanel, BorderLayout.CENTER);
-           }
+        } else {  //this is updating existing objects
+            if (toUpdate instanceof SqlConfigItems) {
+                sqlPanel = new SqlConfigPanel((SqlConfigItems) toUpdate);
+                this.add(sqlPanel, BorderLayout.CENTER);
+                isSql = true;
+            }
+            if (toUpdate instanceof CassConfigItems) {
+                cassPanel = new CassConfigPanel((CassConfigItems) toUpdate);
+                this.add(cassPanel, BorderLayout.CENTER);
+                isSql = false;
+            }
         }
     }
 
@@ -101,14 +108,14 @@ public class SqlOrCassOuterPanel extends JPanel {
         }
     }
 
-    public void addListener(DataStoreConfigChangedListener newListener){
+    public void addListener(DataStoreConfigChangedListener newListener) {
         this.listeners.add(newListener);
     }
 
-    public UuidItem getWhatWasEdited(){
-        if(isSql){
+    public UuidItem getWhatWasEdited() {
+        if (isSql) {
             return sqlPanel.pullFieldsFromGui();
-        }else{
+        } else {
             return cassPanel.pullFieldsFromGui();
         }
     }

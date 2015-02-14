@@ -37,6 +37,10 @@ public class CassConfigUtil {
 
     private static CassConfigItemsList cassConfigItemsList = new CassConfigItemsList();
 
+    public static synchronized void saveOffCurrent() {
+        saveOffCurrent(cassConfigItemsList);
+    }
+
     public static synchronized void saveOffCurrent(CassConfigItemsList newList) {
         cassConfigItemsList = newList;
 
@@ -151,6 +155,22 @@ public class CassConfigUtil {
             }
         }
         return matches;
+    }
+
+
+    public static void addAndSave(CassConfigItems items) {
+        CassConfigUtil.getCassConfigItemsList().addCassConfigItem(items);
+        CassConfigUtil.saveOffCurrent();
+    }
+
+    public static void removeAndSave(CassConfigItems gone) {
+        CassConfigUtil.getCassConfigItemsList().removeCassConfigItem(gone.getUniqueId());
+        CassConfigUtil.saveOffCurrent();
+    }
+
+    public static void replaceWithUpdatesAndSave(CassConfigItems updated){
+        CassConfigUtil.getCassConfigItemsList().replace(updated);
+        CassConfigUtil.saveOffCurrent();
     }
 }
 
