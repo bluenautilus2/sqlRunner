@@ -133,8 +133,11 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     public void removeUuidItem(UuidConfigItem oldItem) {
         int i = this.dataStoreList.indexOf(oldItem);
-        this.dataStoreList.remove(oldItem);
-        this.fireTableRowsDeleted(i, i);
+        //may not be in table
+        if (i >= 0) {
+            this.dataStoreList.remove(oldItem);
+            this.fireTableRowsDeleted(i, i);
+        }
     }
 
     public void replaceUuidItem(UuidConfigItem updated) {

@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.DataStoreGroupList;
+import org.bluenautilus.data.UuidConfigItem;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -124,6 +125,23 @@ public class DataStoreGroupConfigUtil {
 
     public static void replaceWithUpdatesAndSave(DataStoreGroup updatedGroup){
        DataStoreGroupConfigUtil.dataStoreGroupList.replace(updatedGroup);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
+    public static void removeDataStoreFromAllGroupsAndSave(UuidConfigItem removed){
+        for(DataStoreGroup group:dataStoreGroupList.getDataStoreGroupList()){
+            boolean found = false;
+            UUID foundID = null;
+            for(UUID id:group.getDataStores()){
+                if(id.equals(removed.getUniqueId())){
+                    found = true;
+                    foundID = id;
+                }
+            }
+            if(found){
+                group.getDataStores().remove(foundID);
+            }
+        }
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 

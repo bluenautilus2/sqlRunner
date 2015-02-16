@@ -6,6 +6,7 @@ import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreConfigChangedListener;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreTable;
 import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
@@ -13,22 +14,26 @@ import javax.swing.*;
 /**
  * Created by bstevens on 2/6/15.
  */
-public class SqlOrCassEditorManager implements DataStoreConfigChangedListener, PrettyButtonListener {
+public class SqlOrCassEditorManager implements PrettyButtonListener {
 
     private JPanel parentPanel = null;
-    private DataStoreTable table;
+    private DataStoreTable subListTable;
+    private DataStoreTable fullTable;
 
-    public SqlOrCassEditorManager(JPanel parentPanel, DataStoreTable fullTable) {
+
+    public SqlOrCassEditorManager(JPanel parentPanel, DataStoreTable fullTable, DataStoreTable subListTable) {
         this.parentPanel = null;
-        table = fullTable;
+        this.subListTable = subListTable;
+        this.fullTable = fullTable;
+
     }
 
     @Override
     public void prettyButtonClicked(ButtonType type) {
         UuidConfigItem editedItem = null;
-        int index = table.getSelectedRow();
+        int index = fullTable.getSelectedRow();
         if (index >= 0) {
-            editedItem = table.getDataStoreTableModel().getRowObject(index);
+            editedItem = fullTable.getDataStoreTableModel().getRowObject(index);
         }
 
         UuidConfigItem updatedItem = null;
@@ -42,7 +47,9 @@ public class SqlOrCassEditorManager implements DataStoreConfigChangedListener, P
                     if(editedItem instanceof CassConfigItems){
                         CassConfigUtil.removeAndSave((CassConfigItems) editedItem);
                     }
-                    table.getDataStoreTableModel().removeUuidItem(editedItem);
+                    fullTable.getDataStoreTableModel().removeUuidItem(editedItem);
+                    subListTable.getDataStoreTableModel().removeUuidItem(editedItem);
+                    DataStoreGroupConfigUtil.removeDataStoreFromAllGroupsAndSave(editedItem);
                 }
                 break;
             case PLUS:
@@ -54,7 +61,7 @@ public class SqlOrCassEditorManager implements DataStoreConfigChangedListener, P
                     if(newItem instanceof CassConfigItems){
                         CassConfigUtil.addAndSave((CassConfigItems) newItem);
                     }
-                    table.getDataStoreTableModel().addUuidItem(newItem);
+                    fullTable.getDataStoreTableModel().addUuidItem(newItem);
                 }
                 break;
             case GEAR:
@@ -74,7 +81,7 @@ public class SqlOrCassEditorManager implements DataStoreConfigChangedListener, P
                 CassConfigUtil.replaceWithUpdatesAndSave((CassConfigItems) updatedItem);
             }
             //cheap, I know.
-            table.getDataStoreTableModel().replaceUuidItem(updatedItem);
+            fullTable.getDataStoreTableModel().replaceUuidItem(updatedItem);
         }
 
     }
@@ -96,34 +103,5 @@ public class SqlOrCassEditorManager implements DataStoreConfigChangedListener, P
         }
         return null;
     }
-
-
-    @Override
-    public void newSqlConfig(SqlConfigItems newSql) {
-        //sql or cass panel
-
-    }
-
-    @Override
-    public void newCassConfig(CassConfigItems newCass) {
-
-
-    }
-
-    @Override
-    public void updatedSqlConfig(SqlConfigItems updatedSql) {
-
-    }
-
-    @Override
-    public void updatedCassConfig(CassConfigItems updatedCass) {
-
-    }
-
-    @Override
-    public void deletedDataStore(UuidConfigItem deletedItem) {
-
-    }
-
 
 }
