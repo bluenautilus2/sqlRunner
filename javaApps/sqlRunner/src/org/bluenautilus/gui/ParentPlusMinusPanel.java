@@ -2,7 +2,7 @@ package org.bluenautilus.gui;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.OldExecutable;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by bstevens on 1/26/15.
  */
 public class ParentPlusMinusPanel extends JPanel {
-    private static Log log = LogFactory.getLog(OldExecutable.class);
+    private static Log log = LogFactory.getLog(ParentPlusMinusPanel.class);
 
     public static final String PLUS_IMAGE = "green_plus_box.png";
     public static final String MINUS_IMAGE = "red-minus-box.png";

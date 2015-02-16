@@ -2,7 +2,7 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.OldExecutable;
+
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class DataStorePanelManager implements PrettyButtonListener {
 
-    private static Log log = LogFactory.getLog(OldExecutable.class);
+    private static Log log = LogFactory.getLog(DataStorePanelManager.class);
     DataStoreGroupPanel myDsgPanel = null;
 
     DataStoreTableModel tableModelFull = null;

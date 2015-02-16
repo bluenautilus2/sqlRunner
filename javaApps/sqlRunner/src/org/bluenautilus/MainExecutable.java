@@ -2,6 +2,8 @@ package org.bluenautilus;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.gui.LaunchingTabManager;
+import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreGroupPanel;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStorePanelManager;
 import org.bluenautilus.util.CassConfigUtil;
@@ -29,16 +31,24 @@ public class MainExecutable {
         SqlConfigUtil.readInConfiguration();
         DataStoreGroupConfigUtil.readInConfiguration();
 
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        JPanel topPanel = new JPanel(new BorderLayout());
+
         final DataStoreGroupPanel dataStoreGroupPanel = new DataStoreGroupPanel();
         dataStoreGroupPanel.init();
+        topPanel.add(dataStoreGroupPanel, BorderLayout.EAST);
+        final RunButtonPanel runButtonPanel = new RunButtonPanel();
+        topPanel.add(runButtonPanel,BorderLayout.WEST);
 
         DataStorePanelManager mgr = new DataStorePanelManager(dataStoreGroupPanel);
 
+        LaunchingTabManager tabManager = new LaunchingTabManager(runButtonPanel,mainPanel);
+        dataStoreGroupPanel.addLaunchButtonListener(tabManager);
 
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+        mainPanel.add(tabManager.getTabbedPane(),BorderLayout.CENTER);
 
-
-
-        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
         frame.pack();
 
         //make it a little bigger

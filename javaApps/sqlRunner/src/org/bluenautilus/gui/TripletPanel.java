@@ -20,15 +20,13 @@ public class TripletPanel extends JPanel {
     OutputPanel outputPanel = new OutputPanel();
     ScriptViewPanel scriptViewPanel = new ScriptViewPanel();
     SqlScriptTablePanel tableHolderPanel = new SqlScriptTablePanel();
-    RunButtonPanel buttonPanel = null;
+
     UuidConfigItem sqlOrCassConfiguration = null;
 
-    JPanel outermostSqlPanel = new JPanel(new BorderLayout());
-
-    public TripletPanel(RunButtonPanel runButtonPanel, UuidConfigItem sqlOrCassConfiguration) {
+    public TripletPanel(UuidConfigItem sqlOrCassConfiguration) {
 
         this.sqlOrCassConfiguration = sqlOrCassConfiguration;
-        this.buttonPanel = runButtonPanel;
+
 
         JSplitPane innerSplitPane = new JSplitPane();
         innerSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -42,13 +40,39 @@ public class TripletPanel extends JPanel {
         outerSplitPane.setRightComponent(innerSplitPane);
         outerSplitPane.setDividerLocation(0.5);
 
-        outermostSqlPanel.add(buttonPanel, BorderLayout.NORTH);
-        outermostSqlPanel.add(outerSplitPane, BorderLayout.CENTER);
-
-        final TripletPanelMgr sqlTripletPanelMgr = new TripletPanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, this);
-        sqlTripletPanelMgr.refreshAction();
-        this.add(outermostSqlPanel);
+        this.add(outerSplitPane);
 
     }
 
+    public OutputPanel getOutputPanel() {
+        return outputPanel;
+    }
+
+    public void setOutputPanel(OutputPanel outputPanel) {
+        this.outputPanel = outputPanel;
+    }
+
+    public ScriptViewPanel getScriptViewPanel() {
+        return scriptViewPanel;
+    }
+
+    public void setScriptViewPanel(ScriptViewPanel scriptViewPanel) {
+        this.scriptViewPanel = scriptViewPanel;
+    }
+
+    public SqlScriptTablePanel getTableHolderPanel() {
+        return tableHolderPanel;
+    }
+
+    public void setTableHolderPanel(SqlScriptTablePanel tableHolderPanel) {
+        this.tableHolderPanel = tableHolderPanel;
+    }
+
+    public UuidConfigItem getSqlOrCassConfiguration() {
+        return sqlOrCassConfiguration;
+    }
+
+    public void setSqlOrCassConfiguration(UuidConfigItem sqlOrCassConfiguration) {
+        this.sqlOrCassConfiguration = sqlOrCassConfiguration;
+    }
 }

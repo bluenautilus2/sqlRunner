@@ -130,9 +130,9 @@ public class DataStoreGroup extends UuidConfigItem {
         HashMap<UUID,CassConfigItems> cassMap = cassConfigItemsList.getUuidHash();
 
         List<UuidConfigItem> objectList = new ArrayList<>();
-        for(UUID store:this.getDataStores()){
-            SqlConfigItems s = sqlMap.get(store);
-            CassConfigItems c = cassMap.get(store);
+        for(UUID id:this.getDataStores()){
+            SqlConfigItems s = sqlMap.get(id);
+            CassConfigItems c = cassMap.get(id);
             if(s!=null){
                 objectList.add(s);
             }
