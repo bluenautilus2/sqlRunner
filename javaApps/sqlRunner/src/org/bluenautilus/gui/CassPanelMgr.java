@@ -37,7 +37,7 @@ public class CassPanelMgr extends PanelMgr{
 
     private CassPanelMgr(OutputPanel outputPanel,
                         ScriptViewPanel scriptViewPanel,
-                        SqlScriptTablePanel sqlTablePanel, SqlButtonPanel cassButtonPanel, JFrame parentFrame) {
+                        SqlScriptTablePanel sqlTablePanel, RunButtonPanel cassButtonPanel, JFrame parentFrame) {
         //do nothing
     }
 

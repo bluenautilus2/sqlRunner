@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by bstevens on 1/25/15.
  */
-public abstract class UuidItem {
+public abstract class UuidConfigItem {
 
     UUID uniqueId = null;
     Integer tableRowIndex = 0;
@@ -32,14 +32,14 @@ public abstract class UuidItem {
         this.tableRowIndex = tableRowIndex;
     }
 
-    public abstract UuidItem clone();
+    public abstract UuidConfigItem clone();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UuidItem)) return false;
+        if (!(o instanceof UuidConfigItem)) return false;
 
-        UuidItem uuidItem = (UuidItem) o;
+        UuidConfigItem uuidItem = (UuidConfigItem) o;
 
         if (uniqueId != null ? !uniqueId.equals(uuidItem.uniqueId) : uuidItem.uniqueId != null) return false;
 

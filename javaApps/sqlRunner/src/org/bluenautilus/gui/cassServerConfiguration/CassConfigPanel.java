@@ -30,12 +30,16 @@ public class CassConfigPanel extends JPanel {
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
+    private JTextField namespaceField = new JTextField(5);
     private JCheckBox useCert = new JCheckBox();
     private JTextField certFileField = new JTextField(35);
     private UUID uuidField = null;
 
     private Color borderColor = new Color(180, 180, 180);
     private final JLabel certName = new JLabel("Certificate file");
+    private JLabel folderName = new JLabel("CQL Script Folder");
+    private JLabel checkBoxName = new JLabel("Use Cert?");
+    private JLabel namespaceName = new JLabel("Namespace");
 
     ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
@@ -44,7 +48,6 @@ public class CassConfigPanel extends JPanel {
 
         this.fields = initialFields;
         this.init();
-
     }
 
     private void init() {
@@ -57,8 +60,6 @@ public class CassConfigPanel extends JPanel {
             hostName = new JLabel("Putty Saved Session Name");
         }
 
-        JLabel folderName = new JLabel("CQL Script Folder");
-        JLabel checkBoxName = new JLabel("Use Cert?");
 
         FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
         FileOpenButton openCertFileButton = new FileOpenButton(this, this.certFileField);
@@ -79,23 +80,23 @@ public class CassConfigPanel extends JPanel {
         // int anchor, int fill,
         //Insets insets, int ipadx, int ipady
 
-
         //Center panel buttons
         JPanel centerPanel = new JPanel(new GridBagLayout());
 
         //LABELS
-        centerPanel.add(hostName, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
         centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //FIELDS
-        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
+        centerPanel.add(hostName, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(namespaceName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        //FIELDS
 
         //this fills up three spots
         JPanel scriptHolder = new JPanel(new BorderLayout());
@@ -105,18 +106,27 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(this.namespaceField, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+
 
         if (MiscUtil.isThisLinux()) {
 
-            centerPanel.add(certName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
+            centerPanel.add(certName, new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0,
                     GridBagConstraints.EAST, GridBagConstraints.NONE,
                     new Insets(2, 2, 2, 2), 2, 2));
 
-            centerPanel.add(checkBoxName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+            centerPanel.add(checkBoxName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
                     GridBagConstraints.EAST, GridBagConstraints.NONE,
                     new Insets(2, 2, 2, 2), 2, 2));
 
-            centerPanel.add(this.useCert, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
+            centerPanel.add(this.useCert, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
                     GridBagConstraints.WEST, GridBagConstraints.NONE,
                     new Insets(2, 2, 2, 2), 2, 2));
 
@@ -124,7 +134,7 @@ public class CassConfigPanel extends JPanel {
             JPanel certFileHolder = new JPanel(new BorderLayout());
             certFileHolder.add(this.certFileField, BorderLayout.WEST);
             certFileHolder.add(openCertFileButton, BorderLayout.EAST);
-            centerPanel.add(certFileHolder, new GridBagConstraints(1, 3, 3, 1, 1.0, 1.0,
+            centerPanel.add(certFileHolder, new GridBagConstraints(1, 4, 3, 1, 1.0, 1.0,
                     GridBagConstraints.WEST, GridBagConstraints.NONE,
                     new Insets(2, 2, 2, 2), 2, 2));
         }
@@ -144,7 +154,7 @@ public class CassConfigPanel extends JPanel {
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
                 getStringForConfigCheckbox(this.useCert),
-                this.certFileField.getText(), "pa");
+                this.namespaceField.getText(),this.certFileField.getText());
 
     }
 
@@ -162,6 +172,7 @@ public class CassConfigPanel extends JPanel {
         this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
         this.certFileField.setText(fields.getCertificateFileField());
         this.uuidField = fields.getUniqueId();
+        this.namespaceField.setText(fields.getNamespace());
         syncCheckBoxDisabling();
     }
 

@@ -2,7 +2,7 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
@@ -31,7 +31,7 @@ public class UuidRenderer extends DefaultTableCellRenderer {
 
         DataStoreTableModel model = (DataStoreTableModel) table.getModel();
 
-        UuidItem item = model.getRowObject(row);
+        UuidConfigItem item = model.getRowObject(row);
 
         c.setFont(new Font("Sans Serif", Font.PLAIN, 12));
 

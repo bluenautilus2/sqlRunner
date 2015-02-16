@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.gui.FolderOpenButton;
-import org.bluenautilus.gui.SqlButtonPanel;
+import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.MiscUtil;
 
@@ -22,7 +22,7 @@ import java.util.UUID;
  */
 public class SqlConfigPanel extends JPanel {
 
-    private static Log LOG = LogFactory.getLog(SqlButtonPanel.class);
+    private static Log LOG = LogFactory.getLog(RunButtonPanel.class);
 
     SqlConfigItems fields = null;
     private JTextField dbNameField = new JTextField(15);

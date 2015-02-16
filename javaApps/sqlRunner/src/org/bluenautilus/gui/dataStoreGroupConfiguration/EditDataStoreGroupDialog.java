@@ -1,6 +1,6 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
-import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.gui.ParentPlusMinusPanel;
 
 import javax.swing.*;
@@ -49,7 +49,7 @@ public class EditDataStoreGroupDialog extends ParentPlusMinusPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = tableFull.getSelectedRow();
-                UuidItem selectedObject = tableFull.getDataStoreTableModel().getRowObject(selected);
+                UuidConfigItem selectedObject = tableFull.getDataStoreTableModel().getRowObject(selected);
                 tableSublist.getDataStoreTableModel().addUuidItem(selectedObject);
             }
         });
@@ -58,7 +58,7 @@ public class EditDataStoreGroupDialog extends ParentPlusMinusPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = tableSublist.getSelectedRow();
-                UuidItem selectedObject = tableSublist.getDataStoreTableModel().getRowObject(selected);
+                UuidConfigItem selectedObject = tableSublist.getDataStoreTableModel().getRowObject(selected);
                 tableSublist.getDataStoreTableModel().removeUuidItem(selectedObject);
             }
         });

@@ -2,7 +2,7 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.data.UuidConfigItem;
 
 /**
  * Created by bstevens on 1/28/15.
@@ -17,5 +17,5 @@ public interface DataStoreConfigChangedListener {
 
     public void updatedCassConfig(CassConfigItems updatedCass);
 
-    public void deletedDataStore(UuidItem deletedItem);
+    public void deletedDataStore(UuidConfigItem deletedItem);
 }

@@ -3,7 +3,7 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.data.UuidItem;
+import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.gui.ParentPlusMinusPanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
@@ -123,7 +123,7 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
     }
 
     @Override
-    public void deletedDataStore(UuidItem deletedItem) {
+    public void deletedDataStore(UuidConfigItem deletedItem) {
 
     }
 }

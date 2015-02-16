@@ -8,8 +8,8 @@ import org.bluenautilus.gui.CassButtonPanel;
 import org.bluenautilus.gui.CassPanelMgr;
 import org.bluenautilus.gui.OutputPanel;
 import org.bluenautilus.gui.PanelMgr;
+import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.ScriptViewPanel;
-import org.bluenautilus.gui.SqlButtonPanel;
 import org.bluenautilus.gui.SqlScriptTablePanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.GuiUtil;
@@ -43,7 +43,7 @@ public class OldExecutable {
         SqlScriptTablePanel tableHolderPanel = new SqlScriptTablePanel();
         ScriptViewPanel scriptViewPanel = new ScriptViewPanel();
         OutputPanel outputPanel = new OutputPanel();
-        SqlButtonPanel buttonPanel = new SqlButtonPanel(new SqlConfigItems());
+        RunButtonPanel buttonPanel = new RunButtonPanel(/*new sql fields*/);
 
 		JSplitPane innerSplitPane = new JSplitPane();
 		innerSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -117,7 +117,7 @@ public class OldExecutable {
             GuiUtil.showErrorModalDialog(e, outermostSqlPanel);
         }
 
-        buttonPanel.setFields(fields);
+      //  buttonPanel.setFields(fields);
         buttonPanelCass.setFields(cassFields);
 
         final CassPanelMgr cassPanelMgr = new CassPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);

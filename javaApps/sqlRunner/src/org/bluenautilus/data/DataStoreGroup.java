@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * Created by bstevens on 1/25/15.
  */
-public class DataStoreGroup extends UuidItem {
+public class DataStoreGroup extends UuidConfigItem {
     private List<UUID> dataStores = new ArrayList<>();
 
     private String nickname = null;
@@ -26,9 +26,9 @@ public class DataStoreGroup extends UuidItem {
     }
 
     @JsonIgnore
-    public void setDataStoreItems(List<UuidItem> dataStores) {
+    public void setDataStoreItems(List<UuidConfigItem> dataStores) {
         List<UUID> plainIds = new ArrayList<>();
-        for (UuidItem item : dataStores) {
+        for (UuidConfigItem item : dataStores) {
             plainIds.add(item.getUniqueId());
         }
         this.setDataStores(plainIds);

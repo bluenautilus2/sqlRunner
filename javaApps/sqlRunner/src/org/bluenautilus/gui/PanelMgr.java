@@ -38,7 +38,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
     public OutputPanel outputPanel;
     public ScriptViewPanel scriptViewPanel;
     public SqlScriptTablePanel sqlTablePanel;
-    public SqlButtonPanel buttonPanel;
+    public RunButtonPanel buttonPanel;
     public SqlScriptFile lastSetFileObj;
 	public JFrame parentFrame;
 	public DisplayScriptDialog lastOpenedDialog;
@@ -48,7 +48,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     public PanelMgr(OutputPanel outputPanel,
                     ScriptViewPanel scriptViewPanel,
-                    SqlScriptTablePanel sqlTablePanel, SqlButtonPanel buttonPanel, JFrame parentFrame) {
+                    SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JFrame parentFrame) {
         this.outputPanel = outputPanel;
         this.scriptViewPanel = scriptViewPanel;
         this.sqlTablePanel = sqlTablePanel;

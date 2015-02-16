@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * Created by bstevens on 8/24/14.
  */
-public class CassConfigItems extends UuidItem {
+public class CassConfigItems extends UuidConfigItem {
 
     private String scriptFolderField = "/home/bstevens/repos/App/tools/CQL_Update_Scripts";
     private String hostField = "nucleus";
@@ -117,7 +117,7 @@ public class CassConfigItems extends UuidItem {
         return namespace+"@"+hostField;
     }
 
-    public UuidItem clone(){
+    public UuidConfigItem clone(){
         CassConfigItems cloned = new CassConfigItems();
         cloned.generateUniqueId();
         cloned.setHostField(this.getHostField());

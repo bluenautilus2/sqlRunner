@@ -11,7 +11,7 @@ import java.util.UUID;
  * Date: 7/30/13
  * Time: 8:31 PM
  */
-public class SqlConfigItems extends UuidItem {
+public class SqlConfigItems extends UuidConfigItem {
 
     //These are just defaults if the config file isn't found.
     private String dbNameField = "panswersClean";
@@ -136,7 +136,7 @@ public class SqlConfigItems extends UuidItem {
 
     @Override
     @JsonIgnore
-    public UuidItem clone() {
+    public UuidConfigItem clone() {
         SqlConfigItems cloned = new SqlConfigItems();
         cloned.generateUniqueId();
         cloned.setPasswordField(this.getPasswordField());
