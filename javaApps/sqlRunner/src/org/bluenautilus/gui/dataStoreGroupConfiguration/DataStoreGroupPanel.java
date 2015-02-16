@@ -4,11 +4,14 @@ import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.UuidConfigItem;
+import org.bluenautilus.gui.LaunchButtonListener;
 import org.bluenautilus.gui.ParentPlusMinusPanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -17,14 +20,19 @@ import java.util.List;
 /**
  * Created by bstevens on 1/26/15.
  */
-public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataStoreConfigChangedListener {
+public class DataStoreGroupPanel extends ParentPlusMinusPanel {
 
-    JComboBox<DataStoreGroup> nicknameDropdown = null;
-
-    List<NewDataStoreGroupChosenListener> newGroupChosenListeners = new ArrayList<>();
+    private JComboBox<DataStoreGroup> nicknameDropdown = null;
+    private JButton launchButton = new JButton("Launch Panels");
+    private List<NewDataStoreGroupChosenListener> newGroupChosenListeners = new ArrayList<>();
+    private List<LaunchButtonListener> launchButtonListeners = new ArrayList<>();
 
     public void addNewGroupChosenListener(NewDataStoreGroupChosenListener listener) {
         this.newGroupChosenListeners.add(listener);
+    }
+
+    public void addLaunchButtonListener(LaunchButtonListener listener){
+        this.launchButtonListeners.add(listener);
     }
 
     public DataStoreGroup getCurrentJComboBox() {
@@ -36,6 +44,15 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
         loadImages();
         initComboBox();
 
+        launchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(LaunchButtonListener listener:launchButtonListeners){
+                    Integer index = nicknameDropdown.getSelectedIndex();
+                    listener.launchButtonPressed(nicknameDropdown.getItemAt(index));
+                }
+            }
+        });
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -50,6 +67,9 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
 
+        this.add(this.launchButton,new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(10, 10, 10, 10), 2, 2));
 
     }
 
@@ -102,28 +122,4 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel implements DataSto
         });
     }
 
-    @Override
-    public void newSqlConfig(SqlConfigItems newSql) {
-
-    }
-
-    @Override
-    public void newCassConfig(CassConfigItems newCass) {
-
-    }
-
-    @Override
-    public void updatedSqlConfig(SqlConfigItems updatedSql) {
-
-    }
-
-    @Override
-    public void updatedCassConfig(CassConfigItems updatedCass) {
-
-    }
-
-    @Override
-    public void deletedDataStore(UuidConfigItem deletedItem) {
-
-    }
 }

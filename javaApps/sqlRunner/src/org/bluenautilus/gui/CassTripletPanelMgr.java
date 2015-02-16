@@ -12,36 +12,26 @@ import java.util.ArrayList;
 /**
  * Created by bstevens on 8/24/14.
  */
-public class CassPanelMgr extends PanelMgr{
+public class CassTripletPanelMgr extends TripletPanelMgr {
 
-    public CassButtonPanel cassButtonPanel;
-
-
-    public CassPanelMgr(OutputPanel outputPanel,
-                    ScriptViewPanel scriptViewPanel,
-                    SqlScriptTablePanel sqlTablePanel, CassButtonPanel cassButtonPanel, JFrame parentFrame) {
+    public CassTripletPanelMgr(OutputPanel outputPanel,
+                               ScriptViewPanel scriptViewPanel,
+                               SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JFrame parentFrame) {
         this.outputPanel = outputPanel;
         this.scriptViewPanel = scriptViewPanel;
         this.sqlTablePanel = sqlTablePanel;
         this.parentFrame = parentFrame;
         this.sqlTablePanel.addTableListener(this);
-        this.cassButtonPanel = cassButtonPanel;
-        this.cassButtonPanel.addRefreshListener(this);
-        this.cassButtonPanel.addScriptKickoffListener(this);
-        this.cassButtonPanel.addScriptRunAllToRunListener(this);
-        this.cassButtonPanel.addUpdatePreferencesListener(this);
+        this.buttonPanel = buttonPanel;
+        this.buttonPanel.addRefreshListener(this);
+        this.buttonPanel.addScriptKickoffListener(this);
+        this.buttonPanel.addScriptRunAllToRunListener(this);
+        this.buttonPanel.addUpdatePreferencesListener(this);
         this.scriptViewPanel.addPopOutListener(this);
 
     }
 
-
-    private CassPanelMgr(OutputPanel outputPanel,
-                        ScriptViewPanel scriptViewPanel,
-                        SqlScriptTablePanel sqlTablePanel, RunButtonPanel cassButtonPanel, JFrame parentFrame) {
-        //do nothing
-    }
-
-    public CassPanelMgr(){
+    public CassTripletPanelMgr(){
         //does nothing
     }
 
@@ -80,7 +70,7 @@ public class CassPanelMgr extends PanelMgr{
         SqlScriptFile scriptFile = this.filesBeingRun.get(0);
         this.filesBeingRun.remove(0);
 
-        RunScriptAction action = new RunScriptAction(this.cassButtonPanel.pullFieldsFromGui(), scriptFile, type, this.cassButtonPanel.getCassConnectionType());
+        RunScriptAction action = new RunScriptAction(this.cassButtonPanel.pullFieldsFromGui(), scriptFile, type);
         action.addCompletionListener(this);
         action.addCompletionListener(this.sqlTablePanel);
         action.addStatusListener(this.sqlTablePanel);

@@ -1,6 +1,9 @@
 package org.bluenautilus.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +44,7 @@ public class CassConfigItemsList {
         return cassConfigItems != null ? cassConfigItems.hashCode() : 0;
     }
 
+    @JsonIgnore
     public void removeCassConfigItem(UUID cassItemsId){
         CassConfigItems fromList = null;
         for(CassConfigItems items: cassConfigItems){
@@ -52,6 +56,7 @@ public class CassConfigItemsList {
         cassConfigItems.remove(fromList);
     }
 
+    @JsonIgnore
     public void replace(CassConfigItems updated){
         if(updated==null){
             return;
@@ -67,5 +72,14 @@ public class CassConfigItemsList {
         }
         cassConfigItems.remove(toRemove);
         cassConfigItems.add(updated);
+    }
+
+    @JsonIgnore
+    public HashMap<UUID, CassConfigItems> getUuidHash() {
+        HashMap<UUID, CassConfigItems> map = new HashMap<>();
+        for (CassConfigItems items : this.cassConfigItems) {
+            map.put(items.getUniqueId(), items);
+        }
+        return map;
     }
 }

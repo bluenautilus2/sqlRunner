@@ -1,8 +1,11 @@
 package org.bluenautilus.data;
 
+import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -118,4 +121,26 @@ public class DataStoreGroup extends UuidConfigItem {
         cloned.setDataStores(newList);
         return cloned;
     }
+
+    @JsonIgnore
+    public List<UuidConfigItem> retrieveFullObjectsFromFiles(){
+        SqlConfigItemsList sqlList = SqlConfigUtil.getSqlConfigItemsList();
+        CassConfigItemsList cassConfigItemsList = CassConfigUtil.getCassConfigItemsList();
+        HashMap<UUID,SqlConfigItems> sqlMap = sqlList.getUuidHash();
+        HashMap<UUID,CassConfigItems> cassMap = cassConfigItemsList.getUuidHash();
+
+        List<UuidConfigItem> objectList = new ArrayList<>();
+        for(UUID store:this.getDataStores()){
+            SqlConfigItems s = sqlMap.get(store);
+            CassConfigItems c = cassMap.get(store);
+            if(s!=null){
+                objectList.add(s);
+            }
+            if(c !=null){
+                objectList.add(c);
+            }
+        }
+        return objectList;
+    }
+
 }

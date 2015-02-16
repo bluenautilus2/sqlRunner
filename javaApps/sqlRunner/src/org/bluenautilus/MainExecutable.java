@@ -20,7 +20,6 @@ public class MainExecutable {
 
     public static void main(String[] args) {
 
-
         JFrame frame = new JFrame("SQL Script Runner Ludicrous Edition");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -30,16 +29,29 @@ public class MainExecutable {
         SqlConfigUtil.readInConfiguration();
         DataStoreGroupConfigUtil.readInConfiguration();
 
-
-
         final DataStoreGroupPanel dataStoreGroupPanel = new DataStoreGroupPanel();
         dataStoreGroupPanel.init();
 
         DataStorePanelManager mgr = new DataStorePanelManager(dataStoreGroupPanel);
 
 
-        frame.getContentPane().add(dataStoreGroupPanel, BorderLayout.CENTER);
+
+
+
+        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
         frame.pack();
+
+        //make it a little bigger
+        Dimension framesize = frame.getSize();
+
+        int fwidth = Math.round(framesize.width * 1.3f);
+        int fheight = Math.round(framesize.height * 1.2f);
+
+        Dimension newframesize = new Dimension(fwidth,fheight);
+        frame.setSize(newframesize);
         frame.setVisible(true);
+
+
+
     }
 }

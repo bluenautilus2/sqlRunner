@@ -31,28 +31,28 @@ import java.util.Collections;
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener {
+public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener {
 
-	private static Log LOG = LogFactory.getLog(PanelMgr.class);
+	private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
 
-    public OutputPanel outputPanel;
-    public ScriptViewPanel scriptViewPanel;
-    public SqlScriptTablePanel sqlTablePanel;
-    public RunButtonPanel buttonPanel;
-    public SqlScriptFile lastSetFileObj;
-	public JFrame parentFrame;
-	public DisplayScriptDialog lastOpenedDialog;
+    protected OutputPanel outputPanel;
+    protected ScriptViewPanel scriptViewPanel;
+    protected SqlScriptTablePanel sqlTablePanel;
+    protected RunButtonPanel buttonPanel;
+    protected SqlScriptFile lastSetFileObj;
+    protected JPanel parentPanel;
+    protected DisplayScriptDialog lastOpenedDialog;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
 
-    public PanelMgr(OutputPanel outputPanel,
-                    ScriptViewPanel scriptViewPanel,
-                    SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JFrame parentFrame) {
+    public TripletPanelMgr(OutputPanel outputPanel,
+                           ScriptViewPanel scriptViewPanel,
+                           SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JPanel parent) {
         this.outputPanel = outputPanel;
         this.scriptViewPanel = scriptViewPanel;
         this.sqlTablePanel = sqlTablePanel;
-		this.parentFrame = parentFrame;
+		this.parentPanel = parent;
         this.sqlTablePanel.addTableListener(this);
         this.buttonPanel = buttonPanel;
         this.buttonPanel.addRefreshListener(this);
@@ -63,7 +63,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
     }
 
-    public PanelMgr(){
+    public TripletPanelMgr(){
         //does nothing, for inheritance
     }
 
@@ -149,7 +149,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
         SqlScriptFile scriptFile = this.filesBeingRun.get(0);
         this.filesBeingRun.remove(0);
 
-        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, type, this.buttonPanel.getSelectedDBConnectionType());
+        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, type);
         action.addCompletionListener(this);
         action.addCompletionListener(this.sqlTablePanel);
         action.addStatusListener(this.sqlTablePanel);
@@ -230,7 +230,7 @@ public class PanelMgr implements RefreshListener, ListSelectionListener, ScriptK
 
 		if (file != null) {
 			try {
-				DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentFrame);
+				DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentPanel);
 				dialog.pack();
 				if(this.lastOpenedDialog!=null){
 				   Point point =lastOpenedDialog.getLocation();

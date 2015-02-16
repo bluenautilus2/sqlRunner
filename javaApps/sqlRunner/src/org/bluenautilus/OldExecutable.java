@@ -5,9 +5,9 @@ import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.gui.CassButtonPanel;
-import org.bluenautilus.gui.CassPanelMgr;
+import org.bluenautilus.gui.CassTripletPanelMgr;
 import org.bluenautilus.gui.OutputPanel;
-import org.bluenautilus.gui.PanelMgr;
+import org.bluenautilus.gui.TripletPanelMgr;
 import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.ScriptViewPanel;
 import org.bluenautilus.gui.SqlScriptTablePanel;
@@ -120,7 +120,7 @@ public class OldExecutable {
       //  buttonPanel.setFields(fields);
         buttonPanelCass.setFields(cassFields);
 
-        final CassPanelMgr cassPanelMgr = new CassPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);
+        final CassTripletPanelMgr cassPanelMgr = new CassTripletPanelMgr(outputPanelCass, scriptViewPanelCass, tableHolderPanelCass, buttonPanelCass, frame);
         //don't refresh here.. refreshes when the Cassandra panel is selected for the first time.
         //see the tabbed panel's change listener above.
 
@@ -137,8 +137,8 @@ public class OldExecutable {
         };
         tabbedPane.addChangeListener(changeListener);
 
-        final PanelMgr sqlPanelMgr = new PanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
-        sqlPanelMgr.refreshAction();
+        final TripletPanelMgr sqlTripletPanelMgr = new TripletPanelMgr(outputPanel, scriptViewPanel, tableHolderPanel, buttonPanel, frame);
+        sqlTripletPanelMgr.refreshAction();
 
 
     }

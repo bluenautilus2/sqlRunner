@@ -19,7 +19,7 @@ public class DisplayScriptDialog extends JFrame {
 	JTextArea textArea;
 
 
-	public DisplayScriptDialog(String title, File file, JFrame myFrame) throws IOException{
+	public DisplayScriptDialog(String title, File file, JPanel parentPanel) throws IOException{
 	    super(title);
 		this.fileToDisplay = file;
 

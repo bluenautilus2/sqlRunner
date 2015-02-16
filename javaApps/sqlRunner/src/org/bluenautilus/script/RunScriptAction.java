@@ -39,19 +39,19 @@ public class RunScriptAction implements Runnable {
     private ScriptType type = null;
 
 
-    public RunScriptAction(SqlConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type, final DBConnectionType dbConnectionType) {
+    public RunScriptAction(SqlConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type) {
         this.items = items;
         this.file = sqlScriptFile;
         this.type = type;
-		this.dbConnectionType = dbConnectionType;
+		this.dbConnectionType = DBConnectionType.valueOf(items.getDbConnectionType());
         this.isCassandra = false;
     }
 
-    public RunScriptAction(CassConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type, CassandraConnectionType cassConnectionType) {
+    public RunScriptAction(CassConfigItems items, SqlScriptFile sqlScriptFile, ScriptType type) {
         this.cassItems = items;
         this.file = sqlScriptFile;
         this.type = type;
-        this.cassConnectionType = cassConnectionType;
+        this.cassConnectionType = CassandraConnectionType.getDefaultForThisOS();
         this.isCassandra = true;
     }
 

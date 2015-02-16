@@ -3,7 +3,7 @@ package org.bluenautilus.db;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
-import org.bluenautilus.gui.PanelMgr;
+import org.bluenautilus.gui.TripletPanelMgr;
 import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.util.MiscUtil;
 
@@ -22,13 +22,13 @@ import java.util.ArrayList;
 public class DBRefreshAction extends org.bluenautilus.RefreshAction implements Runnable {
 
     private SqlConfigItems fields;
-	private PanelMgr panelMgr;
+	private TripletPanelMgr tripletPanelMgr;
 
 
-    public DBRefreshAction(SqlConfigItems fields, JPanel parent, PanelMgr panelMgr) {
+    public DBRefreshAction(SqlConfigItems fields, JPanel parent, TripletPanelMgr tripletPanelMgr) {
         super(parent);
         this.fields = fields;
-		this.panelMgr = panelMgr;
+		this.tripletPanelMgr = tripletPanelMgr;
     }
 
 

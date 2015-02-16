@@ -1,6 +1,9 @@
 package org.bluenautilus.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +22,7 @@ public class SqlConfigItemsList {
         this.sqlConfigItems = sqlConfigItems;
     }
 
-    public void addSqlConfigItem(SqlConfigItems items){
+    public void addSqlConfigItem(SqlConfigItems items) {
         this.sqlConfigItems.add(items);
     }
 
@@ -42,11 +45,11 @@ public class SqlConfigItemsList {
     }
 
 
-
-    public void removeSqlConfigItem(UUID sqlItemsId){
+    @JsonIgnore
+    public void removeSqlConfigItem(UUID sqlItemsId) {
         SqlConfigItems fromList = null;
-        for(SqlConfigItems items: sqlConfigItems){
-            if(items.getUniqueId().equals(sqlItemsId)){
+        for (SqlConfigItems items : sqlConfigItems) {
+            if (items.getUniqueId().equals(sqlItemsId)) {
                 fromList = items;
             }
         }
@@ -54,20 +57,31 @@ public class SqlConfigItemsList {
         sqlConfigItems.remove(fromList);
     }
 
-    public void replace(SqlConfigItems updated){
-        if(updated==null){
+    @JsonIgnore
+    public void replace(SqlConfigItems updated) {
+        if (updated == null) {
             return;
         }
         SqlConfigItems toRemove = null;
-        for(SqlConfigItems items:sqlConfigItems){
-            if(updated.getUniqueId().equals(items.getUniqueId())){
+        for (SqlConfigItems items : sqlConfigItems) {
+            if (updated.getUniqueId().equals(items.getUniqueId())) {
                 toRemove = items;
             }
         }
-        if(toRemove==null){
+        if (toRemove == null) {
             toRemove = updated;
         }
         sqlConfigItems.remove(toRemove);
         sqlConfigItems.add(updated);
     }
+
+    @JsonIgnore
+    public HashMap<UUID, SqlConfigItems> getUuidHash() {
+        HashMap<UUID, SqlConfigItems> map = new HashMap<>();
+        for (SqlConfigItems items : this.sqlConfigItems) {
+            map.put(items.getUniqueId(), items);
+        }
+        return map;
+    }
+
 }

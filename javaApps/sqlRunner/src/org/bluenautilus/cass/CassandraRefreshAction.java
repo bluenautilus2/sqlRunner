@@ -5,7 +5,7 @@ import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.db.SqlScriptMgr;
-import org.bluenautilus.gui.CassPanelMgr;
+import org.bluenautilus.gui.CassTripletPanelMgr;
 import org.bluenautilus.util.GuiUtil;
 import org.bluenautilus.util.MiscUtil;
 
@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class CassandraRefreshAction extends org.bluenautilus.RefreshAction implements Runnable {
 
 	private CassConfigItems fields;
-	private CassPanelMgr panelMgr;
+	private CassTripletPanelMgr panelMgr;
 
     public CassandraRefreshAction(){
         //nothin'
     }
 
-	public CassandraRefreshAction(CassConfigItems fields, JPanel parent, CassPanelMgr panelMgr) {
+	public CassandraRefreshAction(CassConfigItems fields, JPanel parent, CassTripletPanelMgr panelMgr) {
 		this.parent = parent;
 		this.fields = fields;
 		this.panelMgr = panelMgr;

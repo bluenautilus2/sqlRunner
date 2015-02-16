@@ -1,8 +1,11 @@
 package org.bluenautilus.data;
 
+import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -75,6 +78,7 @@ public class DataStoreGroupList {
                 '}';
     }
 
+    @JsonIgnore
     public void replace(DataStoreGroup updated){
         DataStoreGroup groupToRemove = null;
         for(DataStoreGroup group:dataStoreGroupList){
