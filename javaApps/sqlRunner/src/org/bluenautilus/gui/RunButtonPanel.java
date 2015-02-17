@@ -45,7 +45,7 @@ public class RunButtonPanel extends JPanel {
 
     private void init() {
 
-        this.refreshButton.setToolTipText("Rescans File Directory and Database");
+        this.refreshButton.setToolTipText("Re-scans File Directory and Database");
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
         this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
         this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
@@ -60,27 +60,34 @@ public class RunButtonPanel extends JPanel {
 
         leftCornerPanel.add(this.runAllButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(10, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4), 2, 2));
 
-        leftCornerPanel.add(this.selectedScriptButton, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+        leftCornerPanel.add(this.selectedScriptButton, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(4, 4, 4, 4), 2, 2));
 
-        leftCornerPanel.add(this.rollbackButton, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+        leftCornerPanel.add(this.rollbackButton, new GridBagConstraints(2,0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 10, 4), 2, 2));
+                new Insets(4, 4, 4, 4), 2, 2));
 
         leftCornerPanel.setBorder(new LineBorder(this.borderColor));
 
-        //Refresh Button
-        leftCornerPanel.add(this.refreshButton, new GridBagConstraints(0, 4, 6, 1, 1.0, 1.0,
+        JPanel  refreshPanel = new JPanel(new GridBagLayout());
+        refreshPanel.setBorder(new LineBorder(this.borderColor));
+        refreshPanel.add(this.refreshButton, new GridBagConstraints(0,0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(5, 5, 2, 2), 20, 2));
+                new Insets(4, 4, 4, 4), 2, 2));
+        //Refresh Button
 
 
         this.add(leftCornerPanel, new GridBagConstraints(0, 0, 1, 3, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(4, 4, 4, 4), 2, 2));
+                new Insets(10,10,10,10), 2, 2));
+
+        this.add(refreshPanel, new GridBagConstraints(1, 0, 6, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(10, 10, 10, 10), 2, 2));
+
 
     }
 

@@ -72,7 +72,7 @@ public class DataStorePanelManager implements PrettyButtonListener {
         }
         String nickname = editedGroup != null ? editedGroup.getNickname() : "";
         final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(nickname, tableFull, tableSublist);
-        SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog,tableFull);
+        SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog,tableFull,tableSublist);
         dialog.addListener(myEditorManager);
 
         final int i = JOptionPane.showOptionDialog(myDsgPanel,

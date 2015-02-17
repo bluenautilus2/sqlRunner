@@ -24,6 +24,10 @@ public class ParentTextPanel extends JPanel {
 
         JScrollPane scroll = new JScrollPane(textArea);
 
+        scroll.setPreferredSize(new Dimension(350, 500));
+        scroll.setMaximumSize(new Dimension(350, 1000));
+        scroll.setMinimumSize(new Dimension(200, 500));
+
         this.add(scroll,BorderLayout.CENTER);
 
     }

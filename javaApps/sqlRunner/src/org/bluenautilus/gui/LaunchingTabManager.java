@@ -4,6 +4,7 @@ import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.UuidConfigItem;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,17 @@ public class LaunchingTabManager implements LaunchButtonListener {
     public LaunchingTabManager(RunButtonPanel runButtons,  JPanel parentPanel) {
         this.buttonPanel = runButtons;
         this.parentPanel = parentPanel;
+
+        JPanel blankPanel = new JPanel();
+        Dimension theSize = new Dimension(450,450);
+        blankPanel.setMinimumSize(theSize);
+        blankPanel.setMaximumSize(theSize);
+        blankPanel.setPreferredSize(theSize);
+
+        tabbedPane.addTab("Chose a datastore group", blankPanel);
     }
+
+
 
     @Override
     public void launchButtonPressed(DataStoreGroup groupToLaunch) {
@@ -43,9 +54,6 @@ public class LaunchingTabManager implements LaunchButtonListener {
             tabMap.put(i, tripletPanelMgr);
             i++;
         }
-
-        //refresh only the one visible
-        //sqlTripletPanelMgr.refreshAction();
 
     }
 

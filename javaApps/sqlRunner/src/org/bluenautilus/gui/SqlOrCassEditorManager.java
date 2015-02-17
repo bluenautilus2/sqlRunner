@@ -3,7 +3,6 @@ package org.bluenautilus.gui;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.UuidConfigItem;
-import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreConfigChangedListener;
 import org.bluenautilus.gui.dataStoreGroupConfiguration.DataStoreTable;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;

@@ -131,7 +131,7 @@ public class SqlConfigItems extends UuidConfigItem {
     @Override
     @JsonIgnore
     public String getTableDisplayString() {
-        return dbNameField + "@" + ipAddressField + "," + port;
+        return dbNameField + "@" + ipAddressField;
     }
 
     @Override
