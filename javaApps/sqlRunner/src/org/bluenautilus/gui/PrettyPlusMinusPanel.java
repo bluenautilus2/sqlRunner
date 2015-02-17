@@ -17,8 +17,8 @@ import java.util.List;
 /**
  * Created by bstevens on 1/26/15.
  */
-public class ParentPlusMinusPanel extends JPanel {
-    private static Log log = LogFactory.getLog(ParentPlusMinusPanel.class);
+public class PrettyPlusMinusPanel extends JPanel {
+    private static Log log = LogFactory.getLog(PrettyPlusMinusPanel.class);
 
     public static final String PLUS_IMAGE = "green_plus_box.png";
     public static final String MINUS_IMAGE = "red-minus-box.png";
@@ -32,11 +32,13 @@ public class ParentPlusMinusPanel extends JPanel {
     private JButton plusButton;
     private JButton gearButton;
     private JButton copyButton;
+    private boolean showCopy = true;
 
     protected JPanel buttonPanel = new JPanel(new GridLayout(0,4));
 
-    public ParentPlusMinusPanel() {
+    public PrettyPlusMinusPanel(boolean showCopy) {
         super();
+        this.showCopy = showCopy;
     }
 
 
@@ -81,8 +83,11 @@ public class ParentPlusMinusPanel extends JPanel {
 
         buttonPanel.add(plusButton);
         buttonPanel.add(gearButton);
-        buttonPanel.add(copyButton);
+
         buttonPanel.add(minusButton);
+        if(showCopy){
+            buttonPanel.add(copyButton);
+        }
     }
 
 

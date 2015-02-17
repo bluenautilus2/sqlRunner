@@ -16,8 +16,9 @@ public class SqlOrCassOuterPanel extends JPanel {
 
     public JTabbedPane tabbedPane = new JTabbedPane();
 
-    SqlConfigPanel sqlPanel = null;
-    CassConfigPanel cassPanel = null;
+    private SqlConfigPanel sqlPanel = null;
+    private CassConfigPanel cassPanel = null;
+     private WasFor wasFor = WasFor.BOTH;
 
     /**
      * toUpdate can be null
@@ -45,24 +46,32 @@ public class SqlOrCassOuterPanel extends JPanel {
             this.tabbedPane.setSelectedIndex(0);
             this.add(tabbedPane, BorderLayout.CENTER);
 
-        } else {  //this is updating existing objects
+        } else {  //this is updating existing objects or cloning
             if (toUpdate instanceof SqlConfigItems) {
                 sqlPanel = new SqlConfigPanel((SqlConfigItems) toUpdate);
                 this.add(sqlPanel, BorderLayout.CENTER);
+                this.wasFor = WasFor.SQL;
             }
             if (toUpdate instanceof CassConfigItems) {
                 cassPanel = new CassConfigPanel((CassConfigItems) toUpdate);
                 this.add(cassPanel, BorderLayout.CENTER);
+                this.wasFor = WasFor.CASS;
             }
         }
     }
 
     public UuidConfigItem getWhatWasEdited() {
         int index = tabbedPane.getSelectedIndex();
-        if (index==0) {
+        if (wasFor.equals(WasFor.SQL) || index==0) {
             return sqlPanel.pullFieldsFromGui();
         } else{
             return cassPanel.pullFieldsFromGui();
         }
+    }
+
+    private enum WasFor{
+        SQL,
+        CASS,
+        BOTH;
     }
 }

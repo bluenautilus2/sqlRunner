@@ -35,7 +35,7 @@ public class SqlOrCassEditorManager implements PrettyButtonListener {
             editedItem = fullTable.getDataStoreTableModel().getRowObject(index);
         }
 
-        UuidConfigItem updatedItem = null;
+        UuidConfigItem newItem  = null;
 
         switch (type) {
             case MINUS:
@@ -52,35 +52,34 @@ public class SqlOrCassEditorManager implements PrettyButtonListener {
                 }
                 break;
             case PLUS:
-                UuidConfigItem newItem = launchDialog(null);
-                if(newItem!=null){
-                    if(newItem instanceof SqlConfigItems){
-                        SqlConfigUtil.addAndSave((SqlConfigItems)newItem);
-                    }
-                    if(newItem instanceof CassConfigItems){
-                        CassConfigUtil.addAndSave((CassConfigItems) newItem);
-                    }
-                    fullTable.getDataStoreTableModel().addUuidItem(newItem);
-                }
+                 newItem = launchDialog(null);
                 break;
             case GEAR:
-                updatedItem = launchDialog(editedItem);
+                UuidConfigItem updatedItem = launchDialog(editedItem);
+                if(updatedItem!=null){
+                    if(updatedItem instanceof SqlConfigItems){
+                        SqlConfigUtil.replaceWithUpdatesAndSave((SqlConfigItems)updatedItem);
+                    }
+                    if(updatedItem instanceof CassConfigItems){
+                        CassConfigUtil.replaceWithUpdatesAndSave((CassConfigItems) updatedItem);
+                    }
+                    //cheap, I know.
+                    fullTable.getDataStoreTableModel().replaceUuidItem(updatedItem);
+                }
                 break;
             case COPY:
-                updatedItem = launchDialog(editedItem.clone());
+                newItem = launchDialog(editedItem.clone());
                 break;
         }
 
-
-        if(updatedItem!=null){
-            if(updatedItem instanceof SqlConfigItems){
-                SqlConfigUtil.replaceWithUpdatesAndSave((SqlConfigItems)updatedItem);
+        if(newItem!=null){
+            if(newItem instanceof SqlConfigItems){
+                SqlConfigUtil.addAndSave((SqlConfigItems)newItem);
             }
-            if(updatedItem instanceof CassConfigItems){
-                CassConfigUtil.replaceWithUpdatesAndSave((CassConfigItems) updatedItem);
+            if(newItem instanceof CassConfigItems){
+                CassConfigUtil.addAndSave((CassConfigItems) newItem);
             }
-            //cheap, I know.
-            fullTable.getDataStoreTableModel().replaceUuidItem(updatedItem);
+            fullTable.getDataStoreTableModel().addUuidItem(newItem);
         }
 
     }

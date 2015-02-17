@@ -22,7 +22,7 @@ public class MainExecutable {
 
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("SQL Script Runner Ludicrous Edition");
+        JFrame frame = new JFrame("SQL Script Runner: Ludicrous Edition");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         log.info("sqlRunner starting: Ludicrous Edition");
@@ -54,11 +54,11 @@ public class MainExecutable {
         //make it a little bigger
         Dimension framesize = frame.getSize();
 
-        int fwidth = Math.round(framesize.width * 1.3f);
-        int fheight = Math.round(framesize.height * 1.2f);
+     //   int fwidth = Math.round(framesize.width * 1.3f);
+     //   int fheight = Math.round(framesize.height * 1.2f);
 
-        Dimension newframesize = new Dimension(fwidth,fheight);
-        frame.setSize(newframesize);
+     //   Dimension newframesize = new Dimension(fwidth,fheight);
+     //   frame.setSize(newframesize);
         frame.setVisible(true);
 
 

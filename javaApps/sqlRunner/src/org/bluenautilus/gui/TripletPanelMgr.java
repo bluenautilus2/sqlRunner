@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.db.DBRefreshAction;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.script.PopOutScriptEvent;
@@ -42,9 +43,18 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     protected SqlScriptFile lastSetFileObj;
     protected JPanel parentPanel;
     protected DisplayScriptDialog lastOpenedDialog;
+    private SqlConfigItems myConfigItem;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
+
+    public TripletPanelMgr(SqlConfigItems configItem,OutputPanel outputPanel,
+                           ScriptViewPanel scriptViewPanel,
+                           SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JPanel parent) {
+       this(outputPanel,scriptViewPanel,sqlTablePanel,buttonPanel,parent);
+        this.myConfigItem = configItem;
+
+    }
 
     public TripletPanelMgr(OutputPanel outputPanel,
                            ScriptViewPanel scriptViewPanel,
@@ -52,16 +62,16 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.outputPanel = outputPanel;
         this.scriptViewPanel = scriptViewPanel;
         this.sqlTablePanel = sqlTablePanel;
-		this.parentPanel = parent;
+        this.parentPanel = parent;
         this.sqlTablePanel.addTableListener(this);
         this.buttonPanel = buttonPanel;
         this.buttonPanel.addRefreshListener(this);
         this.buttonPanel.addScriptKickoffListener(this);
         this.buttonPanel.addScriptRunAllToRunListener(this);
         this.buttonPanel.addUpdatePreferencesListener(this);
-		this.scriptViewPanel.addPopOutListener(this);
-
+        this.scriptViewPanel.addPopOutListener(this);
     }
+
 
     public TripletPanelMgr(){
         //does nothing, for inheritance
@@ -105,10 +115,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     @Override
     public void refreshAction() {
 
-        SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
-       // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
-        DBRefreshAction action = new DBRefreshAction(items, this.buttonPanel, this);
-
+        DBRefreshAction action = new DBRefreshAction(myConfigItem, this.buttonPanel, this);
         action.addListener(this);
         //runs in its own thread
         Thread newThread = new Thread(action);
@@ -141,6 +148,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         runOneScript(type);
     }
 
+
     protected void runOneScript(ScriptType type){
         if(this.filesBeingRun.isEmpty()){
             return;
@@ -149,7 +157,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         SqlScriptFile scriptFile = this.filesBeingRun.get(0);
         this.filesBeingRun.remove(0);
 
-        RunScriptAction action = new RunScriptAction(this.buttonPanel.pullFieldsFromGui(), scriptFile, type);
+        RunScriptAction action = new RunScriptAction(this.myConfigItem, scriptFile, type);
         action.addCompletionListener(this);
         action.addCompletionListener(this.sqlTablePanel);
         action.addStatusListener(this.sqlTablePanel);
@@ -160,6 +168,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         newThread.start();
     }
 
+    @Override
     public void singleScriptStarting(SqlScriptFile file, ScriptType type) {
         this.outputPanel.clearText();
         try {
@@ -250,7 +259,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
 
     @Override
     public void preferencesUpdated() {
-        SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
+       // SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
        // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
     }
 }

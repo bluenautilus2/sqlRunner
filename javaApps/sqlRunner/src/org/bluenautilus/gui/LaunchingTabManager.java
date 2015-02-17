@@ -25,7 +25,7 @@ public class LaunchingTabManager implements LaunchButtonListener {
         this.parentPanel = parentPanel;
 
         JPanel blankPanel = new JPanel();
-        Dimension theSize = new Dimension(450,450);
+        Dimension theSize = new Dimension(1100,550);
         blankPanel.setMinimumSize(theSize);
         blankPanel.setMaximumSize(theSize);
         blankPanel.setPreferredSize(theSize);

@@ -1,11 +1,8 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
-import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
-import org.bluenautilus.data.SqlConfigItems;
-import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.gui.LaunchButtonListener;
-import org.bluenautilus.gui.ParentPlusMinusPanel;
+import org.bluenautilus.gui.PrettyPlusMinusPanel;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
 import javax.swing.*;
@@ -20,12 +17,18 @@ import java.util.List;
 /**
  * Created by bstevens on 1/26/15.
  */
-public class DataStoreGroupPanel extends ParentPlusMinusPanel {
+public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
 
     private JComboBox<DataStoreGroup> nicknameDropdown = null;
     private JButton launchButton = new JButton("Launch Panels");
     private List<NewDataStoreGroupChosenListener> newGroupChosenListeners = new ArrayList<>();
     private List<LaunchButtonListener> launchButtonListeners = new ArrayList<>();
+    private JLabel groupLabel = new JLabel("Database Groups: ");
+
+    public DataStoreGroupPanel(){
+        super(false);
+    }
+
 
     public void addNewGroupChosenListener(NewDataStoreGroupChosenListener listener) {
         this.newGroupChosenListeners.add(listener);
@@ -54,20 +57,27 @@ public class DataStoreGroupPanel extends ParentPlusMinusPanel {
             }
         });
 
+        Dimension buttonDim = new Dimension(200,20);
+        this.nicknameDropdown.setPreferredSize(buttonDim);
+        this.nicknameDropdown.setMinimumSize(buttonDim);
+
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
         // int anchor, int fill,
         //Insets insets, int ipadx, int ipady
-
-        this.add(this.nicknameDropdown, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+        this.add(this.groupLabel,new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(10, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.buttonPanel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+        this.add(this.nicknameDropdown, new GridBagConstraints(1,1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(10, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.launchButton,new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+        this.add(this.buttonPanel, new GridBagConstraints(1,0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(4, 4, 4, 4), 2, 2));
+
+        this.add(this.launchButton,new GridBagConstraints(2, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 10, 10, 10), 2, 2));
 

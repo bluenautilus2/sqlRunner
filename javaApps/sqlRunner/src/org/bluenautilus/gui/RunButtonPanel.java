@@ -27,7 +27,6 @@ public class RunButtonPanel extends JPanel {
 
     private static Log LOG = LogFactory.getLog(RunButtonPanel.class);
 
-
     private JButton refreshButton = new JButton("REFRESH");
     private JButton selectedScriptButton = new JButton("Run Selected");
     private JButton runAllButton = new JButton("Run All");
@@ -153,10 +152,4 @@ public class RunButtonPanel extends JPanel {
         this.refreshButton.setForeground(this.defaultForeground);
         this.refreshButton.setBackground(this.defaultBackground);
     }
-
-
-    public SqlConfigItems pullFieldsFromGui(){
-        return null;
-    }
-
 }

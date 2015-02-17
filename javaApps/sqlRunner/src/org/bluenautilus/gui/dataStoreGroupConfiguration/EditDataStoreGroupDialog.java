@@ -1,7 +1,7 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.bluenautilus.data.UuidConfigItem;
-import org.bluenautilus.gui.ParentPlusMinusPanel;
+import org.bluenautilus.gui.PrettyPlusMinusPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by bstevens on 1/31/15.
  */
-public class EditDataStoreGroupDialog extends ParentPlusMinusPanel {
+public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
 
     JLabel nicknameLabel = new JLabel("Nickname");
     JLabel dbLabel = new JLabel("Available Databases");
@@ -25,6 +25,7 @@ public class EditDataStoreGroupDialog extends ParentPlusMinusPanel {
      * If group is null, we are making a new group.
      */
     public EditDataStoreGroupDialog(String nickname, final DataStoreTable tableFull, final DataStoreTable tableSublist) {
+        super(true);
         this.loadImages();
         this.setLayout(new GridBagLayout());
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
