@@ -108,7 +108,6 @@ public class CassConfigUtil {
         }
 
         small = small.getScaledInstance(DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, 0);
-        big = big.getScaledInstance(50, 50, 0);
         cassandraBig = new ImageIcon(big);
         cassandraSmall = new ImageIcon(small);
 

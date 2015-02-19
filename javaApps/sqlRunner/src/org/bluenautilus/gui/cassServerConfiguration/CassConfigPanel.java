@@ -8,7 +8,9 @@ import org.bluenautilus.gui.CassButtonPanel;
 import org.bluenautilus.gui.FileOpenButton;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.UpdatePreferencesListener;
+import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.MiscUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -138,6 +140,11 @@ public class CassConfigPanel extends JPanel {
                     GridBagConstraints.WEST, GridBagConstraints.NONE,
                     new Insets(2, 2, 2, 2), 2, 2));
         }
+
+        JLabel iconLabel = new JLabel(CassConfigUtil.cassandraBig);
+        centerPanel.add(iconLabel, new GridBagConstraints(2, 2, 2, 2, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
 
         centerPanel.setBorder(new LineBorder(this.borderColor));

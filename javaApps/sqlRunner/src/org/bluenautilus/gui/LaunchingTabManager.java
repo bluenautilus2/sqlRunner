@@ -1,6 +1,8 @@
 package org.bluenautilus.gui;
 
+import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
+import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.UuidConfigItem;
 
 import javax.swing.*;
@@ -8,7 +10,6 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by bstevens on 2/16/15.
@@ -20,12 +21,12 @@ public class LaunchingTabManager implements LaunchButtonListener {
     RunButtonPanel buttonPanel = null;
     JPanel parentPanel = null;
 
-    public LaunchingTabManager(RunButtonPanel runButtons,  JPanel parentPanel) {
+    public LaunchingTabManager(RunButtonPanel runButtons, JPanel parentPanel) {
         this.buttonPanel = runButtons;
         this.parentPanel = parentPanel;
 
         JPanel blankPanel = new JPanel();
-        Dimension theSize = new Dimension(1100,550);
+        Dimension theSize = new Dimension(1100, 550);
         blankPanel.setMinimumSize(theSize);
         blankPanel.setMaximumSize(theSize);
         blankPanel.setPreferredSize(theSize);
@@ -34,26 +35,36 @@ public class LaunchingTabManager implements LaunchButtonListener {
     }
 
 
-
     @Override
-    public void launchButtonPressed(DataStoreGroup groupToLaunch) {
-        List<UuidConfigItem> listOfDataStores = groupToLaunch.retrieveFullObjectsFromFiles();
-        Set<Integer> tabKeys = tabMap.keySet();
-        tabbedPane.removeAll();
+    public void launchButtonPressed(final DataStoreGroup groupToLaunch) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                List<UuidConfigItem> listOfDataStores = groupToLaunch.retrieveFullObjectsFromFiles();
+                tabbedPane.removeAll();
 
-        for (Integer i : tabKeys) {
-            tabMap.remove(i);
-        }
-        //now add the new stuff
-        int i = 0;
-        for (UuidConfigItem dataStore : listOfDataStores) {
-            TripletPanel panel = new TripletPanel(dataStore);
+                tabMap = new HashMap<Integer, TripletPanelMgr>();
 
-            tabbedPane.addTab(dataStore.toString(), panel);
-            final TripletPanelMgr tripletPanelMgr = new TripletPanelMgr(panel.getOutputPanel(), panel.getScriptViewPanel(), panel.getTableHolderPanel(), buttonPanel, parentPanel);
-            tabMap.put(i, tripletPanelMgr);
-            i++;
-        }
+                //now add the new stuff
+                int i = 0;
+                for (UuidConfigItem dataStore : listOfDataStores) {
+                    TripletPanel panel = new TripletPanel(dataStore);
+                    tabbedPane.addTab(dataStore.toString(), panel);
+
+                    TripletPanelMgr theMgr = null;
+                    if(dataStore instanceof SqlConfigItems) {
+                        SqlConfigItems items = (SqlConfigItems)dataStore;
+                        theMgr = new TripletPanelMgr(items,panel.getOutputPanel(), panel.getScriptViewPanel(), panel.getTableHolderPanel(), buttonPanel, parentPanel);
+                    }else if(dataStore instanceof CassConfigItems) {
+                        CassConfigItems items = (CassConfigItems) dataStore;
+                        theMgr = new CassTripletPanelMgr(items, panel.getOutputPanel(), panel.getScriptViewPanel(), panel.getTableHolderPanel(), buttonPanel, parentPanel);
+                    }
+                    tabMap.put(i,theMgr);
+                    i++;
+                }
+            }
+        });
+
 
     }
 

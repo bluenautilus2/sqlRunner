@@ -2,7 +2,6 @@ package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
@@ -13,6 +12,7 @@ import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -37,31 +37,36 @@ public class DataStorePanelManager implements PrettyButtonListener {
     @Override
     public void prettyButtonClicked(ButtonType type) {
         DataStoreGroup group = myDsgPanel.getCurrentJComboBox();
-
+        DataStoreGroup groupToReturn = null;
         switch (type) {
             case GEAR:
-                launchDialog(group, type);
+                groupToReturn = launchDialog(group, type);
+                myDsgPanel.updateComboBoxList(groupToReturn);
                 break;
             case MINUS:
                 DataStoreGroupConfigUtil.removeAndSave(group.getUniqueId());
-                myDsgPanel.updateComboBoxList();
+                myDsgPanel.updateComboBoxList(null);
                 break;
             case PLUS:
-                launchDialog(null, type);
+                groupToReturn = launchDialog(null, type);
+                myDsgPanel.updateComboBoxList(groupToReturn);
                 break;
             case COPY:
+                //currently not enabled
                 DataStoreGroup clonedGroup = group.clone();
-                launchDialog(clonedGroup, type);
+                groupToReturn = launchDialog(clonedGroup, type);
+                myDsgPanel.updateComboBoxList(groupToReturn);
+                break;
         }
 
     }
 
-    private void launchDialog(DataStoreGroup editedGroup, ButtonType typeOfEdit) {
+    private DataStoreGroup launchDialog(DataStoreGroup editedGroup, ButtonType typeOfEdit) {
         tableModelFull = new DataStoreTableModel(CassConfigUtil.getCassConfigItemsList(), SqlConfigUtil.getSqlConfigItemsList());
         tableFull = new DataStoreTable(tableModelFull);
+        DataStoreGroup groupToReturn = null;
 
         if (editedGroup != null) {
-
             List<CassConfigItems> cassItems = CassConfigUtil.getUuidList(editedGroup.getDataStores());
             List<SqlConfigItems> sqlItems = SqlConfigUtil.getUuidList(editedGroup.getDataStores());
             tableModelSublist = new DataStoreTableModel(cassItems, sqlItems);
@@ -72,7 +77,7 @@ public class DataStorePanelManager implements PrettyButtonListener {
         }
         String nickname = editedGroup != null ? editedGroup.getNickname() : "";
         final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(nickname, tableFull, tableSublist);
-        SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog,tableFull,tableSublist);
+        SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog, tableFull, tableSublist);
         dialog.addListener(myEditorManager);
 
         final int i = JOptionPane.showOptionDialog(myDsgPanel,
@@ -90,17 +95,18 @@ public class DataStorePanelManager implements PrettyButtonListener {
                     editedGroup.setNickname(dialog.getNickNameField().getText());
                     editedGroup.setDataStoreItems(tableSublist.getDataStoreTableModel().getAllRows());
                     DataStoreGroupConfigUtil.replaceWithUpdatesAndSave(editedGroup);
+                    groupToReturn = editedGroup;
                 }
-            } else {  //it's new (plus or cloned)
+            } else {  //it's new (plus)
                 DataStoreGroup newGroup = new DataStoreGroup();
                 newGroup.generateUniqueId();
                 newGroup.setNickname(dialog.getNickNameField().getText());
                 newGroup.setDataStoreItems(tableSublist.getDataStoreTableModel().getAllRows());
                 DataStoreGroupConfigUtil.addAndSave(newGroup);
+                groupToReturn = newGroup;
             }
-            myDsgPanel.updateComboBoxList();
         }
-
+        return groupToReturn;
     }
 
 

@@ -34,7 +34,7 @@ public class PrettyPlusMinusPanel extends JPanel {
     private JButton copyButton;
     private boolean showCopy = true;
 
-    protected JPanel buttonPanel = new JPanel(new GridLayout(0,4));
+    protected JPanel buttonPanel = null;
 
     public PrettyPlusMinusPanel(boolean showCopy) {
         super();
@@ -81,10 +81,13 @@ public class PrettyPlusMinusPanel extends JPanel {
         copyButton = new JButton(copyIcon);
         copyButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.COPY));
 
+        Integer sizePanel = showCopy?4:3;
+        buttonPanel = new JPanel(new GridLayout(0,sizePanel));
+
         buttonPanel.add(plusButton);
         buttonPanel.add(gearButton);
-
         buttonPanel.add(minusButton);
+
         if(showCopy){
             buttonPanel.add(copyButton);
         }

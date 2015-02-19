@@ -63,7 +63,7 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 1;
     }
 
     public boolean isEmpty() {
@@ -80,19 +80,7 @@ public class DataStoreTableModel extends AbstractTableModel {
             return null;
         }
 
-        UuidConfigItem item = dataStoreList.get(rowIndex);
-        if (columnIndex == 1) {
-            return item;
-        }
-        if (columnIndex == 0) {
-            if (item instanceof SqlConfigItems) {
-                return SqlConfigUtil.sqlserverSmall;
-            }
-            if (item instanceof CassConfigItems) {
-                return CassConfigUtil.cassandraSmall;
-            }
-        }
-        return null;
+        return dataStoreList.get(rowIndex);
     }
 
     @Override
@@ -102,13 +90,7 @@ public class DataStoreTableModel extends AbstractTableModel {
 
     @Override
     public Class getColumnClass(int c) {
-        if (c == 1) {
-            return UuidConfigItem.class;
-        }
-        if (c == 0) {
-            return ImageIcon.class;
-        }
-        return null;
+         return UuidConfigItem.class;
     }
 
 

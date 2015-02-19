@@ -8,6 +8,7 @@ import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.MiscUtil;
+import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -68,7 +69,10 @@ public class SqlConfigPanel extends JPanel {
         JPanel centerPanel = new JPanel(new GridBagLayout());
 
 
-        //LABELS
+        centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
         centerPanel.add(dbNameLabel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
@@ -77,27 +81,34 @@ public class SqlConfigPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(userName, new GridBagConstraints(4, 1, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(password, new GridBagConstraints(4, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(portLabel, new GridBagConstraints(4, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
         centerPanel.add(dbConnectionTypeLabel, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //TEXT FIELDS
+        centerPanel.add(portLabel, new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(userName, new GridBagConstraints(0, 5, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(password, new GridBagConstraints(0, 6, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+
+        //------------------------------------------------------------------------
+
+        //this fills up three spots
+        JPanel scriptHolder = new JPanel(new BorderLayout());
+        scriptHolder.add(this.scriptFolderField, BorderLayout.WEST);
+        scriptHolder.add(openScriptFolderButton, BorderLayout.EAST);
+        centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 5, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+
         centerPanel.add(this.dbNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
@@ -106,31 +117,40 @@ public class SqlConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(this.loginField, new GridBagConstraints(5, 1, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(this.passwordField, new GridBagConstraints(5, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(this.portField, new GridBagConstraints(5, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
         centerPanel.add(this.dbConnectionTypeField, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //this fills up three spots
-        JPanel scriptHolder = new JPanel(new BorderLayout());
-        scriptHolder.add(this.scriptFolderField, BorderLayout.WEST);
-        scriptHolder.add(openScriptFolderButton, BorderLayout.EAST);
-        centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
+        centerPanel.add(this.portField, new GridBagConstraints(1, 4, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(this.loginField, new GridBagConstraints(1, 5, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(this.passwordField, new GridBagConstraints(1, 6, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        //-------------------------------------------------------------------------------
+
+        JLabel iconLabel = new JLabel(SqlConfigUtil.sqlserverBig);
+        centerPanel.add(iconLabel, new GridBagConstraints(2, 2, 4, 4, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        //-----------------------------------------
+
+
+
+
+
+
+
+
+
+        ///==============================================================
         centerPanel.setBorder(new LineBorder(this.borderColor));
         this.add(centerPanel, BorderLayout.CENTER);
 

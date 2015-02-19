@@ -23,9 +23,9 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
     private JButton launchButton = new JButton("Launch Panels");
     private List<NewDataStoreGroupChosenListener> newGroupChosenListeners = new ArrayList<>();
     private List<LaunchButtonListener> launchButtonListeners = new ArrayList<>();
-    private JLabel groupLabel = new JLabel("Database Groups: ");
+    private JLabel groupLabel = new JLabel("Datastore Groups: ");
 
-    public DataStoreGroupPanel(){
+    public DataStoreGroupPanel() {
         super(false);
     }
 
@@ -34,7 +34,7 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
         this.newGroupChosenListeners.add(listener);
     }
 
-    public void addLaunchButtonListener(LaunchButtonListener listener){
+    public void addLaunchButtonListener(LaunchButtonListener listener) {
         this.launchButtonListeners.add(listener);
     }
 
@@ -50,14 +50,14 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
         launchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(LaunchButtonListener listener:launchButtonListeners){
+                for (LaunchButtonListener listener : launchButtonListeners) {
                     Integer index = nicknameDropdown.getSelectedIndex();
                     listener.launchButtonPressed(nicknameDropdown.getItemAt(index));
                 }
             }
         });
 
-        Dimension buttonDim = new Dimension(200,20);
+        Dimension buttonDim = new Dimension(200, 20);
         this.nicknameDropdown.setPreferredSize(buttonDim);
         this.nicknameDropdown.setMinimumSize(buttonDim);
 
@@ -65,19 +65,19 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
         //double weightx, double weighty,
         // int anchor, int fill,
         //Insets insets, int ipadx, int ipady
-        this.add(this.groupLabel,new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+        this.add(this.groupLabel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.nicknameDropdown, new GridBagConstraints(1,1, 1, 1, 1.0, 1.0,
+        this.add(this.nicknameDropdown, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.buttonPanel, new GridBagConstraints(1,0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+        this.add(this.buttonPanel, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(4, 4, 4, 4), 2, 2));
 
-        this.add(this.launchButton,new GridBagConstraints(2, 1, 1, 1, 1.0, 1.0,
+        this.add(this.launchButton, new GridBagConstraints(2, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 10, 10, 10), 2, 2));
 
@@ -118,7 +118,7 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
         });
     }
 
-    public void updateComboBoxList() {
+    public void updateComboBoxList(final DataStoreGroup selectedGroup) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -128,8 +128,12 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
                 for (DataStoreGroup group : DataStoreGroupConfigUtil.getDataStoreGroupList().getDataStoreGroupList()) {
                     nicknameDropdown.addItem(group);
                 }
+                if (selectedGroup != null) {
+                    nicknameDropdown.getModel().setSelectedItem(selectedGroup);
+                }
             }
         });
     }
+
 
 }

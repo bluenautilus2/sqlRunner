@@ -12,7 +12,7 @@ import java.awt.*;
 /**
  * Created by bstevens on 2/6/15.
  */
-public class SqlOrCassOuterPanel extends JPanel {
+public class SqlOrCassEditDialog extends JPanel {
 
     public JTabbedPane tabbedPane = new JTabbedPane();
 
@@ -20,12 +20,14 @@ public class SqlOrCassOuterPanel extends JPanel {
     private CassConfigPanel cassPanel = null;
      private WasFor wasFor = WasFor.BOTH;
 
+    private JButton testButton = new JButton("Test It!");
+
     /**
      * toUpdate can be null
      *
      * @param toUpdate
      */
-    public SqlOrCassOuterPanel(UuidConfigItem toUpdate) {
+    public SqlOrCassEditDialog(UuidConfigItem toUpdate) {
         this.setLayout(new BorderLayout());
 
         if (toUpdate == null) {  //make both types available

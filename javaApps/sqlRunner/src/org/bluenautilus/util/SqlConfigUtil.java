@@ -32,7 +32,7 @@ public class SqlConfigUtil {
     private static final String CONFIG_FILENAME = "sqlconfig.json";
     private static final String BAK_FILENAME = "sqlconfig.json.old";
     private static final String BIG_ICON = "sqlserver_big.jpg";
-    private static final String ICON = "sqlserver.jpg";
+    private static final String ICON = "sqlserver.png";
     public static ImageIcon sqlserverBig = null;
     public static ImageIcon sqlserverSmall = null;
 
@@ -112,7 +112,6 @@ public class SqlConfigUtil {
         }
 
         small = small.getScaledInstance(DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, DataStoreTableModel.IMAGE_HEIGHT_IN_PIXELS, 0);
-        big = big.getScaledInstance(50, 50, 0);
         sqlserverBig = new ImageIcon(big);
         sqlserverSmall = new ImageIcon(small);
 

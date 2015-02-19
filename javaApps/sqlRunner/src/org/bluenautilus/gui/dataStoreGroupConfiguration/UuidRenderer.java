@@ -35,38 +35,40 @@ public class UuidRenderer extends DefaultTableCellRenderer {
 
         c.setFont(new Font("Sans Serif", Font.PLAIN, 12));
 
-        if(item instanceof CassConfigItems){
-            if(column==0){
-                return new JLabel(CassConfigUtil.cassandraSmall);
-            }else {
-                if (isSelected) {
-                    c.setForeground(new Color(20, 20, 100));
-                    c.setBackground(new Color(230,230,230));
-                } else {
-                    c.setForeground(new Color(20, 20, 100));
-                    c.setBackground(Color.white);
-
-                }
-            }
-        }
-
-        if(item instanceof SqlConfigItems){
-            if(column==0){
-                JLabel label = new JLabel(SqlConfigUtil.sqlserverSmall);
-                label.setPreferredSize(new Dimension(30,30));
-                return label;
-            }
+        if (item instanceof CassConfigItems) {
+            JLabel label = new JLabel(CassConfigUtil.cassandraSmall);
 
             if (isSelected) {
-                c.setForeground(new Color(100,20,20));
-                c.setBackground(new Color(230,230,230));
+                c.setForeground(new Color(20, 20, 100));
+                c.setBackground(new Color(230, 230, 230));
             } else {
-                c.setForeground(new Color(100,20,20));
+                c.setForeground(new Color(20, 20, 100));
+                c.setBackground(Color.white);
+
+            }
+            JPanel holdBoth = new JPanel(new BorderLayout());
+            holdBoth.add(label, BorderLayout.WEST);
+            holdBoth.add(c, BorderLayout.CENTER);
+            return holdBoth;
+
+        }
+
+        if (item instanceof SqlConfigItems) {
+            JLabel label = new JLabel(SqlConfigUtil.sqlserverSmall);
+
+            if (isSelected) {
+                c.setForeground(new Color(100, 20, 20));
+                c.setBackground(new Color(230, 230, 230));
+            } else {
+                c.setForeground(new Color(100, 20, 20));
                 c.setBackground(Color.WHITE);
 
             }
+            JPanel holdBoth = new JPanel(new BorderLayout());
+            holdBoth.add(label, BorderLayout.WEST);
+            holdBoth.add(c, BorderLayout.CENTER);
+            return holdBoth;
         }
-
 
         // setToolTipText(...);
         return c;

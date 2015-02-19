@@ -86,7 +86,7 @@ public class SqlOrCassEditorManager implements PrettyButtonListener {
 
     private UuidConfigItem launchDialog(UuidConfigItem toUpdate) {
 
-        SqlOrCassOuterPanel panel = new SqlOrCassOuterPanel(toUpdate);
+        SqlOrCassEditDialog panel = new SqlOrCassEditDialog(toUpdate);
 
         final int i = JOptionPane.showOptionDialog(parentPanel,
                 panel,

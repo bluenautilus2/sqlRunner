@@ -22,14 +22,11 @@ public class DataStoreTable extends JTable {
         this.setDefaultRenderer(String.class, this.render);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
+        this.setTableHeader(null);
     }
 
     public TableCellRenderer getCellRenderer(int row, int column) {
         return this.render;
-    }
-
-    public void fixColumns() {
-        this.getColumnModel().getColumn(0).setPreferredWidth(15);
     }
 
     public DataStoreTableModel getDataStoreTableModel(){

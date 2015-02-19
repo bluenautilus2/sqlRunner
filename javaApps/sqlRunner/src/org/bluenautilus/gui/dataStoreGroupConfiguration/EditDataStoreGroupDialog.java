@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  */
 public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
 
-    JLabel nicknameLabel = new JLabel("Nickname");
-    JLabel dbLabel = new JLabel("Available Databases");
+    JLabel nicknameLabel = new JLabel("DataStore Nickname: ");
+    JLabel dbLabel = new JLabel("Available Datastores: ");
 
     JTextField nickNameField = new JTextField(20);
     JButton toLeftButton = new JButton("<");
@@ -31,12 +31,16 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
         nickNameField.setText(nickname);
 
+        Dimension tableDimension = new Dimension(300,400);
+
         JPanel groupingRightPanel = new JPanel(new BorderLayout());
         JPanel nickNamePanel = new JPanel(new BorderLayout());
-        nickNamePanel.add(nicknameLabel, BorderLayout.WEST);
-        nickNamePanel.add(nickNameField, BorderLayout.EAST);
+        nickNamePanel.add(nicknameLabel, BorderLayout.NORTH);
+        nickNamePanel.add(nickNameField, BorderLayout.CENTER);
+        nickNamePanel.add(new JLabel("  "), BorderLayout.SOUTH);
         groupingRightPanel.add(nickNamePanel, BorderLayout.NORTH);
         JScrollPane subScroll = new JScrollPane(tableSublist);
+
         groupingRightPanel.add(subScroll, BorderLayout.CENTER);
 
         JPanel overAndBackPanel = new JPanel(new GridBagLayout());
@@ -72,13 +76,14 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
                 new Insets(50, 2, 50, 2), 2, 2));
 
         JPanel databaseLeftPanel = new JPanel(new BorderLayout());
-        JPanel labelAndPretties = new JPanel(new BorderLayout());
-        labelAndPretties.add(dbLabel, BorderLayout.WEST);
-        labelAndPretties.add(this.buttonPanel, BorderLayout.EAST);
-        databaseLeftPanel.add(labelAndPretties, BorderLayout.NORTH);
-        JScrollPane fullScroll = new JScrollPane(tableFull);
-        databaseLeftPanel.add(fullScroll, BorderLayout.CENTER);
 
+        databaseLeftPanel.add(dbLabel, BorderLayout.NORTH);
+        JScrollPane fullScroll = new JScrollPane(tableFull);
+
+        databaseLeftPanel.add(fullScroll, BorderLayout.CENTER);
+        databaseLeftPanel.add(this.buttonPanel,BorderLayout.SOUTH);
+
+        databaseLeftPanel.setPreferredSize(tableDimension);
         this.add(databaseLeftPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
@@ -87,6 +92,7 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
 
+        groupingRightPanel.setPreferredSize(tableDimension);
         this.add(groupingRightPanel, new GridBagConstraints(2, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10, 4, 4, 4), 2, 2));
