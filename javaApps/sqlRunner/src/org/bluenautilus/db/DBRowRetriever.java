@@ -29,7 +29,7 @@ public class DBRowRetriever {
 		ArrayList<SqlScriptRow> scriptRows = new ArrayList<SqlScriptRow>();
 
 		try {
-			// This will load the MySQL driver, each DB has its own driver
+			// This will load the ms sql server driver, each DB has its own driver
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			// Setup the connection with the DB
 

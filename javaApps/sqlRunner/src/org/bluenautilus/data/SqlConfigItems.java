@@ -101,19 +101,11 @@ public class SqlConfigItems extends UuidConfigItem {
 
         SqlConfigItems that = (SqlConfigItems) o;
 
-        if (dbConnectionType != null ? !dbConnectionType.equals(that.dbConnectionType) : that.dbConnectionType != null)
-            return false;
-        if (dbNameField != null ? !dbNameField.equals(that.dbNameField) : that.dbNameField != null) return false;
-        if (ipAddressField != null ? !ipAddressField.equals(that.ipAddressField) : that.ipAddressField != null)
-            return false;
-        if (loginField != null ? !loginField.equals(that.loginField) : that.loginField != null) return false;
-        if (passwordField != null ? !passwordField.equals(that.passwordField) : that.passwordField != null)
-            return false;
-        if (port != null ? !port.equals(that.port) : that.port != null) return false;
-        if (scriptFolderField != null ? !scriptFolderField.equals(that.scriptFolderField) : that.scriptFolderField != null)
-            return false;
+        if (this.getUniqueId().equals(that.getUniqueId())) {
+            return true;
+        }
+        return false;
 
-        return true;
     }
 
     @Override

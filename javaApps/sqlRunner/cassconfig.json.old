@@ -1,1 +1,1 @@
-{"cassConfigItems":[{"uniqueId":"8dc9df76-5e73-4787-8031-896883d83a25","tableRowIndex":0,"scriptFolderField":"/home/bstevens/repos/App/tools/CQL_Update_Scripts","hostField":"nucleus","useCertificate":"false","namespace":"pa","certificateFileField":"/home/bstevens/.ssh/stratum-west.pem"}]}
+{"cassConfigItems":[]}

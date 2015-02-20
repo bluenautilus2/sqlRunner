@@ -9,6 +9,7 @@ import org.bluenautilus.util.MiscUtil;
 import org.joda.time.DateTime;
 
 import javax.swing.*;
+import javax.swing.tree.ExpandVetoException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -33,12 +34,9 @@ public class CassandraRowRetriever {
     private static Log log = LogFactory.getLog(CassandraRowRetriever.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
     private static final String QUERY_FILE = "getRows.cql";
-    private JPanel parentPanel = null;
 
-
-    public CassandraRowRetriever(CassConfigItems fields, JPanel parentPanel) {
+    public CassandraRowRetriever(CassConfigItems fields) {
         this.fields = fields;
-        this.parentPanel = parentPanel;
     }
 
 
@@ -118,8 +116,8 @@ public class CassandraRowRetriever {
         //if there is an issue, show the error string but continue to try to connect.
         if ((null != errorString.toString()) && (errorString.toString().length() > 0)) {
             String newError = "StdErr is reporting a problem: \n" + errorString.toString();
-            GuiUtil.showErrorModalDialog(new Exception(newError), parentPanel);
             problemReported = true;
+            throw new Exception(newError);
         }
 
 

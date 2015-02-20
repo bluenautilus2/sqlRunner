@@ -88,16 +88,10 @@ public class CassConfigItems extends UuidConfigItem {
 
         CassConfigItems that = (CassConfigItems) o;
 
-        if (certificateFileField != null ? !certificateFileField.equals(that.certificateFileField) : that.certificateFileField != null)
-            return false;
-        if (hostField != null ? !hostField.equals(that.hostField) : that.hostField != null) return false;
-        if (namespace != null ? !namespace.equals(that.namespace) : that.namespace != null) return false;
-        if (scriptFolderField != null ? !scriptFolderField.equals(that.scriptFolderField) : that.scriptFolderField != null)
-            return false;
-        if (useCertificate != null ? !useCertificate.equals(that.useCertificate) : that.useCertificate != null)
-            return false;
-
-        return true;
+        if(this.getUniqueId().equals(that.getUniqueId())){
+            return true;
+        }
+        return false;
     }
 
     @Override

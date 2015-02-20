@@ -74,13 +74,10 @@ public class DataStoreGroup extends UuidConfigItem {
 
         DataStoreGroup that = (DataStoreGroup) o;
 
-        if (ignoreErrors != that.ignoreErrors) return false;
-        if (ignoreNoRun != that.ignoreNoRun) return false;
-        if (dataStores != null ? !dataStores.equals(that.dataStores) : that.dataStores != null) return false;
-        if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-        if (uniqueId != null ? !uniqueId.equals(that.uniqueId) : that.uniqueId != null) return false;
-
-        return true;
+        if (this.getUniqueId().equals(that.getUniqueId())) {
+            return true;
+        }
+        return false;
     }
 
     @Override

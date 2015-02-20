@@ -20,13 +20,14 @@ import java.util.ArrayList;
  */
 public class SqlOrCassEditDialog extends JPanel {
 
-    public JTabbedPane tabbedPane = new JTabbedPane();
+    private JTabbedPane tabbedPane = new JTabbedPane();
 
     private SqlConfigPanel sqlPanel = null;
     private CassConfigPanel cassPanel = null;
     private WasFor wasFor = WasFor.BOTH;
 
     private JButton testButton = new JButton("Test It!");
+    private Color oldBackgroundColor = testButton.getBackground();
 
     /**
      * toUpdate can be null
@@ -34,12 +35,14 @@ public class SqlOrCassEditDialog extends JPanel {
      * @param toUpdate
      */
     public SqlOrCassEditDialog(UuidConfigItem toUpdate) {
+
         testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 testAndLaunchDialog();
             }
         });
+
 
         this.setLayout(new BorderLayout());
 
@@ -92,32 +95,22 @@ public class SqlOrCassEditDialog extends JPanel {
     }
 
     private void testAndLaunchDialog() {
+        testButton.setText("WAIT......");
+        testButton.setBackground(Color.yellow);
+
         int index = tabbedPane.getSelectedIndex();
-        String answerMessage = "Test was successful";
 
         if (this.wasFor.equals(WasFor.SQL) || index == 0) {
-             SqlConfigItems items = sqlPanel.pullFieldsFromGui();
-             DBRunnerSql runner = new DBRunnerSql(items);
+            SqlConfigItems items = sqlPanel.pullFieldsFromGui();
+            DBRunnerSql runner = new DBRunnerSql(items, this);
             SwingUtilities.invokeLater(runner);
-            if(!runner.wasSuccessful()){
-                answerMessage = "Test encountered an error: "+ runner.exceptionEncountered;
-            }
         }
         if (this.wasFor.equals(WasFor.CASS) || index == 1) {
             CassConfigItems items = cassPanel.pullFieldsFromGui();
-            DBRunnerCass runner = new DBRunnerCass(items,this);
+            DBRunnerCass runner = new DBRunnerCass(items, this);
             SwingUtilities.invokeLater(runner);
-            if(!runner.wasSuccessful()){
-                answerMessage = "Test encountered an error: "+ runner.exceptionEncountered;
-            }
         }
 
-        JLabel resultLabel = new JLabel(answerMessage);
-        final int i = JOptionPane.showConfirmDialog(this,
-                resultLabel,
-                "Testing Datastore",
-                JOptionPane.YES_OPTION, // this is the array
-                JOptionPane.PLAIN_MESSAGE);
     }
 
     public class DBRunnerCass implements Runnable {
@@ -128,17 +121,22 @@ public class SqlOrCassEditDialog extends JPanel {
 
         public DBRunnerCass(CassConfigItems items, JPanel panel) {
             this.items = items;
-            this.panel  = panel;
+            this.panel = panel;
         }
 
         @Override
         public void run() {
             try {
-                CassandraRowRetriever retriever = new CassandraRowRetriever(items, panel);
-                ArrayList<SqlScriptRow> rows = retriever.readDataBase();
+
+                CassandraRowRetriever retriever = new CassandraRowRetriever(items);
+                rows = retriever.readDataBase();
+
             } catch (Exception e) {
                 exceptionEncountered = e;
             }
+            testButton.setBackground(oldBackgroundColor);
+            testButton.setText("Test it!");
+            JOptionPane.showMessageDialog(panel, makeDialogComponent(wasSuccessful(), exceptionEncountered), "Test Complete", JOptionPane.NO_OPTION);
         }
 
         public boolean wasSuccessful() {
@@ -153,23 +151,71 @@ public class SqlOrCassEditDialog extends JPanel {
         Exception exceptionEncountered = null;
         ArrayList<SqlScriptRow> rows = null;
         SqlConfigItems items = null;
+        JPanel panel = null;
 
-        public DBRunnerSql(SqlConfigItems items) {
+        public DBRunnerSql(SqlConfigItems items, JPanel panel) {
             this.items = items;
+            this.panel = panel;
         }
 
         @Override
         public void run() {
+
             try {
                 DBRowRetriever retriever = new DBRowRetriever(items);
-                ArrayList<SqlScriptRow> rows = retriever.readDataBase();
+                rows = retriever.readDataBase();
+
             } catch (Exception e) {
                 exceptionEncountered = e;
             }
+            testButton.setBackground(oldBackgroundColor);
+            testButton.setText("Test it!");
+            JOptionPane.showMessageDialog(panel, makeDialogComponent(wasSuccessful(), exceptionEncountered), "Test Complete", JOptionPane.NO_OPTION);
         }
+
         public boolean wasSuccessful() {
             return (rows != null);
         }
 
+    }
+
+//
+//    protected JPanel makeGifPanel() {
+//        Image gif = null;
+//        try {
+//            gif = ImageIO.read(new File("loadingcirclests16.gif"));
+//        } catch (IOException ioe) {
+//            //who cares
+//            System.out.println(ioe);
+//        }
+//
+//        ImageIcon gifIcon = new ImageIcon(gif);
+//        JPanel panel = new JPanel(new BorderLayout());
+//        panel.add(new JLabel("Wait for it..."), BorderLayout.NORTH);
+//        panel.add(new JLabel(gifIcon), BorderLayout.CENTER);
+//        return panel;
+//    }
+
+    private Component makeDialogComponent(boolean wasSuccessfull, Exception e) {
+
+        if (wasSuccessfull) {
+            JLabel answerLabel = new JLabel("Test was successful!!");
+            answerLabel.setForeground(new Color(10, 100, 50));
+            return answerLabel;
+        }
+
+        String errorString = "Test Failed: ";
+        if (e == null) {
+            errorString = errorString + " but no error was returned ";
+        } else {
+            errorString = errorString + e.getMessage();
+        }
+
+        JEditorPane pane = new JEditorPane();
+        pane.setText(errorString);
+        pane.setForeground(new Color(150, 10, 10));
+        JScrollPane scroll = new JScrollPane(pane);
+        scroll.setPreferredSize(new Dimension(400, 400));
+        return scroll;
     }
 }
