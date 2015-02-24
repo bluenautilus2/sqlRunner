@@ -4,13 +4,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassConfigItems;
-import org.bluenautilus.gui.CassButtonPanel;
 import org.bluenautilus.gui.FileOpenButton;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.MiscUtil;
-import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -26,7 +24,7 @@ import java.util.UUID;
 public class CassConfigPanel extends JPanel {
 
 
-    private static Log LOG = LogFactory.getLog(CassButtonPanel.class);
+    private static Log LOG = LogFactory.getLog(CassConfigPanel.class);
 
     CassConfigItems fields = null;
 
