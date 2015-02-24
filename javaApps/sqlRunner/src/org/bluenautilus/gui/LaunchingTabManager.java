@@ -75,6 +75,8 @@ public class LaunchingTabManager implements LaunchButtonListener {
 
                     i++;
                 }
+
+                buttonPanel.actionPerformed(null);
             }
         });
     }

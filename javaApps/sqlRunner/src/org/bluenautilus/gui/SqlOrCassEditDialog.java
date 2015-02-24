@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -102,12 +104,12 @@ public class SqlOrCassEditDialog extends JPanel {
 
         if (this.wasFor.equals(WasFor.SQL) || index == 0) {
             SqlConfigItems items = sqlPanel.pullFieldsFromGui();
-            DBRunnerSql runner = new DBRunnerSql(items, this);
+            DBRunnerSql runner = new DBRunnerSql(items, this, sqlPanel.getScriptFolder());
             SwingUtilities.invokeLater(runner);
         }
         if (this.wasFor.equals(WasFor.CASS) || index == 1) {
             CassConfigItems items = cassPanel.pullFieldsFromGui();
-            DBRunnerCass runner = new DBRunnerCass(items, this);
+            DBRunnerCass runner = new DBRunnerCass(items, this, cassPanel.getScriptFolder());
             SwingUtilities.invokeLater(runner);
         }
 
@@ -118,16 +120,18 @@ public class SqlOrCassEditDialog extends JPanel {
         ArrayList<SqlScriptRow> rows = null;
         CassConfigItems items = null;
         JPanel panel = null;
+        String scriptFolder = null;
 
-        public DBRunnerCass(CassConfigItems items, JPanel panel) {
+        public DBRunnerCass(CassConfigItems items, JPanel panel, String folderName) {
             this.items = items;
             this.panel = panel;
+            this.scriptFolder = folderName;
         }
 
         @Override
         public void run() {
             try {
-
+                testFolder(scriptFolder);
                 CassandraRowRetriever retriever = new CassandraRowRetriever(items);
                 rows = retriever.readDataBase();
 
@@ -152,16 +156,19 @@ public class SqlOrCassEditDialog extends JPanel {
         ArrayList<SqlScriptRow> rows = null;
         SqlConfigItems items = null;
         JPanel panel = null;
+        String scriptFolder = null;
 
-        public DBRunnerSql(SqlConfigItems items, JPanel panel) {
+        public DBRunnerSql(SqlConfigItems items, JPanel panel, String folderName) {
             this.items = items;
             this.panel = panel;
+            this.scriptFolder = folderName;
         }
 
         @Override
         public void run() {
 
             try {
+                testFolder(scriptFolder);
                 DBRowRetriever retriever = new DBRowRetriever(items);
                 rows = retriever.readDataBase();
 
@@ -179,22 +186,18 @@ public class SqlOrCassEditDialog extends JPanel {
 
     }
 
-//
-//    protected JPanel makeGifPanel() {
-//        Image gif = null;
-//        try {
-//            gif = ImageIO.read(new File("loadingcirclests16.gif"));
-//        } catch (IOException ioe) {
-//            //who cares
-//            System.out.println(ioe);
-//        }
-//
-//        ImageIcon gifIcon = new ImageIcon(gif);
-//        JPanel panel = new JPanel(new BorderLayout());
-//        panel.add(new JLabel("Wait for it..."), BorderLayout.NORTH);
-//        panel.add(new JLabel(gifIcon), BorderLayout.CENTER);
-//        return panel;
-//    }
+    private String testFolder(String folderName) throws Exception {
+        File f = new File(folderName);
+        if (f.exists()) {
+            if (f.canRead()) {
+                return "Folder found: " + folderName;
+            } else {
+                throw new Exception("Don't have read access to: " + folderName);
+            }
+        } else {
+            throw new FileNotFoundException("Could not find folder: "+ folderName);
+        }
+    }
 
     private Component makeDialogComponent(boolean wasSuccessfull, Exception e) {
 

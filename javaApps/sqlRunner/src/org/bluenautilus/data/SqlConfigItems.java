@@ -17,7 +17,7 @@ public class SqlConfigItems extends UuidConfigItem {
     private String dbNameField = "panswersClean";
     private String loginField = "common";
     private String passwordField = "xxxPA50";
-    private String scriptFolderField = "~/repo/tools/SQL_Update_Scripts";
+    private String scriptFolderField = "C:/repos/App/tools/SQL_Update_Scripts";
     private String ipAddressField = "10.10.10.53";
     private String port = "1433";
     private String dbConnectionType = DBConnectionType.getDefaultForThisOS().toString();

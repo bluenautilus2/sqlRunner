@@ -90,7 +90,7 @@ public class SqlOrCassEditorManager implements PrettyButtonListener {
 
         final int i = JOptionPane.showOptionDialog(parentPanel,
                 panel,
-                "Edit DataStoreGroup",
+                "Edit New DataStore (Sql or Cassandra)",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE,
                 null,

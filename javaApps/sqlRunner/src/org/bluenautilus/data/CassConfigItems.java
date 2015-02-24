@@ -13,14 +13,12 @@ public class CassConfigItems extends UuidConfigItem {
     private String scriptFolderField = "/home/bstevens/repos/App/tools/CQL_Update_Scripts";
     private String hostField = "nucleus";
     private String useCertificate = "false";
-    private String namespace = "pa";
     private String certificateFileField= "/home/bstevens/.ssh/stratum-west.pem";
 
-    public CassConfigItems(UUID uuid,String scriptFolderField, String hostField, String useCertificate, String namespace, String certificateFileField) {
+    public CassConfigItems(UUID uuid,String scriptFolderField, String hostField, String useCertificate, String certificateFileField) {
         this.scriptFolderField = scriptFolderField;
         this.hostField = hostField;
         this.useCertificate = useCertificate;
-        this.namespace = namespace;
         this.certificateFileField = certificateFileField;
         this.uniqueId = uuid;
     }
@@ -62,15 +60,6 @@ public class CassConfigItems extends UuidConfigItem {
     }
 
 
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
-
     public boolean useCertificate(){
         return new Boolean(this.getUseCertificate());
     }
@@ -99,7 +88,6 @@ public class CassConfigItems extends UuidConfigItem {
         int result = scriptFolderField != null ? scriptFolderField.hashCode() : 0;
         result = 31 * result + (hostField != null ? hostField.hashCode() : 0);
         result = 31 * result + (useCertificate != null ? useCertificate.hashCode() : 0);
-        result = 31 * result + (namespace != null ? namespace.hashCode() : 0);
         result = 31 * result + (certificateFileField != null ? certificateFileField.hashCode() : 0);
         return result;
     }
@@ -108,7 +96,7 @@ public class CassConfigItems extends UuidConfigItem {
     @Override
     @JsonIgnore
     public String getTableDisplayString() {
-        return namespace+"@"+hostField;
+        return "pa@"+hostField;
     }
 
     public UuidConfigItem clone(){
@@ -118,7 +106,6 @@ public class CassConfigItems extends UuidConfigItem {
         cloned.setUseCertificate(this.getUseCertificate());
         cloned.setCertificateFileField(this.getCertificateFileField());
         cloned.setScriptFolderField(this.getScriptFolderField());
-        cloned.setNamespace(this.getNamespace());
 
         return cloned;
     }

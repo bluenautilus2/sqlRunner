@@ -266,5 +266,9 @@ public class SqlConfigPanel extends JPanel {
 
     }
 
+    public String getScriptFolder() {
+        return scriptFolderField.getText();
+    }
+
 
 }

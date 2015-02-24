@@ -73,12 +73,16 @@ public class PrettyPlusMinusPanel extends JPanel {
         ImageIcon copyIcon = new ImageIcon(image4);
 
         minusButton = new JButton(minusIcon);
+        minusButton.setToolTipText("Remove");
         minusButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.MINUS));
         plusButton = new JButton(plusIcon);
+        plusButton.setToolTipText("Add New");
         plusButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.PLUS));
         gearButton = new JButton(gearIcon);
+        gearButton.setToolTipText("Edit");
         gearButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.GEAR));
         copyButton = new JButton(copyIcon);
+        copyButton.setToolTipText("Copy");
         copyButton.addActionListener(new PrettyListener(PrettyButtonListener.ButtonType.COPY));
 
         Integer sizePanel = showCopy?4:3;

@@ -2,7 +2,6 @@ package org.bluenautilus.gui.cassServerConfiguration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.gui.FileOpenButton;
 import org.bluenautilus.gui.FolderOpenButton;
@@ -30,7 +29,6 @@ public class CassConfigPanel extends JPanel {
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
-    private JTextField namespaceField = new JTextField(5);
     private JCheckBox useCert = new JCheckBox();
     private JTextField certFileField = new JTextField(35);
     private UUID uuidField = null;
@@ -39,7 +37,6 @@ public class CassConfigPanel extends JPanel {
     private final JLabel certName = new JLabel("Certificate file");
     private JLabel folderName = new JLabel("CQL Script Folder");
     private JLabel checkBoxName = new JLabel("Use Cert?");
-    private JLabel namespaceName = new JLabel("Namespace");
 
     ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
@@ -92,10 +89,6 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(namespaceName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
         //FIELDS
 
         //this fills up three spots
@@ -109,11 +102,6 @@ public class CassConfigPanel extends JPanel {
         centerPanel.add(this.hostNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
-
-        centerPanel.add(this.namespaceField, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
-                GridBagConstraints.WEST, GridBagConstraints.NONE,
-                new Insets(2, 2, 2, 2), 2, 2));
-
 
 
         if (MiscUtil.isThisLinux()) {
@@ -159,8 +147,7 @@ public class CassConfigPanel extends JPanel {
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
                 getStringForConfigCheckbox(this.useCert),
-                this.namespaceField.getText(),this.certFileField.getText());
-
+                this.certFileField.getText());
     }
 
     private String getStringForConfigCheckbox(JCheckBox box) {
@@ -177,17 +164,16 @@ public class CassConfigPanel extends JPanel {
         this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
         this.certFileField.setText(fields.getCertificateFileField());
         this.uuidField = fields.getUniqueId();
-        this.namespaceField.setText(fields.getNamespace());
         syncCheckBoxDisabling();
-    }
-
-    public CassandraConnectionType getCassConnectionType() {
-        return CassandraConnectionType.getDefaultForThisOS();
     }
 
     private void syncCheckBoxDisabling() {
         certFileField.setEnabled(useCert.isSelected());
         certName.setEnabled(useCert.isSelected());
+    }
+
+    public String getScriptFolder() {
+        return scriptFolderField.getText();
     }
 
 }
