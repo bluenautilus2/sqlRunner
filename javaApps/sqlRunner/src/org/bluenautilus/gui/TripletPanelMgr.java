@@ -4,7 +4,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
-import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.db.DBRefreshAction;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
 import org.bluenautilus.script.PopOutScriptEvent;
