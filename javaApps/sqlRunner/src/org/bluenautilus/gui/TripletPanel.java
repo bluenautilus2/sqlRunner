@@ -24,7 +24,7 @@ public class TripletPanel extends JPanel {
     UuidConfigItem sqlOrCassConfiguration = null;
 
     public TripletPanel(UuidConfigItem sqlOrCassConfiguration) {
-
+        super(new BorderLayout());
         this.sqlOrCassConfiguration = sqlOrCassConfiguration;
 
 
@@ -48,31 +48,14 @@ public class TripletPanel extends JPanel {
         return outputPanel;
     }
 
-    public void setOutputPanel(OutputPanel outputPanel) {
-        this.outputPanel = outputPanel;
-    }
-
     public ScriptViewPanel getScriptViewPanel() {
         return scriptViewPanel;
     }
 
-    public void setScriptViewPanel(ScriptViewPanel scriptViewPanel) {
-        this.scriptViewPanel = scriptViewPanel;
-    }
 
     public SqlScriptTablePanel getTableHolderPanel() {
         return tableHolderPanel;
     }
 
-    public void setTableHolderPanel(SqlScriptTablePanel tableHolderPanel) {
-        this.tableHolderPanel = tableHolderPanel;
-    }
 
-    public UuidConfigItem getSqlOrCassConfiguration() {
-        return sqlOrCassConfiguration;
-    }
-
-    public void setSqlOrCassConfiguration(UuidConfigItem sqlOrCassConfiguration) {
-        this.sqlOrCassConfiguration = sqlOrCassConfiguration;
-    }
 }

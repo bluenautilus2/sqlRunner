@@ -43,7 +43,7 @@ public class RunScriptAction implements Runnable {
         this.items = items;
         this.file = sqlScriptFile;
         this.type = type;
-		this.dbConnectionType = DBConnectionType.valueOf(items.getDbConnectionType());
+		this.dbConnectionType = DBConnectionType.getEnum(items.getDbConnectionType());
         this.isCassandra = false;
     }
 

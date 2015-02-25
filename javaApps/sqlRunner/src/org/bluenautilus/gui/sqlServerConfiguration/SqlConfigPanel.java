@@ -140,16 +140,6 @@ public class SqlConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        //-----------------------------------------
-
-
-
-
-
-
-
-
-
         ///==============================================================
         centerPanel.setBorder(new LineBorder(this.borderColor));
         this.add(centerPanel, BorderLayout.CENTER);

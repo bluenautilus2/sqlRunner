@@ -32,11 +32,8 @@ public class LaunchingTabManager implements LaunchButtonListener {
         this.parentPanel = parentPanel;
 
         JPanel blankPanel = new JPanel();
-        Dimension theSize = new Dimension(1100, 550);
-        blankPanel.setMinimumSize(theSize);
-        blankPanel.setMaximumSize(theSize);
+        Dimension theSize = new Dimension(800, 500);
         blankPanel.setPreferredSize(theSize);
-
         tabbedPane.addTab("Chose a datastore group", blankPanel);
     }
 
