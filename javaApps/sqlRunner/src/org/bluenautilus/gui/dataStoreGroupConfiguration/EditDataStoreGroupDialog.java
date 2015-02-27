@@ -31,7 +31,7 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
         nickNameField.setToolTipText("Examples: 'local', 'dalcenstg17', 'altostratum3'");
         nickNameField.setText(nickname);
 
-        Dimension tableDimension = new Dimension(300,400);
+        Dimension tableDimension = new Dimension(300, 400);
 
         JPanel groupingRightPanel = new JPanel(new BorderLayout());
         JPanel nickNamePanel = new JPanel(new BorderLayout());
@@ -54,8 +54,10 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = tableFull.getSelectedRow();
-                UuidConfigItem selectedObject = tableFull.getDataStoreTableModel().getRowObject(selected);
-                tableSublist.getDataStoreTableModel().addUuidItem(selectedObject);
+                if (selected >= 0) {
+                    UuidConfigItem selectedObject = tableFull.getDataStoreTableModel().getRowObject(selected);
+                    tableSublist.getDataStoreTableModel().addUuidItem(selectedObject);
+                }
             }
         });
 
@@ -63,8 +65,10 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = tableSublist.getSelectedRow();
-                UuidConfigItem selectedObject = tableSublist.getDataStoreTableModel().getRowObject(selected);
-                tableSublist.getDataStoreTableModel().removeUuidItem(selectedObject);
+                if (selected >= 0) {
+                    UuidConfigItem selectedObject = tableSublist.getDataStoreTableModel().getRowObject(selected);
+                    tableSublist.getDataStoreTableModel().removeUuidItem(selectedObject);
+                }
             }
         });
 
@@ -81,7 +85,7 @@ public class EditDataStoreGroupDialog extends PrettyPlusMinusPanel {
         JScrollPane fullScroll = new JScrollPane(tableFull);
 
         databaseLeftPanel.add(fullScroll, BorderLayout.CENTER);
-        databaseLeftPanel.add(this.buttonPanel,BorderLayout.SOUTH);
+        databaseLeftPanel.add(this.buttonPanel, BorderLayout.SOUTH);
 
         databaseLeftPanel.setPreferredSize(tableDimension);
         this.add(databaseLeftPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,

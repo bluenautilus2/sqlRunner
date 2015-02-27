@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * User: bluenautilus2
@@ -134,6 +135,20 @@ public class DataStoreTableModel extends AbstractTableModel {
             this.dataStoreList.set(i, updated);
             this.fireTableRowsUpdated(i, i);
         }
+    }
+
+    /**
+     * returns -1 if not in table
+     * @param id
+     * @return
+     */
+    public int getIndexOfUuid(UUID id){
+        for(UuidConfigItem item:this.dataStoreList){
+            if(id.equals(item.getUniqueId())){
+                return this.dataStoreList.indexOf(item);
+            }
+        }
+        return -1;
     }
 
 }

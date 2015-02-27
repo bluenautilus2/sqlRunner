@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.DataStoreGroup;
 import org.bluenautilus.data.SqlConfigItems;
+import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.gui.PrettyButtonListener;
 import org.bluenautilus.gui.SqlOrCassEditorManager;
 import org.bluenautilus.util.CassConfigUtil;
@@ -12,6 +13,8 @@ import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.List;
 
@@ -75,6 +78,17 @@ public class DataStorePanelManager implements PrettyButtonListener {
             tableModelSublist = new DataStoreTableModel();
             tableSublist = new DataStoreTable(tableModelSublist);
         }
+
+        tableSublist.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent event) {
+
+                int selectedIndex = tableSublist.getSelectedRow();
+                UuidConfigItem item = tableModelSublist.getRowObject(selectedIndex);
+                int indexOnFullSide = tableModelFull.getIndexOfUuid(item.getUniqueId());
+                tableFull.changeSelection(indexOnFullSide,0,false,false);
+            }
+        });
+
         String nickname = editedGroup != null ? editedGroup.getNickname() : "";
         final EditDataStoreGroupDialog dialog = new EditDataStoreGroupDialog(nickname, tableFull, tableSublist);
         SqlOrCassEditorManager myEditorManager = new SqlOrCassEditorManager(dialog, tableFull, tableSublist);

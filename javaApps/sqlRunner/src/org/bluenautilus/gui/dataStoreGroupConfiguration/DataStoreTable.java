@@ -1,7 +1,10 @@
 package org.bluenautilus.gui.dataStoreGroupConfiguration;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellRenderer;
+import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.
