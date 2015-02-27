@@ -40,7 +40,7 @@ public class CassandraRowRetriever {
     }
 
 
-    public ArrayList<SqlScriptRow> readDataBase() throws Exception {
+    public synchronized ArrayList<SqlScriptRow> readDataBase() throws Exception {
         ArrayList<SqlScriptRow> scriptRows = new ArrayList<SqlScriptRow>();
         DateTime today = new DateTime();
         Integer year = today.getYear();

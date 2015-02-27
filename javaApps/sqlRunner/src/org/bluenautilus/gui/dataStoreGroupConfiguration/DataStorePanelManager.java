@@ -15,7 +15,6 @@ import org.bluenautilus.util.SqlConfigUtil;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -79,13 +78,16 @@ public class DataStorePanelManager implements PrettyButtonListener {
             tableSublist = new DataStoreTable(tableModelSublist);
         }
 
-        tableSublist.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        tableSublist.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
-
                 int selectedIndex = tableSublist.getSelectedRow();
-                UuidConfigItem item = tableModelSublist.getRowObject(selectedIndex);
-                int indexOnFullSide = tableModelFull.getIndexOfUuid(item.getUniqueId());
-                tableFull.changeSelection(indexOnFullSide,0,false,false);
+                if (selectedIndex >= 0) {
+                    UuidConfigItem item = tableModelSublist.getRowObject(selectedIndex);
+                    int indexOnFullSide = tableModelFull.getIndexOfUuid(item.getUniqueId());
+                    if (indexOnFullSide >= 0) {
+                        tableFull.changeSelection(indexOnFullSide, 0, false, false);
+                    }
+                }
             }
         });
 
