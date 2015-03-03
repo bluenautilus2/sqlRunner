@@ -101,13 +101,24 @@ public class CassandraRowRetriever {
             processBuilder = new ProcessBuilder(params);
         }
 
+        StringBuilder errorString = new StringBuilder();
+
+        File containingFolder = new File("./");
+        if (containingFolder.exists() && containingFolder.canRead()) {
+            if (!containingFolder.canWrite()) {
+                errorString.append("Cannot connect - don't have write permission to the containing folder: " + containingFolder.getAbsolutePath());
+            }
+        } else {
+            errorString.append("Cannot connect - don't have read permission to the containing folder: " + containingFolder.getAbsolutePath());
+        }
+
         Process process = processBuilder.start();
 
         InputStream iserr = process.getErrorStream();
         InputStreamReader isrerr = new InputStreamReader(iserr);
         BufferedReader brerr = new BufferedReader(isrerr);
         String line;
-        StringBuilder errorString = new StringBuilder();
+
         while ((line = brerr.readLine()) != null) {
             errorString.append(line + "\n");
         }

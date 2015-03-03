@@ -33,7 +33,7 @@ import java.util.Collections;
  */
 public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener {
 
-	private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
+    private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
 
     protected OutputPanel outputPanel;
     protected ScriptViewPanel scriptViewPanel;
@@ -43,14 +43,15 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     protected JPanel parentPanel;
     protected DisplayScriptDialog lastOpenedDialog;
     private SqlConfigItems myConfigItem;
+    private boolean deactivated = false;
 
     public ArrayList<SqlScriptFile> filesBeingRun;
 
 
-    public TripletPanelMgr(SqlConfigItems configItem,OutputPanel outputPanel,
+    public TripletPanelMgr(SqlConfigItems configItem, OutputPanel outputPanel,
                            ScriptViewPanel scriptViewPanel,
                            SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JPanel parent) {
-       this(outputPanel,scriptViewPanel,sqlTablePanel,buttonPanel,parent);
+        this(outputPanel, scriptViewPanel, sqlTablePanel, buttonPanel, parent);
         this.myConfigItem = configItem;
 
     }
@@ -69,10 +70,18 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.buttonPanel.addScriptRunAllToRunListener(this);
         this.buttonPanel.addUpdatePreferencesListener(this);
         this.scriptViewPanel.addPopOutListener(this);
+        this.deactivated = false;
     }
 
+    public void stopListening() {
+        this.deactivated = true;
+        this.sqlTablePanel.removeTableListener(this);
+        this.buttonPanel.removeRefreshListener(this);
+        this.scriptViewPanel.removePopOutListener(this);
+        this.buttonPanel.removedUpdatePreferencesListener(this);
+    }
 
-    public TripletPanelMgr(){
+    public TripletPanelMgr() {
         //does nothing, for inheritance
     }
 
@@ -113,7 +122,6 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
 
     @Override
     public void refreshAction() {
-
         DBRefreshAction action = new DBRefreshAction(myConfigItem, this.buttonPanel, this);
         action.addListener(this);
         //runs in its own thread
@@ -123,23 +131,27 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
 
     @Override
     public void kickoffSelectedScripts(ScriptType type) {
-        ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllSelected();
-        this.runScriptList(fileList, type);
+        if (!deactivated) {
+            ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllSelected();
+            this.runScriptList(fileList, type);
+        }
     }
 
     @Override
-    public void kickoffAllToRunScripts(){
-        ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllToRun();
-        this.runScriptList(fileList, ScriptType.REGULAR);
+    public void kickoffAllToRunScripts() {
+        if (!deactivated) {
+            ArrayList<SqlScriptFile> fileList = this.sqlTablePanel.getAllToRun();
+            this.runScriptList(fileList, ScriptType.REGULAR);
+        }
     }
 
-    private void runScriptList(ArrayList<SqlScriptFile> fileList, ScriptType type){
+    private void runScriptList(ArrayList<SqlScriptFile> fileList, ScriptType type) {
         //run oldest first
         Collections.sort(fileList);
 
-		if(ScriptType.ROLLBACK.equals(type)){
-			Collections.reverse(fileList);
-		}
+        if (ScriptType.ROLLBACK.equals(type)) {
+            Collections.reverse(fileList);
+        }
 
         this.filesBeingRun = fileList;
 
@@ -148,8 +160,8 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     }
 
 
-    protected void runOneScript(ScriptType type){
-        if(this.filesBeingRun.isEmpty()){
+    protected void runOneScript(ScriptType type) {
+        if (this.filesBeingRun.isEmpty()) {
             return;
         }
 
@@ -169,44 +181,48 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
 
     @Override
     public void singleScriptStarting(SqlScriptFile file, ScriptType type) {
-        this.outputPanel.clearText();
-        try {
-            this.scriptViewPanel.setText(file);
-        } catch (IOException ex) {
-            GuiUtil.showErrorModalDialog(ex, this.outputPanel);
+        if (!deactivated) {
+            this.outputPanel.clearText();
+            try {
+                this.scriptViewPanel.setText(file);
+            } catch (IOException ex) {
+                GuiUtil.showErrorModalDialog(ex, this.outputPanel);
+            }
         }
     }
 
     @Override
     public void scriptComplete(ScriptResultsEvent event) {
-        try {
-            this.outputPanel.setText(event.getOutput());
-        } catch (IOException ex) {
-            GuiUtil.showErrorModalDialog(ex, this.outputPanel);
+        if (!deactivated) {
+            try {
+                this.outputPanel.setText(event.getOutput());
+            } catch (IOException ex) {
+                GuiUtil.showErrorModalDialog(ex, this.outputPanel);
+            }
+
+            ScriptType type = event.getType();
+
+            //see if there are any more scripts to run and if so, run them.
+            if (event.getTheException() == null && !event.isDbProblem()) {
+                runOneScript(type);
+            } else {
+                //but, if there is an exception, clear out the queue
+                //and stop running scripts
+                this.filesBeingRun.clear();
+            }
         }
-
-        ScriptType type = event.getType();
-
-        //see if there are any more scripts to run and if so, run them.
-        if(event.getTheException()==null && !event.isDbProblem()){
-		   runOneScript(type);
-		}else{
-		   //but, if there is an exception, clear out the queue
-		   //and stop running scripts
-		   this.filesBeingRun.clear();
-		}
 
     }
 
     /**
      * takes place in the swing thread
      */
-	@Override
-	public void databaseRefreshStarted() {
+    @Override
+    public void databaseRefreshStarted() {
         //nothing right now. later on might want to launch
         //modal dialog or something
 
-	}
+    }
 
 
     @Override
@@ -215,50 +231,51 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.refresh(results);
     }
 
-	/**
-	 * Launches a non-modal dialog box that we don't listen to. (yet)
-	 * @param event
-	 */
-	@Override
-	public void popOutAScript(PopOutScriptEvent event) {
+    /**
+     * Launches a non-modal dialog box that we don't listen to. (yet)
+     *
+     * @param event
+     */
+    @Override
+    public void popOutAScript(PopOutScriptEvent event) {
 
-		//no files are selected, do nothing
-		if(this.lastSetFileObj==null){
-			return;
-		}
+        //no files are selected, do nothing
+        if (this.lastSetFileObj == null) {
+            return;
+        }
 
-		//create a script display dialog
-		File file = null;
+        //create a script display dialog
+        File file = null;
 
-		if(ScriptType.REGULAR.equals(event.getType())){
-			file = this.lastSetFileObj.getTheFile();
-		}else{
-			file = this.lastSetFileObj.getRollbackFile();
-		}
+        if (ScriptType.REGULAR.equals(event.getType())) {
+            file = this.lastSetFileObj.getTheFile();
+        } else {
+            file = this.lastSetFileObj.getRollbackFile();
+        }
 
-		if (file != null) {
-			try {
-				DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentPanel);
-				dialog.pack();
-				if(this.lastOpenedDialog!=null){
-				   Point point =lastOpenedDialog.getLocation();
-				   int x = point.x + 20;
-				   int y = point.y + 10;
-				   dialog.setLocation(x,y);
-				}
-				this.lastOpenedDialog = dialog;
+        if (file != null) {
+            try {
+                DisplayScriptDialog dialog = new DisplayScriptDialog(file.getName(), file, this.parentPanel);
+                dialog.pack();
+                if (this.lastOpenedDialog != null) {
+                    Point point = lastOpenedDialog.getLocation();
+                    int x = point.x + 20;
+                    int y = point.y + 10;
+                    dialog.setLocation(x, y);
+                }
+                this.lastOpenedDialog = dialog;
 
-				dialog.setVisible(true);
-			} catch (Exception e) {
-				GuiUtil.showErrorModalDialog(e, this.scriptViewPanel);
-			}
-		}
+                dialog.setVisible(true);
+            } catch (Exception e) {
+                GuiUtil.showErrorModalDialog(e, this.scriptViewPanel);
+            }
+        }
 
-	}
+    }
 
     @Override
     public void preferencesUpdated() {
-       // SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
-       // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
+        // SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
+        // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
     }
 }

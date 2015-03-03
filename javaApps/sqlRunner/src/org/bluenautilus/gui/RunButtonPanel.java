@@ -99,8 +99,16 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.updateListeners.add(listener);
     }
 
+    public void removedUpdatePreferencesListener(UpdatePreferencesListener listener) {
+        this.updateListeners.remove(listener);
+    }
+
     public void addRefreshListener(final RefreshListener listener) {
         this.refreshListeners.add(listener);
+    }
+
+    public void removeRefreshListener(final RefreshListener listener){
+        this.refreshListeners.remove(listener);
     }
 
     public void addScriptKickoffListener(final ScriptKickoffListener listener) {
@@ -121,6 +129,8 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.selectedScriptButton.addActionListener(regularActionListener);
         this.rollbackButton.addActionListener(rollbackActionListener);
     }
+
+
 
 
     public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {

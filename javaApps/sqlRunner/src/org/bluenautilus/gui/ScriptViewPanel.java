@@ -117,4 +117,7 @@ public class ScriptViewPanel extends ParentTextPanel {
 		this.popOutListeners.add(listener);
 	}
 
+    public void removePopOutListener(ScriptPopOutEventListener listener){
+        this.popOutListeners.remove(listener);
+    }
 }

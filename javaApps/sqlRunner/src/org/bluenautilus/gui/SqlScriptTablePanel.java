@@ -56,6 +56,10 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         this.theTable.getSelectionModel().addListSelectionListener(listener);
     }
 
+    public void removeTableListener(ListSelectionListener listener){
+        this.theTable.getSelectionModel().removeListSelectionListener(listener);
+    }
+
     public SqlScriptFile getFile(int row) {
         return this.tableModel.getSqlScriptFile(row);
     }

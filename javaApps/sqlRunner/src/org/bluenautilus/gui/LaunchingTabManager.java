@@ -14,7 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by bstevens on 2/16/15.
@@ -26,6 +29,7 @@ public class LaunchingTabManager implements LaunchButtonListener {
 
     RunButtonPanel buttonPanel = null;
     JPanel parentPanel = null;
+    Map<String, TripletPanelMgr> panelManagers = new HashMap<>();
 
     public LaunchingTabManager(RunButtonPanel runButtons, JPanel parentPanel) {
         this.buttonPanel = runButtons;
@@ -44,7 +48,11 @@ public class LaunchingTabManager implements LaunchButtonListener {
             @Override
             public void run() {
                 List<UuidConfigItem> listOfDataStores = groupToLaunch.retrieveFullObjectsFromFiles();
+                removeAllExisting();
+
+                //remove the empty pane that we added at the beginning
                 tabbedPane.removeAll();
+
 
                 //now add the new stuff
                 int i = 0;
@@ -56,7 +64,8 @@ public class LaunchingTabManager implements LaunchButtonListener {
                     JPanel titlePanel = new JPanel(new BorderLayout());
                     titlePanel.add(new JLabel(dataStore.toString() + "  "), BorderLayout.CENTER);
                     titlePanel.add(closeButton, BorderLayout.EAST);
-                    titlePanel.setName(Integer.toString(closeButton.hashCode()));
+                    String trackingName = Integer.toString(closeButton.hashCode());
+                    titlePanel.setName(trackingName);
 
                     tabbedPane.addTab(null, panel);
                     tabbedPane.setTabComponentAt(i, titlePanel);
@@ -69,10 +78,12 @@ public class LaunchingTabManager implements LaunchButtonListener {
                         CassConfigItems items = (CassConfigItems) dataStore;
                         theMgr = new CassTripletPanelMgr(items, panel.getOutputPanel(), panel.getScriptViewPanel(), panel.getTableHolderPanel(), buttonPanel, parentPanel);
                     }
+                    panelManagers.put(trackingName, theMgr);
 
                     i++;
                 }
 
+                //"press" the refresh button
                 buttonPanel.actionPerformed(null);
             }
         });
@@ -97,7 +108,7 @@ public class LaunchingTabManager implements LaunchButtonListener {
 
         closeButton.setContentAreaFilled(false);
         closeButton.setBorderPainted(false);
-        Dimension dim = new Dimension(12,9);
+        Dimension dim = new Dimension(12, 9);
         closeButton.setPreferredSize(dim);
         closeButton.setMaximumSize(dim);
 
@@ -111,19 +122,39 @@ public class LaunchingTabManager implements LaunchButtonListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton btn = (JButton) ae.getSource();
-            Component toDelete = null;
-            int index = -1;
-            for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-                Component tab = tabbedPane.getTabComponentAt(i);
-                String hashString = Integer.toString(btn.hashCode());
-                if (tab.getName().equals(hashString)) {
-                    index = i;
-                }
-            }
+            String trackingName = Integer.toString(btn.hashCode());
+            closePanelAndCleanUp(trackingName);
+        }
+    }
 
-            if (index != -1) {
-                tabbedPane.remove(index);
+    private void closePanelAndCleanUp(String trackingName) {
+        int index = -1;
+
+        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            Component tab = tabbedPane.getTabComponentAt(i);
+
+            if (tab.getName().equals(trackingName)) {
+                index = i;
             }
+        }
+
+        //if found, remove
+        if (index != -1) {
+            tabbedPane.remove(index);
+        }
+        //tell manager to stop functioning
+        TripletPanelMgr mgr = panelManagers.get(trackingName);
+        if (mgr != null) {
+           mgr.stopListening();
+        }
+        //remove manager
+        panelManagers.remove(trackingName);
+    }
+
+    private void removeAllExisting() {
+        Set<String> names = panelManagers.keySet();
+        for (String trackingName : names) {
+            closePanelAndCleanUp(trackingName);
         }
     }
 

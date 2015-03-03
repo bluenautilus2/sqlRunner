@@ -6,15 +6,20 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" line="34" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" line="38" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf412f74-854c-4ce3-99ae-d755f7b0d679" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRowRetriever.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRowRetriever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStorePanelManager.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStorePanelManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java" afterPath="$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cassout.txt" afterPath="$PROJECT_DIR$/cassout.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/datastores.json.old" afterPath="$PROJECT_DIR$/datastores.json.old" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/datastores.json" afterPath="$PROJECT_DIR$/datastores.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sqlconfig.json.old" afterPath="$PROJECT_DIR$/sqlconfig.json.old" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sqlconfig.json" afterPath="$PROJECT_DIR$/sqlconfig.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sqlRunner.iws" />
@@ -70,8 +75,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -79,64 +84,125 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EditDataStoreGroupDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/EditDataStoreGroupDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="535" max-vertical-offset="1605">
-              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CassandraRowRetriever.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRowRetriever.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="2610">
+            <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="3165">
               <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataStorePanelManager.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DataStorePanelManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStorePanelManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68292683" vertical-offset="675" max-vertical-offset="1800">
+            <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1770">
               <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LaunchingTabManager.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="1393" max-vertical-offset="2205">
+              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding>
-                <element signature="e#3192#3774#0" expanded="true" />
-                <element signature="e#3763#3764#0" expanded="true" />
+                <element signature="e#3515#3516#0" expanded="true" />
+                <element signature="e#3548#3549#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CassandraRefreshAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRefreshAction.java">
+      <file leaf-file-name="RunButtonPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="960">
-              <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1051" max-vertical-offset="2610">
+              <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+              <folding>
+                <element signature="e#3843#3844#0" expanded="true" />
+                <element signature="e#3893#3894#0" expanded="true" />
+                <element signature="e#4104#4105#0" expanded="true" />
+                <element signature="e#4155#4156#0" expanded="true" />
+                <element signature="e#4227#4228#0" expanded="true" />
+                <element signature="e#4281#4282#0" expanded="true" />
+                <element signature="e#4412#4606#0" expanded="true" />
+                <element signature="e#4595#4596#0" expanded="true" />
+                <element signature="e#4657#4852#0" expanded="true" />
+                <element signature="e#4841#4842#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TripletPanelMgr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.285715" vertical-offset="0" max-vertical-offset="4305">
+              <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseRefreshIOListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DatabaseRefreshIOListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewDataStoreGroupChosenListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/NewDataStoreGroupChosenListener.java">
+      <file leaf-file-name="RefreshAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/RefreshAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="270">
-              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="35" max-vertical-offset="720">
+              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+              <folding>
+                <element signature="e#689#690#0" expanded="true" />
+                <element signature="e#736#737#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CassTripletPanelMgr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassTripletPanelMgr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataStoreGroupPanel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStoreGroupPanel.java">
+      <file leaf-file-name="ScriptViewPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="2175">
-              <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="797" max-vertical-offset="1605">
+              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+              <folding>
+                <element signature="e#3518#3519#0" expanded="true" />
+                <element signature="e#3559#3560#0" expanded="true" />
+                <element signature="e#3634#3635#0" expanded="true" />
+                <element signature="e#3687#3688#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SqlScriptTablePanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="406" max-vertical-offset="1500">
+              <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -155,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassConfigPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlConfigPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/DataStoreEditorManager.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStoreConfigChangedListener.java" />
@@ -186,8 +251,6 @@
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/CassButtonPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/script/ScriptModifiedListener.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/DisplayScriptDialog.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlOrCassEditorManager.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/data/SqlConfigItems.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/data/CassConfigItems.java" />
@@ -197,15 +260,18 @@
         <option value="$PROJECT_DIR$/src/org/bluenautilus/script/RunScriptAction.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/sqlServerConfiguration/SqlConfigPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/ParentTextPanel.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptTable.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanel.java" />
-        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStoreTable.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStoreTableModel.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/EditDataStoreGroupDialog.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/cass/CassandraRowRetriever.java" />
         <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStorePanelManager.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java" />
+        <option value="$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java" />
       </list>
     </option>
   </component>
@@ -213,10 +279,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="259" />
-    <option name="y" value="21" />
-    <option name="width" value="1753" />
-    <option name="height" value="985" />
+    <option name="x" value="207" />
+    <option name="y" value="35" />
+    <option name="width" value="1614" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -362,7 +428,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlRunner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bluenautilus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="script" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,54 +473,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dataStoreGroupConfiguration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlRunner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlRunner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bluenautilus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlRunner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlRunner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bluenautilus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cass" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -452,8 +492,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -726,33 +766,33 @@
     <option name="totallyTimeSpent" value="12308000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="259" y="21" width="1753" height="985" extended-state="0" />
+    <frame x="207" y="35" width="1614" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27817747" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3592437" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34007135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32943925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30677766" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3064904" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.057055216" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24751316" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21046373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2178344" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20913461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2123369" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18080749" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -766,19 +806,19 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3592437" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39451727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32538736" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22463769" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21293199" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25506556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25506556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21293199" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -799,15 +839,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java</url>
-          <line>118</line>
-          <properties />
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="42" />
+      <option name="time" value="46" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -815,27 +847,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/local/jdk/src.zip!/java/awt/image/AreaAveragingScaleFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30042017" vertical-offset="577" max-vertical-offset="3885">
-          <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/jdk/src.zip!/java/awt/Image.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42647058" vertical-offset="1897" max-vertical-offset="4845">
-          <caret line="170" column="42" selection-start-line="170" selection-start-column="42" selection-end-line="170" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/UuidRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1125">
-          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/util/SqlConfigUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1380" max-vertical-offset="2535">
@@ -969,24 +980,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1548" max-vertical-offset="2340">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlOrCassEditDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2290" max-vertical-offset="3105">
           <caret line="199" column="5" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3218" max-vertical-offset="3720">
-          <caret line="200" column="7" selection-start-line="200" selection-start-column="7" selection-end-line="200" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1022,13 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1530">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1079,21 +1069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1755">
-          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="1440">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1154,7 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2354788" vertical-offset="0" max-vertical-offset="637">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,11 +1150,96 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/dataStoreGroupConfiguration/DataStorePanelManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68292683" vertical-offset="675" max-vertical-offset="1800">
+        <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1770">
           <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/SqlScriptTablePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="406" max-vertical-offset="1500">
+          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/ScriptViewPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="797" max-vertical-offset="1605">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <element signature="e#3192#3774#0" expanded="true" />
-            <element signature="e#3763#3764#0" expanded="true" />
+            <element signature="e#3518#3519#0" expanded="true" />
+            <element signature="e#3559#3560#0" expanded="true" />
+            <element signature="e#3634#3635#0" expanded="true" />
+            <element signature="e#3687#3688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/db/DatabaseRefreshIOListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/RefreshAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="35" max-vertical-offset="720">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="e#689#690#0" expanded="true" />
+            <element signature="e#736#737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/RunButtonPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1051" max-vertical-offset="2610">
+          <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+          <folding>
+            <element signature="e#3843#3844#0" expanded="true" />
+            <element signature="e#3893#3894#0" expanded="true" />
+            <element signature="e#4104#4105#0" expanded="true" />
+            <element signature="e#4155#4156#0" expanded="true" />
+            <element signature="e#4227#4228#0" expanded="true" />
+            <element signature="e#4281#4282#0" expanded="true" />
+            <element signature="e#4412#4606#0" expanded="true" />
+            <element signature="e#4595#4596#0" expanded="true" />
+            <element signature="e#4657#4852#0" expanded="true" />
+            <element signature="e#4841#4842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/CassTripletPanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/TripletPanelMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.285715" vertical-offset="0" max-vertical-offset="4305">
+          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bluenautilus/gui/LaunchingTabManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1393" max-vertical-offset="2205">
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding>
+            <element signature="e#3515#3516#0" expanded="true" />
+            <element signature="e#3548#3549#0" expanded="true" />
           </folding>
         </state>
       </provider>
