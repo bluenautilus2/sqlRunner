@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +25,7 @@ import java.util.Set;
  */
 public class LaunchingTabManager implements LaunchButtonListener {
     private static Log log = LogFactory.getLog(LaunchingTabManager.class);
-
+final private JPanel blankPanel = new JPanel();
     JTabbedPane tabbedPane = new JTabbedPane();
 
     RunButtonPanel buttonPanel = null;
@@ -35,7 +36,6 @@ public class LaunchingTabManager implements LaunchButtonListener {
         this.buttonPanel = runButtons;
         this.parentPanel = parentPanel;
 
-        JPanel blankPanel = new JPanel();
         Dimension theSize = new Dimension(800, 500);
         blankPanel.setPreferredSize(theSize);
         tabbedPane.addTab("Chose a datastore group", blankPanel);
@@ -47,12 +47,9 @@ public class LaunchingTabManager implements LaunchButtonListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                tabbedPane.remove(blankPanel);
                 List<UuidConfigItem> listOfDataStores = groupToLaunch.retrieveFullObjectsFromFiles();
                 removeAllExisting();
-
-                //remove the empty pane that we added at the beginning
-                tabbedPane.removeAll();
-
 
                 //now add the new stuff
                 int i = 0;
@@ -152,8 +149,13 @@ public class LaunchingTabManager implements LaunchButtonListener {
     }
 
     private void removeAllExisting() {
+
         Set<String> names = panelManagers.keySet();
-        for (String trackingName : names) {
+        //make a copy, because we are modifying the keyset
+        //with the closePanelAndCleanUp method
+        Set<String> cloneOfNames = new HashSet<>();
+        cloneOfNames.addAll(names);
+        for (String trackingName : cloneOfNames) {
             closePanelAndCleanUp(trackingName);
         }
     }
