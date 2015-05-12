@@ -22,6 +22,7 @@ public class CassTripletPanelMgr extends TripletPanelMgr {
                                SqlScriptTablePanel sqlTablePanel, RunButtonPanel buttonPanel, JPanel parent) {
        super(outputPanel,scriptViewPanel,sqlTablePanel,buttonPanel,parent);
         this.myConfigItem = configItem;
+        this.scriptViewPanel.disableOpenSsmsButton();
     }
 
     public CassTripletPanelMgr(){

@@ -1,11 +1,14 @@
 package org.bluenautilus.gui;
 
+import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.DBRefreshAction;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
+import org.bluenautilus.script.OpenInSsmsEvent;
+import org.bluenautilus.script.OpenInSsmsListener;
 import org.bluenautilus.script.PopOutScriptEvent;
 import org.bluenautilus.script.RunScriptAction;
 import org.bluenautilus.script.ScriptCompletionListener;
@@ -31,7 +34,7 @@ import java.util.Collections;
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener {
+public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener, OpenInSsmsListener {
 
     private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
 
@@ -70,6 +73,8 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.buttonPanel.addScriptRunAllToRunListener(this);
         this.buttonPanel.addUpdatePreferencesListener(this);
         this.scriptViewPanel.addPopOutListener(this);
+        this.scriptViewPanel.addOpenInSsmsListner(this);
+        this.scriptViewPanel.enableOpenSsmsButton();
         this.deactivated = false;
     }
 
@@ -78,6 +83,7 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.sqlTablePanel.removeTableListener(this);
         this.buttonPanel.removeRefreshListener(this);
         this.scriptViewPanel.removePopOutListener(this);
+        this.scriptViewPanel.removeOpenInSsmsListner(this);
         this.buttonPanel.removedUpdatePreferencesListener(this);
     }
 
@@ -277,5 +283,35 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     public void preferencesUpdated() {
         // SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
         // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
+    }
+
+    /**
+     * Opens the selected SQL script in SQL server management studio.
+     *
+     * @param event
+     */
+    @Override
+    public void openInSsms(final OpenInSsmsEvent event) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                if (lastSetFileObj != null) {// checking if a file is selected.
+                    try {
+                        final String selectedFilePath = lastSetFileObj.getTheFile().getAbsolutePath();
+
+                        //runs ssms.exe for 2008 or later versions of SQL server management studio. Earlier versions use sqlwb.exe
+                        final ProcessBuilder processBuilder = new ProcessBuilder("ssms.exe", "-S", myConfigItem.getIpAddressField(),
+                                "-d", myConfigItem.getDbNameField(), "-U", myConfigItem.getLoginField(), "-P",
+                                myConfigItem.getPasswordField(), selectedFilePath);
+                        processBuilder.start();
+
+                    } catch (final IOException e1) {
+                        JOptionPane.showMessageDialog(null, "An error occurred while trying to open SQL server management studio.");
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

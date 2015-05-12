@@ -1,9 +1,12 @@
 package org.bluenautilus.gui;
 
 import org.bluenautilus.data.SqlScriptFile;
+import org.bluenautilus.script.OpenInSsmsEvent;
+import org.bluenautilus.script.OpenInSsmsListener;
 import org.bluenautilus.script.PopOutScriptEvent;
 import org.bluenautilus.script.ScriptPopOutEventListener;
 import org.bluenautilus.script.ScriptType;
+import org.bluenautilus.util.MiscUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +30,10 @@ public class ScriptViewPanel extends ParentTextPanel {
 
 	private JButton entireScriptButton = new JButton("Entire Script");
 	private JButton rollbackScriptButton = new JButton("Rollback Script");
+    private JButton openInSSMSButton = new JButton("Open in SSMS");
 
 	private ArrayList<ScriptPopOutEventListener> popOutListeners = new ArrayList<ScriptPopOutEventListener>();
+    private ArrayList<OpenInSsmsListener> openInSSMSListeners = new ArrayList<>();
 
     public ScriptViewPanel() {
         super();
@@ -106,9 +111,25 @@ public class ScriptViewPanel extends ParentTextPanel {
 				GridBagConstraints.WEST, GridBagConstraints.NONE,
 				new Insets(4, 4, 4, 4), 2, 2));
 
-		thispanel.add(this.rollbackScriptButton, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
+    	thispanel.add(this.rollbackScriptButton, new GridBagConstraints(2, 0, 1, 1, 1.0, 1.0,
 				GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(4, 4, 4, 4), 2, 2));
+
+        if (MiscUtil.isThisWindows()) {
+
+            this.openInSSMSButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    for (final OpenInSsmsListener listener : openInSSMSListeners) {
+                        listener.openInSsms(new OpenInSsmsEvent(ScriptType.REGULAR));
+                    }
+                }
+            });
+
+            thispanel.add(this.openInSSMSButton, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
+                    GridBagConstraints.WEST, GridBagConstraints.NONE,
+                    new Insets(4, 4, 4, 4), 2, 2));
+        }
 
 		return thispanel;
 	}
@@ -119,5 +140,21 @@ public class ScriptViewPanel extends ParentTextPanel {
 
     public void removePopOutListener(ScriptPopOutEventListener listener){
         this.popOutListeners.remove(listener);
+    }
+
+    public void addOpenInSsmsListner(final OpenInSsmsListener listener) {
+        this.openInSSMSListeners.add(listener);
+    }
+
+    public void removeOpenInSsmsListner(final OpenInSsmsListener listener) {
+        this.openInSSMSListeners.remove(listener);
+    }
+
+    public void disableOpenSsmsButton() {
+        this.openInSSMSButton.setEnabled(false);
+    }
+
+    public void enableOpenSsmsButton() {
+        this.openInSSMSButton.setEnabled(true);
     }
 }
