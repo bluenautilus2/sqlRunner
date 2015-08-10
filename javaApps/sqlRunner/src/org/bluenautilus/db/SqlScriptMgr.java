@@ -24,8 +24,8 @@ public class SqlScriptMgr {
 
     public SqlScriptMgr(File parentFolder, DataStoreType dataStoreType, ScriptContentFilter filter) throws Exception {
         checkFile(parentFolder);
-        this.sqlFiles = getListOfFiles(parentFolder, filter);
         this.dataStoreType = dataStoreType;
+        this.sqlFiles = getListOfFiles(parentFolder, filter);
         this.filter = filter;
     }
 
