@@ -1,6 +1,7 @@
 package org.bluenautilus.cass;
 
 import org.bluenautilus.data.CassConfigItems;
+import org.bluenautilus.data.ScriptContentFilter;
 import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.data.SqlScriptRow;
 import org.bluenautilus.db.DatabaseRefreshIOListener;
@@ -12,6 +13,7 @@ import org.bluenautilus.util.MiscUtil;
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 /**
@@ -49,7 +51,7 @@ public class CassandraRefreshAction extends org.bluenautilus.RefreshAction imple
 		CassandraRowRetriever retriever;
 
 		try {
-			sqlmgr = new SqlScriptMgr(new File(fields.getScriptFolderField()));
+			sqlmgr = new SqlScriptMgr(new File(fields.getScriptFolderField()),SqlScriptMgr.DataStoreType.CASS,null);
 			retriever = new CassandraRowRetriever(fields);
 
 			ArrayList<SqlScriptRow> rows = retriever.readDataBase();

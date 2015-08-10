@@ -80,7 +80,6 @@ public class ScriptModifier implements ScriptCompletionListener {
 				writer.write(PREFIX);
 			}
 
-			int count = 0;
 
 			boolean munchingComments = false;
 

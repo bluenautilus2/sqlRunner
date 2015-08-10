@@ -1,6 +1,7 @@
 package org.bluenautilus.data;
 
 import org.bluenautilus.db.DBConnectionType;
+import org.bluenautilus.db.Target;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.UUID;
@@ -13,16 +14,19 @@ import java.util.UUID;
  */
 public class SqlConfigItems extends UuidConfigItem {
 
+    private static final long serialVersionUID = 857811872902445968L;
+
     //These are just defaults if the config file isn't found.
     private String dbNameField = "panswersClean";
     private String loginField = "common";
     private String passwordField = "xxxPA50";
-    private String scriptFolderField = "C:/repos/App/tools/SQL_Update_Scripts";
+    private String scriptFolderField;
     private String ipAddressField = "10.10.10.53";
     private String port = "1433";
     private String dbConnectionType = DBConnectionType.getDefaultForThisOS().toString();
+    private Target target = Target.NONE;
 
-    public SqlConfigItems(UUID uuid, String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType) {
+    public SqlConfigItems(UUID uuid, String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType, Target target) {
         this.dbNameField = dbNameField;
         this.loginField = loginField;
         this.passwordField = passwordField;
@@ -31,6 +35,7 @@ public class SqlConfigItems extends UuidConfigItem {
         this.port = port;
         this.dbConnectionType = dbConnectionType;
         this.uniqueId = uuid;
+        this.target = target;
     }
 
     public SqlConfigItems() {
@@ -94,6 +99,14 @@ public class SqlConfigItems extends UuidConfigItem {
         this.dbConnectionType = dbConnectionType;
     }
 
+    public Target getTarget() {
+        return target;
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,13 +123,15 @@ public class SqlConfigItems extends UuidConfigItem {
 
     @Override
     public int hashCode() {
-        int result = dbNameField != null ? dbNameField.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (dbNameField != null ? dbNameField.hashCode() : 0);
         result = 31 * result + (loginField != null ? loginField.hashCode() : 0);
         result = 31 * result + (passwordField != null ? passwordField.hashCode() : 0);
         result = 31 * result + (scriptFolderField != null ? scriptFolderField.hashCode() : 0);
         result = 31 * result + (ipAddressField != null ? ipAddressField.hashCode() : 0);
         result = 31 * result + (port != null ? port.hashCode() : 0);
         result = 31 * result + (dbConnectionType != null ? dbConnectionType.hashCode() : 0);
+        result = 31 * result + (target != null ? target.hashCode() : 0);
         return result;
     }
 
@@ -137,7 +152,8 @@ public class SqlConfigItems extends UuidConfigItem {
         cloned.setLoginField(this.getLoginField());
         cloned.setIpAddressField(this.getIpAddressField());
         cloned.setDbNameField(this.getDbNameField());
+        cloned.setTarget(this.getTarget());
+        cloned.setDbConnectionType(this.getDbConnectionType());
         return cloned;
-
     }
 }

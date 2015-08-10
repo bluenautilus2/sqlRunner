@@ -15,6 +15,10 @@ import java.util.UUID;
 public class DataStoreGroupList {
 
     private List<DataStoreGroup> dataStoreGroupList = new ArrayList<>();
+    private UUID lastUsedDataStoreGroupId;
+    private String lastUsedFileFolderSql;
+    private String lastUsedFileFolderCass;
+    private boolean poddedMode;
 
     public DataStoreGroupList() {
         //nothin'
@@ -91,5 +95,38 @@ public class DataStoreGroupList {
         }
         dataStoreGroupList.remove(groupToRemove);
         this.dataStoreGroupList.add(updated);
+    }
+
+    public UUID getLastUsedDataStoreGroupId() {
+        return lastUsedDataStoreGroupId;
+    }
+
+    public void setLastUsedDataStoreGroupId(UUID lastUsedDataStoreGroupId) {
+        this.lastUsedDataStoreGroupId = lastUsedDataStoreGroupId;
+    }
+
+
+    public boolean isPoddedMode() {
+        return poddedMode;
+    }
+
+    public void setPoddedMode(boolean poddedMode) {
+        this.poddedMode = poddedMode;
+    }
+
+    public String getLastUsedFileFolderSql() {
+        return lastUsedFileFolderSql;
+    }
+
+    public void setLastUsedFileFolderSql(String lastUsedFileFolderSql) {
+        this.lastUsedFileFolderSql = lastUsedFileFolderSql;
+    }
+
+    public String getLastUsedFileFolderCass() {
+        return lastUsedFileFolderCass;
+    }
+
+    public void setLastUsedFileFolderCass(String lastUsedFileFolderCass) {
+        this.lastUsedFileFolderCass = lastUsedFileFolderCass;
     }
 }

@@ -8,6 +8,8 @@ import java.io.File;
  * User: bluenautilus2
  * Date: 7/28/13
  * Time: 11:58 AM
+ *
+ * This class handles sql and cql scripts.
  */
 public class SqlScriptFile implements Comparable<SqlScriptFile> {
     private static final String ROLLBACK_FOLDER = "rollback";

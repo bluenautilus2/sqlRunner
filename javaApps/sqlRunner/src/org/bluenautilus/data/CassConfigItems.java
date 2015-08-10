@@ -10,7 +10,7 @@ import java.util.UUID;
  */
 public class CassConfigItems extends UuidConfigItem {
 
-    private String scriptFolderField = "/home/bstevens/repos/App/tools/CQL_Update_Scripts";
+    private String scriptFolderField;
     private String hostField = "nucleus";
     private String useCertificate = "false";
     private String certificateFileField= "/home/bstevens/.ssh/stratum-west.pem";

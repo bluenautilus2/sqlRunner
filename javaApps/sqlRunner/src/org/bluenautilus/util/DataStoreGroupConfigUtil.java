@@ -145,6 +145,32 @@ public class DataStoreGroupConfigUtil {
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 
+    public static void updateMostRecentlyChosenDataStoreGroup(UUID chosenUUID){
+        dataStoreGroupList.setLastUsedDataStoreGroupId(chosenUUID);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
+    public static UUID getMostRecentlyChosenDataStoreGroup(){
+        return dataStoreGroupList.getLastUsedDataStoreGroupId();
+    }
+
+    public static String getLastUsedFileFolderSql() {
+        return dataStoreGroupList.getLastUsedFileFolderSql();
+    }
+
+    public static void updateLastUsedFileFolderSql(String lastUsedFileFolderSql) {
+        dataStoreGroupList.setLastUsedFileFolderSql(lastUsedFileFolderSql);
+        DataStoreGroupConfigUtil.saveOffCurrent();
+    }
+
+    public static String getLastUsedFileFolderCass() {
+        return dataStoreGroupList.getLastUsedFileFolderCass();
+    }
+
+    public static void updateLastUsedFileFolderCass(String lastUsedFileFolderCass) {
+        dataStoreGroupList.setLastUsedFileFolderCass(lastUsedFileFolderCass);
+    }
+
 }
 
 

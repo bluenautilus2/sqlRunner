@@ -37,9 +37,6 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         this.setVisible(true);
     }
 
-
-
-
     public void setValues(ArrayList<SqlScriptFile> fileList) {
         tableModel = new SqlTableModel(fileList);
         theTable.setModel(tableModel);

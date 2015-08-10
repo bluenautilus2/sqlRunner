@@ -1,11 +1,14 @@
 package org.bluenautilus.data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by bstevens on 1/25/15.
  */
-public abstract class UuidConfigItem {
+public abstract class UuidConfigItem implements Serializable{
+
+    private static final long serialVersionUID = -6023926035731356418L;
 
     UUID uniqueId = null;
     Integer tableRowIndex = 0;

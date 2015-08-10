@@ -1,5 +1,6 @@
 package org.bluenautilus.gui.cassServerConfiguration;
 
+import com.google.common.base.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.CassConfigItems;
@@ -7,6 +8,7 @@ import org.bluenautilus.gui.FileOpenButton;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.CassConfigUtil;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.MiscUtil;
 
 import javax.swing.*;
@@ -158,12 +160,15 @@ public class CassConfigPanel extends JPanel {
     }
 
     public void setFields(CassConfigItems fields) {
-
-        this.scriptFolderField.setText(fields.getScriptFolderField());
         this.hostNameField.setText(fields.getHostField());
         this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
         this.certFileField.setText(fields.getCertificateFileField());
         this.uuidField = fields.getUniqueId();
+        if (Strings.isNullOrEmpty(fields.getScriptFolderField())) {
+            this.scriptFolderField.setText(DataStoreGroupConfigUtil.getLastUsedFileFolderCass());
+        } else {
+            this.scriptFolderField.setText(fields.getScriptFolderField());
+        }
         syncCheckBoxDisabling();
     }
 

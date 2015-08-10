@@ -1,12 +1,15 @@
 package org.bluenautilus.gui.sqlServerConfiguration;
 
+import com.google.common.base.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.db.DBConnectionType;
+import org.bluenautilus.db.Target;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.RunButtonPanel;
 import org.bluenautilus.gui.UpdatePreferencesListener;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import org.bluenautilus.util.MiscUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
@@ -34,6 +37,7 @@ public class SqlConfigPanel extends JPanel {
     private JTextField portField = new JTextField(8);
     private JComboBox dbConnectionTypeField;
     private UUID uuidField = null;
+    private JComboBox<Target> targetDropDown = new JComboBox<>();
 
     private Color borderColor = new Color(180, 180, 180);
 
@@ -47,6 +51,10 @@ public class SqlConfigPanel extends JPanel {
 
     private void init() {
         this.setLayout(new BorderLayout());
+        for (Target t : Target.values()) {
+            this.targetDropDown.addItem(t);
+        }
+
         this.setFields(this.fields);
 
         JLabel dbNameLabel = new JLabel("Database Name");
@@ -56,6 +64,7 @@ public class SqlConfigPanel extends JPanel {
         JLabel folderName = new JLabel("SQL Script Folder");
         JLabel portLabel = new JLabel("Port");
         JLabel dbConnectionTypeLabel = new JLabel("DB Connection Method");
+        JLabel targetLabel = new JLabel("Target");
         FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
 
         this.initDBConnectionDropDown();
@@ -67,7 +76,6 @@ public class SqlConfigPanel extends JPanel {
 
         //Center panel buttons
         JPanel centerPanel = new JPanel(new GridBagLayout());
-
 
         centerPanel.add(folderName, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
@@ -94,6 +102,10 @@ public class SqlConfigPanel extends JPanel {
                 new Insets(2, 2, 2, 2), 2, 2));
 
         centerPanel.add(password, new GridBagConstraints(0, 6, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(targetLabel, new GridBagConstraints(0, 7, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -133,6 +145,10 @@ public class SqlConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(this.targetDropDown, new GridBagConstraints(1, 7, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
         //-------------------------------------------------------------------------------
 
         JLabel iconLabel = new JLabel(SqlConfigUtil.sqlserverBig);
@@ -146,10 +162,6 @@ public class SqlConfigPanel extends JPanel {
 
     }
 
-    public void addUpdatePreferencesListener(UpdatePreferencesListener listener) {
-        this.updateListeners.add(listener);
-    }
-
     public SqlConfigItems pullFieldsFromGui() {
         return new SqlConfigItems(
                 this.uuidField,
@@ -159,17 +171,34 @@ public class SqlConfigPanel extends JPanel {
                 this.scriptFolderField.getText(),
                 this.ipAddressField.getText(),
                 this.portField.getText(),
-                this.dbConnectionTypeField.getModel().getSelectedItem().toString());
+                this.dbConnectionTypeField.getModel().getSelectedItem().toString(),
+                getSelectedTarget()
+        );
     }
 
     public void setFields(SqlConfigItems fields) {
         this.dbNameField.setText(fields.getDbNameField());
         this.loginField.setText(fields.getLoginField());
         this.passwordField.setText(fields.getPasswordField());
-        this.scriptFolderField.setText(fields.getScriptFolderField());
+        if(Strings.isNullOrEmpty(fields.getScriptFolderField())){
+            this.scriptFolderField.setText(DataStoreGroupConfigUtil.getLastUsedFileFolderSql());
+        }else{
+            this.scriptFolderField.setText(fields.getScriptFolderField());
+        }
+
         this.ipAddressField.setText(fields.getIpAddressField());
         this.portField.setText(fields.getPort());
         this.uuidField = fields.getUniqueId();
+
+
+        for (int i = 0; i < Target.values().length; i++) {
+            Target t = targetDropDown.getItemAt(i);
+            if (t.equals(fields.getTarget())) {
+                targetDropDown.setSelectedIndex(i);
+            }
+        }
+
+        this.targetDropDown.setSelectedItem(fields.getTarget());
 
         String connectionString = fields.getDbConnectionType();
         DBConnectionType userSaved = DBConnectionType.getEnum(connectionString);
@@ -182,12 +211,17 @@ public class SqlConfigPanel extends JPanel {
             this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
         }
 
+
+
     }
 
-
-    public DBConnectionType getSelectedDBConnectionType() {
-        String type = (String) dbConnectionTypeField.getModel().getSelectedItem();
-        return DBConnectionType.getEnum(type);
+    public Target getSelectedTarget() {
+        int selected = this.targetDropDown.getSelectedIndex();
+        if (selected >= 0) {
+            return this.targetDropDown.getItemAt(selected);
+        } else {
+            return null;
+        }
     }
 
 
@@ -252,8 +286,6 @@ public class SqlConfigPanel extends JPanel {
 
             }
         });
-
-
     }
 
     public String getScriptFolder() {

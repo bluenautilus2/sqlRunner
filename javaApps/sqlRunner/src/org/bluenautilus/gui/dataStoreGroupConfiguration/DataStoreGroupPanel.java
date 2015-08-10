@@ -13,6 +13,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by bstevens on 1/26/15.
@@ -28,7 +29,6 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
     public DataStoreGroupPanel() {
         super(false);
     }
-
 
     public void addNewGroupChosenListener(NewDataStoreGroupChosenListener listener) {
         this.newGroupChosenListeners.add(listener);
@@ -67,26 +67,44 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
         //Insets insets, int ipadx, int ipady
         this.add(this.groupLabel, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4),
+
+                2, 2));
 
         this.add(this.nicknameDropdown, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4),
+
+                2, 2));
 
         this.add(this.buttonPanel, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
-                new Insets(4, 4, 4, 4), 2, 2));
+                new Insets(4, 4, 4, 4),
+
+                2, 2));
 
         this.add(this.launchButton, new GridBagConstraints(2, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(10, 10, 10, 10), 2, 2));
+                new Insets(10, 10, 10, 10),
+
+                2, 2));
 
     }
 
     public void initComboBox() {
         nicknameDropdown = new JComboBox<DataStoreGroup>();
+        UUID previouslyChosenGroupUUID = DataStoreGroupConfigUtil.getMostRecentlyChosenDataStoreGroup();
+        DataStoreGroup previouslyChosenGroup = null;
+
         for (DataStoreGroup group : DataStoreGroupConfigUtil.getDataStoreGroupList().getDataStoreGroupList()) {
             nicknameDropdown.addItem(group);
+            if (previouslyChosenGroupUUID != null && group.getUniqueId().equals(previouslyChosenGroupUUID)) {
+                previouslyChosenGroup = group;
+            }
+        }
+
+        if (previouslyChosenGroup != null) {
+            updateComboBoxList(previouslyChosenGroup);
         }
 
         this.nicknameDropdown.addItemListener(new ItemListener() {
@@ -110,6 +128,7 @@ public class DataStoreGroupPanel extends PrettyPlusMinusPanel {
                             for (NewDataStoreGroupChosenListener listener : newGroupChosenListeners) {
                                 listener.dataGroupChosen(newGroup);
                             }
+                            DataStoreGroupConfigUtil.updateMostRecentlyChosenDataStoreGroup(newGroup.getUniqueId());
                         }
                     }
                 });

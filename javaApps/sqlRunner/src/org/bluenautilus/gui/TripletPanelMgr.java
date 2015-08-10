@@ -33,6 +33,8 @@ import java.util.Collections;
  * Date: 8/1/13
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
+ *
+ * Pretty much everything happens in this class, despite my efforts to de-centralize it.
  */
 public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener, OpenInSsmsListener {
 

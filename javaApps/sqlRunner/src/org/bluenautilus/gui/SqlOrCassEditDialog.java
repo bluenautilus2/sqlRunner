@@ -8,6 +8,7 @@ import org.bluenautilus.data.UuidConfigItem;
 import org.bluenautilus.db.DBRowRetriever;
 import org.bluenautilus.gui.cassServerConfiguration.CassConfigPanel;
 import org.bluenautilus.gui.sqlServerConfiguration.SqlConfigPanel;
+import org.bluenautilus.util.DataStoreGroupConfigUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -131,7 +132,7 @@ public class SqlOrCassEditDialog extends JPanel {
         @Override
         public void run() {
             try {
-                testFolder(scriptFolder);
+                testFolder(scriptFolder, WasFor.CASS);
                 CassandraRowRetriever retriever = new CassandraRowRetriever(items);
                 rows = retriever.readDataBase();
 
@@ -168,7 +169,7 @@ public class SqlOrCassEditDialog extends JPanel {
         public void run() {
 
             try {
-                testFolder(scriptFolder);
+                testFolder(scriptFolder, WasFor.SQL);
                 DBRowRetriever retriever = new DBRowRetriever(items);
                 rows = retriever.readDataBase();
 
@@ -186,11 +187,17 @@ public class SqlOrCassEditDialog extends JPanel {
 
     }
 
-    private String testFolder(String folderName) throws Exception {
+    private String testFolder(String folderName, WasFor wasFor) throws Exception {
         File f = new File(folderName);
         if (f.exists()) {
             if (f.canRead()) {
+                if(wasFor == WasFor.CASS){
+                    DataStoreGroupConfigUtil.updateLastUsedFileFolderCass(folderName);
+                }else{
+                    DataStoreGroupConfigUtil.updateLastUsedFileFolderSql(folderName);
+                }
                 return "Folder found: " + folderName;
+
             } else {
                 throw new Exception("Don't have read access to: " + folderName);
             }
