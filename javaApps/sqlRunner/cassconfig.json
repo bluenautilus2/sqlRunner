@@ -1,1 +1,1 @@
-{"cassConfigItems":[{"uniqueId":"fc511439-d890-4a1b-956b-b2effb8ac062","tableRowIndex":0,"scriptFolderField":"/home/bstevens/repos/App/tools/CQL_Update_Scripts","hostField":"nucleus","useCertificate":"false","certificateFileField":"/home/bstevens/.ssh/stratum-west.pem"}]}
+{"cassConfigItems":[{"uniqueId":"7a7a0815-27d1-461f-9725-e83e86f2ed96","tableRowIndex":0,"scriptFolderField":"/home/bstevens/App/tools/CQL_Update_Scripts","hostField":"localhost","port":"9042","keyspace":"pa"}]}

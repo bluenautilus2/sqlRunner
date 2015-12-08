@@ -70,7 +70,8 @@ public class TestJsonMarshalling {
             cassItems.setScriptFolderField("/home/linux/stuff/QSLEWdsdf" + i);
             cassItems.setCertificateFileField("./cass.pem");
             cassItems.setHostField("nucleus" + i);
-            cassItems.setUseCertificate("true");
+            cassItems.setKeyspace("keyspace");
+            cassItems.setPort("1234");
             cassItems.generateUniqueId();
             cassList.addCassConfigItem(cassItems);
         }

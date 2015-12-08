@@ -1,7 +1,5 @@
 package org.bluenautilus.script;
 
-import org.bluenautilus.cass.CassandraConnectionType;
-import org.bluenautilus.cass.methodtype.PlinkScriptRunner;
 import org.bluenautilus.cass.methodtype.SshScriptRunner;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
@@ -29,8 +27,6 @@ public class RunScriptAction implements Runnable {
 
     private boolean isCassandra = false;
     private CassConfigItems cassItems;
-    private CassandraConnectionType cassConnectionType;
-
 
     private SqlScriptFile file;
     private ArrayList<ScriptCompletionListener> completionListeners = new ArrayList<ScriptCompletionListener>();
@@ -43,7 +39,7 @@ public class RunScriptAction implements Runnable {
         this.items = items;
         this.file = sqlScriptFile;
         this.type = type;
-		this.dbConnectionType = DBConnectionType.getEnum(items.getDbConnectionType());
+        this.dbConnectionType = DBConnectionType.getEnum(items.getDbConnectionType());
         this.isCassandra = false;
     }
 
@@ -51,7 +47,6 @@ public class RunScriptAction implements Runnable {
         this.cassItems = items;
         this.file = sqlScriptFile;
         this.type = type;
-        this.cassConnectionType = CassandraConnectionType.getDefaultForThisOS();
         this.isCassandra = true;
     }
 
@@ -68,19 +63,19 @@ public class RunScriptAction implements Runnable {
     }
 
 
-	private void fireScriptAction(ScriptType type) {
+    private void fireScriptAction(ScriptType type) {
 
-		ScriptStatus runningStatus = (ScriptType.ROLLBACK == type) ? ScriptStatus.ROLLING_BACK : ScriptStatus.RUNNING;
-		ScriptStatus justRunStatus = (ScriptType.ROLLBACK == type) ? ScriptStatus.RECENTLY_ROLLED : ScriptStatus.RECENTLY_RUN;
+        ScriptStatus runningStatus = (ScriptType.ROLLBACK == type) ? ScriptStatus.ROLLING_BACK : ScriptStatus.RUNNING;
+        ScriptStatus justRunStatus = (ScriptType.ROLLBACK == type) ? ScriptStatus.RECENTLY_ROLLED : ScriptStatus.RECENTLY_RUN;
 
-		this.fireStatusChanges(file, runningStatus);
-		this.fireSingleScriptStarting(file, type);
-		ScriptResultsEvent event = null;
-		try {
-			if(!this.isCassandra && dbConnectionType!=null) {
+        this.fireStatusChanges(file, runningStatus);
+        this.fireSingleScriptStarting(file, type);
+        ScriptResultsEvent event = null;
+        try {
+            if (!this.isCassandra && dbConnectionType != null) {
                 switch (dbConnectionType) {
                     case JDBC:
-                        JdbcScriptRunner jdbcScriptRunner  = new JdbcScriptRunner();
+                        JdbcScriptRunner jdbcScriptRunner = new JdbcScriptRunner();
                         event = jdbcScriptRunner.runSqlCmdScript(completionListeners, items, file, type);
                         break;
                     case SQL_CMD:
@@ -95,46 +90,36 @@ public class RunScriptAction implements Runnable {
                         return;
                 }
             }
-            if(this.isCassandra && cassConnectionType!=null){
-                switch (cassConnectionType) {
-                    case SSH:
-                        SshScriptRunner sshrunner = new SshScriptRunner();
-                        event = sshrunner.runCassandraScript(completionListeners,cassItems,file,type);
-                        break;
-                    case PLINK:
-                        PlinkScriptRunner prunner = new PlinkScriptRunner();
-                        event = prunner.runCassandraScript(completionListeners,cassItems,file,type);
-                        break;
-                    default:
-                        return;
-                }
+            if (this.isCassandra) {
+                SshScriptRunner sshrunner = new SshScriptRunner();
+                event = sshrunner.runCassandraScript(completionListeners, cassItems, file, type);
             }
-			if (event != null) {
-				this.fireScriptCompletion(event);
+            if (event != null) {
+                this.fireScriptCompletion(event);
 
-				ScriptStatus finishStatus = event.isDbProblem() ? ScriptStatus.EXAMINE_OUTPUT : justRunStatus;
+                ScriptStatus finishStatus = event.isDbProblem() ? ScriptStatus.EXAMINE_OUTPUT : justRunStatus;
 
-				this.fireStatusChanges(file, finishStatus);
-			}
-		} catch (Exception e) {
-			event = new ScriptResultsEvent(e.getMessage(), file, this.type, false, e);
-			this.fireScriptCompletion(event);
+                this.fireStatusChanges(file, finishStatus);
+            }
+        } catch (Exception e) {
+            event = new ScriptResultsEvent(e.getMessage(), file, this.type, false, e);
+            this.fireScriptCompletion(event);
 
-			if (e instanceof NoRunException){
-				this.fireStatusChanges(file,ScriptStatus.NORUN);
-				return;
-			}
+            if (e instanceof NoRunException) {
+                this.fireStatusChanges(file, ScriptStatus.NORUN);
+                return;
+            }
 
             if (ScriptType.ROLLBACK == type) {
-                if(!file.getRollbackFile().exists()){
-                    this.fireStatusChanges(file, ScriptStatus.NO_ROLLBACK);  
+                if (!file.getRollbackFile().exists()) {
+                    this.fireStatusChanges(file, ScriptStatus.NO_ROLLBACK);
                     return;
                 }
             }
-			this.fireStatusChanges(file, ScriptStatus.RUN_ERROR);
-		}
+            this.fireStatusChanges(file, ScriptStatus.RUN_ERROR);
+        }
 
-	}
+    }
 
     private void fireStatusChanges(final SqlScriptFile file, final ScriptStatus newStatus) {
 

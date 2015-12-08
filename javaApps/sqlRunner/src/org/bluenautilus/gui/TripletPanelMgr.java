@@ -36,7 +36,7 @@ import java.util.Collections;
  *
  * Pretty much everything happens in this class, despite my efforts to de-centralize it.
  */
-public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, UpdatePreferencesListener, OpenInSsmsListener {
+public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, OpenInSsmsListener {
 
     private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
 
@@ -73,7 +73,6 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.buttonPanel.addRefreshListener(this);
         this.buttonPanel.addScriptKickoffListener(this);
         this.buttonPanel.addScriptRunAllToRunListener(this);
-        this.buttonPanel.addUpdatePreferencesListener(this);
         this.scriptViewPanel.addPopOutListener(this);
         this.scriptViewPanel.addOpenInSsmsListner(this);
         this.scriptViewPanel.enableOpenSsmsButton();
@@ -86,7 +85,6 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.buttonPanel.removeRefreshListener(this);
         this.scriptViewPanel.removePopOutListener(this);
         this.scriptViewPanel.removeOpenInSsmsListner(this);
-        this.buttonPanel.removedUpdatePreferencesListener(this);
     }
 
     public TripletPanelMgr() {
@@ -279,12 +277,6 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
             }
         }
 
-    }
-
-    @Override
-    public void preferencesUpdated() {
-        // SqlConfigItems items = this.buttonPanel.pullFieldsFromGui();
-        // DataStoreGroupConfigUtil.saveOffCurrent(items, this.buttonPanel);
     }
 
     /**

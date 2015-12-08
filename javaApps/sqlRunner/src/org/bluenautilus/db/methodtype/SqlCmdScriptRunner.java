@@ -5,7 +5,7 @@ import org.bluenautilus.data.SqlScriptFile;
 import org.bluenautilus.db.SqlScriptRunner;
 import org.bluenautilus.script.NoRunException;
 import org.bluenautilus.script.ScriptCompletionListener;
-import org.bluenautilus.script.ScriptModifier;
+import org.bluenautilus.script.SqlScriptModifier;
 import org.bluenautilus.script.ScriptResultsEvent;
 import org.bluenautilus.script.ScriptType;
 
@@ -35,7 +35,7 @@ public class SqlCmdScriptRunner implements SqlScriptRunner {
 			oldfile = scriptFile.getRollbackFile();
 		}
 
-		ScriptModifier modifier = new ScriptModifier(oldfile);
+		SqlScriptModifier modifier = new SqlScriptModifier(oldfile);
 		completionListeners.add(modifier);
 
 		File newFile = modifier.createModifiedCopy();

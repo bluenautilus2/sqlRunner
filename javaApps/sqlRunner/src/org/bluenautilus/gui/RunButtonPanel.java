@@ -34,7 +34,6 @@ public class RunButtonPanel extends JPanel implements ActionListener {
     private static final String REFRESH = "Refresh";
     private static final String REFRESHING = "Refreshing";
 
-    ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
     ArrayList<RefreshListener> refreshListeners = new ArrayList<>();
 
 
@@ -93,14 +92,6 @@ public class RunButtonPanel extends JPanel implements ActionListener {
                 new Insets(10, 10, 10, 10), 2, 2));
 
 
-    }
-
-    public void addUpdatePreferencesListener(UpdatePreferencesListener listener) {
-        this.updateListeners.add(listener);
-    }
-
-    public void removedUpdatePreferencesListener(UpdatePreferencesListener listener) {
-        this.updateListeners.remove(listener);
     }
 
     public void addRefreshListener(final RefreshListener listener) {

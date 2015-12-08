@@ -3,20 +3,15 @@ package org.bluenautilus.gui.cassServerConfiguration;
 import com.google.common.base.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassConfigItems;
-import org.bluenautilus.gui.FileOpenButton;
 import org.bluenautilus.gui.FolderOpenButton;
-import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
-import org.bluenautilus.util.MiscUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -31,48 +26,34 @@ public class CassConfigPanel extends JPanel {
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
-    private JCheckBox useCert = new JCheckBox();
-    private JTextField certFileField = new JTextField(35);
+    private JTextField portField = new JTextField(10);
+    private JTextField keyspaceField = new JTextField(10);
     private UUID uuidField = null;
-
-    private Color borderColor = new Color(180, 180, 180);
-    private final JLabel certName = new JLabel("Certificate file");
-    private JLabel folderName = new JLabel("CQL Script Folder");
-    private JLabel checkBoxName = new JLabel("Use Cert?");
-
-    ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
+    FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
+    JComboBox<CassandraConnectionType> connectTypePulldown = new JComboBox<>();
 
     public CassConfigPanel(CassConfigItems initialFields) {
         super(new GridBagLayout());
-
         this.fields = initialFields;
         this.init();
     }
 
     private void init() {
 
-        this.setFields(this.fields);
-        JLabel hostName;
-        if (MiscUtil.isThisLinux()) {
-            hostName = new JLabel("Cassandra Host Name");
-        } else {
-            hostName = new JLabel("Putty Saved Session Name");
+        for(CassandraConnectionType type: CassandraConnectionType.values()){
+            if(type.worksInThisOS()){
+                connectTypePulldown.addItem(type);
+            }
         }
 
+        this.setFields(this.fields);
 
-        FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
-        FileOpenButton openCertFileButton = new FileOpenButton(this, this.certFileField);
-
-        this.useCert.setToolTipText("Check if you are running the scripts on an AltoStratum");
-
-        ActionListener ghostCertListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                syncCheckBoxDisabling();
-            }
-        };
-        useCert.addActionListener(ghostCertListener);
-        this.syncCheckBoxDisabling();
+        Color borderColor = new Color(180, 180, 180);
+        JLabel folderName = new JLabel("CQL Script Folder");
+        JLabel portName = new JLabel("Port");
+        JLabel keyspaceName = new JLabel("Keyspace");
+        JLabel hostName = new JLabel("Cassandra Host Name");
+        JLabel connectionTypeName = new JLabel("Connection Type");
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -91,13 +72,22 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(keyspaceName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(portName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
         //FIELDS
 
         //this fills up three spots
         JPanel scriptHolder = new JPanel(new BorderLayout());
         scriptHolder.add(this.scriptFolderField, BorderLayout.WEST);
         scriptHolder.add(openScriptFolderButton, BorderLayout.EAST);
-        centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 3, 1, 1.0, 1.0,
+
+        centerPanel.add(scriptHolder, new GridBagConstraints(1, 0, 4, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -105,42 +95,24 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-
-        if (MiscUtil.isThisLinux()) {
-
-            centerPanel.add(certName, new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0,
-                    GridBagConstraints.EAST, GridBagConstraints.NONE,
-                    new Insets(2, 2, 2, 2), 2, 2));
-
-            centerPanel.add(checkBoxName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
-                    GridBagConstraints.EAST, GridBagConstraints.NONE,
-                    new Insets(2, 2, 2, 2), 2, 2));
-
-            centerPanel.add(this.useCert, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
-                    GridBagConstraints.WEST, GridBagConstraints.NONE,
-                    new Insets(2, 2, 2, 2), 2, 2));
-
-            //this fills up three spots
-            JPanel certFileHolder = new JPanel(new BorderLayout());
-            certFileHolder.add(this.certFileField, BorderLayout.WEST);
-            certFileHolder.add(openCertFileButton, BorderLayout.EAST);
-            centerPanel.add(certFileHolder, new GridBagConstraints(1, 4, 3, 1, 1.0, 1.0,
-                    GridBagConstraints.WEST, GridBagConstraints.NONE,
-                    new Insets(2, 2, 2, 2), 2, 2));
-        }
-
-        JLabel iconLabel = new JLabel(CassConfigUtil.cassandraBig);
-        centerPanel.add(iconLabel, new GridBagConstraints(2, 2, 2, 2, 1.0, 1.0,
+        centerPanel.add(this.keyspaceField, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
+        centerPanel.add(this.portField, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.setBorder(new LineBorder(this.borderColor));
+        JLabel iconLabel = new JLabel(CassConfigUtil.cassandraBig);
+        centerPanel.add(iconLabel, new GridBagConstraints(2, 1, 3, 3, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.setBorder(new LineBorder(borderColor));
 
         this.add(centerPanel, new GridBagConstraints(1, 0, 1, 3, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(4, 4, 4, 4), 2, 2));
-
     }
 
     public CassConfigItems pullFieldsFromGui() {
@@ -148,34 +120,30 @@ public class CassConfigPanel extends JPanel {
                 this.uuidField,
                 this.scriptFolderField.getText(),
                 this.hostNameField.getText(),
-                getStringForConfigCheckbox(this.useCert),
-                this.certFileField.getText());
-    }
-
-    private String getStringForConfigCheckbox(JCheckBox box) {
-        if (box.isSelected()) {
-            return "true";
-        }
-        return "false";
+                this.portField.getText(),
+                this.keyspaceField.getText(),
+                this.connectTypePulldown.getSelectedItem().toString());
     }
 
     public void setFields(CassConfigItems fields) {
         this.hostNameField.setText(fields.getHostField());
-        this.useCert.setSelected(new Boolean(fields.getUseCertificate()));
-        this.certFileField.setText(fields.getCertificateFileField());
         this.uuidField = fields.getUniqueId();
         if (Strings.isNullOrEmpty(fields.getScriptFolderField())) {
             this.scriptFolderField.setText(DataStoreGroupConfigUtil.getLastUsedFileFolderCass());
         } else {
             this.scriptFolderField.setText(fields.getScriptFolderField());
         }
-        syncCheckBoxDisabling();
+
+        CassandraConnectionType typeToUse = CassandraConnectionType.DOCKER_LOCAL;
+        if(fields.getConnectionType() !=null){
+            typeToUse = CassandraConnectionType.getEnum(fields.getConnectionType());
+        }
+
+        this.connectTypePulldown.setSelectedItem(typeToUse);
+        this.portField.setText(fields.getPort());
+        this.keyspaceField.setText(fields.getKeyspace());
     }
 
-    private void syncCheckBoxDisabling() {
-        certFileField.setEnabled(useCert.isSelected());
-        certName.setEnabled(useCert.isSelected());
-    }
 
     public String getScriptFolder() {
         return scriptFolderField.getText();

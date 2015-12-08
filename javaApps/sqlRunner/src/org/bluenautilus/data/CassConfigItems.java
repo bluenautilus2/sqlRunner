@@ -1,5 +1,6 @@
 package org.bluenautilus.data;
 
+import org.bluenautilus.cass.CassandraConnectionType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.io.File;
@@ -12,18 +13,33 @@ public class CassConfigItems extends UuidConfigItem {
 
     private String scriptFolderField;
     private String hostField = "nucleus";
-    private String useCertificate = "false";
-    private String certificateFileField= "/home/bstevens/.ssh/stratum-west.pem";
+    private String port = "9042";
+    private String keyspace = "pa";
+    private String connectionType = CassandraConnectionType.DOCKER_LOCAL.name();
 
-    public CassConfigItems(UUID uuid,String scriptFolderField, String hostField, String useCertificate, String certificateFileField) {
+    @JsonIgnore
+    private String useCertificate;
+    @JsonIgnore
+    private String certificateFileField = "/home/bstevens/.ssh/stratum-west.pem";
+
+
+    public CassConfigItems(UUID myUuid, String scriptFolderField, String hostField, String port, String keyspace, String cassConnectionType) {
+        this.uniqueId = myUuid;
         this.scriptFolderField = scriptFolderField;
         this.hostField = hostField;
-        this.useCertificate = useCertificate;
-        this.certificateFileField = certificateFileField;
-        this.uniqueId = uuid;
+        this.port = port;
+        this.keyspace = keyspace;
     }
 
-    public CassConfigItems(){
+    public String getKeyspace() {
+        return keyspace;
+    }
+
+    public void setKeyspace(String keyspace) {
+        this.keyspace = keyspace;
+    }
+
+    public CassConfigItems() {
         //this is json pojo
     }
 
@@ -43,33 +59,28 @@ public class CassConfigItems extends UuidConfigItem {
         this.hostField = hostField;
     }
 
-    public String getUseCertificate() {
-        return useCertificate;
+    public String getPort() {
+        return port;
     }
 
-    public void setUseCertificate(String useCertificate) {
-        this.useCertificate = useCertificate;
+    public void setPort(String port) {
+        this.port = port;
     }
 
-    public String getCertificateFileField() {
-        return certificateFileField;
+    public String getConnectionType() {
+        return connectionType;
     }
 
-    public void setCertificateFileField(String certificateFileField) {
-        this.certificateFileField = certificateFileField;
+    public void setConnectionType(String connectionType) {
+        this.connectionType = connectionType;
     }
 
-
-    public boolean useCertificate(){
-        return new Boolean(this.getUseCertificate());
-    }
-
-    @JsonIgnore
-    public boolean certFileExists(){
-        File file = new File(this.certificateFileField);
-        return file.exists();
-    }
-
+    /**
+     * do not blow this away and regenerate
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,7 +88,7 @@ public class CassConfigItems extends UuidConfigItem {
 
         CassConfigItems that = (CassConfigItems) o;
 
-        if(this.getUniqueId().equals(that.getUniqueId())){
+        if (this.getUniqueId().equals(that.getUniqueId())) {
             return true;
         }
         return false;
@@ -85,30 +96,49 @@ public class CassConfigItems extends UuidConfigItem {
 
     @Override
     public int hashCode() {
-        int result = scriptFolderField != null ? scriptFolderField.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (scriptFolderField != null ? scriptFolderField.hashCode() : 0);
         result = 31 * result + (hostField != null ? hostField.hashCode() : 0);
-        result = 31 * result + (useCertificate != null ? useCertificate.hashCode() : 0);
-        result = 31 * result + (certificateFileField != null ? certificateFileField.hashCode() : 0);
+        result = 31 * result + (port != null ? port.hashCode() : 0);
+        result = 31 * result + (keyspace != null ? keyspace.hashCode() : 0);
         return result;
     }
-
 
     @Override
     @JsonIgnore
     public String getTableDisplayString() {
-        return "pa@"+hostField;
+        return keyspace + "@" + hostField;
     }
 
-    public UuidConfigItem clone(){
+    public UuidConfigItem clone() {
         CassConfigItems cloned = new CassConfigItems();
         cloned.generateUniqueId();
         cloned.setHostField(this.getHostField());
-        cloned.setUseCertificate(this.getUseCertificate());
-        cloned.setCertificateFileField(this.getCertificateFileField());
         cloned.setScriptFolderField(this.getScriptFolderField());
-
+        cloned.setPort(this.getPort());
+        cloned.setKeyspace(this.getKeyspace());
+        cloned.setConnectionType(this.getConnectionType());
         return cloned;
     }
 
+    @JsonIgnore
+    public String getUseCertificate() {
+        return useCertificate;
+    }
+
+    @JsonIgnore
+    public void setUseCertificate(String useCertificate) {
+        this.useCertificate = useCertificate;
+    }
+
+    @JsonIgnore
+    public String getCertificateFileField() {
+        return certificateFileField;
+    }
+
+    @JsonIgnore
+    public void setCertificateFileField(String certificateFileField) {
+        this.certificateFileField = certificateFileField;
+    }
 
 }

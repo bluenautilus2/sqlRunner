@@ -1,6 +1,6 @@
 package org.bluenautilus;
 
-import org.bluenautilus.script.ScriptModifier;
+import org.bluenautilus.script.SqlScriptModifier;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class TestCommentStripping {
     public static void main(String args[]) {
 
         File f = new File("test1.sql");
-        ScriptModifier modifier = new ScriptModifier(f);
+        SqlScriptModifier modifier = new SqlScriptModifier(f);
         try{
             modifier.createModifiedCopy();
         }    catch(Exception e){

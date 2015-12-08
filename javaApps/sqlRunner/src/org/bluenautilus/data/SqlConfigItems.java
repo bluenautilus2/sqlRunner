@@ -1,7 +1,7 @@
 package org.bluenautilus.data;
 
 import org.bluenautilus.db.DBConnectionType;
-import org.bluenautilus.db.Target;
+import org.bluenautilus.db.SqlTarget;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.UUID;
@@ -24,9 +24,9 @@ public class SqlConfigItems extends UuidConfigItem {
     private String ipAddressField = "10.10.10.53";
     private String port = "1433";
     private String dbConnectionType = DBConnectionType.getDefaultForThisOS().toString();
-    private Target target = Target.NONE;
+    private SqlTarget target = SqlTarget.NONE;
 
-    public SqlConfigItems(UUID uuid, String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType, Target target) {
+    public SqlConfigItems(UUID uuid, String dbNameField, String loginField, String passwordField, String scriptFolderField, String ipAddressField, String port, String dbConnectionType, SqlTarget sqlTarget) {
         this.dbNameField = dbNameField;
         this.loginField = loginField;
         this.passwordField = passwordField;
@@ -35,7 +35,7 @@ public class SqlConfigItems extends UuidConfigItem {
         this.port = port;
         this.dbConnectionType = dbConnectionType;
         this.uniqueId = uuid;
-        this.target = target;
+        this.target = sqlTarget;
     }
 
     public SqlConfigItems() {
@@ -99,11 +99,11 @@ public class SqlConfigItems extends UuidConfigItem {
         this.dbConnectionType = dbConnectionType;
     }
 
-    public Target getTarget() {
+    public SqlTarget getTarget() {
         return target;
     }
 
-    public void setTarget(Target target) {
+    public void setTarget(SqlTarget target) {
         this.target = target;
     }
 

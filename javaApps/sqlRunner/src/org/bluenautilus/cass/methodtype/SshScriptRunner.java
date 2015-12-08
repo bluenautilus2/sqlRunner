@@ -55,12 +55,7 @@ public class SshScriptRunner implements CassandraScriptRunner {
         ArrayList<String> params = new ArrayList<String>();
         Collections.addAll(params, array);
 
-        if (items.useCertificate()) {
-            if (items.certFileExists()) {
-                params.add("-c");
-                params.add(items.getCertificateFileField());
-            }
-        }
+
 
         ProcessBuilder processBuilder = new ProcessBuilder(params);
 

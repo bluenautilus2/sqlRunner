@@ -2,13 +2,10 @@
 <project version="4">
   <component name="EclipseCodeFormatter">
     <option name="defaultSettings" value="true" />
-    <option name="disabledFileTypes" value="jsp;jspx;jspf;html;sql;css;scss." />
+    <option name="disabledFileTypes" value="jsp;jspx;jspf;html;css;scss" />
     <option name="enableJavaFormatting" value="false" />
-    <option name="formatSeletedTextInAllFileTypes" value="false" />
     <option name="formatter" value="ECLIPSE" />
-    <option name="id" value="1396909515821" />
-    <option name="importOrderConfigFilePath" value="$PROJECT_DIR$/../../../App/Tomcat_PA/Eclipse_import_order.importorder" />
-    <option name="importOrderFromFile" value="true" />
+    <option name="id" value="1440540404802" />
     <option name="name" value="default" />
     <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../../App/Tomcat_PA/Eclipse format style.xml" />
     <option name="selectedJavaProfile" value="PeopleAnswers" />
@@ -20,4 +17,3 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
-

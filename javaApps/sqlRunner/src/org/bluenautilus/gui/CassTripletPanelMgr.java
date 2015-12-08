@@ -40,14 +40,6 @@ public class CassTripletPanelMgr extends TripletPanelMgr {
         newThread.start();
     }
 
-
-    @Override
-    public void preferencesUpdated() {
-       // CassConfigItems items = this.cassButtonPanel.pullFieldsFromGui();
-       // ConfigUtil.saveOffCurrent(items, this.cassButtonPanel);
-    }
-
-
     @Override
     protected void runOneScript(ScriptType type){
         if(this.filesBeingRun.isEmpty()){
@@ -69,3 +61,5 @@ public class CassTripletPanelMgr extends TripletPanelMgr {
         newThread.start();
     }
 }
+
+/** I didn't say it was gonna be a good cookie though*/

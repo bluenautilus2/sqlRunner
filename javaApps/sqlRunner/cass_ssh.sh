@@ -14,12 +14,8 @@ do
         esac
 done
 
-if [[ -n "$CERT" ]]; then
-   echo "((ssh -i $CERT $LOGIN@$IP /home/cassandra/bin/cqlsh-localhost) < $FILE ) > cassout.txt"
-   ((ssh -i $CERT $LOGIN@$IP /home/cassandra/bin/cqlsh-localhost) < $FILE ) > cassout.txt
-else
-  echo "((sshpass -p $PASSWORD ssh $LOGIN@$IP /home/cassandra/bin/cql) < $FILE ) > cassout.txt"
-  ((sshpass -p $PASSWORD ssh $LOGIN@$IP /home/cassandra/bin/cql) < $FILE ) > cassout.txt
-fi
+
+echo "((docker exec -i dse47_cassandra_1  dse/bin/cqlsh localhost) < $FILE ) > cassout.txt"
+((docker exec -i dse47_cassandra_1  dse/bin/cqlsh localhost) < $FILE ) > cassout.txt
 
 echo "script complete"

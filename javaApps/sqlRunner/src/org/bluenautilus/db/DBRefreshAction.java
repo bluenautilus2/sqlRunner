@@ -38,7 +38,7 @@ public class DBRefreshAction extends org.bluenautilus.RefreshAction implements R
 
         SqlScriptMgr sqlmgr;
         DBRowRetriever retriever;
-        ScriptContentFilter filter = new ScriptContentFilter(Target.targetPattern, fields.getTarget().getHeaderTag());
+        ScriptContentFilter filter = new ScriptContentFilter(SqlTarget.targetPattern, fields.getTarget().getHeaderTag());
         try {
             sqlmgr = new SqlScriptMgr(new File(fields.getScriptFolderField()), SqlScriptMgr.DataStoreType.SQL, filter);
             retriever = new DBRowRetriever(fields);

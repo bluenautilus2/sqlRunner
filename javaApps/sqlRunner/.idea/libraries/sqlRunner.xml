@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sqlRunner">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sqlRunner_jar/sqlRunner.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

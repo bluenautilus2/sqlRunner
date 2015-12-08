@@ -14,19 +14,16 @@ import java.util.Collections;
  */
 public class MiscUtil {
 
-    public static boolean isThisWindows(){
+    public static boolean isThisWindows() {
         return (SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_WINDOWS_7);
     }
 
-    public static boolean isThisLinux(){
-        return !isThisWindows();
+    public static boolean isThisLinux() {
+        return (SystemUtils.IS_OS_LINUX || SystemUtils.IS_OS_UNIX || SystemUtils.IS_OS_AIX);
     }
 
-    public static DBConnectionType getDefaultConnectionForThisOS(){
-        if (isThisWindows()){
-            return DBConnectionType.WINDOWS_DEFAULT;
-        }
-        return DBConnectionType.LINUX_DEFAULT;
+    public static boolean isThisMacOS() {
+        return (SystemUtils.IS_OS_MAC || SystemUtils.IS_OS_MAC_OSX);
     }
 
     public static ArrayList<SqlScriptFile> combine(ArrayList<SqlScriptRow> rows, ArrayList<SqlScriptFile> files) {
@@ -35,7 +32,7 @@ public class MiscUtil {
         Collections.sort(rows);
         Collections.sort(files);
 
-        if(null==rows || null==files || rows.isEmpty() || files.isEmpty()) {
+        if (null == rows || null == files || rows.isEmpty() || files.isEmpty()) {
             return answer;
         }
         SqlScriptRow firstRow = rows.get(0);
@@ -77,14 +74,14 @@ public class MiscUtil {
                 }
             }
 
-SqlScriptRow lastRow = currentFile.getLastRunRow();
-if(lastRow == null){
-currentFile.setStatus(ScriptStatus.NEED_TO_RUN);
-}else if(lastRow.isRollback()){
-currentFile.setStatus(ScriptStatus.ROLLED_BACK);
-}else{
-currentFile.setStatus(ScriptStatus.ALREADY_RUN);
-}
+            SqlScriptRow lastRow = currentFile.getLastRunRow();
+            if (lastRow == null) {
+                currentFile.setStatus(ScriptStatus.NEED_TO_RUN);
+            } else if (lastRow.isRollback()) {
+                currentFile.setStatus(ScriptStatus.ROLLED_BACK);
+            } else {
+                currentFile.setStatus(ScriptStatus.ALREADY_RUN);
+            }
 
         }
         Collections.reverse(files);

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 /**
  * Created by bstevens on 8/6/15.
  */
-public enum Target {
+public enum SqlTarget {
     COMMON(Pattern.compile("common")),
     POD_MAIN(Pattern.compile("pod_main")),
     POD_LOGGING(Pattern.compile("pod_logging")),
@@ -14,7 +14,7 @@ public enum Target {
     private Pattern headerTag;
     protected static Pattern targetPattern = Pattern.compile("target");
 
-    Target(Pattern p) {
+    SqlTarget(Pattern p) {
         headerTag = p;
     }
 

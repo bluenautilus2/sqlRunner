@@ -24,7 +24,7 @@ import java.nio.charset.Charset;
  * Currently we use the same name for every file because we run one script at a time.
  * I never ever want this program to run more than one script at once.
  */
-public class ScriptModifier implements ScriptCompletionListener {
+public class SqlScriptModifier implements ScriptCompletionListener {
 
 	public static final String OUTPUTFILENAME = "tempdata.txt";
 	private static final String PREFIX = "BEGIN TRANSACTION TEMP;\n\n";
@@ -36,7 +36,7 @@ public class ScriptModifier implements ScriptCompletionListener {
 	public File outputFile;
 
 
-	public ScriptModifier(File inputFile) {
+	public SqlScriptModifier(File inputFile) {
 		this.inputFile = inputFile;
 
 	}
@@ -237,7 +237,6 @@ public class ScriptModifier implements ScriptCompletionListener {
 		public void setCommandFlag(CommandFlag commandFlag) {
 			this.commandFlag = commandFlag;
 		}
-
 
 	}
 

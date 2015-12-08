@@ -28,7 +28,7 @@ import java.util.Arrays;
  */
 public class ScriptViewPanel extends ParentTextPanel {
 
-	private JButton entireScriptButton = new JButton("Entire Script");
+	private JButton entireScriptButton = new JButton("Edit Script");
 	private JButton rollbackScriptButton = new JButton("Rollback Script");
     private JButton openInSSMSButton = new JButton("Open in SSMS");
 
@@ -59,8 +59,8 @@ public class ScriptViewPanel extends ParentTextPanel {
                 count++;
             }
             if(count==100){
-                textArea.append("\n*Script Truncated at 100 lines for GUI performance* \n");
-				textArea.append("\n Click on \'Entire Script\' button to see the whole script --Beth\n");
+                textArea.append("\n*IMPORTANT Script Truncated at 100 lines for GUI performance* \n");
+				textArea.append("\n Click on \'Edit Script\' button to see the whole script --Beth\n");
             }
         } finally {
             if (null != reader) {

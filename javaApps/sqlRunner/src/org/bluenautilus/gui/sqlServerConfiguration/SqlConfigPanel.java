@@ -5,19 +5,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.db.DBConnectionType;
-import org.bluenautilus.db.Target;
+import org.bluenautilus.db.SqlTarget;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.gui.RunButtonPanel;
-import org.bluenautilus.gui.UpdatePreferencesListener;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
-import org.bluenautilus.util.MiscUtil;
 import org.bluenautilus.util.SqlConfigUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -29,19 +25,17 @@ public class SqlConfigPanel extends JPanel {
     private static Log LOG = LogFactory.getLog(RunButtonPanel.class);
 
     SqlConfigItems fields = null;
-    private JTextField dbNameField = new JTextField(15);
+    private JTextField dbNameField = new JTextField(30);
     private JTextField loginField = new JTextField(8);
     private JTextField passwordField = new JPasswordField(8);
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField ipAddressField = new JTextField(15);
     private JTextField portField = new JTextField(8);
-    private JComboBox dbConnectionTypeField;
+    private JComboBox<DBConnectionType> dbConnectionTypeField = new JComboBox<>();
     private UUID uuidField = null;
-    private JComboBox<Target> targetDropDown = new JComboBox<>();
+    private JComboBox<SqlTarget> targetDropDown = new JComboBox<>();
 
     private Color borderColor = new Color(180, 180, 180);
-
-    ArrayList<UpdatePreferencesListener> updateListeners = new ArrayList<UpdatePreferencesListener>();
 
     public SqlConfigPanel(SqlConfigItems initialFields) {
         super(new GridBagLayout());
@@ -51,23 +45,26 @@ public class SqlConfigPanel extends JPanel {
 
     private void init() {
         this.setLayout(new BorderLayout());
-        for (Target t : Target.values()) {
+        for (SqlTarget t : SqlTarget.values()) {
             this.targetDropDown.addItem(t);
+        }
+
+        for(DBConnectionType type :this.buildDBConnectionTypes()){
+            this.dbConnectionTypeField.addItem(type);
         }
 
         this.setFields(this.fields);
 
         JLabel dbNameLabel = new JLabel("Database Name");
-        JLabel ipAddress = new JLabel("IP Address");
+        JLabel ipAddress = new JLabel("IP Address/Host Name");
         JLabel userName = new JLabel("Login");
         JLabel password = new JLabel("Password");
         JLabel folderName = new JLabel("SQL Script Folder");
         JLabel portLabel = new JLabel("Port");
         JLabel dbConnectionTypeLabel = new JLabel("DB Connection Method");
-        JLabel targetLabel = new JLabel("Target");
+        JLabel targetLabel = new JLabel("SqlTarget");
         FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
 
-        this.initDBConnectionDropDown();
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -191,8 +188,8 @@ public class SqlConfigPanel extends JPanel {
         this.uuidField = fields.getUniqueId();
 
 
-        for (int i = 0; i < Target.values().length; i++) {
-            Target t = targetDropDown.getItemAt(i);
+        for (int i = 0; i < SqlTarget.values().length; i++) {
+            SqlTarget t = targetDropDown.getItemAt(i);
             if (t.equals(fields.getTarget())) {
                 targetDropDown.setSelectedIndex(i);
             }
@@ -203,19 +200,11 @@ public class SqlConfigPanel extends JPanel {
         String connectionString = fields.getDbConnectionType();
         DBConnectionType userSaved = DBConnectionType.getEnum(connectionString);
 
-        if (this.dbConnectionTypeField != null) {
-            this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
-        } else {
-            String[] options = this.buildDBConnectionTypes();
-            this.dbConnectionTypeField = new JComboBox(options);
-            this.dbConnectionTypeField.getModel().setSelectedItem(userSaved.toString());
-        }
-
-
+        this.dbConnectionTypeField.getModel().setSelectedItem(userSaved);
 
     }
 
-    public Target getSelectedTarget() {
+    public SqlTarget getSelectedTarget() {
         int selected = this.targetDropDown.getSelectedIndex();
         if (selected >= 0) {
             return this.targetDropDown.getItemAt(selected);
@@ -225,34 +214,26 @@ public class SqlConfigPanel extends JPanel {
     }
 
 
-    private String[] buildDBConnectionTypes() {
-        ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<DBConnectionType> buildDBConnectionTypes() {
+        ArrayList<DBConnectionType> list = new ArrayList<>();
 
         for (DBConnectionType type : DBConnectionType.values()) {
             //Check if jdbc can work on this machine
             if (DBConnectionType.JDBC == type) {
                 if (isJDBCEnabled()) {
-                    list.add(type.toString());
+                    list.add(type);
                 }
             } else {
-                if (canAddConnectionType(type)) {
-                    list.add(type.toString());
+                if (type.worksInThisOS()) {
+                    list.add(type);
                 }
             }
         }//end of for loop
 
-        return list.toArray(new String[list.size()]);
+        return list;
     }
 
-    private boolean canAddConnectionType(DBConnectionType type) {
-        if (MiscUtil.isThisWindows() && type.supportsWindows()) {
-            return true;
-        }
-        if (MiscUtil.isThisLinux() && type.supportsLinux()) {
-            return true;
-        }
-        return false;
-    }
+
 
     private boolean isJDBCEnabled() {
         try {
@@ -264,33 +245,8 @@ public class SqlConfigPanel extends JPanel {
         return false;
     }
 
-    private void initDBConnectionDropDown() {
-
-        this.dbConnectionTypeField.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(final ItemEvent e) {
-
-                // I shouldn't have had to write this code (disgusted)
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            Object item = e.getItem();
-                            dbConnectionTypeField.getModel().setSelectedItem(item.toString());
-                            for (UpdatePreferencesListener listener : updateListeners) {
-                                listener.preferencesUpdated();
-                            }
-                        }
-                    }
-                });
-
-            }
-        });
-    }
-
     public String getScriptFolder() {
         return scriptFolderField.getText();
     }
-
 
 }
