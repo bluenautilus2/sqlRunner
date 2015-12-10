@@ -4,8 +4,8 @@ import org.bluenautilus.util.MiscUtil;
 
 
 public enum CassandraConnectionType {
-    DOCKER_LOCAL("SSH", false, true, false),
-    DOCKER_REMOTE("SSH_CERTIFICATE", false, true, true);
+    DOCKER_LOCAL("DOCKER_LOCAL", false, true, false),
+    DOCKER_REMOTE("DOCKER_REMOTE", false, true, true);
 
     private final String displayString;
     private final boolean supportsWindows;

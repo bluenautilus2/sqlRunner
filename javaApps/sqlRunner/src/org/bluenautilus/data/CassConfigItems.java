@@ -12,23 +12,27 @@ import java.util.UUID;
 public class CassConfigItems extends UuidConfigItem {
 
     private String scriptFolderField;
-    private String hostField = "nucleus";
+    private String hostField = "locahost";
     private String port = "9042";
     private String keyspace = "pa";
     private String connectionType = CassandraConnectionType.DOCKER_LOCAL.name();
+    private String container = "dse47_cassandra_1";
+    private String login = "docker";
 
     @JsonIgnore
     private String useCertificate;
     @JsonIgnore
-    private String certificateFileField = "/home/bstevens/.ssh/stratum-west.pem";
+    private String certificateFileField = "no longer used";
 
 
-    public CassConfigItems(UUID myUuid, String scriptFolderField, String hostField, String port, String keyspace, String cassConnectionType) {
+    public CassConfigItems(UUID myUuid, String scriptFolderField, String hostField, String port, String keyspace, String cassConnectionType, String container, String login) {
         this.uniqueId = myUuid;
         this.scriptFolderField = scriptFolderField;
         this.hostField = hostField;
         this.port = port;
         this.keyspace = keyspace;
+        this.container = container;
+        this.login = login;
     }
 
     public String getKeyspace() {
@@ -73,6 +77,22 @@ public class CassConfigItems extends UuidConfigItem {
 
     public void setConnectionType(String connectionType) {
         this.connectionType = connectionType;
+    }
+
+    public String getContainer() {
+        return container;
+    }
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     /**

@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassConfigItems;
+import org.bluenautilus.db.DBConnectionType;
 import org.bluenautilus.gui.FolderOpenButton;
 import org.bluenautilus.util.CassConfigUtil;
 import org.bluenautilus.util.DataStoreGroupConfigUtil;
@@ -12,6 +13,8 @@ import org.bluenautilus.util.DataStoreGroupConfigUtil;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.UUID;
 
 /**
@@ -26,9 +29,13 @@ public class CassConfigPanel extends JPanel {
 
     private JTextField scriptFolderField = new JTextField(35);
     private JTextField hostNameField = new JTextField(20);
-    private JTextField portField = new JTextField(10);
-    private JTextField keyspaceField = new JTextField(10);
+    private JTextField portField = new JTextField(20);
+    private JTextField keyspaceField = new JTextField(20);
+    private JTextField containerField = new JTextField(35);
+    private JTextField loginField = new JTextField(25);
     private UUID uuidField = null;
+    JLabel hostName = new JLabel("Cassandra Host Name");
+    JLabel loginName = new JLabel("Host login");
     FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
     JComboBox<CassandraConnectionType> connectTypePulldown = new JComboBox<>();
 
@@ -40,8 +47,8 @@ public class CassConfigPanel extends JPanel {
 
     private void init() {
 
-        for(CassandraConnectionType type: CassandraConnectionType.values()){
-            if(type.worksInThisOS()){
+        for (CassandraConnectionType type : CassandraConnectionType.values()) {
+            if (type.worksInThisOS()) {
                 connectTypePulldown.addItem(type);
             }
         }
@@ -52,8 +59,15 @@ public class CassConfigPanel extends JPanel {
         JLabel folderName = new JLabel("CQL Script Folder");
         JLabel portName = new JLabel("Port");
         JLabel keyspaceName = new JLabel("Keyspace");
-        JLabel hostName = new JLabel("Cassandra Host Name");
         JLabel connectionTypeName = new JLabel("Connection Type");
+        JLabel containerName = new JLabel("Docker Container Name");
+
+        initConnectionDropDown();
+        CassandraConnectionType type = (CassandraConnectionType) connectTypePulldown.getSelectedItem();
+        syncHiddenFields(type);
+        //always off for now
+        portName.setEnabled(false);
+        portField.setEnabled(false);
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -68,15 +82,30 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(hostName, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(containerName, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
+
 
         centerPanel.add(keyspaceName, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(portName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
+
+        centerPanel.add(connectionTypeName, new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(hostName, new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+
+        centerPanel.add(loginName, new GridBagConstraints(0, 5, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(portName, new GridBagConstraints(0, 6, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -91,7 +120,7 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.containerField, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -99,7 +128,19 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(this.portField, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.connectTypePulldown, new GridBagConstraints(1, 3, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(this.hostNameField, new GridBagConstraints(1, 4, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(this.loginField, new GridBagConstraints(1, 5, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(this.portField, new GridBagConstraints(1, 6, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -122,7 +163,9 @@ public class CassConfigPanel extends JPanel {
                 this.hostNameField.getText(),
                 this.portField.getText(),
                 this.keyspaceField.getText(),
-                this.connectTypePulldown.getSelectedItem().toString());
+                this.connectTypePulldown.getSelectedItem().toString(),
+                this.containerField.getText(),
+                this.loginField.getText());
     }
 
     public void setFields(CassConfigItems fields) {
@@ -135,18 +178,51 @@ public class CassConfigPanel extends JPanel {
         }
 
         CassandraConnectionType typeToUse = CassandraConnectionType.DOCKER_LOCAL;
-        if(fields.getConnectionType() !=null){
+        if (fields.getConnectionType() != null) {
             typeToUse = CassandraConnectionType.getEnum(fields.getConnectionType());
         }
 
         this.connectTypePulldown.setSelectedItem(typeToUse);
         this.portField.setText(fields.getPort());
         this.keyspaceField.setText(fields.getKeyspace());
+        this.containerField.setText(fields.getContainer());
+        this.loginField.setText(fields.getLogin());
     }
 
+    private void syncHiddenFields(CassandraConnectionType type) {
+        boolean enabled = CassandraConnectionType.DOCKER_REMOTE == type;
+        this.loginField.setEnabled(enabled);
+        this.loginName.setEnabled(enabled);
+        this.hostName.setEnabled(enabled);
+        if(!enabled){
+            this.hostNameField.setText("localhost");
+        }
+        this.hostNameField.setEnabled(enabled);
+    }
 
     public String getScriptFolder() {
         return scriptFolderField.getText();
     }
+
+    private void initConnectionDropDown() {
+        this.connectTypePulldown.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(final ItemEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            Object o = connectTypePulldown.getSelectedItem();
+                            if (o instanceof CassandraConnectionType) {
+                                syncHiddenFields((CassandraConnectionType) o);
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+
 
 }

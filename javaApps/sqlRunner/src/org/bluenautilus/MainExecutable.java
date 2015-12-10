@@ -38,29 +38,27 @@ public class MainExecutable {
         dataStoreGroupPanel.init();
         topPanel.add(dataStoreGroupPanel, BorderLayout.EAST);
         final RunButtonPanel runButtonPanel = new RunButtonPanel();
-        topPanel.add(runButtonPanel,BorderLayout.WEST);
+        topPanel.add(runButtonPanel, BorderLayout.WEST);
 
         DataStorePanelManager mgr = new DataStorePanelManager(dataStoreGroupPanel);
 
-        LaunchingTabManager tabManager = new LaunchingTabManager(runButtonPanel,mainPanel);
+        LaunchingTabManager tabManager = new LaunchingTabManager(runButtonPanel, mainPanel);
         dataStoreGroupPanel.addLaunchButtonListener(tabManager);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
-        mainPanel.add(tabManager.getTabbedPane(),BorderLayout.CENTER);
+        mainPanel.add(tabManager.getTabbedPane(), BorderLayout.CENTER);
 
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
         frame.pack();
 
         //make it a little bigger
-        Dimension framesize = frame.getSize();
+        //   Dimension framesize = frame.getSize();
+        //   int fwidth = Math.round(framesize.width * 1.3f);
+        //   int fheight = Math.round(framesize.height * 1.2f);
+        //   Dimension newframesize = new Dimension(fwidth,fheight);
+        //   frame.setSize(newframesize);
 
-     //   int fwidth = Math.round(framesize.width * 1.3f);
-     //   int fheight = Math.round(framesize.height * 1.2f);
-
-     //   Dimension newframesize = new Dimension(fwidth,fheight);
-     //   frame.setSize(newframesize);
         frame.setVisible(true);
-
 
 
     }

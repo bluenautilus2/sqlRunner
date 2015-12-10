@@ -136,9 +136,11 @@ public class RunButtonPanel extends JPanel implements ActionListener {
     }
 
     private void setRefreshButtonRed(int count) {
-        this.refreshButton.setText(REFRESHING + ": " + count);
-        this.refreshButton.setForeground(Color.WHITE);
-        this.refreshButton.setBackground(new Color(150, 60, 60));
+        if(count>0) {
+            this.refreshButton.setText(REFRESHING + ": " + count);
+            this.refreshButton.setForeground(Color.WHITE);
+            this.refreshButton.setBackground(new Color(150, 60, 60));
+        }
     }
 
     private void setRefreshButtonNormal() {
