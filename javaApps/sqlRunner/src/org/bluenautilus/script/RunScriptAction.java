@@ -1,5 +1,7 @@
 package org.bluenautilus.script;
 
+import org.bluenautilus.cass.CassandraConnectionType;
+import org.bluenautilus.cass.methodtype.PlinkScriptRunner;
 import org.bluenautilus.cass.methodtype.SshScriptRunner;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlConfigItems;
@@ -27,6 +29,7 @@ public class RunScriptAction implements Runnable {
 
     private boolean isCassandra = false;
     private CassConfigItems cassItems;
+    private CassandraConnectionType cassConnectionType;
 
     private SqlScriptFile file;
     private ArrayList<ScriptCompletionListener> completionListeners = new ArrayList<ScriptCompletionListener>();
@@ -47,6 +50,7 @@ public class RunScriptAction implements Runnable {
         this.cassItems = items;
         this.file = sqlScriptFile;
         this.type = type;
+        this.cassConnectionType = CassandraConnectionType.getEnum(items.getConnectionType());
         this.isCassandra = true;
     }
 
@@ -90,9 +94,20 @@ public class RunScriptAction implements Runnable {
                         return;
                 }
             }
-            if (this.isCassandra) {
-                SshScriptRunner sshrunner = new SshScriptRunner();
-                event = sshrunner.runCassandraScript(completionListeners, cassItems, file, type);
+            if (this.isCassandra && cassConnectionType != null) {
+                switch (cassConnectionType) {
+                    case DOCKER_REMOTE:
+                    case DOCKER_LOCAL:
+                        SshScriptRunner sshrunner = new SshScriptRunner();
+                        event = sshrunner.runCassandraScript(completionListeners, cassItems, file, type);
+                        break;
+                    case DOCKER_PLINK:
+                        PlinkScriptRunner prunner = new PlinkScriptRunner();
+                        event = prunner.runCassandraScript(completionListeners, cassItems, file, type);
+                        break;
+                    default:
+                        return;
+                }
             }
             if (event != null) {
                 this.fireScriptCompletion(event);
@@ -164,6 +179,13 @@ public class RunScriptAction implements Runnable {
 
     @Override
     public void run() {
+        try {
+            //Scripts were firing so quickly that sometimes the database
+            //didn't close the connection before the next one started.
+            Thread.currentThread().sleep(400);
+        } catch (InterruptedException ie) {
+            //just continue
+        }
         this.fireScriptAction(this.type);
     }
 

@@ -5,7 +5,8 @@ import org.bluenautilus.util.MiscUtil;
 
 public enum CassandraConnectionType {
     DOCKER_LOCAL("DOCKER_LOCAL", false, true, false),
-    DOCKER_REMOTE("DOCKER_REMOTE", false, true, true);
+    DOCKER_REMOTE("DOCKER_REMOTE", false, true, true),
+    DOCKER_PLINK("DOCKER_PLINK", true,false,false);
 
     private final String displayString;
     private final boolean supportsWindows;

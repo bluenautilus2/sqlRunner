@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts H:U:C:F: option
+while getopts H:U:C:F:T: option
 do
         case "${option}"
         in
@@ -8,17 +8,18 @@ do
                 U) LOGIN=${OPTARG};;
                 C) CONTAINER=${OPTARG};;
                 F) FILE=${OPTARG};;
+                T) TYPE=${OPTARG};;
         esac
 done
 
 
-echo "script complete"
 
-if [[ -n "$HOST" ]]; then
-   echo "(ssh -t $LOGIN@$HOST "(docker exec -i $CONTAINER dse/bin/cqlsh localhost)" < $FILE) > cassout.txt"
-   (ssh -t $LOGIN@$HOST "(docker exec -i $CONTAINER dse/bin/cqlsh localhost)" < $FILE) > cassout.txt
+if [[ "$TYPE" == "DOCKER_REMOTE" ]]; then
+  echo "Running on remote host"
+   (ssh  $LOGIN@$HOST "(docker exec -i $CONTAINER dse/bin/cqlsh localhost)" < $FILE) > cassout.txt
 else
-  echo "((docker exec -i $CONTAINER  dse/bin/cqlsh localhost) < $FILE ) > cassout.txt"
+  echo "Running on localhost"
   ((docker exec -i $CONTAINER  dse/bin/cqlsh localhost) < $FILE ) > cassout.txt
 fi
 
+echo "script complete"

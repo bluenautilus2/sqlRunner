@@ -23,6 +23,8 @@ public class GuiUtil {
 
     public static String makeGoodString(Exception e) {
         StringBuilder builder = new StringBuilder();
+        //this is an easy way to limit the width. some errors were going off the monitor.
+        builder.append("<html><body><p style='width: 200px;'>");
         builder.append(e.getMessage());
         builder.append("\n\n");
         StackTraceElement[] stack = e.getStackTrace();
@@ -34,6 +36,8 @@ public class GuiUtil {
                 break;
             }
         }
+        builder.append("</p></body></html>");
+
         return builder.toString();
     }
 }

@@ -2,7 +2,6 @@ package org.bluenautilus.cass.methodtype;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.cass.CassandraScriptRunner;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.data.SqlScriptFile;
@@ -24,12 +23,10 @@ import java.util.Collections;
 /**
  * Created by bstevens on 8/24/14.
  */
-public class SshScriptRunner implements CassandraScriptRunner {
+public class PlinkScriptRunner implements CassandraScriptRunner {
 
-
-    private static final String CMD = "./cass_ssh.sh";
     private static final String DB_ERROR_FLAG = "Bad Request";
-    private static Log log = LogFactory.getLog(SshScriptRunner.class);
+    private static Log log = LogFactory.getLog(PlinkScriptRunner.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
 
     @Override
@@ -50,11 +47,10 @@ public class SshScriptRunner implements CassandraScriptRunner {
         }
 
 
-        String[] array = {this.CMD, "-H", items.getHostField(),
-                "-U", items.getLogin(),
-                "-C", items.getContainer(),
-                "-T", items.getConnectionType(),
-                "-F", filetorun.getAbsolutePath()};
+        String[] array = { "runplink.bat",
+                items.getHostField(),
+                filetorun.getAbsolutePath()};
+
         ArrayList<String> params = new ArrayList<String>();
         Collections.addAll(params, array);
 
@@ -81,6 +77,8 @@ public class SshScriptRunner implements CassandraScriptRunner {
         BufferedReader brerr = new BufferedReader(isrerr);
         String line;
         boolean dbProblem = false;
+
+        boolean dbProblemerr = false;
 
         strbuilder.append("\nOutput from stderr: \n");
         while ((line = brerr.readLine()) != null) {

@@ -48,7 +48,6 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.defaultBackground = this.refreshButton.getBackground();
         this.defaultForeground = this.refreshButton.getForeground();
 
-
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
         this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
         this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
@@ -61,9 +60,12 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         //Corner Buttons
         JPanel leftCornerPanel = new JPanel(new GridBagLayout());
 
-        leftCornerPanel.add(this.runAllButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                new Insets(4, 4, 4, 4), 2, 2));
+        //someday this will become the "run one week at a time" button
+        //Don't remove it, there's a lot of framework in place to handle
+        //the events it generates.
+        //leftCornerPanel.add(this.runAllButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+        //        GridBagConstraints.CENTER, GridBagConstraints.NONE,
+        //        new Insets(4, 4, 4, 4), 2, 2));
 
         leftCornerPanel.add(this.selectedScriptButton, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,

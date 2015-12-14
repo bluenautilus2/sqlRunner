@@ -29,6 +29,10 @@ public class DisplayScriptDialog extends JFrame {
     JTextArea textArea;
     JPanel parentPanel;
     JButton saveButton = new JButton("Save");
+    JButton saveAndCloseButton = new JButton("Save and Close");
+    JButton cancelButton = new JButton("Cancel");
+    final JFrame selfReference = this;
+    TextLineNumber textLineNumber;
 
     public DisplayScriptDialog(String title, File file, JPanel parentPanel) throws IOException {
         super(title);
@@ -39,6 +43,8 @@ public class DisplayScriptDialog extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        textLineNumber = new TextLineNumber(textArea);
+        scrollPane.setRowHeaderView(textLineNumber);
         textArea.setEditable(true);
         setText(file);
 
@@ -49,15 +55,36 @@ public class DisplayScriptDialog extends JFrame {
             }
         });
 
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selfReference.dispose();
+            }
+        });
+
+        saveAndCloseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveFile(textArea.getText());
+                selfReference.dispose();
+            }
+        });
+
         JPanel outerPanel = new JPanel(new GridBagLayout());
         outerPanel.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(10,10,10,10), 2, 2));
 
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.add(cancelButton, BorderLayout.WEST);
+        buttonPanel.add(saveButton, BorderLayout.CENTER);
+        buttonPanel.add(saveAndCloseButton, BorderLayout.EAST);
 
-        outerPanel.add(saveButton,new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
+        outerPanel.add(buttonPanel,new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(4,4,4,4), 2, 2));
+
+
         this.setContentPane(outerPanel);
 
         this.setDefaultCloseOperation(
@@ -104,8 +131,6 @@ public class DisplayScriptDialog extends JFrame {
         } catch (Exception e) {
             GuiUtil.showErrorModalDialog(e, parentPanel);
         }
-
-
     }
 
 

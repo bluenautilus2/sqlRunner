@@ -3,6 +3,7 @@ package org.bluenautilus.gui.cassServerConfiguration;
 import com.google.common.base.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bluenautilus.cass.CassTarget;
 import org.bluenautilus.cass.CassandraConnectionType;
 import org.bluenautilus.data.CassConfigItems;
 import org.bluenautilus.db.DBConnectionType;
@@ -38,6 +39,7 @@ public class CassConfigPanel extends JPanel {
     JLabel loginName = new JLabel("Host login");
     FolderOpenButton openScriptFolderButton = new FolderOpenButton(this, this.scriptFolderField);
     JComboBox<CassandraConnectionType> connectTypePulldown = new JComboBox<>();
+    JComboBox<CassTarget> targetPulldown = new JComboBox<>();
 
     public CassConfigPanel(CassConfigItems initialFields) {
         super(new GridBagLayout());
@@ -52,6 +54,9 @@ public class CassConfigPanel extends JPanel {
                 connectTypePulldown.addItem(type);
             }
         }
+        for (CassTarget target : CassTarget.values()) {
+            targetPulldown.addItem(target);
+        }
 
         this.setFields(this.fields);
 
@@ -61,6 +66,7 @@ public class CassConfigPanel extends JPanel {
         JLabel keyspaceName = new JLabel("Keyspace");
         JLabel connectionTypeName = new JLabel("Connection Type");
         JLabel containerName = new JLabel("Docker Container Name");
+        JLabel targetName = new JLabel("Target");
 
         initConnectionDropDown();
         CassandraConnectionType type = (CassandraConnectionType) connectTypePulldown.getSelectedItem();
@@ -68,6 +74,8 @@ public class CassConfigPanel extends JPanel {
         //always off for now
         portName.setEnabled(false);
         portField.setEnabled(false);
+        targetName.setEnabled(false);
+        targetPulldown.setEnabled(false);
 
         //int gridx, int gridy,int gridwidth, int gridheight,
         //double weightx, double weighty,
@@ -100,12 +108,15 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-
         centerPanel.add(loginName, new GridBagConstraints(0, 5, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(portName, new GridBagConstraints(0, 6, 1, 1, 1.0, 1.0,
+        centerPanel.add(targetName, new GridBagConstraints(0, 6, 1, 1, 1.0, 1.0,
+                GridBagConstraints.EAST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(portName, new GridBagConstraints(0, 7, 1, 1, 1.0, 1.0,
                 GridBagConstraints.EAST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -140,7 +151,11 @@ public class CassConfigPanel extends JPanel {
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
-        centerPanel.add(this.portField, new GridBagConstraints(1, 6, 1, 1, 1.0, 1.0,
+        centerPanel.add(this.targetPulldown, new GridBagConstraints(1, 6, 1, 1, 1.0, 1.0,
+                GridBagConstraints.WEST, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 2, 2));
+
+        centerPanel.add(this.portField, new GridBagConstraints(1, 7, 1, 1, 1.0, 1.0,
                 GridBagConstraints.WEST, GridBagConstraints.NONE,
                 new Insets(2, 2, 2, 2), 2, 2));
 
@@ -165,7 +180,8 @@ public class CassConfigPanel extends JPanel {
                 this.keyspaceField.getText(),
                 this.connectTypePulldown.getSelectedItem().toString(),
                 this.containerField.getText(),
-                this.loginField.getText());
+                this.loginField.getText(),
+                this.targetPulldown.getSelectedItem().toString());
     }
 
     public void setFields(CassConfigItems fields) {
@@ -181,8 +197,14 @@ public class CassConfigPanel extends JPanel {
         if (fields.getConnectionType() != null) {
             typeToUse = CassandraConnectionType.getEnum(fields.getConnectionType());
         }
-
         this.connectTypePulldown.setSelectedItem(typeToUse);
+
+        CassTarget targetToUse = CassTarget.NONE;
+        if (fields.getTarget() != null) {
+            targetToUse = CassTarget.valueOf(fields.getTarget());
+        }
+        this.targetPulldown.setSelectedItem(targetToUse);
+
         this.portField.setText(fields.getPort());
         this.keyspaceField.setText(fields.getKeyspace());
         this.containerField.setText(fields.getContainer());
@@ -194,7 +216,7 @@ public class CassConfigPanel extends JPanel {
         this.loginField.setEnabled(enabled);
         this.loginName.setEnabled(enabled);
         this.hostName.setEnabled(enabled);
-        if(!enabled){
+        if (!enabled) {
             this.hostNameField.setText("localhost");
         }
         this.hostNameField.setEnabled(enabled);
@@ -219,7 +241,6 @@ public class CassConfigPanel extends JPanel {
                         }
                     }
                 });
-
             }
         });
     }
