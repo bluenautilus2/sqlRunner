@@ -212,14 +212,26 @@ public class CassConfigPanel extends JPanel {
     }
 
     private void syncHiddenFields(CassandraConnectionType type) {
-        boolean enabled = CassandraConnectionType.DOCKER_REMOTE == type;
-        this.loginField.setEnabled(enabled);
-        this.loginName.setEnabled(enabled);
-        this.hostName.setEnabled(enabled);
-        if (!enabled) {
-            this.hostNameField.setText("localhost");
+        switch(type) {
+            case DOCKER_REMOTE:
+                setHost("Cassandra Host Name", "host_or_ip",true, true);
+                break;
+            case DOCKER_LOCAL:
+                setHost("Cassandra Host Name", "localhost", false, false);
+                break;
+            case DOCKER_PLINK:
+                setHost("Putty Session Name", "cassandra", true, false);
+                break;
         }
-        this.hostNameField.setEnabled(enabled);
+    }
+
+    public void setHost(final String label, final String value, final boolean hostEnabled, final boolean loginEnabled){
+        this.hostNameField.setText(value);
+        this.hostNameField.setEnabled(hostEnabled);
+        this.hostName.setText(label);
+        this.hostName.setEnabled(hostEnabled);
+        loginField.setEnabled(loginEnabled);
+        loginName.setEnabled(loginEnabled);
     }
 
     public String getScriptFolder() {

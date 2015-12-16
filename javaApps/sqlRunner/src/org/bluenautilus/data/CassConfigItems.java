@@ -21,12 +21,6 @@ public class CassConfigItems extends UuidConfigItem {
     private String login = "docker";
     private String target = CassTarget.NONE.toString();
 
-    @JsonIgnore
-    private String useCertificate;
-    @JsonIgnore
-    private String certificateFileField = "no longer used";
-
-
     public CassConfigItems(UUID myUuid, String scriptFolderField, String hostField, String port, String keyspace, String cassConnectionType, String container, String login, String target) {
         this.uniqueId = myUuid;
         this.scriptFolderField = scriptFolderField;
@@ -137,15 +131,13 @@ public class CassConfigItems extends UuidConfigItem {
         result = 31 * result + (container != null ? container.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (target != null ? target.hashCode() : 0);
-        result = 31 * result + (useCertificate != null ? useCertificate.hashCode() : 0);
-        result = 31 * result + (certificateFileField != null ? certificateFileField.hashCode() : 0);
         return result;
     }
 
     @Override
     @JsonIgnore
     public String getTableDisplayString() {
-        return keyspace + "@" + hostField;
+        return keyspace+"."+container + "@" + hostField;
     }
 
     public UuidConfigItem clone() {
@@ -160,26 +152,6 @@ public class CassConfigItems extends UuidConfigItem {
         cloned.setLogin(this.getLogin());
         cloned.setTarget(this.getTarget());
         return cloned;
-    }
-
-    @JsonIgnore
-    public String getUseCertificate() {
-        return useCertificate;
-    }
-
-    @JsonIgnore
-    public void setUseCertificate(String useCertificate) {
-        this.useCertificate = useCertificate;
-    }
-
-    @JsonIgnore
-    public String getCertificateFileField() {
-        return certificateFileField;
-    }
-
-    @JsonIgnore
-    public void setCertificateFileField(String certificateFileField) {
-        this.certificateFileField = certificateFileField;
     }
 
 }

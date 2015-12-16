@@ -49,7 +49,8 @@ public class PlinkScriptRunner implements CassandraScriptRunner {
 
         String[] array = { "runplink.bat",
                 items.getHostField(),
-                filetorun.getAbsolutePath()};
+                filetorun.getAbsolutePath(),
+                items.getContainer()};
 
         ArrayList<String> params = new ArrayList<String>();
         Collections.addAll(params, array);
@@ -65,7 +66,6 @@ public class PlinkScriptRunner implements CassandraScriptRunner {
         BufferedReader br = new BufferedReader(isr);
         String linex;
 
-
         while ((linex = br.readLine()) != null) {
 
             strbuilder.append(linex);
@@ -77,8 +77,6 @@ public class PlinkScriptRunner implements CassandraScriptRunner {
         BufferedReader brerr = new BufferedReader(isrerr);
         String line;
         boolean dbProblem = false;
-
-        boolean dbProblemerr = false;
 
         strbuilder.append("\nOutput from stderr: \n");
         while ((line = brerr.readLine()) != null) {

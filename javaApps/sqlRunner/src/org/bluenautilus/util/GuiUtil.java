@@ -1,6 +1,7 @@
 package org.bluenautilus.util;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,19 +15,22 @@ public class GuiUtil {
     public static void showErrorModalDialog(Exception e, JPanel parent) {
         //custom title, error icon
         System.err.print(e);
-        JOptionPane.showMessageDialog(parent,
-                makeGoodString(e),
-                "OH NOES",
-                JOptionPane.ERROR_MESSAGE);
+        String msg = makeGoodString(e);
 
+        JTextArea wrapped = new JTextArea(msg);
+        JScrollPane scrollPane = new JScrollPane(wrapped);
+        scrollPane.setPreferredSize(new Dimension(500,250));
+
+        JOptionPane.showMessageDialog(parent,
+                scrollPane,
+                "WHAT HAVE YOU DONE??",
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public static String makeGoodString(Exception e) {
         StringBuilder builder = new StringBuilder();
-        //this is an easy way to limit the width. some errors were going off the monitor.
-        builder.append("<html><body><p style='width: 200px;'>");
-        builder.append(e.getMessage());
-        builder.append("\n\n");
+
+        builder.append(e.getMessage()+"\n\n");
         StackTraceElement[] stack = e.getStackTrace();
         int count = 0;
         for (StackTraceElement s : stack) {
@@ -36,7 +40,6 @@ public class GuiUtil {
                 break;
             }
         }
-        builder.append("</p></body></html>");
 
         return builder.toString();
     }

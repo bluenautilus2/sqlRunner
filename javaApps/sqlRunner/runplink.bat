@@ -1,2 +1,2 @@
-((C:\putty\plink.exe %1 /home/cassandra/bin/cql) < %2 ) > cassout.txt
+((C:\putty\plink.exe %1 docker exec -i %3 dse/bin/cqlsh localhost) < %2 ) > cassout.txt
 

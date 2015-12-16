@@ -22,7 +22,7 @@ public class MainExecutable {
 
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("SQL Script Runner: Ludicrous Edition");
+        JFrame frame = new JFrame("SQL Script Runner: Docker Edition");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         log.info("sqlRunner starting: Ludicrous Edition");

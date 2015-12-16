@@ -60,62 +60,63 @@ public class SshScriptRunner implements CassandraScriptRunner {
 
         ProcessBuilder processBuilder = new ProcessBuilder(params);
 
-        Process process = processBuilder.start();
-
+        Process process = null;
+        boolean dbProblem = false;
         StringBuilder strbuilder = new StringBuilder();
 
-        InputStream is = process.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        String linex;
+        synchronized (CQL_OUTPUT_FILE) {
+            process = processBuilder.start();
+            InputStream is = process.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            String linex;
 
-
-        while ((linex = br.readLine()) != null) {
-
-            strbuilder.append(linex);
-            strbuilder.append("\n");
-        }
-
-        InputStream iserr = process.getErrorStream();
-        InputStreamReader isrerr = new InputStreamReader(iserr);
-        BufferedReader brerr = new BufferedReader(isrerr);
-        String line;
-        boolean dbProblem = false;
-
-        strbuilder.append("\nOutput from stderr: \n");
-        while ((line = brerr.readLine()) != null) {
-            if (null != line) {
-                int i = line.indexOf(DB_ERROR_FLAG);
-                if (i != -1) {
-                    dbProblem = true;
-                }
+            while ((linex = br.readLine()) != null) {
+                strbuilder.append(linex);
+                strbuilder.append("\n");
             }
-            strbuilder.append(line + "\n");
-        }
 
-        strbuilder.append("\nOutput from cmd line:  \n");
-        FileInputStream fis;
-        BufferedReader reader = null;
-        File newOutputFile = new File(CQL_OUTPUT_FILE);
+            InputStream iserr = process.getErrorStream();
+            InputStreamReader isrerr = new InputStreamReader(iserr);
+            BufferedReader brerr = new BufferedReader(isrerr);
+            String line;
 
-        try {
-            fis = new FileInputStream(newOutputFile);
-            reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
-            while ((line = reader.readLine()) != null) {
+            strbuilder.append("\nOutput from stderr: \n");
+            while ((line = brerr.readLine()) != null) {
                 if (null != line) {
                     int i = line.indexOf(DB_ERROR_FLAG);
                     if (i != -1) {
                         dbProblem = true;
                     }
                 }
-                strbuilder.append(line);
-                strbuilder.append("\n");
-            } //end of reading lines
-        } finally {
-            if (null != reader) {
-                reader.close();
+                strbuilder.append(line + "\n");
+            }
+
+            strbuilder.append("\nOutput from cmd line:  \n");
+            FileInputStream fis;
+            BufferedReader reader = null;
+            File newOutputFile = new File(CQL_OUTPUT_FILE);
+
+            try {
+                fis = new FileInputStream(newOutputFile);
+                reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+                while ((line = reader.readLine()) != null) {
+                    if (null != line) {
+                        int i = line.indexOf(DB_ERROR_FLAG);
+                        if (i != -1) {
+                            dbProblem = true;
+                        }
+                    }
+                    strbuilder.append(line);
+                    strbuilder.append("\n");
+                } //end of reading lines
+            } finally {
+                if (null != reader) {
+                    reader.close();
+                }
             }
         }
+        process.destroy();
 
         ScriptResultsEvent event = new ScriptResultsEvent(strbuilder.toString(), scriptFile, type, dbProblem);
         return event;
