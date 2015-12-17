@@ -28,7 +28,7 @@ public class SshScriptRunner implements CassandraScriptRunner {
 
 
     private static final String CMD = "./cass_ssh.sh";
-    private static final String DB_ERROR_FLAG = "Bad Request";
+    private static final String DB_ERROR_FLAG = "ErrorMessage";
     private static Log log = LogFactory.getLog(SshScriptRunner.class);
     private static final String CQL_OUTPUT_FILE = "cassout.txt";
 

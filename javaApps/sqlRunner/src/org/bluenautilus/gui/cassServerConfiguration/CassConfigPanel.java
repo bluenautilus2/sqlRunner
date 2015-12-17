@@ -222,6 +222,8 @@ public class CassConfigPanel extends JPanel {
             case DOCKER_PLINK:
                 setHost("Putty Session Name", "cassandra", true, false);
                 break;
+            case VIEW_ONLY:
+                setHost("Cassandra Host Name", "host_or_ip", true,true);
         }
     }
 
