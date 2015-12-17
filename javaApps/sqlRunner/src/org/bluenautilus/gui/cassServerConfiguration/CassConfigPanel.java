@@ -212,23 +212,26 @@ public class CassConfigPanel extends JPanel {
     }
 
     private void syncHiddenFields(CassandraConnectionType type) {
-        switch(type) {
+        switch (type) {
             case DOCKER_REMOTE:
-                setHost("Cassandra Host Name", "host_or_ip",true, true);
+                setHost("Cassandra Host Name", null, true, true);
                 break;
             case DOCKER_LOCAL:
                 setHost("Cassandra Host Name", "localhost", false, false);
                 break;
             case DOCKER_PLINK:
-                setHost("Putty Session Name", "cassandra", true, false);
+                setHost("Putty Session Name", null, true, false);
                 break;
             case VIEW_ONLY:
-                setHost("Cassandra Host Name", "host_or_ip", true,true);
+                setHost("Cassandra Host Name", null, true, true);
         }
     }
 
-    public void setHost(final String label, final String value, final boolean hostEnabled, final boolean loginEnabled){
-        this.hostNameField.setText(value);
+    public void setHost(final String label, final String value, final boolean hostEnabled, final boolean loginEnabled) {
+        if (value != null) {
+            this.hostNameField.setText(value);
+        }
+
         this.hostNameField.setEnabled(hostEnabled);
         this.hostName.setText(label);
         this.hostName.setEnabled(hostEnabled);
