@@ -1,5 +1,7 @@
 package org.bluenautilus.db;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
 import org.bluenautilus.data.SqlScriptRow;
 import org.joda.time.DateTime;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 
 
 public class DBRowRetriever {
+	private static Log log = LogFactory.getLog(DBRowRetriever.class);
 
 	private Connection connect = null;
 	private Statement statement = null;
@@ -31,10 +34,10 @@ public class DBRowRetriever {
 		try {
 			// This will load the ms sql server driver, each DB has its own driver
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			// Setup the connection with the DB
 
+			// Setup the connection with the DB
 			connect = DriverManager.getConnection(this.getConnectString(), fields.getLoginField(), fields.getPasswordField());
-			System.out.println(this.getConnectString());
+			log.info(this.getConnectString());
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
@@ -42,10 +45,6 @@ public class DBRowRetriever {
 			resultSet = statement.executeQuery("select * from system_db_updates order by db_update_date desc");
 
 			while (resultSet.next()) {
-				// It is possible to get the columns via name
-				// also possible to get the columns via the column number
-				// which starts at 1
-				// e.g. resultSet.getSTring(2);
 				String s = resultSet.getString("DB_Update_Date");
                 Timestamp time = resultSet.getTimestamp("Created_Date");
 				SqlScriptRow row = new SqlScriptRow(s, new DateTime(time));

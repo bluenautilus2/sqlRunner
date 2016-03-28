@@ -31,7 +31,7 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         theTable = new ScriptTable(tableModel);
         JScrollPane scroll = new JScrollPane(theTable);
 
-        scroll.setPreferredSize(new Dimension(350,600));
+        scroll.setPreferredSize(new Dimension(350, 600));
         this.add(scroll, BorderLayout.CENTER);
 
         this.setVisible(true);
@@ -53,7 +53,7 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
         this.theTable.getSelectionModel().addListSelectionListener(listener);
     }
 
-    public void removeTableListener(ListSelectionListener listener){
+    public void removeTableListener(ListSelectionListener listener) {
         this.theTable.getSelectionModel().removeListSelectionListener(listener);
     }
 
@@ -74,14 +74,18 @@ public class SqlScriptTablePanel extends JPanel implements ScriptStatusChangeLis
 
     }
 
+    public void deselectAllRows() {
+        this.theTable.clearSelection();
+    }
+
     public ArrayList<SqlScriptFile> getAllToRun() {
 
         ArrayList<SqlScriptFile> answer = new ArrayList<SqlScriptFile>();
 
         ArrayList<SqlScriptFile> allList = this.tableModel.getAllRows();
 
-        for(SqlScriptFile file: allList){
-            if(ScriptStatus.NEED_TO_RUN.equals(file.getStatus())){
+        for (SqlScriptFile file : allList) {
+            if (ScriptStatus.NEED_TO_RUN.equals(file.getStatus())) {
                 answer.add(file);
             }
         }

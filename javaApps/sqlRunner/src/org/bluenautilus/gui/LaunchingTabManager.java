@@ -9,6 +9,8 @@ import org.bluenautilus.data.UuidConfigItem;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,9 +27,9 @@ import java.util.Set;
  */
 public class LaunchingTabManager implements LaunchButtonListener {
     private static Log log = LogFactory.getLog(LaunchingTabManager.class);
-final private JPanel blankPanel = new JPanel();
-    JTabbedPane tabbedPane = new JTabbedPane();
 
+    final private JPanel blankPanel = new JPanel();
+    JTabbedPane tabbedPane = new JTabbedPane();
     RunButtonPanel buttonPanel = null;
     JPanel parentPanel = null;
     Map<String, TripletPanelMgr> panelManagers = new HashMap<>();
@@ -39,6 +41,22 @@ final private JPanel blankPanel = new JPanel();
         Dimension theSize = new Dimension(800, 500);
         blankPanel.setPreferredSize(theSize);
         tabbedPane.addTab("Chose a datastore group", blankPanel);
+
+        tabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                Integer index = tabbedPane.getSelectedIndex();
+                if (index >= 0) {
+                    Component selectedTab = tabbedPane.getTabComponentAt(index);
+                    if (selectedTab != null) {
+                        String selectedTrackingName = selectedTab.getName();
+                        if (selectedTrackingName != null) {
+                            handleTabSelectionEvent(selectedTrackingName);
+                        }
+                    }
+                }
+            }
+        });
     }
 
 
@@ -142,7 +160,7 @@ final private JPanel blankPanel = new JPanel();
         //tell manager to stop functioning
         TripletPanelMgr mgr = panelManagers.get(trackingName);
         if (mgr != null) {
-           mgr.stopListening();
+            mgr.stopListening();
         }
         //remove manager
         panelManagers.remove(trackingName);
@@ -157,6 +175,17 @@ final private JPanel blankPanel = new JPanel();
         cloneOfNames.addAll(names);
         for (String trackingName : cloneOfNames) {
             closePanelAndCleanUp(trackingName);
+        }
+    }
+
+    private void handleTabSelectionEvent(String selectedTrackingName) {
+        TripletPanelMgr selectedMgr = panelManagers.get(selectedTrackingName);
+        selectedMgr.tabWasSelected();
+
+        for (String trackingName : panelManagers.keySet()) {
+            if (!trackingName.equals(selectedTrackingName)) {
+                panelManagers.get(trackingName).tabWasDeselected();
+            }
         }
     }
 

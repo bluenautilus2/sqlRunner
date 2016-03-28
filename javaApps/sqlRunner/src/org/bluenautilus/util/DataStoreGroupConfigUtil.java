@@ -65,9 +65,6 @@ public class DataStoreGroupConfigUtil {
                 // convert user object to json string, and save to a file
                 mapper.writeValue(newFile, dataStoreGroupList);
 
-                // display to console
-                System.out.println(mapper.writeValueAsString(dataStoreGroupList));
-
             } catch (JsonGenerationException e) {
                 log.error(e);
             } catch (JsonMappingException e) {
@@ -91,9 +88,6 @@ public class DataStoreGroupConfigUtil {
 
             // read from file, convert it to user class
             dataStoreGroupList = mapper.readValue(file, DataStoreGroupList.class);
-
-            // display to console
-            System.out.println(dataStoreGroupList);
 
         } catch (JsonGenerationException e) {
             log.error(e);

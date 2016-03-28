@@ -19,13 +19,15 @@ import java.awt.*;
 public class MainExecutable {
 
     private static Log log = LogFactory.getLog(MainExecutable.class);
+    private static final String EDITION = "SQL Script Runner: Docker Edition";
+    private static final String VERSION = " 1.4";
 
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("SQL Script Runner: Docker Edition");
+        JFrame frame = new JFrame(EDITION + VERSION);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        log.info("sqlRunner starting: Ludicrous Edition");
+        log.info(EDITION + " starting. Version: " + VERSION + " If you have a problem with this tool contact Beth. If Beth yells at you that she's busy, you can fix it yourself - the codebase is in Gerrit. ");
 
         CassConfigUtil.readInConfiguration();
         SqlConfigUtil.readInConfiguration();
@@ -40,7 +42,7 @@ public class MainExecutable {
         final RunButtonPanel runButtonPanel = new RunButtonPanel();
         topPanel.add(runButtonPanel, BorderLayout.WEST);
 
-        DataStorePanelManager mgr = new DataStorePanelManager(dataStoreGroupPanel);
+        new DataStorePanelManager(dataStoreGroupPanel);
 
         LaunchingTabManager tabManager = new LaunchingTabManager(runButtonPanel, mainPanel);
         dataStoreGroupPanel.addLaunchButtonListener(tabManager);

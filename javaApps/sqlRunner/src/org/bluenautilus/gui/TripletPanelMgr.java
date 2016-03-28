@@ -36,7 +36,7 @@ import java.util.Collections;
  *
  * Pretty much everything happens in this class, despite my efforts to de-centralize it.
  */
-public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, OpenInSsmsListener {
+public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, OpenInSsmsListener, TabSelectionListener {
 
     private static Log LOG = LogFactory.getLog(TripletPanelMgr.class);
 
@@ -307,5 +307,19 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
                 }
             }
         });
+    }
+
+    /**
+     * The tab this panel lives in was selected.
+     */
+    public void tabWasSelected(){
+         //does nothing for now, here for future use.
+    }
+
+    /**
+     * The tab this panel lives in is either now hidden, or continues to be hidden.
+     */
+    public void tabWasDeselected(){
+        sqlTablePanel.deselectAllRows();
     }
 }

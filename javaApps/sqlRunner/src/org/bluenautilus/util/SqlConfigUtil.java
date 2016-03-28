@@ -75,9 +75,6 @@ public class SqlConfigUtil {
                 // convert user object to json string, and save to a file
                 mapper.writeValue(newFile, sqlConfigItemsList);
 
-                // display to console
-                System.out.println(mapper.writeValueAsString(sqlConfigItemsList));
-
             } catch (JsonGenerationException e) {
 
                 log.error(e);
@@ -122,9 +119,6 @@ public class SqlConfigUtil {
 
             // read from file, convert it to user class
             sqlConfigItemsList = mapper.readValue(file,SqlConfigItemsList.class);
-
-            // display to console
-            System.out.println(sqlConfigItemsList);
 
         } catch (JsonGenerationException e) {
 

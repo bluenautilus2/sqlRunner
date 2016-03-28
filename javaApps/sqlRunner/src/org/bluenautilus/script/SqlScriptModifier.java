@@ -184,9 +184,7 @@ public class SqlScriptModifier implements ScriptCompletionListener {
 	private boolean parseForStoredProcedures(String input) throws IOException {
 		if (input != null && (!input.equals(""))) {
 			String flag = SP_FLAG.toLowerCase();
-			//System.out.println("Looking for: " + flag + " in " + input + "\n");
 			if (input.indexOf(flag) != -1) {
-				System.out.println("\nfound it\n\n");
 				return true;
 
 			}

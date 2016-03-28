@@ -73,9 +73,6 @@ public class CassConfigUtil {
                 // convert user object to json string, and save to a file
                 mapper.writeValue(newFile, cassConfigItemsList);
 
-                // display to console
-                System.out.println(mapper.writeValueAsString(cassConfigItemsList));
-
             } catch (JsonGenerationException e) {
 
                 log.error(e);
@@ -118,9 +115,6 @@ public class CassConfigUtil {
 
             // read from file, convert it to user class
             cassConfigItemsList = mapper.readValue(file, CassConfigItemsList.class);
-
-            // display to console
-            System.out.println(cassConfigItemsList);
 
         } catch (JsonGenerationException e) {
 

@@ -56,7 +56,6 @@ public class SqlScriptFile implements Comparable<SqlScriptFile> {
     }
 
     public void addRowObjectToCollection(SqlScriptRow rowObj){
-        //System.out.println("Adding: "+ rowObj.getDbUpdateDate());
         this.rowHolder.addScript(rowObj);
     }
 
