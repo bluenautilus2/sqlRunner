@@ -18,13 +18,13 @@ import java.util.ArrayList;
  * Date: 7/28/13
  * Time: 10:33 PM
  */
-public class RunButtonPanel extends JPanel implements ActionListener {
+public class RunButtonPanel extends JPanel implements ActionListener, RefreshListener {
 
     private static Log LOG = LogFactory.getLog(RunButtonPanel.class);
 
     private JButton refreshButton = new JButton("REFRESH");
     private JButton selectedScriptButton = new JButton("Run Selected");
-    private JButton runAllButton = new JButton("Run All");
+    private JButton newScriptButton = new JButton("New Script");
     private JButton rollbackButton = new JButton("Rollback Selected");
     private Color defaultForeground;
     private Color defaultBackground;
@@ -48,8 +48,11 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.defaultBackground = this.refreshButton.getBackground();
         this.defaultForeground = this.refreshButton.getForeground();
 
+        this.newScriptButton.setToolTipText("Generate a new script");
+        this.newScriptButton.setBackground(new Color(212, 237, 224));
+        this.newScriptButton.setForeground(new Color(39, 69, 69));
+        this.newScriptButton.addActionListener(this.makeNewScriptListener(this));
         this.selectedScriptButton.setToolTipText("Run only the script(s) that are selected");
-        this.runAllButton.setToolTipText("Runs all scripts showing as \'Need to Run\'");
         this.rollbackButton.setToolTipText("Runs Rollback Script for Selected rows");
 
         //int gridx, int gridy,int gridwidth, int gridheight,
@@ -63,9 +66,9 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         //someday this will become the "run one week at a time" button
         //Don't remove it, there's a lot of framework in place to handle
         //the events it generates.
-        //leftCornerPanel.add(this.runAllButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-        //        GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        //        new Insets(4, 4, 4, 4), 2, 2));
+        leftCornerPanel.add(this.newScriptButton, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                new Insets(4, 4, 4, 4), 2, 2));
 
         leftCornerPanel.add(this.selectedScriptButton, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
@@ -100,7 +103,7 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.refreshListeners.add(listener);
     }
 
-    public void removeRefreshListener(final RefreshListener listener){
+    public void removeRefreshListener(final RefreshListener listener) {
         this.refreshListeners.remove(listener);
     }
 
@@ -123,22 +126,21 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         this.rollbackButton.addActionListener(rollbackActionListener);
     }
 
+    //The ability to run all scripts has been disabled for the time being.
 
-
-
-    public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {
+  /*  public void addScriptRunAllToRunListener(final ScriptKickoffListener listener) {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 listener.kickoffAllToRunScripts();
             }
         };
-        this.runAllButton.addActionListener(actionListener);
+        this.newScriptButton.addActionListener(actionListener);
 
-    }
+    }  */
 
     private void setRefreshButtonRed(int count) {
-        if(count>0) {
+        if (count > 0) {
             this.refreshButton.setText(REFRESHING + ": " + count);
             this.refreshButton.setForeground(Color.WHITE);
             this.refreshButton.setBackground(new Color(150, 60, 60));
@@ -162,7 +164,7 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         //how many refresh listeners?
         this.outstandingRefreshActions = refreshListeners.size();
         setRefreshButtonRed(this.outstandingRefreshActions);
-        for(RefreshListener refreshListener:refreshListeners){
+        for (RefreshListener refreshListener : refreshListeners) {
             refreshListener.refreshAction();
         }
     }
@@ -174,5 +176,22 @@ public class RunButtonPanel extends JPanel implements ActionListener {
         } else {
             this.setRefreshButtonRed(this.outstandingRefreshActions);
         }
+    }
+
+    @Override
+    public void refreshAction() {
+        actionPerformed(null);
+    }
+
+    public ActionListener makeNewScriptListener(final RefreshListener refreshListener) {
+        ActionListener newListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewScriptDialog newScriptDialog = new NewScriptDialog("Create new DB Script", refreshListener);
+                newScriptDialog.pack();
+                newScriptDialog.setVisible(true);
+            }
+        };
+        return newListener;
     }
 }

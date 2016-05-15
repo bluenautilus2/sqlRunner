@@ -1,11 +1,8 @@
 package org.bluenautilus.data;
 
-import org.bluenautilus.util.CassConfigUtil;
-import org.bluenautilus.util.SqlConfigUtil;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,16 +15,21 @@ public class DataStoreGroupList {
     private UUID lastUsedDataStoreGroupId;
     private String lastUsedFileFolderSql;
     private String lastUsedFileFolderCass;
+
+    @Deprecated
     private boolean poddedMode;
+
+    private String authorName;
+    private String authorEmail;
 
     public DataStoreGroupList() {
         //nothin'
     }
 
-    public void removeDataStoreGroup(UUID goneGroup){
+    public void removeDataStoreGroup(UUID goneGroup) {
         DataStoreGroup fromList = null;
-        for(DataStoreGroup group: dataStoreGroupList){
-            if(group.getUniqueId().equals(goneGroup)){
+        for (DataStoreGroup group : dataStoreGroupList) {
+            if (group.getUniqueId().equals(goneGroup)) {
                 fromList = group;
             }
         }
@@ -83,14 +85,14 @@ public class DataStoreGroupList {
     }
 
     @JsonIgnore
-    public void replace(DataStoreGroup updated){
+    public void replace(DataStoreGroup updated) {
         DataStoreGroup groupToRemove = null;
-        for(DataStoreGroup group:dataStoreGroupList){
-            if(updated.getUniqueId().equals(group.getUniqueId())){
+        for (DataStoreGroup group : dataStoreGroupList) {
+            if (updated.getUniqueId().equals(group.getUniqueId())) {
                 groupToRemove = group;
             }
         }
-        if(groupToRemove==null){
+        if (groupToRemove == null) {
             groupToRemove = updated;
         }
         dataStoreGroupList.remove(groupToRemove);
@@ -105,11 +107,28 @@ public class DataStoreGroupList {
         this.lastUsedDataStoreGroupId = lastUsedDataStoreGroupId;
     }
 
+    public String getAuthorName() {
+        return authorName;
+    }
 
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
+    }
+
+    @Deprecated
     public boolean isPoddedMode() {
         return poddedMode;
     }
 
+    @Deprecated
     public void setPoddedMode(boolean poddedMode) {
         this.poddedMode = poddedMode;
     }

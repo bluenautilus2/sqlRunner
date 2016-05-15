@@ -1,5 +1,6 @@
 package org.bluenautilus.util;
 
+import com.google.common.base.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.DataStoreGroup;
@@ -25,7 +26,6 @@ public class DataStoreGroupConfigUtil {
 
     private static final String CONFIG_FILENAME = "datastores.json";
     private static final String BAK_FILENAME = "datastores.json.old";
-
     private static DataStoreGroupList dataStoreGroupList = new DataStoreGroupList();
 
 
@@ -117,34 +117,34 @@ public class DataStoreGroupConfigUtil {
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 
-    public static void replaceWithUpdatesAndSave(DataStoreGroup updatedGroup){
-       DataStoreGroupConfigUtil.dataStoreGroupList.replace(updatedGroup);
+    public static void replaceWithUpdatesAndSave(DataStoreGroup updatedGroup) {
+        DataStoreGroupConfigUtil.dataStoreGroupList.replace(updatedGroup);
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 
-    public static void removeDataStoreFromAllGroupsAndSave(UuidConfigItem removed){
-        for(DataStoreGroup group:dataStoreGroupList.getDataStoreGroupList()){
+    public static void removeDataStoreFromAllGroupsAndSave(UuidConfigItem removed) {
+        for (DataStoreGroup group : dataStoreGroupList.getDataStoreGroupList()) {
             boolean found = false;
             UUID foundID = null;
-            for(UUID id:group.getDataStores()){
-                if(id.equals(removed.getUniqueId())){
+            for (UUID id : group.getDataStores()) {
+                if (id.equals(removed.getUniqueId())) {
                     found = true;
                     foundID = id;
                 }
             }
-            if(found){
+            if (found) {
                 group.getDataStores().remove(foundID);
             }
         }
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 
-    public static void updateMostRecentlyChosenDataStoreGroup(UUID chosenUUID){
+    public static void updateMostRecentlyChosenDataStoreGroup(UUID chosenUUID) {
         dataStoreGroupList.setLastUsedDataStoreGroupId(chosenUUID);
         DataStoreGroupConfigUtil.saveOffCurrent();
     }
 
-    public static UUID getMostRecentlyChosenDataStoreGroup(){
+    public static UUID getMostRecentlyChosenDataStoreGroup() {
         return dataStoreGroupList.getLastUsedDataStoreGroupId();
     }
 
@@ -163,6 +163,36 @@ public class DataStoreGroupConfigUtil {
 
     public static void updateLastUsedFileFolderCass(String lastUsedFileFolderCass) {
         dataStoreGroupList.setLastUsedFileFolderCass(lastUsedFileFolderCass);
+    }
+
+    public static String getLastUsedAuthorName() {
+        return Strings.nullToEmpty(dataStoreGroupList.getAuthorName());
+    }
+
+    public static void updateLastUsedAuthorName(String authorName) {
+        if(Strings.isNullOrEmpty(authorName)){
+            return;
+        }
+        String oldName = dataStoreGroupList.getAuthorName();
+        if (oldName==null || !oldName.equals(authorName)) {
+            dataStoreGroupList.setAuthorName(authorName);
+            DataStoreGroupConfigUtil.saveOffCurrent();
+        }
+    }
+
+    public static String getLastUsedAuthorEmail() {
+        return Strings.nullToEmpty(dataStoreGroupList.getAuthorEmail());
+    }
+
+    public static void updateLastUsedAuthorEmail(String authorEmail) {
+        if(Strings.isNullOrEmpty(authorEmail)){
+            return;
+        }
+        String oldEmail = dataStoreGroupList.getAuthorEmail();
+        if (oldEmail==null || !oldEmail.equals(authorEmail)) {
+            dataStoreGroupList.setAuthorEmail(authorEmail);
+            DataStoreGroupConfigUtil.saveOffCurrent();
+        }
     }
 
 }

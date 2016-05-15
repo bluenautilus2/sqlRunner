@@ -20,14 +20,16 @@ public class MainExecutable {
 
     private static Log log = LogFactory.getLog(MainExecutable.class);
     private static final String EDITION = "SQL Script Runner: Docker Edition";
-    private static final String VERSION = " 1.4";
+    private static final String VERSION = " 1.5";
+    private static final String LAST_UPDATED = "May 15th 2016";
 
     public static void main(String[] args) {
 
         JFrame frame = new JFrame(EDITION + VERSION);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        log.info(EDITION + " starting. Version: " + VERSION + " If you have a problem with this tool contact Beth. If Beth yells at you that she's busy, you can fix it yourself - the codebase is in Gerrit. ");
+        log.info(
+                EDITION + " starting. Version: " + VERSION + " Last Updated: " + LAST_UPDATED + " If you have a problem with this tool contact Beth. If Beth yells at you that she's busy, you can fix it yourself - the codebase is in BitBucket. ");
 
         CassConfigUtil.readInConfiguration();
         SqlConfigUtil.readInConfiguration();

@@ -28,8 +28,9 @@ import java.util.Arrays;
  */
 public class ScriptViewPanel extends ParentTextPanel {
 
+    private final Integer CUTOFF = 200;
 	private JButton entireScriptButton = new JButton("Edit Script");
-	private JButton rollbackScriptButton = new JButton("Rollback Script");
+	private JButton rollbackScriptButton = new JButton("View Rollback");
     private JButton openInSSMSButton = new JButton("Open in SSMS");
 
 	private ArrayList<ScriptPopOutEventListener> popOutListeners = new ArrayList<ScriptPopOutEventListener>();
@@ -54,12 +55,12 @@ public class ScriptViewPanel extends ParentTextPanel {
             reader = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 
             int count = 0;
-            while (((line = reader.readLine()) != null) && count < 100) {
+            while (((line = reader.readLine()) != null) && count < CUTOFF) {
                 textArea.append(line + "\n");
                 count++;
             }
-            if(count==100){
-                textArea.append("\n*IMPORTANT Script Truncated at 100 lines for GUI performance* \n");
+            if(count==CUTOFF){
+                textArea.append("\n*IMPORTANT Script Truncated at "+ CUTOFF+" lines for GUI performance* \n");
 				textArea.append("\n Click on \'Edit Script\' button to see the whole script --Beth\n");
             }
         } finally {

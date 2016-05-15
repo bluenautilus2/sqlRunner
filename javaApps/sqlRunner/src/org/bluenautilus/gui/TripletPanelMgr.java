@@ -1,6 +1,5 @@
 package org.bluenautilus.gui;
 
-import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bluenautilus.data.SqlConfigItems;
@@ -33,7 +32,7 @@ import java.util.Collections;
  * Date: 8/1/13
  * Time: 10:11 PM
  * To change this template use File | Settings | File Templates.
- *
+ * <p/>
  * Pretty much everything happens in this class, despite my efforts to de-centralize it.
  */
 public class TripletPanelMgr implements RefreshListener, ListSelectionListener, ScriptKickoffListener, ScriptCompletionListener, DatabaseRefreshIOListener, ScriptPopOutEventListener, OpenInSsmsListener, TabSelectionListener {
@@ -72,7 +71,8 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
         this.buttonPanel = buttonPanel;
         this.buttonPanel.addRefreshListener(this);
         this.buttonPanel.addScriptKickoffListener(this);
-        this.buttonPanel.addScriptRunAllToRunListener(this);
+        //Running all the scripts has been disabled until futher notice
+        //this.buttonPanel.addScriptRunAllToRunListener(this);
         this.scriptViewPanel.addPopOutListener(this);
         this.scriptViewPanel.addOpenInSsmsListner(this);
         this.scriptViewPanel.enableOpenSsmsButton();
@@ -312,14 +312,14 @@ public class TripletPanelMgr implements RefreshListener, ListSelectionListener, 
     /**
      * The tab this panel lives in was selected.
      */
-    public void tabWasSelected(){
-         //does nothing for now, here for future use.
+    public void tabWasSelected() {
+        //does nothing for now, here for future use.
     }
 
     /**
      * The tab this panel lives in is either now hidden, or continues to be hidden.
      */
-    public void tabWasDeselected(){
+    public void tabWasDeselected() {
         sqlTablePanel.deselectAllRows();
     }
 }
